@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="Y901高速公路是一条重要的交通纽带，政府部门建设初期的投入以及使用期间的养护费用都不低，因此政府在这条高速公路上设立了许多收费站。 Y901高速公路是一条由$N-1$段路以及$N$个收费站组成的东西向的链，我们按照由西向东的顺序将收费站依次编号为$1..N$，从收费站$i$行驶到$i+1$(或从$i+1$行驶到$i$)需要收取$V_i$的费用。高速路刚建成时所有的路段都是免费的。 政府部门根据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-21T06:24:18.166Z">
+<meta property="og:updated_time" content="2018-08-21T06:27:19.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="luogu2221">
 <meta name="twitter:description" content="Y901高速公路是一条重要的交通纽带，政府部门建设初期的投入以及使用期间的养护费用都不低，因此政府在这条高速公路上设立了许多收费站。 Y901高速公路是一条由$N-1$段路以及$N$个收费站组成的东西向的链，我们按照由西向东的顺序将收费站依次编号为$1..N$，从收费站$i$行驶到$i+1$(或从$i+1$行驶到$i$)需要收取$V_i$的费用。高速路刚建成时所有的路段都是免费的。 政府部门根据">
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2018-08-21 12:14:19 / Modified: 14:24:18" itemprop="dateCreated datePublished" datetime="2018-08-21T12:14:19+08:00">2018-08-21</time>
+              <time title="Created: 2018-08-21 12:14:19 / Modified: 14:27:19" itemprop="dateCreated datePublished" datetime="2018-08-21T12:14:19+08:00">2018-08-21</time>
             
 
             
@@ -429,7 +429,7 @@
 <p><a href="https://www.luogu.org/problemnew/show/P2221" target="_blank" rel="noopener">题目地址</a></p>
 <a id="more"></a>
 <p>我们记$i$到$i+1$费用为$w_i$，那么可以转化成序列问题：</p>
-<p>$C~l~r~v:\forall i\in[l,r)~w’_i=w_i+v\$<br>$Q~l~r:ans=\dfrac{\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}\sum_{k=i}^jw_k}{\sum_{i=l}^{i-1}\sum_{j=i}^{r-1}1}$</p>
+<p>$C~l~r~v:\forall i\in[l,r)~w’_i=w_i+v$<br>$Q~l~r:ans=\dfrac{\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}\sum_{k=i}^jw_k}{\sum_{i=l}^{i-1}\sum_{j=i}^{r-1}1}$</p>
 <p>$\mathrm{set}~ans=\dfrac ab$<br>$\therefore a=\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}\sum_{k=i}^jw_k=\sum_{k=l}^{r-1}(w_k\times\sum_{i=l}^k\sum_{j=k}^{r-1}1)$<br>$=\sum_{k=l}^{r-1}(k-l+1)(r-k)w_k=\sum_{k=l}^{r’}(k-l+1)(r’-k+1)w_k$</p>
 <p>$=\sum_{k=l}^{r’}[-k^2w_k+(l+r’)kw_k+(r’+1)(1-l)w_k]$ （$r’=r-1$）<br>$b=\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}1=\sum_{i=l}^{r-1}(r-i)=\sum_{i=1}^{r-l}i=\dfrac{(r-l)(r-l+1)}{2}$</p>
 <p>维护$k^2w_k,kw_k,w_k$即可</p>
