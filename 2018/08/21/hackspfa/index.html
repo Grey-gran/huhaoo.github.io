@@ -108,25 +108,27 @@
 
 
 
-  <meta name="description" content="一道我也不知道怎么AC的题">
-<meta name="keywords" content="uoj,提交答案">
+  <meta name="description" content="How to hack spfaLike this(From 1 to 7):">
+<meta name="keywords" content="hack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UOJ69">
-<meta property="og:url" content="https://huhaoo.github.io/2017/12/09/UOJ69/index.html">
+<meta property="og:title" content="How to hack spfa">
+<meta property="og:url" content="https://huhaoo.github.io/2018/08/21/hackspfa/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="一道我也不知道怎么AC的题">
+<meta property="og:description" content="How to hack spfaLike this(From 1 to 7):">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-21T07:04:06.000Z">
+<meta property="og:image" content="https://huhaoo.github.io/home/huhao/blog/source/_posts/hackspfa/1.png">
+<meta property="og:updated_time" content="2018-08-21T08:00:33.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UOJ69">
-<meta name="twitter:description" content="一道我也不知道怎么AC的题">
+<meta name="twitter:title" content="How to hack spfa">
+<meta name="twitter:description" content="How to hack spfaLike this(From 1 to 7):">
+<meta name="twitter:image" content="https://huhaoo.github.io/home/huhao/blog/source/_posts/hackspfa/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/2017/12/09/UOJ69/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2018/08/21/hackspfa/"/>
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>UOJ69 | Huhao's blog</title>
+  <title>How to hack spfa | Huhao's blog</title>
   
 
 
@@ -340,7 +342,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/09/UOJ69/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2018/08/21/hackspfa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -357,7 +359,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UOJ69
+          <h1 class="post-title" itemprop="name headline">How to hack spfa
               
             
           </h1>
@@ -382,24 +384,12 @@
                 
               
 
-              <time title="Created: 2017-12-09 09:28:36" itemprop="dateCreated datePublished" datetime="2017-12-09T09:28:36+08:00">2017-12-09</time>
+              <time title="Created: 2018-08-21 15:58:37 / Modified: 16:00:33" itemprop="dateCreated datePublished" datetime="2018-08-21T15:58:37+08:00">2018-08-21</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-02-21 15:04:06" itemprop="dateModified" datetime="2018-02-21T15:04:06+08:00">2018-02-21</time>
               
             
           </span>
@@ -432,19 +422,24 @@
       
 
       
-        <p><del>一道我也不知道怎么AC的题</del></p>
+        <h3 id="How-to-hack-spfa"><a href="#How-to-hack-spfa" class="headerlink" title="How to hack spfa"></a>How to hack spfa</h3><p>Like this(From 1 to 7):</p>
+<p><img src="/home/huhao/blog/source/_posts/hackspfa/1.png" alt=""></p>
 <a id="more"></a>
-<p>我们设单次正确的概率为$p$，总正确率为$P$，来分析以下代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">input n</span><br><span class="line">input m</span><br><span class="line">a = <span class="number">0</span></span><br><span class="line">b = <span class="number">1</span></span><br><span class="line">c = a + b</span><br><span class="line">c = c % m</span><br><span class="line">a = b</span><br><span class="line">b = c</span><br><span class="line">n = n - <span class="number">1</span></span><br><span class="line">p = n == <span class="number">0</span></span><br><span class="line"><span class="keyword">if</span> p <span class="keyword">goto</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>如果我们那么写，P=$(\dfrac18×\dfrac18×\dfrac18)^n$，若$n=200$,$P&lt;8^{−600}$</p>
-<p>期望得分：$0′$~$1′$</p>
-<p>首先，我们先解决$c=a+b$</p>
-<p>我们可以多取几个值，然后，判相等，还有，请不要打注释。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = a + b</span><br><span class="line">d = a + b          <span class="comment">//重复算两次</span></span><br><span class="line">e = c - d          <span class="comment">//当e为0时，c=d</span></span><br><span class="line"><span class="keyword">if</span> e <span class="keyword">goto</span> <span class="number">1</span>        <span class="comment">//1是这个程序段的1，可以降低出错概率</span></span><br></pre></td></tr></table></figure>
-<p>出错概率很小，当且仅当$e$和$c$或$d$同时出错，而且要求$c≠d$,$e≠0$，所以。。。</p>
-<p>同样的思路：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">input a</span><br><span class="line">input b</span><br><span class="line">c = <span class="number">0</span></span><br><span class="line">d = <span class="number">1</span></span><br><span class="line">e = c + d</span><br><span class="line">f = c + d</span><br><span class="line">g = e - f</span><br><span class="line"><span class="keyword">if</span> g <span class="keyword">goto</span> <span class="number">5</span></span><br><span class="line">c = d</span><br><span class="line">d = e</span><br><span class="line">e = c % b</span><br><span class="line">f = c % b</span><br><span class="line">g = e - f</span><br><span class="line"><span class="keyword">if</span> g <span class="keyword">goto</span> <span class="number">11</span></span><br><span class="line">c = e</span><br><span class="line">e = d % b</span><br><span class="line">f = d % b</span><br><span class="line">g = e - f</span><br><span class="line"><span class="keyword">if</span> g <span class="keyword">goto</span> <span class="number">16</span></span><br><span class="line">d = e</span><br><span class="line">e = a - <span class="number">1</span></span><br><span class="line">f = a - <span class="number">1</span></span><br><span class="line">g = e - f</span><br><span class="line"><span class="keyword">if</span> g <span class="keyword">goto</span> <span class="number">21</span></span><br><span class="line">a = e</span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">goto</span> <span class="number">5</span></span><br><span class="line">output c</span><br></pre></td></tr></table></figure>
-<p>然后果断出现一行绿绿的$100$.</p>
+<p>The queue is:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">4 2</span><br><span class="line">6 5 3</span><br><span class="line">7 6 4</span><br><span class="line">7 6 5</span><br><span class="line">7 6</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+<p>Use [7/8/5] (point/edge/max weight) to make pass ‘7’ 4 times</p>
+<h3 id="I-want-to-make-my-graph-bigger"><a href="#I-want-to-make-my-graph-bigger" class="headerlink" title="I want to make my graph bigger"></a>I want to make my graph bigger</h3><p>You can use $O(n^2)$ points ans edges to make the last point pass $2^n$ times</p>
+<ul>
+<li><p>Choose $n+1$ points </p>
+</li>
+<li><p>$\forall i\in[1,n]$</p>
+<ul>
+<li>Link $(i,i+1,n+2-i+2^{n-i})$</li>
+<li>Make $n+2-i$ points,set a is the number of the first point,therefore $a+n+1-i$ is the number of the last point.</li>
+<li>Link $(i,a,1),(a+n+1-i,i+1,1)$ and$\forall j\in[a,a+n-i]~(j,j+1,1)$</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -465,9 +460,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/uoj/" rel="tag"># uoj</a>
-          
-            <a href="/tags/提交答案/" rel="tag"># 提交答案</a>
+            <a href="/tags/hack/" rel="tag"># hack</a>
           
         </div>
       
@@ -492,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/09/LCS/" rel="next" title="求LCS的长度和数量">
-                <i class="fa fa-chevron-left"></i> 求LCS的长度和数量
+              <a href="/2018/08/21/luogu2221/" rel="next" title="luogu2221">
+                <i class="fa fa-chevron-left"></i> luogu2221
               </a>
             
           </div>
@@ -501,10 +494,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/10/luogu2330/" rel="prev" title="luogu2330">
-                luogu2330 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -778,6 +776,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-hack-spfa"><span class="nav-number">1.</span> <span class="nav-text">How to hack spfa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-want-to-make-my-graph-bigger"><span class="nav-number">2.</span> <span class="nav-text">I want to make my graph bigger</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
