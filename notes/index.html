@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="__int128可以表示$[-2^{127},2^{127}-1]$内的整数 支持unsigned（就变成了$[0,2^{128}-1]$） 输出有些麻烦（$O(log_{10}n)$） 1234567void print(__int128 x)&amp;#123;	if(!x)		return;	print(x/10);	printf(&quot;%d&quot;,int(x%10));&amp;#125; 可以用普通的快速输出，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T05:55:54.138Z">
+<meta property="og:updated_time" content="2018-08-23T06:50:38.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些笔记">
 <meta name="twitter:description" content="__int128可以表示$[-2^{127},2^{127}-1]$内的整数 支持unsigned（就变成了$[0,2^{128}-1]$） 输出有些麻烦（$O(log_{10}n)$） 1234567void print(__int128 x)&amp;#123;	if(!x)		return;	print(x/10);	printf(&quot;%d&quot;,int(x%10));&amp;#125; 可以用普通的快速输出，">
@@ -403,6 +403,11 @@
 <h4 id="概率期望？"><a href="#概率期望？" class="headerlink" title="概率期望？"></a>概率期望？</h4><p>整数和实数实质上是一样的。</p>
 <h5 id="整数期望"><a href="#整数期望" class="headerlink" title="整数期望"></a>整数期望</h5><p>$E(x)=\sum_{i=1}^\infty P (i\le x)$</p>
 <h5 id="实数期望"><a href="#实数期望" class="headerlink" title="实数期望"></a>实数期望</h5><p>$E(x)=\int_0^\infty P(i\le x)$</p>
+<h4 id="关于-multi-set"><a href="#关于-multi-set" class="headerlink" title="关于(multi)set"></a>关于(multi)set</h4><p>如何取第一个元素：<code>*s.begin()</code></p>
+<p>最后一个：<code>*(--s.end())</code>（坑人啊）</p>
+<p>或者<code>*s.rbegin()</code>（还好用些）</p>
+<p>如何删除multiset一个元素：<code>s.erase(x)</code></p>
+<p>如何删除multiset一个元素，相同只删一个：<code>s.erase(s.find(x))</code></p>
 
         
       </div>
@@ -692,7 +697,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#int128"><span class="nav-number">1.</span> <span class="nav-text">__int128</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何优雅得表示一棵树内所有节点深度"><span class="nav-number">2.</span> <span class="nav-text">如何优雅得表示一棵树内所有节点深度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高维立方体？"><span class="nav-number">3.</span> <span class="nav-text">高维立方体？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于模拟退火"><span class="nav-number">4.</span> <span class="nav-text">关于模拟退火</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概率期望？"><span class="nav-number">5.</span> <span class="nav-text">概率期望？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#整数期望"><span class="nav-number">5.1.</span> <span class="nav-text">整数期望</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实数期望"><span class="nav-number">5.2.</span> <span class="nav-text">实数期望</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#int128"><span class="nav-number">1.</span> <span class="nav-text">__int128</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何优雅得表示一棵树内所有节点深度"><span class="nav-number">2.</span> <span class="nav-text">如何优雅得表示一棵树内所有节点深度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高维立方体？"><span class="nav-number">3.</span> <span class="nav-text">高维立方体？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于模拟退火"><span class="nav-number">4.</span> <span class="nav-text">关于模拟退火</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概率期望？"><span class="nav-number">5.</span> <span class="nav-text">概率期望？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#整数期望"><span class="nav-number">5.1.</span> <span class="nav-text">整数期望</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实数期望"><span class="nav-number">5.2.</span> <span class="nav-text">实数期望</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-multi-set"><span class="nav-number">6.</span> <span class="nav-text">关于(multi)set</span></a></li></ol></div>
             
 
           </div>
