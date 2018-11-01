@@ -437,7 +437,7 @@
 <a id="more"></a>
 <p><code>KMP</code>的精华在于<code>next</code>数组</p>
 <p><code>next</code>数组的定义是：</p>
-<p>$next_i$表示$S_{1\dots\ i}$（$S$从$1$开始）中最大的$len$</p>
+<p>$next_i$表示$S_{1\dots i}$（$S$从$1$开始）中最大的$len$</p>
 <p>使$S_{1\dots len}=S_{(i-len+1)\dots i}$</p>
 <p>且$next_1=0$</p>
 <p>举个<del>栗</del>子</p>
@@ -505,7 +505,7 @@
 </li>
 <li><p>若还不等于，就照着$\uparrow$做，直到等于或为$0$为止</p>
 </li>
-<li><p>若实在$=0$了，直接得出结论：$next_i=\cases{1&amp;$S_i=S_1$\0&amp;$S_i\not=S_0$}$</p>
+<li><p>若实在$=0$了，直接得出结论：$next_i=\cases{1&amp;$S_i=S_1$\\0&amp;$S_i\not=S_0$}$</p>
 </li>
 </ul>
 <p>查询和插入差不多，具体看代码。</p>
@@ -636,7 +636,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

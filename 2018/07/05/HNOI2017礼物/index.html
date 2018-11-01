@@ -422,9 +422,9 @@
       
         <p>FFT巧妙啊</p>
 <a id="more"></a>
-<p>先考虑没有旋转操作，设第一个项链加上了$C$。<br>$$<br>\sum_{i=1}^n(x_i-y_i+C)^2\<br>=\sum_{i=1}^n(x_i^2+y_i^2+C^2-2x_iy_i+2x_iC-2y_iC)\<br>=\sum_{i=1}^n(x_i^2+y_i^2)+\sum_{i=1}^n(C^2+2x_iC-2y_iC)-\sum_{i=1}^n2x_iy_i<br>$$<br>就这样分三部分</p>
+<p>先考虑没有旋转操作，设第一个项链加上了$C$。<br>$$<br>\sum_{i=1}^n(x_i-y_i+C)^2\\<br>=\sum_{i=1}^n(x_i^2+y_i^2+C^2-2x_iy_i+2x_iC-2y_iC)\\<br>=\sum_{i=1}^n(x_i^2+y_i^2)+\sum_{i=1}^n(C^2+2x_iC-2y_iC)-\sum_{i=1}^n2x_iy_i<br>$$<br>就这样分三部分</p>
 <p>第一个式子值恒定（即使旋转）</p>
-<p>第二个式子<br>$$<br>\sum_{i=1}^n(C^2+2x_iC-2y_iC)\<br>=nC^2+2\sum_{i=1}^n(x_i-y_i)C<br>$$<br>求极值即可</p>
+<p>第二个式子<br>$$<br>\sum_{i=1}^n(C^2+2x_iC-2y_iC)\\<br>=nC^2+2\sum_{i=1}^n(x_i-y_i)C<br>$$<br>求极值即可</p>
 <p>第三个式子变下形：</p>
 <p>翻转$x$</p>
 <p>那么题目要求的就可以化为卷积：<br>$$<br>-2\sum_{i=1}^n x_iy_i=-2\sum_{i=1}^nx_{n+1-i}y_i<br>$$<br>旋转，相当于复制$x$一遍后后移若干位</p>
@@ -555,7 +555,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

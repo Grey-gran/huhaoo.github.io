@@ -455,7 +455,7 @@
 <p><img src="luogu4006loj2324/img.png" alt=""></p>
 <p>显然<code>A</code>就是序列的第一个数，也就是说上面式子里的$i$，$k_i$不能$&gt;2$是因为那样$A$就有右子树，也就不是序列的第一个数了，然后$i$要尽量小。</p>
 <p>我们要分情况讨论，先设$f_i$表示以$A$为根中序遍历可能的最小值。</p>
-<p>那么$f_i=min\cases{\cases{i&amp;$k_i\le2$\0&amp;$k_i=3$}\f_u&amp;$uv$有边连接}$</p>
+<p>那么$f_i=min\cases{\cases{i&amp;$k_i\le2$\\0&amp;$k_i=3$}\\f_u&amp;$uv$有边连接}$</p>
 <p>然后贪心遍历。</p>
 <p>现在遍历顺序是：<code>A-B-f-G-C-D-E</code></p>
 <p>先把<code>A</code>小的子树放在<code>B</code>上</p>
@@ -593,7 +593,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

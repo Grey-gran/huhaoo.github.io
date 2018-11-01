@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φn=\dfrac{n(n+1)}2-\sum{i=2^n}Φ_{⌊ni⌋}\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$">
+  <meta name="description" content="又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φ_n=\dfrac{n(n+1)}2-\sum_{i=2^n}Φ_{⌊ni⌋}\\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$">
 <meta name="keywords" content="模板,math,杜教筛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="杜教筛">
 <meta property="og:url" content="https://huhaoo.github.io/2018/04/30/杜教筛/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φn=\dfrac{n(n+1)}2-\sum{i=2^n}Φ_{⌊ni⌋}\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$">
+<meta property="og:description" content="又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φ_n=\dfrac{n(n+1)}2-\sum_{i=2^n}Φ_{⌊ni⌋}\\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-04-30T06:08:23.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杜教筛">
-<meta name="twitter:description" content="又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φn=\dfrac{n(n+1)}2-\sum{i=2^n}Φ_{⌊ni⌋}\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$">
+<meta name="twitter:description" content="又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φ_n=\dfrac{n(n+1)}2-\sum_{i=2^n}Φ_{⌊ni⌋}\\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$">
 
 
 
@@ -425,7 +425,7 @@
 <p>贴个链接：<a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="noopener">luoguP4213</a></p>
 <p>简直就是一个<del>模板裸题</del>，<del>妈呀好难</del></p>
 <p>杜教筛我好像结论能背了……</p>
-<p>$Φ<em>n=\dfrac{n(n+1)}2-\sum</em>{i=2^n}Φ_{⌊ni⌋}\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$</p>
+<p>$Φ_n=\dfrac{n(n+1)}2-\sum_{i=2^n}Φ_{⌊ni⌋}\\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$</p>
 <a id="more"></a>
 <p>第一次我写了一个这样子的程序：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	phi[i]=i*(i+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">	mu[i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>;j&lt;=i;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		phi[i]-=phi[i/j];</span><br><span class="line">		mu[i]-=mu[i/j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -579,7 +579,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

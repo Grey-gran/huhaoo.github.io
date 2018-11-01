@@ -462,7 +462,7 @@
 <p>$ab = gcd(a, b)lcm(a, b)$</p>
 <ul>
 <li><p>欧几里得算法</p>
-<p>$gcd(a,b)=\cases{gcd(b,a~mod~b)&amp;$b\not=0$\a&amp;$b=0$}$</p>
+<p>$gcd(a,b)=\cases{gcd(b,a~mod~b)&amp;$b\not=0$\\a&amp;$b=0$}$</p>
 </li>
 <li><p>拓展欧几里得算法</p>
 <p>给定 $a, b, c$，求关于 $x, y$ 的方程 $ax + by = c$ 的任意一组解</p>
@@ -547,7 +547,7 @@
 <p>$x=\prod_{i=1}^kx_iM_iM_i^{-1}(mod~M)$</p>
 </li>
 <li><p><code>Lucas</code>定理</p>
-<p>$gcd(x,y)\equiv gcd(\frac xp,\frac yp)\times gcd(x~mod~p,y~mod~p)\ \ (mod~p)$</p>
+<p>$gcd(x,y)\equiv gcd(\frac xp,\frac yp)\times gcd(x~mod~p,y~mod~p)  (mod~p)$</p>
 </li>
 </ul>
 </li>
@@ -705,7 +705,7 @@
 <p>$\phi(n)=\sum_{i=1}^n[gcd(i,n)=1]$</p>
 </li>
 <li><p>常见积性函数的一些性质</p>
-<p>$\phi(ab) = \phi(a)\phi(b)\dfrac{gcd(a, b)}{ϕ(gcd(a, b))} = \phi(lcm(a, b))\phi(gcd(a, b))$<br>$σ<em>0(ab) = \sum</em>{i|a}\sum_{j|b}[gcd(i, j) = 1]$</p>
+<p>$\phi(ab) = \phi(a)\phi(b)\dfrac{gcd(a, b)}{ϕ(gcd(a, b))} = \phi(lcm(a, b))\phi(gcd(a, b))$<br>$σ_0(ab) = \sum_{i|a}\sum_{j|b}[gcd(i, j) = 1]$</p>
 </li>
 <li><p>狄利克雷卷积</p>
 <p>定义两个数论函数 $f , g$ 的狄利克雷卷积为$(f ∗ g)(n) = \sum_{d|n}f (d)g(\frac nd)$</p>
@@ -740,9 +740,9 @@
 <p>$s(C_i)$表示在$C_i$下的贡献</p>
 </li>
 <li><p>二项式反演</p>
-<p>$b(k)=\sum_{i=0}^k(-1)^i(<em>i^k)a(i)\leftrightarrow a(k)=\sum</em>{i=0}^k(-1)^i(_i^k)b(i)$</p>
+<p>$b(k)=\sum_{i=0}^k(-1)^i(_i^k)a(i)\leftrightarrow a(k)=\sum_{i=0}^k(-1)^i(_i^k)b(i)$</p>
 <p>或</p>
-<p>$b(k)=\sum_{i=0}^k(<em>i^k)a(i)\leftrightarrow a(k)=\sum</em>{i=0}^k(-1)^{k-i}(_i^k)b(i)$</p>
+<p>$b(k)=\sum_{i=0}^k(_i^k)a(i)\leftrightarrow a(k)=\sum_{i=0}^k(-1)^{k-i}(_i^k)b(i)$</p>
 </li>
 <li><p>莫比乌斯反演</p>
 <p>$f(n)=\sum_{d|n}g(d)\leftrightarrow g(n)=\sum_{d|n}f(d)\mu(\frac nd)$</p>
@@ -885,7 +885,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
