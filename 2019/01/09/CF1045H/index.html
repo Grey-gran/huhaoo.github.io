@@ -109,25 +109,25 @@
 
 
 
-  <meta name="description" content="thkkk又AK了！">
-<meta name="keywords" content="math,斯特林数">
+  <meta name="description" content="求在$[A,B]$区间内有多少数满足在二进制下：  子串$00$的个数为$c_{00}$。 子串$01$的个数为$c_{01}$。 子串$10$的个数为$c_{10}$。 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。  $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$">
+<meta name="keywords" content="CF,math">
 <meta property="og:type" content="article">
-<meta property="og:title" content="斯特林数的基本概念">
-<meta property="og:url" content="https://huhaoo.github.io/2018/01/08/斯特林数/index.html">
+<meta property="og:title" content="CF1045H Self-exploration">
+<meta property="og:url" content="https://huhaoo.github.io/2019/01/09/CF1045H/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="thkkk又AK了！">
+<meta property="og:description" content="求在$[A,B]$区间内有多少数满足在二进制下：  子串$00$的个数为$c_{00}$。 子串$01$的个数为$c_{01}$。 子串$10$的个数为$c_{10}$。 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。  $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-21T07:04:05.000Z">
+<meta property="og:updated_time" content="2019-01-09T07:18:17.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斯特林数的基本概念">
-<meta name="twitter:description" content="thkkk又AK了！">
+<meta name="twitter:title" content="CF1045H Self-exploration">
+<meta name="twitter:description" content="求在$[A,B]$区间内有多少数满足在二进制下：  子串$00$的个数为$c_{00}$。 子串$01$的个数为$c_{01}$。 子串$10$的个数为$c_{10}$。 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。  $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/2018/01/08/斯特林数/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2019/01/09/CF1045H/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>斯特林数的基本概念 | Huhao's blog</title>
+  <title>CF1045H Self-exploration | Huhao's blog</title>
   
 
 
@@ -341,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2018/01/08/斯特林数/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/01/09/CF1045H/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -358,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">斯特林数的基本概念
+          <h1 class="post-title" itemprop="name headline">CF1045H Self-exploration
               
             
           </h1>
@@ -383,24 +383,12 @@
                 
               
 
-              <time title="Created: 2018-01-08 14:41:46" itemprop="dateCreated datePublished" datetime="2018-01-08T14:41:46+08:00">2018-01-08</time>
+              <time title="Created: 2019-01-09 14:54:11 / Modified: 15:18:17" itemprop="dateCreated datePublished" datetime="2019-01-09T14:54:11+08:00">2019-01-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-02-21 15:04:05" itemprop="dateModified" datetime="2018-02-21T15:04:05+08:00">2018-02-21</time>
               
             
           </span>
@@ -433,70 +421,28 @@
       
 
       
-        <p><code>thkkk</code>又<code>AK</code>了！</p>
+        <blockquote>
+<p>求在$[A,B]$区间内有多少数满足在二进制下：</p>
+<ul>
+<li>子串$00$的个数为$c_{00}$。</li>
+<li>子串$01$的个数为$c_{01}$。</li>
+<li>子串$10$的个数为$c_{10}$。</li>
+<li>子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。</li>
+</ul>
+<p>$1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$</p>
+</blockquote>
 <a id="more"></a>
-<ul>
-<li><p>第一类<code>Stirling</code>数</p>
-<p>第一类<code>Stirling</code>数（$ [^n_m] $）表示表示将$n$个不同元素构成$m$个圆排列的数目。</p>
-<p>第一类<code>Stirling</code>数分为有符号($s_s$)和无符号($s_u$)</p>
-<ul>
-<li><p>递推式</p>
-<p>有符号：$s_s(n+1,m)=s_s(n,m-1)-n\dot~s_s(n,m)$</p>
-<p>无符号：$s_u(n+1,m)=s_u(n,m-1)+n\dot~s_u(n,m)$</p>
-</li>
-<li><p>性质</p>
-<ul>
-<li>有符号<ol>
-<li>$s_s(n,m)=(-1)^{n+m}s_u(n,m)$</li>
-<li>$(\sum_{k=0}^ns_s(n,k))=[n=0]$</li>
-</ol>
-</li>
-<li>无符号<ol>
-<li>$s_u(0,0)=1$</li>
-<li>$s_u(n,0)=0$</li>
-<li>$s_u(n,n)=1$</li>
-<li>$s_u(n,1)=(n-1)!$</li>
-<li>$s_u(n,n-1)=C_n^2$</li>
-<li>$s_u(n,2)=(n-1)!\dot~\sum_{i=1}^{n-1}\dfrac1i$</li>
-<li>$s_u(n,n-2)=2\dot~C^3_n+3\dot~C^4_n$</li>
-<li>$\sum_{k=0}^ns_u(n,k)=n!$</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>第二类<code>Stirling</code>数</p>
-<p>第二类<code>Stirling</code>数（<big>$\left{^n_m\right}$</big>、$S(n,m)$）实际上是集合的一个拆分，表示将$n$个不同的元素拆分成$m$个集合的方案数</p>
-<p>描述为：将$n$个不同的球放入$m$个无差别的盒子中，要求盒子非空，有几种方案？</p>
-<ul>
-<li><p>递推式</p>
-<p>$S(n+1,m)=S(n,m-1)+m\dot~S(n,m)$</p>
-</li>
-<li><p>性质</p>
-<ol>
-<li><p>$S(n,0)=[n=0]$</p>
-</li>
-<li><p>$S(n,1)=1$</p>
-</li>
-<li><p>$S(n,n)=1$</p>
-</li>
-<li><p>$S(n,2)=2^{n-1}-1$</p>
-</li>
-<li><p>$S(n,n-1)=C_n^2$</p>
-</li>
-<li><p>$S(n,n-2)=C_n^3+3\dot~C_n^4$</p>
-</li>
-<li><p>$S(n,3)=\dfrac{3^{n-1}+1}2-2^{n-1}$</p>
-</li>
-<li><p>$S(n,n-3)=C_n^4+10\dot~C_n^5+15_n^6$</p>
-<p>​</p>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
+<p>首先，符合条件的数（记为$x$）肯定是$l=1+\sum_i c_i$位数</p>
+<p>然后首位肯定是$1$（鬼都知道）</p>
+<p>然后我们就可以用$l-1$个$00,01,10,11$（记为$a,b,c,d$）表示（即这一位和前面那位）</p>
+<p>然后第一个肯定是$c,d$接下来就是<br>$$<br>a,c\rightarrow a,b\\<br>b,d\rightarrow c,d<br>$$<br>我们就可以得到这$l-1$个字符连起来长这样<br>$$<br>…(d)…c…(a)…b…(d)…c…(a)…b…<br>$$<br>然后我们知道：把$n$有序（即顺序不同算不同方案）地分为$k$个可以为$0$数，方案为$n+k-1\choose n-1$</p>
+<p>把$A,B$分别考虑，如果位数大于$l$，就是<br>$$<br>{c_{11}+c_{01}\choose c_{11}-1}{c_{00}+c_{10}-1\choose c_{00}-1}<br>$$<br>如果位数小于$l$，就是$0$</p>
+<p>否则，考虑$A$（或$B$）每一位，如果是$0$，那么没选择，直接对应的$c$减$1$</p>
+<p>如果是$1$，那么$x$这一位选$0$就没有限制了！可以和上面差不多地算</p>
+<p>选$1$就给此时对应的$c$减$1$，然后继续看下面的位</p>
+<p>最后考虑一下$A,B​$即可</p>
+<p><a href="https://github.com/huhaoo/codeforces/blob/master/problems/1045H.cpp" target="_blank" rel="noopener"><code>my code</code></a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="keyword">char</span> x[N],y[N];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a,b,c,d;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[N],pf[N],n;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> f[a]*pf[b]%mod*pf[a-b]%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">calc</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> a==<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> C(a+b<span class="number">-1</span>,b<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">calc</span><span class="params">(<span class="keyword">char</span> *s,<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> c,<span class="keyword">long</span> <span class="keyword">long</span> d,<span class="keyword">long</span> <span class="keyword">long</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(s[<span class="number">1</span>]==<span class="string">'0'</span>)</span><br><span class="line">		s++;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> l=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(l&lt;=a+b+c+d)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(b!=c&amp;&amp;b+<span class="number">1</span>!=c)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(l&gt;a+b+c+d+<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> calc(d,b+<span class="number">1</span>)*calc(a,c);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> r=<span class="number">0</span>;</span><br><span class="line">	fr(i,<span class="number">2</span>,l)</span><br><span class="line">		<span class="keyword">if</span>(s[i]==<span class="string">'0'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[i<span class="number">-1</span>]==<span class="string">'0'</span>)</span><br><span class="line">				a--;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				c--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[i<span class="number">-1</span>]==<span class="string">'0'</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a&gt;<span class="number">0</span>)</span><br><span class="line">					<span class="keyword">if</span>(b==c||b==c+<span class="number">1</span>)</span><br><span class="line">						r=(r+calc(d,b)*calc(a<span class="number">-1</span>,c+<span class="number">1</span>))%mod;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(c&gt;<span class="number">0</span>)</span><br><span class="line">					<span class="keyword">if</span>(b+<span class="number">1</span>==c||b==c)</span><br><span class="line">					&#123;</span><br><span class="line">						r=(r+calc(d,b)*calc(a,c))%mod;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(s[i<span class="number">-1</span>]==<span class="string">'0'</span>)</span><br><span class="line">				b--;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				d--;</span><br><span class="line">			<span class="keyword">if</span>(a&lt;<span class="number">0</span>||b&lt;<span class="number">0</span>||c&lt;<span class="number">0</span>||d&lt;<span class="number">0</span>)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> (r+(a==<span class="number">0</span>&amp;&amp;b==<span class="number">0</span>&amp;&amp;c==<span class="number">0</span>&amp;&amp;d==<span class="number">0</span>)*op)%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">pow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> r=<span class="number">1</span>;</span><br><span class="line">	a%=m;</span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>)</span><br><span class="line">			r=r*a%m;</span><br><span class="line">		a=a*a%m;</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,x+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,y+<span class="number">1</span>);</span><br><span class="line">	a=read();</span><br><span class="line">	b=read();</span><br><span class="line">	c=read();</span><br><span class="line">	d=read();</span><br><span class="line">	n=<span class="number">100001</span>;</span><br><span class="line">	f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		f[i]=f[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">	pf[n]=<span class="built_in">pow</span>(f[n],mod<span class="number">-2</span>,mod);</span><br><span class="line">	fd(i,n<span class="number">-1</span>,<span class="number">0</span>)</span><br><span class="line">		pf[i]=pf[i+<span class="number">1</span>]*(i+<span class="number">1</span>)%mod;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(calc(y,a,b,c,d,<span class="number">1</span>)-calc(x,a,b,c,d,<span class="number">0</span>)+mod)%mod);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -517,9 +463,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/math/" rel="tag"># math</a>
+            <a href="/tags/CF/" rel="tag"># CF</a>
           
-            <a href="/tags/斯特林数/" rel="tag"># 斯特林数</a>
+            <a href="/tags/math/" rel="tag"># math</a>
           
         </div>
       
@@ -544,8 +490,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/08/luogu2106/" rel="next" title="luogu2106|Sam数">
-                <i class="fa fa-chevron-left"></i> luogu2106|Sam数
+              <a href="/2019/01/07/luogu5175/" rel="next" title="luogu5175数列">
+                <i class="fa fa-chevron-left"></i> luogu5175数列
               </a>
             
           </div>
@@ -553,10 +499,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/09/数论基础/" rel="prev" title="数论基础理论">
-                数论基础理论 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
