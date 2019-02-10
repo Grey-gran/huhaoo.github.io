@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="给定$n$组非负整数$a_i,b_i$，求最小$x$使$$\forall i,x\equiv b_i(\mathrm{mod}~a_i)$$数据保证有解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-10T01:30:02.359Z">
+<meta property="og:updated_time" content="2019-02-10T02:28:03.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="excrt">
 <meta name="twitter:description" content="给定$n$组非负整数$a_i,b_i$，求最小$x$使$$\forall i,x\equiv b_i(\mathrm{mod}~a_i)$$数据保证有解">
@@ -383,7 +383,7 @@
                 
               
 
-              <time title="Created: 2019-02-10 09:29:35 / Modified: 09:30:02" itemprop="dateCreated datePublished" datetime="2019-02-10T09:29:35+08:00">2019-02-10</time>
+              <time title="Created: 2019-02-10 09:29:35 / Modified: 10:28:03" itemprop="dateCreated datePublished" datetime="2019-02-10T09:29:35+08:00">2019-02-10</time>
             
 
             
@@ -425,8 +425,12 @@
 <p>给定$n$组非负整数$a_i,b_i$，求最小$x$使<br>$$<br>\forall i,x\equiv b_i(\mathrm{mod}~a_i)<br>$$<br>数据保证有解</p>
 </blockquote>
 <a id="more"></a>
-<p>当$n=2$时，条件为<br>$$<br>\cases{x\equiv b_1(\mathrm{mod}~a_1)\\x\equiv b_2(\mathrm{mod}~a_2)}<br>$$<br>显然存在整数$k_1,k_2$<br>$$<br>x=k_1a_1+b_1=k_2a_2+b_2<br>$$<br>那么<br>$$<br>a_1k_1+a_2(-k_2)=(b_2-b_1)<br>$$<br>可以用exgcd求$k$</p>
+<p>当$n=2$时，条件为<br>$$<br>\cases{x\equiv b_1(\mathrm{mod}~a_1)\\x\equiv b_2(\mathrm{mod}~a_2)}<br>$$<br>显然存在整数$k_1,k_2$<br>$$<br>x=k_1a_1+b_1=k_2a_2+b_2<br>$$<br>那么<br>$$<br>a_1k_1+a_2(-k_2)=(b_2-b_1)<br>$$<br>若$\gcd(a_1,a_2)\not|(b_2-b_1)$，则无解</p>
+<p>否则可以用<a href="https://huhaoo.github.io/2019/02/10/exgcd">exgcd</a>求$k$</p>
 <p>可以求出当<br>$$<br>x\equiv k_1a_1+b_1(\mathrm{mod}~\mathrm{lcm}(a_1,a_2))<br>$$<br>发现变回同样的形式了，依次求解即可。</p>
+<p><a href="https://www.luogu.org/problemnew/show/P4777" target="_blank" rel="noopener">例题</a></p>
+<p><a href="https://github.com/huhaoo/luogu/blob/master/4777.cpp" target="_blank" rel="noopener">code</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">__int128 n;</span><br><span class="line">__int128 a1,a2,b1,b2,k1,k2,g;</span><br><span class="line">__<span class="function">int128 <span class="title">exgcd</span><span class="params">(__int128 a,__int128 b,__int128 &amp;x,__int128 &amp;y)</span><span class="comment">//ax+by=gcd(a,b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!b)</span><br><span class="line">	&#123;</span><br><span class="line">		x=<span class="number">1</span>;</span><br><span class="line">		y=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	__int128 g=exgcd(b,a%b,x,y),k;</span><br><span class="line">	k=x;</span><br><span class="line">	x=y;</span><br><span class="line">	y=k-(a/b)*y;</span><br><span class="line">	<span class="keyword">return</span> g;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=read()<span class="number">-1</span>;</span><br><span class="line">	a1=read();</span><br><span class="line">	b1=read();</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		a2=read();</span><br><span class="line">		b2=read();</span><br><span class="line">		g=exgcd(a1,a2,k1,k2);</span><br><span class="line"><span class="comment">//		k2=-k2;</span></span><br><span class="line">		k1*=(b2-b1)/g;</span><br><span class="line"><span class="comment">//		k2*=(b2-b1)/g;</span></span><br><span class="line">		b1=k1*a1+b1;</span><br><span class="line">		a1*=a2/g;</span><br><span class="line">		b1=(b1%a1+a1)%a1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(<span class="keyword">long</span> <span class="keyword">long</span>)(b1));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
