@@ -118,7 +118,7 @@
 <meta property="og:description" content="给定$n,a,b,c$，求： $$f_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{ai+b}c\rfloor\\g_{n,a,b,c}=\sum_{i=0}^ni\lfloor\dfrac{ai+b}c\rfloor\\h_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{ai+b}c\rfloor^2$$">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://huhaoo.github.io/2019/02/12/simgcd/simgcd/math1.png">
-<meta property="og:updated_time" content="2019-02-13T03:06:41.987Z">
+<meta property="og:updated_time" content="2019-02-14T05:44:38.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类gcd算法">
 <meta name="twitter:description" content="给定$n,a,b,c$，求： $$f_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{ai+b}c\rfloor\\g_{n,a,b,c}=\sum_{i=0}^ni\lfloor\dfrac{ai+b}c\rfloor\\h_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{ai+b}c\rfloor^2$$">
@@ -402,7 +402,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-13 11:06:41" itemprop="dateModified" datetime="2019-02-13T11:06:41+08:00">2019-02-13</time>
+                <time title="Modified: 2019-02-14 13:44:38" itemprop="dateModified" datetime="2019-02-14T13:44:38+08:00">2019-02-14</time>
               
             
           </span>
@@ -445,7 +445,7 @@
 <p>那么设$ a=p_ac+q_a,b=p_bc+q_b$</p>
 <p>$$<br>f_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{p_aci+q_ai+p_bc+q_b}{c}\rfloor=\sum_{i=0}^n\lfloor p_ai+p_b+\dfrac{q_ai+q_b}{c}\rfloor=\\\dfrac{n(n+1)}2p_a+(n+1)p_b+f_{n,q_a,q_b,c}<br>$$</p>
 <p>显然只需考虑 $a,b&lt;c$</p>
-<p><img src="./simgcd/math1.png" alt="此处mathjax出了些问题"></p>
+<p><img src="simgcd/math1.png" alt="此处mathjax出了些问题"></p>
 <p>太麻烦，记 $m=\lceil\dfrac{na-c+b+1}{c}\rceil-1$</p>
 <p>$$<br>f_{n,a,b,c}=\sum_{0\le j\le m}(n-\lfloor\dfrac{cj+c-b-1}{a}\rfloor)\\=n(m+1)-\sum_{j=0}^m\lfloor\dfrac{cj+c-b-1}{a}\rfloor\\=n(m+1)-f_{m,c,c-b-1,a}<br>$$</p>
 <p>当然，在 $an+b&lt;c$ 时， $f_{n,a,b,c}=0$</p>
@@ -602,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

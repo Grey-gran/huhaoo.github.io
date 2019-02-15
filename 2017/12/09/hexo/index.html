@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://huhaoo.github.io/2017/12/09/hexo/hexo/5.png">
 <meta property="og:image" content="https://huhaoo.github.io/2017/12/09/hexo/hexo/6.png">
 <meta property="og:image" content="https://huhaoo.github.io/2017/12/09/hexo/hexo/7.png">
-<meta property="og:updated_time" content="2019-02-12T02:02:50.468Z">
+<meta property="og:updated_time" content="2019-02-14T05:45:56.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用hexo+next搭建coding博客">
 <meta name="twitter:description" content="先来一波福利，就是给出我的博客下载地址（有mathjax……） 百度网盘 密码：mu87 CSDN">
@@ -408,7 +408,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
+                <time title="Modified: 2019-02-14 13:45:56" itemprop="dateModified" datetime="2019-02-14T13:45:56+08:00">2019-02-14</time>
               
             
           </span>
@@ -535,15 +535,7 @@
 <li><p>不过美丽的<code>mathjax</code>就出来了</p>
 </li>
 </ul>
-<h3 id="其它美丽的配置"><a href="#其它美丽的配置" class="headerlink" title="其它美丽的配置"></a>其它美丽的配置</h3><h4 id="单击爱心"><a href="#单击爱心" class="headerlink" title="单击爱心"></a>单击爱心</h4><ul>
-<li><p><code>vim themes/next/source/js/src/love.js</code>然后输入以下代码</p>
-<p><code>!function(e,t,a){function n(){c(&quot;.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: &#39;&#39;;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}&quot;),o(),r()}function r(){for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=&quot;left:&quot;+d[e].x+&quot;px;top:&quot;+d[e].y+&quot;px;opacity:&quot;+d[e].alpha+&quot;;transform:scale(&quot;+d[e].scale+&quot;,&quot;+d[e].scale+&quot;) rotate(45deg);background:&quot;+d[e].color+&quot;;z-index:99999&quot;);requestAnimationFrame(r)}function o(){var t=&quot;function&quot;==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e){t&amp;&amp;t(),i(e)}}function i(e){var a=t.createElement(&quot;div&quot;);a.className=&quot;heart&quot;,d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement(&quot;style&quot;);a.type=&quot;text/css&quot;;try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName(&quot;head&quot;)[0].appendChild(a)}function s(){return&quot;rgb(&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;)&quot;}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);</code></p>
-</li>
-<li><p><code>vim themes/next/layout/_layout.swig</code></p>
-<p>在末尾添加：<code>&lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/love.js&quot;&gt;&lt;/script&gt;</code></p>
-</li>
-</ul>
-<h4 id="添加顶部加载条"><a href="#添加顶部加载条" class="headerlink" title="添加顶部加载条"></a>添加顶部加载条</h4><ul>
+<h3 id="其它美丽的配置"><a href="#其它美丽的配置" class="headerlink" title="其它美丽的配置"></a>其它美丽的配置</h3><h4 id="添加顶部加载条"><a href="#添加顶部加载条" class="headerlink" title="添加顶部加载条"></a>添加顶部加载条</h4><ul>
 <li><code>vim themes/next/layout/_partials/head.swig</code></li>
 <li><code>&lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&gt;&lt;/script&gt;&lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&gt;</code></li>
 </ul>
@@ -674,7 +666,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -911,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.</span> <span class="nav-text">安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装git和npm"><span class="nav-number">1.1.</span> <span class="nav-text">安装git和npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装hexo-1"><span class="nav-number">1.2.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化博客"><span class="nav-number">2.</span> <span class="nav-text">初始化博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客的初始配置"><span class="nav-number">3.</span> <span class="nav-text">博客的初始配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-主题初始化"><span class="nav-number">4.</span> <span class="nav-text">Next 主题初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写下一片博文"><span class="nav-number">5.</span> <span class="nav-text">写下一片博文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文章"><span class="nav-number">5.1.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写博文"><span class="nav-number">5.2.</span> <span class="nav-text">写博文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathjax"><span class="nav-number">6.</span> <span class="nav-text">Mathjax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它美丽的配置"><span class="nav-number">7.</span> <span class="nav-text">其它美丽的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单击爱心"><span class="nav-number">7.1.</span> <span class="nav-text">单击爱心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加顶部加载条"><span class="nav-number">7.2.</span> <span class="nav-text">添加顶部加载条</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.</span> <span class="nav-text">安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装git和npm"><span class="nav-number">1.1.</span> <span class="nav-text">安装git和npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装hexo-1"><span class="nav-number">1.2.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化博客"><span class="nav-number">2.</span> <span class="nav-text">初始化博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客的初始配置"><span class="nav-number">3.</span> <span class="nav-text">博客的初始配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-主题初始化"><span class="nav-number">4.</span> <span class="nav-text">Next 主题初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写下一片博文"><span class="nav-number">5.</span> <span class="nav-text">写下一片博文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文章"><span class="nav-number">5.1.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写博文"><span class="nav-number">5.2.</span> <span class="nav-text">写博文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathjax"><span class="nav-number">6.</span> <span class="nav-text">Mathjax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它美丽的配置"><span class="nav-number">7.</span> <span class="nav-text">其它美丽的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加顶部加载条"><span class="nav-number">7.1.</span> <span class="nav-text">添加顶部加载条</span></a></li></ol></li></ol></div>
             
 
           </div>
