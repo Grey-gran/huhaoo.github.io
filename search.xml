@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Min25筛]]></title>
+    <url>%2F2019%2F02%2F15%2Fmin25%2F</url>
+    <content type="text"><![CDATA[Min_25是一个吊打州阁筛（用来求有某种特定特征的积性函数）的算法 对于一个积性函数$f(x)$，求$$\sum_{i-1}^nf(i)$$满足$f(x),x\in\mathrm{prime}$是个多项式，$f(x^k),x\in\mathrm{prime}$可以快速求]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>min25</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HNOI2017影魔]]></title>
     <url>%2F2019%2F02%2F14%2FHNOI2017%E5%BD%B1%E9%AD%94%2F</url>
     <content type="text"><![CDATA[给定排列$k$，和贡献$p_1,p_2$，每次给定$l,r$，求：$$\sum_{l\le i&lt; j\le r}p_1[\max_{i&lt;x&lt;j}k_x&lt;k_i,k_j]+p_2([k_i&lt;\max_{i&lt;x&lt;j}k_x&lt;k_j]\mathrm{or}[k_j&lt;\max_{i&lt;x&lt;j}k_x&lt;k_i])$$]]></content>
