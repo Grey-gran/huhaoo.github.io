@@ -528,8 +528,8 @@
     <url>%2F2018%2F01%2F07%2Floj2323luogu4005%E5%B0%8FY%E5%92%8C%E5%9C%B0%E9%93%81%2F</url>
     <content type="text"><![CDATA[thkkkdalao太强了！]]></content>
       <tags>
-        <tag>luogu</tag>
         <tag>loj</tag>
+        <tag>luogu</tag>
         <tag>清华集训</tag>
         <tag>搜索</tag>
       </tags>
@@ -556,8 +556,8 @@
     <content type="text"><![CDATA[给定点的连边情况，求字典序最小的中序遍历 Sample Input 1234543 2 3 41 11 11 1 Output 12 1 3 4]]></content>
       <tags>
         <tag>DP</tag>
-        <tag>luogu</tag>
         <tag>loj</tag>
+        <tag>luogu</tag>
         <tag>清华集训</tag>
         <tag>贪心</tag>
       </tags>
