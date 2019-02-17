@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[为博客添加hitokoto]]></title>
+    <url>%2F2019%2F02%2F17%2Fhitokoto%2F</url>
+    <content type="text"><![CDATA[hitokoto可以像下面这样（点开才能看到）：]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Min25筛]]></title>
     <url>%2F2019%2F02%2F15%2Fmin25%2F</url>
     <content type="text"><![CDATA[Min_25是一个吊打州阁筛（用来求有某种特定特征的积性函数）的算法 对于一个积性函数$f(x)$，求$$\sum_{i-1}^nf(i)$$满足$f(x),x\in\mathrm{prime}$是个多项式，$f(x^k),x\in\mathrm{prime}$可以快速求]]></content>
