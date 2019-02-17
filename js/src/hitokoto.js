@@ -4,7 +4,7 @@ window.onload=function () {
     update();
     function update() {
         gethi = new XMLHttpRequest();
-        gethi.open("GET","https://huhaohitokoto.github.io/"+Math.floor(Math.random()*172+1));
+        gethi.open("GET","https://huhaohitokoto.github.io/1");
         gethi.send();
         gethi.onreadystatechange = function () {
             if (gethi.readyState===4 && gethi.status===200) {
