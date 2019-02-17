@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="hitokoto可以像下面这样（点开才能看到）：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-17T05:35:04.740Z">
+<meta property="og:updated_time" content="2019-02-17T05:56:11.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为博客添加hitokoto">
 <meta name="twitter:description" content="hitokoto可以像下面这样（点开才能看到）：">
@@ -379,7 +379,7 @@
                 
               
 
-              <time title="Created: 2019-02-17 11:15:28 / Modified: 13:35:04" itemprop="dateCreated datePublished" datetime="2019-02-17T11:15:28+08:00">2019-02-17</time>
+              <time title="Created: 2019-02-17 11:15:28 / Modified: 13:56:11" itemprop="dateCreated datePublished" datetime="2019-02-17T11:15:28+08:00">2019-02-17</time>
             
 
             
@@ -420,10 +420,8 @@
         <p> hitokoto可以像下面这样<del>（点开才能看到）</del>：</p>
 <a id="more"></a>
 <hr>
-<div><br>    <p class="hitokoto"></p><br>    <p class="from"></p><br></div>
-
-<hr>
-<p>路径每个我都搞了两份，上面<code>windwos</code>，下面<code>linux</code></p>
+<p><div><br>    <p class="hitokoto"></p><br>    <p class="from"></p></div></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>路径每个我都搞了两份，上面<code>windwos</code>，下面<code>linux</code></p>
 <hr>
 <p>（此部分建议省略）</p>
 <p>可以参照<a href="https://hitokoto.cn/api" target="_blank" rel="noopener">官网</a></p>
@@ -445,7 +443,7 @@
 <p>加入</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"/js/src/hitokoto.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>然后就可以用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"hitokoto"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"hitokoto"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"from"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>来引用了</p>
 <p>如果你想像我这样添加到侧边栏</p>
 <p>就在</p>
@@ -555,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -794,6 +801,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 		<div class="links-of-blogroll motion-element links-of-blogroll-block">
 			<p>访问次数</p>
