@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二次剩余]]></title>
+    <url>%2F2019%2F02%2F18%2F%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99%2F</url>
+    <content type="text"><![CDATA[求$$\sqrt k~\mathrm{mod}~p$$即求$x$，满足$$x^2\equiv k(\mathrm{mod}~p)$$其中$p$是质数，且$p\not=2$]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>二次剩余</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为博客添加hitokoto]]></title>
     <url>%2F2019%2F02%2F17%2Fhitokoto%2F</url>
     <content type="text"><![CDATA[hitokoto可以像下面这样（点开才能看到）：]]></content>

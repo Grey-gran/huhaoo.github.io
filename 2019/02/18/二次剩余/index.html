@@ -109,23 +109,25 @@
 
 
 
-  <meta name="description" content="对着板子调代码ing……">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Huhao&#39;s blog">
-<meta property="og:url" content="https://huhaoo.github.io/page/8/index.html">
+  <meta name="description" content="求$$\sqrt k~\mathrm{mod}~p$$即求$x$，满足$$x^2\equiv k(\mathrm{mod}~p)$$其中$p$是质数，且$p\not=2$">
+<meta name="keywords" content="math,二次剩余">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二次剩余">
+<meta property="og:url" content="https://huhaoo.github.io/2019/02/18/二次剩余/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="对着板子调代码ing……">
+<meta property="og:description" content="求$$\sqrt k~\mathrm{mod}~p$$即求$x$，满足$$x^2\equiv k(\mathrm{mod}~p)$$其中$p$是质数，且$p\not=2$">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-18T02:09:46.943Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Huhao&#39;s blog">
-<meta name="twitter:description" content="对着板子调代码ing……">
+<meta name="twitter:title" content="二次剩余">
+<meta name="twitter:description" content="求$$\sqrt k~\mathrm{mod}~p$$即求$x$，满足$$x^2\equiv k(\mathrm{mod}~p)$$其中$p$是质数，且$p\not=2$">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/page/8/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2019/02/18/二次剩余/"/>
 
 
 
@@ -135,8 +137,7 @@
   };
 </script>
 
-  <title>Huhao's blog
-</title>
+  <title>二次剩余 | Huhao's blog</title>
   
 
 
@@ -183,8 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -320,9 +320,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -337,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2018/01/02/prufer/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/02/18/二次剩余/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -354,11 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/02/prufer/" itemprop="url">
-                  prufer序列
-                </a>
+          <h1 class="post-title" itemprop="name headline">二次剩余
               
             
           </h1>
@@ -383,24 +379,12 @@
                 
               
 
-              <time title="Created: 2018-01-02 16:38:30" itemprop="dateCreated datePublished" datetime="2018-01-02T16:38:30+08:00">2018-01-02</time>
+              <time title="Created: 2019-02-18 09:09:00 / Modified: 10:09:46" itemprop="dateCreated datePublished" datetime="2019-02-18T09:09:00+08:00">2019-02-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
               
             
           </span>
@@ -433,16 +417,26 @@
       
 
       
-        
-          <p><code>prufer</code>序列，可以将一个无向图转换为一个序列，这个序列叫做<code>prufer</code>序列<del>（好像有语病？）</del></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/02/prufer/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <blockquote>
+<p>求<br>$$<br>\sqrt k~\mathrm{mod}~p<br>$$<br>即求$x$，满足<br>$$<br>x^2\equiv k(\mathrm{mod}~p)<br>$$<br>其中$p$是质数，且$p\not=2$</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="一些性质"><a href="#一些性质" class="headerlink" title="一些性质"></a>一些性质</h4><p>首先，一个显然的性质：</p>
+<p>若$k$存在$x$满足$x^2\equiv k$，那么<br>$$<br>k^{\frac{p-1}{2}}\equiv 1(\mathrm{mod}~p)<br>$$</p>
+<p>证明：<br>$$<br>p|k^{p-1}-1\\<br>p|(k^{\frac{p-1}{2}}-1)(k^{\frac{p-1}{2}}+1)\\<br>\because p\in\mathrm{prime},p\not=2\\<br>\therefore p|k^{\frac{p-1}{2}}-1~\mathrm{or}~p|k^{\frac{p-1}{2}}+1<br>$$<br>但如果$p|k^{\frac{p-1}{2}}+1$</p>
+<p>那么$p|x^{p-1}+1$</p>
+<p>不符合费马小定理</p>
+<p>于是有上面那个式子</p>
+<p>同时，我们知道，如果不为$0$的数$a$，有<br>$$<br>a^{\frac{p-1}{2}}\equiv -1(\mathrm{mod}~p)<br>$$</p>
+<h4 id="求解：Cipolla算法"><a href="#求解：Cipolla算法" class="headerlink" title="求解：Cipolla算法"></a>求解：Cipolla算法</h4><p>首先先随机出一个数$a$使得它不存在$x$使$x^2\equiv a^2-k$</p>
+<p>显然，这样期望次数是$2$（证明我也不会）</p>
+<p>并且有一个很好的性质：<br>$$<br>((a+\sqrt{a^2-k})^{\frac{p+1}{2}})^2\equiv k<br>$$<br>证明：<br>$$<br>(a+\sqrt{a^2-k})^{p+1}\equiv(a+\sqrt{a^2-k})^p(a+\sqrt{a^2-k})\\<br>\equiv(a^p+\sqrt{a^2-k}^p)(a+\sqrt{a^2-k})<br>$$<br>又因为<br>$$<br>\sqrt{a^2-k}^p\equiv(a^2-k)^{\frac{p-1}{2}}\sqrt{a^2-k}\\<br>\equiv-\sqrt{a^2-k}<br>$$<br>所以<br>$$<br>(a+\sqrt{a^2-k})^{p+1}\equiv(a-\sqrt{a^2-k})(a+\sqrt{a^2-k})\\<br>\equiv a^2-(a^2-k)\\<br>\equiv k(\mathrm{mod}~p)<br>$$<br>可是我们并不知道$\sqrt{a^2-k}$，同时这个数在$\mathrm{mod}~p$下无意义</p>
+<p>于是我们需要仿照复数定义一下：</p>
+<p>每个数都表示为$x+y\sqrt{a^2-k}$，简单记为$(x,y)$</p>
+<p>我们就有下面运算：<br>$$<br>c(x,y)=(xc,yc)\\<br>(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2)\\<br>(x_1,y_1)(x_2,y_2)=(x_1+y_1\sqrt{a^2-k})(x_2+y_2\sqrt{a^2-k})\\<br>=x_1x_2+y_1y_2(a^2-k)+(x_1y_2+x_2y_1)\sqrt{a^2-k}\\<br>=(x_1x_2+y_1y_2(a^2-k),(x_1y_2+x_2y_1)\sqrt{a^2-k})<br>$$<br>最后答案就是<br>$$<br>x\equiv(a,1)^{\frac{p+1}2}(\mathrm{mod}~p)<br>$$<br>我们可以用快速幂求解</p>
+<p>可以证明（意思是我不会证）：</p>
+<p>$x$的$\sqrt{a^2-k}$项为$0$</p>
+
       
     </div>
 
@@ -460,482 +454,50 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/30/lanternlinux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/30/lanternlinux/" itemprop="url">
-                  lantern在linux下的安装
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-30 11:21:31" itemprop="dateCreated datePublished" datetime="2017-12-30T11:21:31+08:00">2017-12-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/math/" rel="tag"># math</a>
           
-            
+            <a href="/tags/二次剩余/" rel="tag"># 二次剩余</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
+      
+        <div class="post-widgets">
         
-          <p>lantern，绝对是您翻墙的第一选择<del>（不是广告）</del></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/30/lanternlinux/#more" rel="contents">
-              Read more &raquo;
-            </a>
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/10/luogu2330/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/10/luogu2330/" itemprop="url">
-                  luogu2330
-                </a>
-              
-            
-          </h1>
         
 
-        <div class="post-meta">
-          <span class="post-time">
+        
 
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-10 13:17:09" itemprop="dateCreated datePublished" datetime="2017-12-10T13:17:09+08:00">2017-12-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+        
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
       
 
       
-        
-          <p>题目好像好难看懂。。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/10/luogu2330/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/17/hitokoto/" rel="next" title="为博客添加hitokoto">
+                <i class="fa fa-chevron-left"></i> 为博客添加hitokoto
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/09/UOJ69/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/UOJ69/" itemprop="url">
-                  UOJ69
-                </a>
-              
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-09 09:28:36" itemprop="dateCreated datePublished" datetime="2017-12-09T09:28:36+08:00">2017-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p><del>一道我也不知道怎么AC的题</del></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/09/UOJ69/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -945,645 +507,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/09/LCS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/LCS/" itemprop="url">
-                  求LCS的长度和数量
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-09 09:28:31" itemprop="dateCreated datePublished" datetime="2017-12-09T09:28:31+08:00">2017-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>DP求LCS的长度和数量</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/09/LCS/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/09/LCA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/LCA/" itemprop="url">
-                  倍增算法求LCA
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-09 09:28:27" itemprop="dateCreated datePublished" datetime="2017-12-09T09:28:27+08:00">2017-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h3><p>就是给定一棵<strong>有根</strong>树，和两个点，求他们的最近公共祖先（深度最大）</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/09/LCA/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/09/hexo-password/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/hexo-password/" itemprop="url">
-                  hexo下文章添加password
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-09 09:27:38" itemprop="dateCreated datePublished" datetime="2017-12-09T09:27:38+08:00">2017-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在<code>hexo</code>里面，有很多有趣的东西，现在来介绍一下怎么设置访问密码。</p>
-<p>双击<code>WoW</code>即可阅读</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/09/hexo-password/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2017/12/09/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huhao">
-      <meta itemprop="description" content="对着板子调代码ing……">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huhao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/hexo/" itemprop="url">
-                  用hexo+next搭建coding博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-09 09:26:09" itemprop="dateCreated datePublished" datetime="2017-12-09T09:26:09+08:00">2017-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-14 13:45:56" itemprop="dateModified" datetime="2019-02-14T13:45:56+08:00">2019-02-14</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>先来一波福利，就是给出我的博客下载地址（有<code>mathjax</code>……）</p>
-<p><a href="https://pan.baidu.com/s/1pLeEup1" target="_blank" rel="noopener">百度网盘</a> 密码：<code>mu87</code></p>
-<p><a href="http://download.csdn.net/download/hhuhao/10006255" target="_blank" rel="noopener">CSDN</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/09/hexo/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
-  </nav>
-
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1604,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1846,6 +787,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些性质"><span class="nav-number">1.</span> <span class="nav-text">一些性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求解：Cipolla算法"><span class="nav-number">2.</span> <span class="nav-text">求解：Cipolla算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 		<div class="links-of-blogroll motion-element links-of-blogroll-block">
 			<p>访问次数</p>
 			<p></p>
@@ -1999,6 +956,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
 
   
 
@@ -2374,26 +1335,6 @@
 
   
   
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
 
   
     
@@ -2424,6 +1365,23 @@
 
   
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
 
@@ -2437,7 +1395,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script type="text/javascript">
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#more");
   
   </script>
 
