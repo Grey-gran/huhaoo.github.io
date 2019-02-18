@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[简述原根与阶]]></title>
+    <url>%2F2019%2F02%2F18%2F%E5%8E%9F%E6%A0%B9%E4%B8%8E%E9%98%B6%2F</url>
+    <content type="text"><![CDATA[NTT要用，就记一下吧。]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[二次剩余]]></title>
     <url>%2F2019%2F02%2F18%2F%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99%2F</url>
     <content type="text"><![CDATA[求$$\sqrt k~\mathrm{mod}~p$$即求$x$，满足$$x^2\equiv k(\mathrm{mod}~p)$$其中$p$是质数，且$p\not=2$]]></content>
