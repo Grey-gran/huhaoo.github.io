@@ -5,7 +5,7 @@ window.onload=function () {
     function update() {
         gethi = new XMLHttpRequest();
 //        gethi.open("GET","https://huhaohitokoto.github.io");
-        gethi.open("GET","https://huhaohitokoto.github.io/"+Math.floor(Math.random()*171.999+1)+"/");
+        gethi.open("GET","https://mztknyl.github.io/"+Math.floor(Math.random()*171.999+1)+"/");
 //        gethi.open("GET","https://v1.hitokoto.cn");
         //这里选择类别，详见官方文档
         gethi.send();
