@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[exbsgs]]></title>
+    <url>%2F2019%2F02%2F20%2Fexbsgs%2F</url>
+    <content type="text"><![CDATA[已知$a,p,b$，求$$a^x\equiv b(\mathrm{mod}~p)$$]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>exbsgs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOI2013小Q的修炼]]></title>
+    <url>%2F2019%2F02%2F19%2FNOI2013%E5%B0%8FQ%E7%9A%84%E4%BF%AE%E7%82%BC%2F</url>
+    <content type="text"><![CDATA[题目链接]]></content>
+      <tags>
+        <tag>NOI</tag>
+        <tag>提交答案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Polya定理]]></title>
     <url>%2F2019%2F02%2F19%2FPolya%2F</url>
     <content type="text"></content>
@@ -672,8 +690,8 @@
     <url>%2F2017%2F12%2F09%2FUOJ69%2F</url>
     <content type="text"><![CDATA[一道我也不知道怎么AC的题]]></content>
       <tags>
-        <tag>uoj</tag>
         <tag>提交答案</tag>
+        <tag>uoj</tag>
       </tags>
   </entry>
   <entry>
