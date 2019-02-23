@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[插头DP略解]]></title>
+    <url>%2F2019%2F02%2F23%2F%E6%8F%92%E5%A4%B4DP%2F</url>
+    <content type="text"><![CDATA[例题： 给出$n\times m$的方格，有些格子不能铺线，其它格子必须铺，形成一个闭合回路。问有多少种铺法？]]></content>
+      <tags>
+        <tag>插头DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[exbsgs]]></title>
     <url>%2F2019%2F02%2F20%2Fexbsgs%2F</url>
     <content type="text"><![CDATA[已知$a,p,b$，求$$a^x\equiv b(\mathrm{mod}~p)$$]]></content>
