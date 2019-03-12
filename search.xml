@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[回文自动机]]></title>
+    <url>%2F2019%2F03%2F12%2F%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA%2F</url>
+    <content type="text"><![CDATA[给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。 学习论文]]></content>
+      <tags>
+        <tag>string</tag>
+        <tag>回文自动机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[杜教筛]]></title>
     <url>%2F2019%2F03%2F12%2F%E6%9D%9C%E6%95%99%E7%AD%9Brewrite%2F</url>
     <content type="text"><![CDATA[求$$\sum_{i\le n}\mu(i),\sum_{i\le n}\phi(i)$$]]></content>
