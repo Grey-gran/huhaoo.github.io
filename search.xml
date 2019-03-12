@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[杜教筛]]></title>
+    <url>%2F2019%2F03%2F12%2F%E6%9D%9C%E6%95%99%E7%AD%9Brewrite%2F</url>
+    <content type="text"><![CDATA[求$$\sum_{i\le n}\mu(i),\sum_{i\le n}\phi(i)$$]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>杜教筛</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[todo]]></title>
     <url>%2F2019%2F03%2F11%2Ftodo%2F</url>
     <content type="text"></content>
@@ -27,8 +36,8 @@
     <url>%2F2019%2F03%2F05%2FNOI2015%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
       <tags>
-        <tag>NOI</tag>
         <tag>sa</tag>
+        <tag>NOI</tag>
       </tags>
   </entry>
   <entry>
@@ -351,12 +360,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[杜教筛]]></title>
+    <title><![CDATA[杜教筛（已重写）]]></title>
     <url>%2F2018%2F04%2F30%2F%E6%9D%9C%E6%95%99%E7%AD%9B%2F</url>
     <content type="text"><![CDATA[又写了一个模板。。。 不过直接地发现我好菜 贴个链接：luoguP4213 简直就是一个模板裸题，妈呀好难 杜教筛我好像结论能背了…… $Φ_n=\dfrac{n(n+1)}2-\sum_{i=2^n}Φ_{⌊ni⌋}\\M_n=1−\sum_{i=2}^nM_{⌊ni⌋}$]]></content>
       <tags>
-        <tag>math</tag>
-        <tag>杜教筛</tag>
+        <tag>Rewrited</tag>
       </tags>
   </entry>
   <entry>
