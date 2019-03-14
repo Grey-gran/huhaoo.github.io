@@ -117,13 +117,13 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://huhaoo.github.io/home/huhao/blog/source/_posts/回文自动机/1.png">
+<meta property="og:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/1.png">
 <meta property="og:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/2.png">
-<meta property="og:updated_time" content="2019-03-14T11:10:54.808Z">
+<meta property="og:updated_time" content="2019-03-14T11:16:13.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回文自动机">
 <meta name="twitter:description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文">
-<meta name="twitter:image" content="https://huhaoo.github.io/home/huhao/blog/source/_posts/回文自动机/1.png">
+<meta name="twitter:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/1.png">
 
 
 
@@ -400,7 +400,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-14 19:10:54" itemprop="dateModified" datetime="2019-03-14T19:10:54+08:00">2019-03-14</time>
+                <time title="Modified: 2019-03-14 19:16:13" itemprop="dateModified" datetime="2019-03-14T19:16:13+08:00">2019-03-14</time>
               
             
           </span>
@@ -440,7 +440,7 @@
 <p><a href="https://github.com/huhaoo/OIths/blob/master/string/PalindromicTree.pdf" target="_blank" rel="noopener">学习论文</a></p>
 <a id="more"></a>
 <h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>回文树大概长这样</p>
-<p><img src="/home/huhao/blog/source/_posts/回文自动机/1.png" alt=""></p>
+<p><img src="回文自动机/1.png" alt=""></p>
 <p>和其它自动机（但是它却叫『回文树』）类似的，它也是由转移边和fail组成，每个节点就是一个回文串，每个节点都可以代表所有对应它的回文子串。</p>
 <p>因为回文串长度分为奇数和偶数，我们可以像manacher那样加入<code>#</code>（但是因为这个已经很难调了，加个岂不会调死）</p>
 <p>但是我们发现建两棵树也没什么不妥吧。</p>
