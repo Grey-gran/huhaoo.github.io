@@ -117,10 +117,13 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T12:29:43.420Z">
+<meta property="og:image" content="https://huhaoo.github.io/home/huhao/blog/source/_posts/回文自动机/1.png">
+<meta property="og:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/2.png">
+<meta property="og:updated_time" content="2019-03-14T11:10:54.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回文自动机">
 <meta name="twitter:description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文">
+<meta name="twitter:image" content="https://huhaoo.github.io/home/huhao/blog/source/_posts/回文自动机/1.png">
 
 
 
@@ -380,12 +383,24 @@
                 
               
 
-              <time title="Created: 2019-03-12 20:12:40 / Modified: 20:29:43" itemprop="dateCreated datePublished" datetime="2019-03-12T20:12:40+08:00">2019-03-12</time>
+              <time title="Created: 2019-03-12 20:12:40" itemprop="dateCreated datePublished" datetime="2019-03-12T20:12:40+08:00">2019-03-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-14 19:10:54" itemprop="dateModified" datetime="2019-03-14T19:10:54+08:00">2019-03-14</time>
               
             
           </span>
@@ -424,10 +439,22 @@
 </blockquote>
 <p><a href="https://github.com/huhaoo/OIths/blob/master/string/PalindromicTree.pdf" target="_blank" rel="noopener">学习论文</a></p>
 <a id="more"></a>
-<p>其它看论文，这里主要讲代码。</p>
-<p>先用他的方法，用上一次的节点跳fail把这一次的回文串搞出来</p>
-<p>然后再继续跳fail，直到又有一个匹配的</p>
-<p>然后它的fail就是匹配成功的节点往当前字符走边后的那个点，十分显然</p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>回文树大概长这样</p>
+<p><img src="/home/huhao/blog/source/_posts/回文自动机/1.png" alt=""></p>
+<p>和其它自动机（但是它却叫『回文树』）类似的，它也是由转移边和fail组成，每个节点就是一个回文串，每个节点都可以代表所有对应它的回文子串。</p>
+<p>因为回文串长度分为奇数和偶数，我们可以像manacher那样加入<code>#</code>（但是因为这个已经很难调了，加个岂不会调死）</p>
+<p>但是我们发现建两棵树也没什么不妥吧。</p>
+<p>和其它的自动机一样，fail连向的是它的后缀，但是转移边并非单纯向后加一个字符，而是在前后各加一个相同的字符（不难理解，因为要保证存的是回文串）</p>
+<h3 id="建造"><a href="#建造" class="headerlink" title="建造"></a>建造</h3><p>我们开始是有两个节点，代表长度为$-1,0$的回文串（分别表示奇数和偶数长度），它们都是空的（也就是无代表意义），仅仅方便建造，$0$的fail指向$-1$。</p>
+<p>类似后缀自动机，我们用增量法。</p>
+<p>每次建造，我们都从以上一个字符结尾的最长对应的节点开始，不断沿着fail走，直到那个节点对应以前一个位置为右端点的字符串两边字符相同，这里贴出论文中的那张图</p>
+<p><img src="回文自动机/2.png" alt=""></p>
+<p>我们就这么找到A，然后两边添加<code>X</code>就到了现在的回文串了（即<code>XAX</code>），很显然，这个节点就是以当前字符结尾的最长回文字串对应节点。同时，这个时候长度$-1$节点优势出来了，如果没有<code>X</code>能匹配条件就是同一个位置的<code>&#39;X&#39;==&#39;X&#39;</code>，就自然得到了代表<code>X</code>的节点。要判以下：没有这个节点，就需要新建。</p>
+<p>然后我们连fail，从<code>A</code>出发，还是那样走，走到<code>B</code>，就是它的fail节点了。</p>
+<p>显然，这个节点是不需新建的，<code>A</code>的前$len_B$位和后$len_B$位相同，都是<code>B</code>，前$len_B$位的两端根据回文串对应关系，都是<code>X</code>，后面被钦定了是<code>X</code>，于是这个节点肯定已经被新建了。</p>
+<p>如果fail没匹配到，那么将它连向长度为$0$的那个节点，显然这是可行的。</p>
+<p>例题：APIO2014|luogu3649 回文串</p>
+<p>建出树来，类似后缀自动机统计出现次数即可</p>
 <p><a href="https://github.com/huhaoo/template/blob/master/%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA.cpp" target="_blank" rel="noopener"><code>code</code></a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 300010</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,t[N][<span class="number">30</span>],w[N],l[N],f[N],c,ans;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s+<span class="number">1</span>);</span><br><span class="line">	n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">	c=<span class="number">2</span>;</span><br><span class="line">	f[<span class="number">1</span>]=f[<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">	l[<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> j=<span class="number">2</span>;</span><br><span class="line">	s[<span class="number">0</span>]=<span class="string">'#'</span>;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(s[i-l[j]<span class="number">-1</span>]!=s[i])</span><br><span class="line">			j=f[j];</span><br><span class="line">		<span class="keyword">if</span>(!t[j][s[i]-<span class="string">'a'</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			c++;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> k=j;</span><br><span class="line">			l[c]=l[k]+<span class="number">2</span>;</span><br><span class="line">			k=f[k];</span><br><span class="line">			<span class="keyword">while</span>(s[i-l[k]<span class="number">-1</span>]!=s[i])</span><br><span class="line">				k=f[k];</span><br><span class="line">			f[c]=t[k][s[i]-<span class="string">'a'</span>];</span><br><span class="line">			<span class="keyword">if</span>(!f[c])</span><br><span class="line">				f[c]=<span class="number">2</span>;</span><br><span class="line">			t[j][s[i]-<span class="string">'a'</span>]=c;</span><br><span class="line">		&#125;</span><br><span class="line">		j=t[j][s[i]-<span class="string">'a'</span>];</span><br><span class="line">		w[j]++;</span><br><span class="line">	&#125;</span><br><span class="line">	fd(i,c,<span class="number">1</span>)</span><br><span class="line">		w[f[i]]+=w[i];</span><br><span class="line">	fr(i,<span class="number">1</span>,c)</span><br><span class="line">		ans=max(ans,l[i]*w[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -530,8 +557,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -785,6 +821,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建造"><span class="nav-number">2.</span> <span class="nav-text">建造</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 <!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
 			<p>访问次数</p>
