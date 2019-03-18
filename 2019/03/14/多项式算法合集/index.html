@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="多项式真是神（毒）奇（瘤）！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T10:50:25.086Z">
+<meta property="og:updated_time" content="2019-03-17T12:32:22.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多项式算法合集">
 <meta name="twitter:description" content="多项式真是神（毒）奇（瘤）！">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-15 18:50:25" itemprop="dateModified" datetime="2019-03-15T18:50:25+08:00">2019-03-15</time>
+                <time title="Modified: 2019-03-17 20:32:22" itemprop="dateModified" datetime="2019-03-17T20:32:22+08:00">2019-03-17</time>
               
             
           </span>
@@ -434,28 +434,36 @@
 <a id="more"></a>
 <h3 id="多项式套多项式的复杂度"><a href="#多项式套多项式的复杂度" class="headerlink" title="多项式套多项式的复杂度"></a>多项式套多项式的复杂度</h3><p>先写这个是为了消除大家的TLE疑虑的。</p>
 <p>之后会遇到这个复杂度$f(n)=f(\dfrac n2)+n\log n$</p>
-<p>我们取最简单的$f(2^n)$<br>$$<br>f(2^n)=\sum_{i=1}^i2^ii\\<br>=2^nn+\sum_{i=1}^n2^{n-1}(n-1)\\<br>\le 2^nn+\dfrac 12\sum_{i=1}^i2^ii<br>$$<br>于是移项后就是<br>$$<br>f(2^n)\le 2^{n+1}n<br>$$<br>这还是$O(n\log n)$！</p>
+<p>我们取最简单的$f(2^n)$<br>$$<br>\begin{align}<br>f(2^n)&amp;=\sum_{i=1}^i2^ii\\<br>&amp;=2^nn+\sum_{i=1}^n2^{n-1}(n-1)\\<br>&amp;\le 2^nn+\dfrac 12\sum_{i=1}^i2^ii<br>\end{align}<br>$$<br>于是移项后就是<br>$$<br>f(2^n)\le 2^{n+1}n<br>$$<br>这还是$O(n\log n)$！</p>
 <h3 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h3><blockquote>
 <p>$$<br>c_k=\sum_{i+j=k}a_ib_j<br>$$</p>
 </blockquote>
 <p>前置知识：复数</p>
-<p>如果我们有两个个复数$x_1=a_1i+b_1,x_2=a_2i+b_2$，它满足$|x_1|=1,|x_2|=1$，那么<br>$$<br>|x_1x_2|=|(a_1b_2+a_2b_1)i+(b_1b_2-a_1a_2)|\\<br>=(a_1b_2+a_2b_1)^2+(b_1b_2-a_1a_2)^2\\<br>=a_1^2b_2^2+a_2^2b_1^2+2a_1a_2b_1b_2+b_1^2b_2^2+a_1^2a_2^2-2a_1a_2b_1b_2\\<br>=a_1^2b_2^2+a_2^2b_1^2+b_1^2b_2^2+a_1^2a_2^2\\<br>=a_1^2(b_2^2+a_2^2)+b_1^2(a_2^2+a_1^2)\\<br>=a_1^2+b_1^2=1<br>$$<br>于是如果一个复数模长为$1$，那么它的$k$次方模长都是$1$</p>
+<p>如果我们有两个个复数$x_1=a_1i+b_1,x_2=a_2i+b_2$，它满足$|x_1|=1,|x_2|=1$，那么<br>$$<br>\begin{align}<br>|x_1x_2|&amp;=|(a_1b_2+a_2b_1)i+(b_1b_2-a_1a_2)|\\<br>&amp;=(a_1b_2+a_2b_1)^2+(b_1b_2-a_1a_2)^2\\<br>&amp;=a_1^2b_2^2+a_2^2b_1^2+2a_1a_2b_1b_2+b_1^2b_2^2+a_1^2a_2^2-2a_1a_2b_1b_2\\<br>&amp;=a_1^2b_2^2+a_2^2b_1^2+b_1^2b_2^2+a_1^2a_2^2\\<br>&amp;=a_1^2(b_2^2+a_2^2)+b_1^2(a_2^2+a_1^2)\\<br>&amp;=a_1^2+b_1^2=1<br>\end{align}<br>$$<br>于是如果一个复数模长为$1$，那么它的$k$次方模长都是$1$</p>
 <p>考虑如果一个多项式​​有$n-1$位（最高位可以为$0$），记​$\theta=\dfrac{2\pi}n,w_n^k=(i\sin\theta+\cos\theta)^k$</p>
-<p>如果<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>有<br>$$<br>w_n^{k+1}=w_n^kw_n=(i\sin k\theta+\cos k\theta)(i\sin\theta+\cos\theta)\\<br>=i(\sin k\theta\cos\theta+\cos k\theta\sin \theta)+(\cos \theta\cos k\theta-\sin \theta\sin k\theta)\\<br>=i\sin(k+1)\theta+\cos(k+1)\theta<br>$$<br>于是根据归纳法<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>我们可以将$w_n^{1\dots n}$代入$f$，求这些值，称为</p>
-<p>如果<br>$$<br>f(x)=\sum_{0\le i&lt;2^n}a_ix^i<br>$$<br>我们可以记<br>$$<br>g(x)=\sum_{0\le 2i&lt;2^n}a_{2i}x^i\\<br>h(x)=\sum_{0\le 2i&lt;2^n}a_{2i+1}x^i<br>$$<br>$g,h$就都成了只有$2^{n-1}$项有值的多项式了</p>
+<p>如果<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>有<br>$$<br>\begin{align}<br>w_n^{k+1}&amp;=w_n^kw_n\\<br>&amp;=(i\sin k\theta+\cos k\theta)(i\sin\theta+\cos\theta)\\<br>&amp;=i(\sin k\theta\cos\theta+\cos k\theta\sin \theta)+(\cos \theta\cos k\theta-\sin \theta\sin k\theta)\\<br>&amp;=i\sin(k+1)\theta+\cos(k+1)\theta<br>\end{align}<br>$$<br>于是根据归纳法<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>我们可以将$w_n^{1\dots n}$代入$f$，求这些值，称为</p>
+<p>如果<br>$$<br>f(x)=\sum_{0\le i&lt;2^n}a_ix^i<br>$$<br>我们可以记<br>$$<br>\begin{align}<br>g(x)&amp;=\sum_{0\le 2i&lt;2^n}a_{2i}x^i\\<br>h(x)&amp;=\sum_{0\le 2i&lt;2^n}a_{2i+1}x^i<br>\end{align}<br>$$<br>$g,h​$就都成了只有$2^{n-1}​$项有值的多项式了</p>
 <p>那么<br>$$<br>f(x)=g(x^2)+x~h(x^2)<br>$$<br>可以验算一下，发现真是这样</p>
-<p>接下来就是一个膜法了：<br>$$<br>f(w_{2^n}^k)=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\\<br>f(w_{2^n}^{-k})=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)<br>$$<br>也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)$，我们就可以快速求了！</p>
+<p>接下来就是一个膜法了：<br>$$<br>\begin{align}<br>f(w_{2^n}^k)&amp;=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\\<br>f(w_{2^n}^{-k})&amp;=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)<br>\end{align}<br>$$<br>也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)​$，我们就可以快速求了！</p>
 <p>IDFT就稍微改改，反正我也不会</p>
 <h4 id="怎么背"><a href="#怎么背" class="headerlink" title="怎么背"></a>怎么背</h4><p>只要记得FFT推导和IDFT的小改动就好了！</p>
 <h3 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h3><p>和FFT差不多</p>
 <h3 id="inv"><a href="#inv" class="headerlink" title="inv"></a>inv</h3><blockquote>
 <p>$$<br>f^{-1}f\equiv 1(\mathrm{mod}~x^p)<br>$$</p>
 </blockquote>
-<p>如果我们求出了<br>$$<br>f’^{-1}f\equiv 1(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得到<br>$$<br>f^{-1}f\equiv1(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>f(f^{-1}-f’^{-1})\equiv 0(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(f^{-1}-f’^{-1})^2\equiv 0(\mathrm{mod}~x^p)\\<br>f^{-2}-2f^{-1}f’^{-1}-f’^{-2}\equiv0(\mathrm{mod}~x^p)\\<br>f^{-1}-2f’^{-1}-ff’^{-2}\equiv 0(\mathrm{mod}~x^p)\\<br>f^{-1}\equiv f’^{-1}(2-ff’^{-1})(\mathrm{mod}~x^p)<br>$$<br>边界是$p=1$，给整数求逆即可。</p>
+<p>如果我们求出了<br>$$<br>f’^{-1}f\equiv 1(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得到<br>$$<br>\begin{align}<br>f^{-1}f&amp;\equiv1&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>f(f^{-1}-f’^{-1})&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(f^{-1}-f’^{-1})^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>f^{-2}-2f^{-1}f’^{-1}-f’^{-2}&amp;\equiv0&amp;(\mathrm{mod}~x^p)\\<br>f^{-1}-2f’^{-1}-ff’^{-2}&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>f^{-1}&amp;\equiv f’^{-1}(2-ff’^{-1})&amp;(\mathrm{mod}~x^p)<br>\end{align}<br>$$<br>边界是$p=1​$，给整数求逆即可。</p>
 <h3 id="sqrt"><a href="#sqrt" class="headerlink" title="sqrt"></a>sqrt</h3><blockquote>
 <p>$$<br>g^2\equiv f(\mathrm{mod}~x^p)<br>$$</p>
 </blockquote>
-<p>类似inv，如果我们求出了<br>$$<br>g’^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得<br>$$<br>g’^2-f\equiv 0(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(g’^2-f)^2\equiv 0(\mathrm{mod}~x^p)\\<br>(g’^2+f)^2\equiv 4g’^2f(\mathrm{mod}~x^p)\\<br>(\dfrac{g’^2+f}{2g’})^2\equiv f(\mathrm{mod}~x^p)\\<br>g\equiv \dfrac{g’^2+f}{2g’}=2^{-1}(g’+\dfrac f{g’})(\mathrm{mod}~x^p)<br>$$<br>边界是$p=1$，可能要二次剩余算一下。</p>
+<p>类似inv，如果我们求出了<br>$$<br>g’^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得<br>$$<br>\begin{align}<br>g’^2-f&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(g’^2-f)^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>(g’^2+f)^2&amp;\equiv 4g’^2f&amp;(\mathrm{mod}~x^p)\\<br>(\dfrac{g’^2+f}{2g’})^2&amp;\equiv f&amp;(\mathrm{mod}~x^p)\\<br>g&amp;\equiv \dfrac{g’^2+f}{2g’}=2^{-1}(g’+\dfrac f{g’})&amp;(\mathrm{mod}~x^p)<br>\end{align}<br>$$<br>边界是$p=1​$，可能要二次剩余算一下。</p>
+<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><p>$$<br>\ln f=\int(\ln f)’=\int\dfrac{f’}{f}<br>$$</p>
+<h3 id="Exp"><a href="#Exp" class="headerlink" title="Exp"></a>Exp</h3><p>根据牛顿迭代（我不会）</p>
+<p>有<br>$$<br>g(x)=g_0(x)(1-\ln g_0(x)+f(x))<br>$$</p>
+<h3 id="mod-amp-div"><a href="#mod-amp-div" class="headerlink" title="mod&amp;div"></a>mod&amp;div</h3><blockquote>
+<p>$$<br>f=p\times g+q<br>$$</p>
+</blockquote>
+<p>我们记$f^r$为反转$f$的系数，即$[x^a]f(x)=[x^{d_f-a}]f(x)$，其中$d_f$为$f$的最高次数</p>
+<p>有<br>$$<br>\begin{align}<br>f^r&amp;=p^r\times g^r+q^rx^{d_f-d_q}\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_q})\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_g+1})\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_p+1})\\<br>\end{align}<br>$$<br>可以用inv求$p$再反推出$q$</p>
 
       
     </div>
@@ -510,6 +518,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/17/Latex化学式/" rel="prev" title="Latex化学式">
+                Latex化学式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -583,7 +595,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -768,7 +780,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">85</span>
+                      
+                    
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -828,7 +842,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式套多项式的复杂度"><span class="nav-number">1.</span> <span class="nav-text">多项式套多项式的复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么背"><span class="nav-number">2.1.</span> <span class="nav-text">怎么背</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTT"><span class="nav-number">3.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inv"><span class="nav-number">4.</span> <span class="nav-text">inv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqrt"><span class="nav-number">5.</span> <span class="nav-text">sqrt</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式套多项式的复杂度"><span class="nav-number">1.</span> <span class="nav-text">多项式套多项式的复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么背"><span class="nav-number">2.1.</span> <span class="nav-text">怎么背</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTT"><span class="nav-number">3.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inv"><span class="nav-number">4.</span> <span class="nav-text">inv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqrt"><span class="nav-number">5.</span> <span class="nav-text">sqrt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">6.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exp"><span class="nav-number">7.</span> <span class="nav-text">Exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-amp-div"><span class="nav-number">8.</span> <span class="nav-text">mod&amp;div</span></a></li></ol></div>
             
 
           </div>
