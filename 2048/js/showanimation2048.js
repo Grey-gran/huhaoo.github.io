@@ -1,4 +1,4 @@
-function showNumberWithAnimation(i, j, randNumber) {//实现随机数字的样式变动
+function showNumberWithAnimation(i, j, randNumber) {
  
     var numberCell = $('#number-cell-' + i + '-' + j);
     numberCell.css("background-color", getNumberBackgroundColor(randNumber));
@@ -13,7 +13,7 @@ function showNumberWithAnimation(i, j, randNumber) {//实现随机数字的样�
     }, 50);
 }
  
-function showMoveAnimation(fromx, fromy, tox, toy){//实现移动格子的样式变动
+function showMoveAnimation(fromx, fromy, tox, toy){
     
     var numberCell = $('#number-cell-'+fromx +'-'+fromy);
     numberCell.animate({top:getPosTop(tox,toy),
