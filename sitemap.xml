@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://huhaoo.github.io/game/tetris/index.html</loc>
+    
+    <lastmod>2019-03-20T05:13:43.040Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://huhaoo.github.io/game/index.html</loc>
     
-    <lastmod>2019-03-20T00:02:09.860Z</lastmod>
+    <lastmod>2019-03-20T05:11:04.952Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://huhaoo.github.io/game/hextris/index.html</loc>
     
     <lastmod>2019-03-19T10:23:31.403Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://huhaoo.github.io/game/tetris/index.html</loc>
-    
-    <lastmod>2019-03-19T10:10:07.197Z</lastmod>
     
   </url>
   

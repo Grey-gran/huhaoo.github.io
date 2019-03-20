@@ -1,208 +1,220 @@
-var COLS = 10, ROWS = 20;
-var board = [];
-var lose;
-var interval;
-var intervalRender;
-var current; // current moving shape
-var currentX, currentY; // position of current shape
-var freezed; // is current shape settled on the board?
-var shapes = [
-    [ 1, 1, 1, 1 ],
-    [ 1, 1, 1, 0,
-      1 ],
-    [ 1, 1, 1, 0,
-      0, 0, 1 ],
-    [ 1, 1, 0, 0,
-      1, 1 ],
-    [ 1, 1, 0, 0,
-      0, 1, 1 ],
-    [ 0, 1, 1, 0,
-      1, 1 ],
-    [ 0, 1, 0, 0,
-      1, 1, 1 ]
-];
-var colors = [
-    'cyan', 'orange', 'blue', 'yellow', 'red', 'green', 'purple'
-];
-
-// creates a new 4x4 shape in global variable 'current'
-// 4x4 so as to cover the size when the shape is rotated
-function newShape() {
-    var id = Math.floor( Math.random() * shapes.length );
-    var shape = shapes[ id ]; // maintain id for color filling
-
-    current = [];
-    for ( var y = 0; y < 4; ++y ) {
-        current[ y ] = [];
-        for ( var x = 0; x < 4; ++x ) {
-            var i = 4 * y + x;
-            if ( typeof shape[ i ] != 'undefined' && shape[ i ] ) {
-                current[ y ][ x ] = id + 1;
-            }
-            else {
-                current[ y ][ x ] = 0;
-            }
-        }
-    }
-    
-    // new shape starts to move
-    freezed = false;
-    // position where the shape will evolve
-    currentX = 5;
-    currentY = 0;
+function Tetris(pos, type, dir) {
+	this.turn = function () {
+		var flag = 1;
+		switch (this.types_name[this.type]) {
+			case "SQUARE":
+				return true;
+			case "LINE":
+				flag = this.tetris[1].y-this.centor.y?1:-1;
+				break;
+			case "SWAGERLY":
+			case "RSWAGERLY":
+				flag = this.tetris[2].y-this.centor.y?1:-1;
+				break;
+			case "LBLOCK":
+			case "RLBLOCK":
+			case "TBLOCK":
+				flag = 1;
+				break;
+		}
+		for (var i = 1; i < this.tetris.length; i++) {
+			var diff = {"x":this.tetris[i].x-this.centor.x, "y":this.tetris[i].y-this.centor.y};
+			this.tetris[i].x = this.centor.x + flag*diff.y;
+			this.tetris[i].y = this.centor.y - flag*diff.x;
+		}
+		return true;
+	}
+	this.turnback = function () {
+		if (this.types_name[this.type] == "SQUARE")
+			return true;
+		for (var i = 0; i < 3; i++)
+			this.turn();
+	}
+	this.leftSlice = function () {
+		this.pos.x--;
+	}
+	this.rightSlice = function () {
+		this.pos.x++;
+	}
+	this.drop = function () {
+		this.pos.y++;
+	}
+	this.rise = function() {
+		this.pos.y--;
+	}
+	this.body = function () {
+		var body = [];
+		for (var i = 0; i < this.tetris.length; i++) {
+			if (this.tetris[i].y+this.pos.y >= 0)
+				body.push({"x":this.tetris[i].x+this.pos.x, "y":this.tetris[i].y+this.pos.y});
+		}
+		return body;
+	}
+	this.__init__ = function () {
+		var arr = this.types_body[this.type];
+		this.tetris = [];
+		this.centor = {"x":arr[0]%4-this.origin%4, "y":parseInt(arr[0]/4)-parseInt(this.origin/4)};
+		for (var i = 0; i < 4; i++) {
+			this.tetris[i] = {"x":arr[i]%4-this.origin%4, "y":parseInt(arr[i]/4)-parseInt(this.origin/4)};
+		}
+	}
+	this.types_name = ["LBLOCK", "RLBLOCK", "TBLOCK", "SWAGERLY", "RSWAGERLY", "LINE", "SQUARE"];
+	this.types_body = [
+		[5, 1, 2, 9], //LLL
+		[6, 1, 2,10],
+		[5, 1, 4, 6], //T 
+		[5, 2, 6, 9], //555 
+		[5, 1, 6,10], 
+		[5, 4, 6, 7], //I
+		[5, 0, 1, 4],
+	]
+	this.origin = 5;
+	this.type = type%7;
+	this.pos = pos;
+	this.__init__();
+	for (i = 0; i < dir%4; i++)
+		this.turn();
+	return this;
 }
 
-// clears the board
-function init() {
-    for ( var y = 0; y < ROWS; ++y ) {
-        board[ y ] = [];
-        for ( var x = 0; x < COLS; ++x ) {
-            board[ y ][ x ] = 0;
-        }
-    }
+// 状态值与操作应应做保护，但是这是队列形式的单线程可以分离
+function TetrisConsole(width, height) {
+	this.getState = function () {
+		return this.state;
+	}
+	this.getTetris = function () {
+		return this.tetris.body();
+	}
+	this.setTetris = function (value) {
+		var body = this.getTetris();
+		for (var i = 0; i < body.length; i++)
+			this.map[body[i].y][body[i].x] = value?1:0;
+	}
+	this.isRepeat = function (value) {
+		var body = this.getTetris();
+		for (var i = 0; i < body.length; i++) {
+			if (this.map[body[i].y][body[i].x])
+				return true;
+		}
+		return false;
+	}
+	this.isOutOfRange = function () {
+		var body = this.getTetris();
+		for (var i = 0; i < body.length; i++) {
+			if (body[i].x < 0 || body[i].x > (this.width-1))
+				return true;
+			if (body[i].y > (this.height-1))
+				return true;
+		}
+		return false;
+	}
+	this.clearBottom = function () {
+		var base = this.height - 1;
+		var is_clear = false;
+		for (var i = this.height - 1; i > 0; i--) {
+			var line = this.map[i];
+			var not_full = false;
+			var not_empty = false;
+			for (var x = 0; x < line.length; x++) {
+				if (line[x] == 0)
+					not_full = true;
+				else
+					not_empty = true;
+			}
+			if (not_full&&not_empty) {
+				if (i != base) {
+					var base_line = this.map[base];
+					for (var j = 0; j < this.width; j++)
+						base_line[j]=line[j];
+				}
+				base--;
+			} else if (!not_full) {
+				is_clear = true;
+			}
+		}
+		if (!is_clear)
+			return false;
+		for (i = base; i > 0; i--) {
+			this.map[i].fill(0);
+		}
+		return true;
+	}
+	this.createTetris = function (pos, type, dir) {
+		this.tetris = null;
+		this.tetris = new Tetris({"x":parseInt(this.width/2),"y":0},
+			Math.floor(Math.random()*8), Math.floor(Math.random()*5));
+		return !(this.isOutOfRange()||this.isRepeat());
+	}
+	this.dropTetris = function () {
+		this.setTetris(0);
+		this.tetris.drop();
+		if (this.isOutOfRange() || this.isRepeat()) {
+			this.tetris.rise();
+			this.setTetris(1);
+			var is_update = this.clearBottom()
+			if(this.createTetris()) {
+				this.state = is_update?"UPDATE":"NEW";
+				return true;
+			} else {
+				this.state = "DEAD"
+				return false;
+			}
+		}
+		this.setTetris(1);
+		this.state = "MOVE";
+		return true;
+	}
+	this.turnTetris = function () {
+		this.setTetris(0);
+		this.tetris.turn();
+		if (this.isOutOfRange() || this.isRepeat())
+			this.tetris.turnback();
+		this.setTetris(1);
+		this.state = "MOVE"
+		return true;
+	}
+	this.leftSliceTetris = function () {
+		this.setTetris(0);
+		this.tetris.leftSlice();
+		if (this.isOutOfRange() || this.isRepeat())
+			this.tetris.rightSlice();
+		this.setTetris(1);
+		this.state = "MOVE"
+		return true;
+	}
+	this.rightSliceTetris = function () {
+		this.setTetris(0);
+		this.tetris.rightSlice();
+		if (this.isOutOfRange() || this.isRepeat())
+			this.tetris.leftSlice();
+		this.setTetris(1);
+		this.state = "MOVE"
+		return true;
+	}
+	this.keydown = function (keycode) {
+		var changed_tetris;
+		switch(keycode) {
+			case "UP":
+				this.turnTetris();
+				break;
+			case "DOWN":
+				this.dropTetris();
+				break;
+			case "LEFT":
+				this.leftSliceTetris();
+				break;
+			case "RIGHT":
+				this.rightSliceTetris();
+				break;
+		}
+	}
+	this.width = width;
+	this.height = height;
+	this.state = "MOVE";
+	this.map = [];
+	for (var i = 0; i < height; i++)
+		this.map[i] = new Array(width).fill(0);
+	this.createTetris();
+	return this;
 }
 
-// keep the element moving down, creating new shapes and clearing lines
-function tick() {
-    if ( valid( 0, 1 ) ) {
-        ++currentY;
-    }
-    // if the element settled
-    else {
-        freeze();
-        valid(0, 1);
-        clearLines();
-        if (lose) {
-            clearAllIntervals();
-            return false;
-        }
-        newShape();
-    }
-}
-
-// stop shape at its position and fix it to board
-function freeze() {
-    for ( var y = 0; y < 4; ++y ) {
-        for ( var x = 0; x < 4; ++x ) {
-            if ( current[ y ][ x ] ) {
-                board[ y + currentY ][ x + currentX ] = current[ y ][ x ];
-            }
-        }
-    }
-    freezed = true;
-}
-
-// returns rotates the rotated shape 'current' perpendicularly anticlockwise
-function rotate( current ) {
-    var newCurrent = [];
-    for ( var y = 0; y < 4; ++y ) {
-        newCurrent[ y ] = [];
-        for ( var x = 0; x < 4; ++x ) {
-            newCurrent[ y ][ x ] = current[ 3 - x ][ y ];
-        }
-    }
-
-    return newCurrent;
-}
-
-// check if any lines are filled and clear them
-function clearLines() {
-    for ( var y = ROWS - 1; y >= 0; --y ) {
-        var rowFilled = true;
-        for ( var x = 0; x < COLS; ++x ) {
-            if ( board[ y ][ x ] == 0 ) {
-                rowFilled = false;
-                break;
-            }
-        }
-        if ( rowFilled ) {
-            document.getElementById( 'clearsound' ).play();
-            for ( var yy = y; yy > 0; --yy ) {
-                for ( var x = 0; x < COLS; ++x ) {
-                    board[ yy ][ x ] = board[ yy - 1 ][ x ];
-                }
-            }
-            ++y;
-        }
-    }
-}
-
-function keyPress( key ) {
-    switch ( key ) {
-        case 'left':
-            if ( valid( -1 ) ) {
-                --currentX;
-            }
-            break;
-        case 'right':
-            if ( valid( 1 ) ) {
-                ++currentX;
-            }
-            break;
-        case 'down':
-            if ( valid( 0, 1 ) ) {
-                ++currentY;
-            }
-            break;
-        case 'rotate':
-            var rotated = rotate( current );
-            if ( valid( 0, 0, rotated ) ) {
-                current = rotated;
-            }
-            break;
-        case 'drop':
-            while( valid(0, 1) ) {
-                ++currentY;
-            }
-            tick();
-            break;
-    }
-}
-
-// checks if the resulting position of current shape will be feasible
-function valid( offsetX, offsetY, newCurrent ) {
-    offsetX = offsetX || 0;
-    offsetY = offsetY || 0;
-    offsetX = currentX + offsetX;
-    offsetY = currentY + offsetY;
-    newCurrent = newCurrent || current;
-
-    for ( var y = 0; y < 4; ++y ) {
-        for ( var x = 0; x < 4; ++x ) {
-            if ( newCurrent[ y ][ x ] ) {
-                if ( typeof board[ y + offsetY ] == 'undefined'
-                  || typeof board[ y + offsetY ][ x + offsetX ] == 'undefined'
-                  || board[ y + offsetY ][ x + offsetX ]
-                  || x + offsetX < 0
-                  || y + offsetY >= ROWS
-                  || x + offsetX >= COLS ) {
-                    if (offsetY == 1 && freezed) {
-                        lose = true; // lose if the current shape is settled at the top most row
-                        document.getElementById('playbutton').disabled = false;
-                    } 
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-}
-
-function playButtonClicked() {
-    newGame();
-    document.getElementById("playbutton").disabled = true;
-}
-
-function newGame() {
-    clearAllIntervals();
-    intervalRender = setInterval( render, 30 );
-    init();
-    newShape();
-    lose = false;
-    interval = setInterval( tick, 400 );
-}
-
-function clearAllIntervals(){
-    clearInterval( interval );
-    clearInterval( intervalRender );
-}
