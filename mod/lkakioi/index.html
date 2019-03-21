@@ -1,0 +1,59 @@
+<meta charset="UTF-8">
+<div align="center">
+	<img src="lk.jpg" alt="">
+	<p>
+		上图中为lk（图为lk ak WC 2018）
+	</p>
+	<hr>
+	<font size="5" color="grey">
+		<p>
+			Let's molokai!
+		</p>
+	</font>
+	<p></p>
+	<p>
+		LK ak
+		<font size="4" color="red">
+			IOI
+			<span class="counter">
+				2020
+			</span>
+		</font>
+	</p>
+	<p>
+		LK:
+		<i>
+			<span class="lksays">
+				你们呐，naive!
+			</span>
+		</i>
+	</p>
+	<button id="lkak" type="button" class="el-button el-button--primary is-plain is-round">
+		molokai!
+	</button>
+	<script>
+		var counter = 2020,sayid=0;
+		var says=new Array(
+			"你们呐，naive!",
+			"Too young",
+			"Too simple",
+			"I AK IOI!",
+			"恕我直言，在座的各位，都是菜鸡",
+			"你比我大，没我强，你还打不过我",
+			"你们太弱了"
+		);
+		document.getElementById("lkak").onclick = function()
+		{
+			++counter;
+			for(let item of document.getElementsByClassName("counter"))
+			{
+				item.innerText=counter;
+			}
+			sayid=Math.floor(Math.random()*says.length);
+			for(let item of document.getElementsByClassName("lksays"))
+			{
+				item.innerText=says[sayid];
+			}
+		}
+	</script>
+</div>
