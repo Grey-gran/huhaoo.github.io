@@ -1,3 +1,9 @@
+<html>
+<head>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+</head>
 <meta charset="UTF-8">
 <div align="center">
 	<img src="lk.jpg" alt="">
@@ -20,20 +26,35 @@
 			</span>
 		</font>
 	</p>
-	<p>
-		LK:
-		<i>
-			<span class="lksays">
-				你们呐，naive!
-			</span>
-		</i>
-	</p>
 	<button id="lkak" type="button" class="el-button el-button--primary is-plain is-round">
 		molokai!
 	</button>
+	<p>
+		<font size="2" color="grey">
+			<i>
+				<span class="lksays">
+				</span>
+			</i>
+		</font>
+	</p>
+	<br>
+	<br>
+	<br>
+	<p>
+		<font size="2">
+			LK一共被膜：
+			<img src="http://ctr.freelogs.com/counter/index.php?u=lkakioi&s=mcis" alt="" id="modcount" height="13">
+			次
+		</font>
+		<font size="1">
+			（可能不能即使更新）
+		</font>
+	</p>
+	<img src="" alt="" id="mod" height="0" weight="0">
 	<script>
-		var counter = 2020,sayid=0;
-		var says=new Array(
+		var counter=2020,sayid=-1,k=0,cnt=-1;
+		var says=new Array
+		(
 			"你们呐，naive!",
 			"Too young",
 			"Too simple",
@@ -42,18 +63,67 @@
 			"你比我大，没我强，你还打不过我",
 			"你们太弱了"
 		);
+		var style=new Array
+		(
+			"7seg",
+			"a",
+			"ainv",
+			"aliasw",
+			"amini",
+			"angelus",
+			"apple",
+			"ariali",
+			"awg02",
+			"bankgot",
+			"bauhaus",
+			"bbldotb",
+			"bbldotg",
+			"bbldotr",
+			"bckorng",
+			"bembo",
+			"binky",
+			"blgrv",
+			"blkgold",
+			"blkrefl",
+			"blueodo",
+			"bluepl",
+			"bluesky",
+			"blushdw",
+			"blustps",
+			"break1",
+			"break2",
+			"break3",
+			"brush",
+			"buftom",
+			"caliblu",
+			"caligra",
+			"chagor6",
+			"chalk",
+			"checker",
+			"chevy",
+			"chinese",
+			"chocolat",
+			"circle",
+			"classic",
+		)
 		document.getElementById("lkak").onclick = function()
 		{
-			++counter;
 			for(let item of document.getElementsByClassName("counter"))
 			{
 				item.innerText=counter;
 			}
-			sayid=Math.floor(Math.random()*says.length);
+			while(k==sayid)
+			{
+				k=Math.floor(Math.random()*says.length);
+			}
+			sayid=k;
 			for(let item of document.getElementsByClassName("lksays"))
 			{
-				item.innerText=says[sayid];
+				item.innerText="LK: "+says[sayid];
 			}
+			cnt=cnt+1;
+			document.getElementById("mod").src="http://ctr.freelogs.com/counter/index.php?u=lkakioi&s="+style[cnt];
 		}
 	</script>
 </div>
+</html>
