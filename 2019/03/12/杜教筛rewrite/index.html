@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="求$$\sum_{i\le n}\mu(i),\sum_{i\le n}\phi(i)$$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T07:49:30.645Z">
+<meta property="og:updated_time" content="2019-03-23T09:01:32.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杜教筛">
 <meta name="twitter:description" content="求$$\sum_{i\le n}\mu(i),\sum_{i\le n}\phi(i)$$">
@@ -396,12 +396,24 @@
                 
               
 
-              <time title="Created: 2019-03-12 11:41:47 / Modified: 15:49:30" itemprop="dateCreated datePublished" datetime="2019-03-12T11:41:47+08:00">2019-03-12</time>
+              <time title="Created: 2019-03-12 11:41:47" itemprop="dateCreated datePublished" datetime="2019-03-12T11:41:47+08:00">2019-03-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-23 17:01:32" itemprop="dateModified" datetime="2019-03-23T17:01:32+08:00">2019-03-23</time>
               
             
           </span>
@@ -439,12 +451,19 @@
 </blockquote>
 <a id="more"></a>
 <h4 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h4><p>$$<br>(f*g)(i)=\sum_{d|i}f(d)g(\dfrac id)<br>$$</p>
-<p>记<br>$$<br>I(n)=1\\<br>1(n)=[n=1]\\<br>id^k(n)=n^k\\<br>\sigma^k(n)=\sum_{d|n}d^k<br>$$<br>其中$1$是单位元（应该可以写成$e​$）</p>
-<p>有<br>$$<br>I<em>\mu=1,I</em>\phi=id<br>$$</p>
+<p>记</p>
+<p>$$<br>I(n)=1\\<br>1(n)=[n=1]\\<br>id^k(n)=n^k\\<br>\sigma^k(n)=\sum_{d|n}d^k<br>$$</p>
+<p>其中$1$是单位元（应该可以写成$e$）</p>
+<p>有</p>
+<p>$$<br>I*\mu=1<br>$$</p>
+<p>$$<br>I*\phi=id<br>$$</p>
 <h4 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h4><p>$$<br>f(i)=\sum_{i|j}g(j)\Leftrightarrow g(i)=\sum_{i|j}f(j)\mu(\dfrac ji)\\<br>f(i)=\sum_{j|i}g(j)\Leftrightarrow g(j)=\sum_{j|i}f(j)\mu(\dfrac ij)<br>$$</p>
 <p><del>背起来很好，因为差多少倍就乘$\mu$几</del></p>
 <h4 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h4><p>记$s(f)(i)=\sum_{j\le i}f(i)$</p>
-<p> 即求$s(\mu)(n),s(\phi)(n)​$<br>$$<br>s(f<em>g)(n)=\sum_{i\le n}(f</em>g)(i)\\<br>=\sum_{i\le n}\sum_{d|i}f(d)g(\dfrac id)\\<br>=\sum_{d\le n}f(d)\sum_{d|i}g(\dfrac id)\\<br>=\sum_{d\le n}f(d)\sum_{i\le \frac nd}g(i)\\<br>=\sum_{d\le n}f(d)s(g)(\lfloor\dfrac nd\rfloor)\\<br>s(g)(n)=s(f<em>g)(n)-\sum_{d=2}^nf(d)s(g)(\lfloor\dfrac nd\rfloor)<br>$$<br>于是我们要求$f$容易求，$s(f</em>g)(n)$容易求</p>
+<p> 即求$s(\mu)(n),s(\phi)(n)$</p>
+<p>$$<br>s(f*g)(n)\\<br>=\sum_{i\le n}\sum_{d|i}f(d)g(\dfrac id)\\<br>=\sum_{d\le n}f(d)\sum_{d|i}g(\dfrac id)\\<br>=\sum_{d\le n}f(d)\sum_{i\le \frac nd}g(i)\\<br>=\sum_{d\le n}f(d)s(g)(\lfloor\dfrac nd\rfloor)<br>$$</p>
+<p>$$<br>s(g)(n)=s(f*g)(n)-\sum_{d=2}^nf(d)s(g)(\lfloor\dfrac nd\rfloor)<br>$$</p>
+<p>于是我们要求$f$容易求，$s(f*g)(n)$容易求</p>
 <h5 id="mu"><a href="#mu" class="headerlink" title="$\mu$"></a>$\mu$</h5><p>$$<br>f=I,g=\mu\\<br>s(\mu)(n)=1-\sum_{d=2}^ns(\mu)(\lfloor\dfrac nd\rfloor)<br>$$</p>
 <p>整除分块即可</p>
 <h5 id="phi"><a href="#phi" class="headerlink" title="$\phi$"></a>$\phi$</h5><p>$$<br>f=I,g=\phi\\<br>s(\phi)(n)=\dfrac{n(n+1)}2-\sum_{d=2}^ns(\phi)(\lfloor\dfrac nd\rfloor)<br>$$</p>
