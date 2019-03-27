@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="多项式真是神（毒）奇（瘤）！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T12:32:22.984Z">
+<meta property="og:updated_time" content="2019-03-27T02:44:42.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多项式算法合集">
 <meta name="twitter:description" content="多项式真是神（毒）奇（瘤）！">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-17 20:32:22" itemprop="dateModified" datetime="2019-03-17T20:32:22+08:00">2019-03-17</time>
+                <time title="Modified: 2019-03-27 10:44:42" itemprop="dateModified" datetime="2019-03-27T10:44:42+08:00">2019-03-27</time>
               
             
           </span>
@@ -463,7 +463,7 @@
 <p>接下来就是一个膜法了：<br>$$<br>\begin{align}<br>f(w_{2^n}^k)&amp;=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\\<br>f(w_{2^n}^{-k})&amp;=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)<br>\end{align}<br>$$<br>也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)​$，我们就可以快速求了！</p>
 <p>IDFT就稍微改改，反正我也不会</p>
 <h4 id="怎么背"><a href="#怎么背" class="headerlink" title="怎么背"></a>怎么背</h4><p>只要记得FFT推导和IDFT的小改动就好了！</p>
-<h3 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h3><p>和FFT差不多</p>
+<h3 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h3><p>和FFT差不多，把wn记作$g^{\frac{\mathrm{mod-1}}l}$即可</p>
 <h3 id="inv"><a href="#inv" class="headerlink" title="inv"></a>inv</h3><blockquote>
 <p>$$<br>f^{-1}f\equiv 1(\mathrm{mod}~x^p)<br>$$</p>
 </blockquote>
@@ -473,13 +473,20 @@
 </blockquote>
 <p>类似inv，如果我们求出了<br>$$<br>g’^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得<br>$$<br>\begin{align}<br>g’^2-f&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(g’^2-f)^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>(g’^2+f)^2&amp;\equiv 4g’^2f&amp;(\mathrm{mod}~x^p)\\<br>(\dfrac{g’^2+f}{2g’})^2&amp;\equiv f&amp;(\mathrm{mod}~x^p)\\<br>g&amp;\equiv \dfrac{g’^2+f}{2g’}=2^{-1}(g’+\dfrac f{g’})&amp;(\mathrm{mod}~x^p)<br>\end{align}<br>$$<br>边界是$p=1​$，可能要二次剩余算一下。</p>
 <h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><p>$$<br>\ln f=\int(\ln f)’=\int\dfrac{f’}{f}<br>$$</p>
-<h3 id="Exp"><a href="#Exp" class="headerlink" title="Exp"></a>Exp</h3><p>根据牛顿迭代（我不会）</p>
-<p>有<br>$$<br>g(x)=g_0(x)(1-\ln g_0(x)+f(x))<br>$$</p>
+<h3 id="多项式牛顿迭代"><a href="#多项式牛顿迭代" class="headerlink" title="多项式牛顿迭代"></a>多项式牛顿迭代</h3><p>求满足$f(g(x))=0$的$g(x)$</p>
+<p>不会推导</p>
+<p>结论：<br>$$<br>\begin{align}<br>g(x)=g_0(x)-\dfrac{f(g_0(x))}{f’(g_0(x))}<br>\end{align}<br>$$</p>
+<h3 id="Exp"><a href="#Exp" class="headerlink" title="Exp"></a>Exp</h3><p>根据牛顿迭代，有</p>
+<p>$$<br>\begin{align}<br>g=g_0-g_0\ln g_0+g_0f<br>\end{align}<br>$$</p>
 <h3 id="mod-amp-div"><a href="#mod-amp-div" class="headerlink" title="mod&amp;div"></a>mod&amp;div</h3><blockquote>
 <p>$$<br>f=p\times g+q<br>$$</p>
 </blockquote>
 <p>我们记$f^r$为反转$f$的系数，即$[x^a]f(x)=[x^{d_f-a}]f(x)$，其中$d_f$为$f$的最高次数</p>
 <p>有<br>$$<br>\begin{align}<br>f^r&amp;=p^r\times g^r+q^rx^{d_f-d_q}\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_q})\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_g+1})\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_p+1})\\<br>\end{align}<br>$$<br>可以用inv求$p$再反推出$q$</p>
+<h3 id="任意膜数NTT"><a href="#任意膜数NTT" class="headerlink" title="任意膜数NTT"></a>任意膜数NTT</h3><p>把每个数$a$变为$2^{15}a’+a’’$的形式（因为FFT精度极限比较小）</p>
+<p>也就是<br>$$<br>\begin{align}<br>A\times B&amp;=\sum_{j}(\sum_{k}a_kb_{j-k})x^j\\<br>&amp;=\sum_{j}(\sum_{k}(2^{30}a_k’b_{j-k}’+2^{15}a_k’’b_{j-k}’+2^{15}a_k’b_{j-k}’’+a_k’’b_{j-k}’’))x^j\\<br>&amp;=\sum_j(2^{30}([j]a’\times b’)+2^{15}([j]a’’\times b’)+2^{15}([j]a’\times b’’)+([j]a’’\times b’’))x^j<br>\end{align}<br>$$<br>分别FFT求出即可</p>
+<p>一共只需$8$次FFT</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">FFT(a1,<span class="number">1</span>);</span><br><span class="line">FFT(b1,<span class="number">1</span>);</span><br><span class="line">FFT(a2,<span class="number">1</span>);</span><br><span class="line">FFT(b2,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;l);i++)</span><br><span class="line">&#123;</span><br><span class="line">    c1[i]=a1[i]*b1[i];</span><br><span class="line">    c2[i]=a1[i]*b2[i];</span><br><span class="line">    c3[i]=a2[i]*b1[i];</span><br><span class="line">    c4[i]=a2[i]*b2[i];</span><br><span class="line">&#125;</span><br><span class="line">FFT(c1,<span class="number">-1</span>);</span><br><span class="line">FFT(c2,<span class="number">-1</span>);</span><br><span class="line">FFT(c3,<span class="number">-1</span>);</span><br><span class="line">FFT(c4,<span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -856,7 +863,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式套多项式的复杂度"><span class="nav-number">1.</span> <span class="nav-text">多项式套多项式的复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么背"><span class="nav-number">2.1.</span> <span class="nav-text">怎么背</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTT"><span class="nav-number">3.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inv"><span class="nav-number">4.</span> <span class="nav-text">inv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqrt"><span class="nav-number">5.</span> <span class="nav-text">sqrt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">6.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exp"><span class="nav-number">7.</span> <span class="nav-text">Exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-amp-div"><span class="nav-number">8.</span> <span class="nav-text">mod&amp;div</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式套多项式的复杂度"><span class="nav-number">1.</span> <span class="nav-text">多项式套多项式的复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么背"><span class="nav-number">2.1.</span> <span class="nav-text">怎么背</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTT"><span class="nav-number">3.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inv"><span class="nav-number">4.</span> <span class="nav-text">inv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqrt"><span class="nav-number">5.</span> <span class="nav-text">sqrt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">6.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式牛顿迭代"><span class="nav-number">7.</span> <span class="nav-text">多项式牛顿迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exp"><span class="nav-number">8.</span> <span class="nav-text">Exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-amp-div"><span class="nav-number">9.</span> <span class="nav-text">mod&amp;div</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意膜数NTT"><span class="nav-number">10.</span> <span class="nav-text">任意膜数NTT</span></a></li></ol></div>
             
 
           </div>
