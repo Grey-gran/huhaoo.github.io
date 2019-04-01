@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[珂朵莉树]]></title>
+    <url>%2F2019%2F04%2F01%2F%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[珂朵莉树（又名老司机树）可以处理部分区间覆盖和查询的问题]]></content>
+      <tags>
+        <tag>珂朵莉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[min25]]></title>
     <url>%2F2019%2F03%2F25%2Fmin25%2F</url>
     <content type="text"><![CDATA[min25可以（据说）在$O(\dfrac{n^{\frac 34}}{\log n})$（还有的说是$O(n^{1-\epsilon})$的近线性复杂度），求出满足下列条件的函数和 $f(p)$是一个关于$p$的多项式 $f(p^c)$可以简单算出 $f(ab)=f(a)f(b)$ （上面$p$为质数，$a,b$互质）]]></content>
@@ -61,8 +69,8 @@
     <url>%2F2019%2F03%2F05%2FNOI2015%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
       <tags>
-        <tag>NOI</tag>
         <tag>sa</tag>
+        <tag>NOI</tag>
       </tags>
   </entry>
   <entry>
