@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="多项式真是神（毒）奇（瘤）！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-27T02:44:42.201Z">
+<meta property="og:updated_time" content="2019-04-01T03:24:34.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多项式算法合集">
 <meta name="twitter:description" content="多项式真是神（毒）奇（瘤）！">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-27 10:44:42" itemprop="dateModified" datetime="2019-03-27T10:44:42+08:00">2019-03-27</time>
+                <time title="Modified: 2019-04-01 11:24:34" itemprop="dateModified" datetime="2019-04-01T11:24:34+08:00">2019-04-01</time>
               
             
           </span>
@@ -487,6 +487,17 @@
 <p>也就是<br>$$<br>\begin{align}<br>A\times B&amp;=\sum_{j}(\sum_{k}a_kb_{j-k})x^j\\<br>&amp;=\sum_{j}(\sum_{k}(2^{30}a_k’b_{j-k}’+2^{15}a_k’’b_{j-k}’+2^{15}a_k’b_{j-k}’’+a_k’’b_{j-k}’’))x^j\\<br>&amp;=\sum_j(2^{30}([j]a’\times b’)+2^{15}([j]a’’\times b’)+2^{15}([j]a’\times b’’)+([j]a’’\times b’’))x^j<br>\end{align}<br>$$<br>分别FFT求出即可</p>
 <p>一共只需$8$次FFT</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">FFT(a1,<span class="number">1</span>);</span><br><span class="line">FFT(b1,<span class="number">1</span>);</span><br><span class="line">FFT(a2,<span class="number">1</span>);</span><br><span class="line">FFT(b2,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;l);i++)</span><br><span class="line">&#123;</span><br><span class="line">    c1[i]=a1[i]*b1[i];</span><br><span class="line">    c2[i]=a1[i]*b2[i];</span><br><span class="line">    c3[i]=a2[i]*b1[i];</span><br><span class="line">    c4[i]=a2[i]*b2[i];</span><br><span class="line">&#125;</span><br><span class="line">FFT(c1,<span class="number">-1</span>);</span><br><span class="line">FFT(c2,<span class="number">-1</span>);</span><br><span class="line">FFT(c3,<span class="number">-1</span>);</span><br><span class="line">FFT(c4,<span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="FWT"><a href="#FWT" class="headerlink" title="FWT"></a>FWT</h3><p>记$A_0$为$A_{0\dots2^{n-1}-1}$,$A_1$为$A_{2^{n-1}\dots2^n-1}$，$B,C$同理</p>
+<p>我们不妨记对常数运算和对多项式加减为各位分别处理</p>
+<p>我们可以发现$\mathrm{opt}$和$+$有结合率（类似$\times$）</p>
+<h4 id="mathrm-or"><a href="#mathrm-or" class="headerlink" title="$\mathrm{or}$"></a>$\mathrm{or}$</h4><p>$$<br>C_0=A_0~\mathrm{or}~B_0\\<br>C_1=A_0~\mathrm{or}~B_1+A_1~\mathrm{or}~B_0+A_1~\mathrm{or}~B_1\\<br>=(A_0+A_1)~\mathrm{or}~(B_0+B_1)-C_0<br>$$</p>
+<h4 id="mathrm-and"><a href="#mathrm-and" class="headerlink" title="$\mathrm{and}$"></a>$\mathrm{and}$</h4><p>$$<br>C_1=A_1~\mathrm{and}~B_1\\<br>C_0=A_0~\mathrm{and}~B_0+A_0~\mathrm{and}~B_1+A_1~\mathrm{and}~B_0\\<br>=(A_0+A_1)~\mathrm{and}~(B_0+B_1)-C_1<br>$$</p>
+<h4 id="mathrm-xor"><a href="#mathrm-xor" class="headerlink" title="$\mathrm{xor}$"></a>$\mathrm{xor}$</h4><p>$$<br>C_0=A_0~\mathrm{xor}~B_0+A_1~\mathrm{xor}~B_1\\<br>C_1=A_0~\mathrm{xor}~B_1+A_1~\mathrm{xor}~B_0<br>$$</p>
+<p>各分两个，直接搞的话复杂度变成了暴力</p>
+<p>然而这就有一个显然的套路</p>
+<p>记<br>$$<br>X=(A_0+A_1)~\mathrm{xor}~(B_0+B_1)\\<br>Y=(A_0-A_1)~\mathrm{xor}~(B_0-B_1)\\<br>C_0=\dfrac{X+Y}2,C_1=\dfrac{X-Y}2<br>$$</p>
+<h4 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h4><p>有$f(2^n)=2f(2^{n-1})+O(2^n)$</p>
+<p>也就是$O(n\log n)$（在数据规模$2^n$情况下）</p>
 
       
     </div>
@@ -618,7 +629,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -799,11 +810,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">84</span>
+                    <span class="site-state-item-count">83</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -863,7 +870,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式套多项式的复杂度"><span class="nav-number">1.</span> <span class="nav-text">多项式套多项式的复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么背"><span class="nav-number">2.1.</span> <span class="nav-text">怎么背</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTT"><span class="nav-number">3.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inv"><span class="nav-number">4.</span> <span class="nav-text">inv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqrt"><span class="nav-number">5.</span> <span class="nav-text">sqrt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">6.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式牛顿迭代"><span class="nav-number">7.</span> <span class="nav-text">多项式牛顿迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exp"><span class="nav-number">8.</span> <span class="nav-text">Exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-amp-div"><span class="nav-number">9.</span> <span class="nav-text">mod&amp;div</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意膜数NTT"><span class="nav-number">10.</span> <span class="nav-text">任意膜数NTT</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式套多项式的复杂度"><span class="nav-number">1.</span> <span class="nav-text">多项式套多项式的复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT"><span class="nav-number">2.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么背"><span class="nav-number">2.1.</span> <span class="nav-text">怎么背</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTT"><span class="nav-number">3.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inv"><span class="nav-number">4.</span> <span class="nav-text">inv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqrt"><span class="nav-number">5.</span> <span class="nav-text">sqrt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">6.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项式牛顿迭代"><span class="nav-number">7.</span> <span class="nav-text">多项式牛顿迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exp"><span class="nav-number">8.</span> <span class="nav-text">Exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-amp-div"><span class="nav-number">9.</span> <span class="nav-text">mod&amp;div</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意膜数NTT"><span class="nav-number">10.</span> <span class="nav-text">任意膜数NTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FWT"><span class="nav-number">11.</span> <span class="nav-text">FWT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mathrm-or"><span class="nav-number">11.1.</span> <span class="nav-text">$\mathrm{or}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mathrm-and"><span class="nav-number">11.2.</span> <span class="nav-text">$\mathrm{and}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mathrm-xor"><span class="nav-number">11.3.</span> <span class="nav-text">$\mathrm{xor}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂度"><span class="nav-number">11.4.</span> <span class="nav-text">复杂度</span></a></li></ol></li></ol></div>
             
 
           </div>
