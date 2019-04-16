@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[单位根反演]]></title>
+    <url>%2F2019%2F04%2F16%2F%E5%8D%95%E4%BD%8D%E6%A0%B9%E5%8F%8D%E6%BC%94%2F</url>
+    <content type="text"><![CDATA[给定$n,k,p$，求$$\begin{align}\sum_{i\equiv p(\bmod k)}{n\choose i}\tag{1}\end{align}$$]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>单位根反演</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HNOI2019鱼]]></title>
+    <url>%2F2019%2F04%2F15%2FHNOI2019%E9%B1%BC%2F</url>
+    <content type="text"><![CDATA[全考场就我不会]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>HNOI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HNOI2019游记]]></title>
     <url>%2F2019%2F04%2F15%2FHNOI2019%E6%B8%B8%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[又被HNOI随机筛法筛进了]]></content>
@@ -433,8 +451,8 @@
     <url>%2F2018%2F01%2F24%2Fluogu2657%2F</url>
     <content type="text"><![CDATA[$windy$定义了一种$windy$数。不含前导零且相邻两个数字之差至少为$2$的正整数被称为$windy$数。 $windy$想知道， 在$[A,B]$，总共有多少个$windy$数？]]></content>
       <tags>
-        <tag>luogu</tag>
         <tag>DP</tag>
+        <tag>luogu</tag>
         <tag>数位DP</tag>
       </tags>
   </entry>
@@ -545,8 +563,8 @@
     <url>%2F2018%2F01%2F17%2Fluogu1329%2F</url>
     <content type="text"><![CDATA[准备搞数论，发现式子一个也不会推。。。 然后看到了这题，发现可做，于是我又做了一个省选/NOI-的假数论题]]></content>
       <tags>
-        <tag>luogu</tag>
         <tag>DP</tag>
+        <tag>luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -644,10 +662,10 @@
     <url>%2F2018%2F01%2F05%2Fluogu4006loj2324%2F</url>
     <content type="text"><![CDATA[给定点的连边情况，求字典序最小的中序遍历 Sample Input 1234543 2 3 41 11 11 1 Output 12 1 3 4]]></content>
       <tags>
+        <tag>DP</tag>
         <tag>loj</tag>
         <tag>luogu</tag>
         <tag>清华集训</tag>
-        <tag>DP</tag>
         <tag>贪心</tag>
       </tags>
   </entry>
@@ -700,8 +718,8 @@
     <url>%2F2018%2F01%2F03%2Fluogu1439%2F</url>
     <content type="text"><![CDATA[给出1-n的两个排列P1和P2，求它们的最长公共子序列。]]></content>
       <tags>
-        <tag>luogu</tag>
         <tag>DP</tag>
+        <tag>luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -744,8 +762,8 @@
     <url>%2F2017%2F12%2F09%2FLCS%2F</url>
     <content type="text"><![CDATA[DP求LCS的长度和数量]]></content>
       <tags>
-        <tag>DP</tag>
         <tag>LCS</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
