@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[luogu2682]]></title>
+    <url>%2F2019%2F04%2F17%2Fluogu2682%2F</url>
+    <content type="text"><![CDATA[考完省选了，开始划水了QAQ 没有linux版check，只好wine check.exeQAQ]]></content>
+      <tags>
+        <tag>luogu</tag>
+        <tag>题答</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[单位根反演]]></title>
     <url>%2F2019%2F04%2F16%2F%E5%8D%95%E4%BD%8D%E6%A0%B9%E5%8F%8D%E6%BC%94%2F</url>
     <content type="text"><![CDATA[给定$n,k,p$，求$$\begin{align}\sum_{i\equiv p(\bmod k)}{n\choose i}\tag{1}\end{align}$$]]></content>
@@ -370,8 +379,8 @@
     <url>%2F2018%2F07%2F05%2FHNOI2017%E7%A4%BC%E7%89%A9%2F</url>
     <content type="text"><![CDATA[FFT巧妙啊]]></content>
       <tags>
-        <tag>HNOI</tag>
         <tag>FFT</tag>
+        <tag>HNOI</tag>
       </tags>
   </entry>
   <entry>
@@ -565,14 +574,6 @@
       <tags>
         <tag>DP</tag>
         <tag>luogu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[论合并果子最优写法]]></title>
-    <url>%2F2018%2F01%2F15%2F%E8%AE%BA%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90%E6%9C%80%E4%BC%98%E5%86%99%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[合并果子，看看你的写法是什么档次。]]></content>
-      <tags>
-        <tag>旧题回顾</tag>
       </tags>
   </entry>
   <entry>
