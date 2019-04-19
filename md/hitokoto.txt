@@ -1,0 +1,123 @@
+---
+title: 为博客添加hitokoto
+date: 2019-02-17 11:15:28
+tags:
+- hexo
+- web
+mathjax: on
+---
+
+ hitokoto可以像下面这样~~（点开才能看到）~~：
+
+<!--more-->
+
+---
+
+<div>
+    <p class="hitokoto"></p>
+    <p class="from"></p>
+</div>
+---
+
+路径每个我都搞了两份，上面`windwos`，下面`linux`
+
+------
+
+（此部分建议省略）
+
+可以参照[官网](https://hitokoto.cn/api)
+
+hexo用户直接在
+
+`\themes\next\layout\_layout.swig`
+
+`/themes/next/layout/_layout.swig`
+
+的最下面加上一句话
+
+```html
+<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+```
+
+不过这样有一个弊端，稍后再讲。
+
+---
+
+引用一下这篇博客的js
+
+```js
+window.onload=function () {
+    var hitokoto = document.querySelector('.hitokoto');
+    var from = document.querySelector('.from');
+    update();
+    function update() {
+        gethi = new XMLHttpRequest();
+        gethi.open("GET","https://sslapi.hitokoto.cn/?c=a");
+        gethi.send();
+        gethi.onreadystatechange = function () {
+            if (gethi.readyState===4 && gethi.status===200) {
+                var Hi = JSON.parse(gethi.responseText);
+                hitokoto.innerHTML = Hi.hitokoto;
+                from.innerHTML = "from: <b>" + Hi.from + "</b>"; 
+            }
+        }
+    }
+}
+```
+
+创建并添加至：
+
+`\themes\next\source\js\src\hitokoto.js`
+
+`/themes/next/source/js/src/hitokoto.js`
+
+添加好`hitokoto.js`后，在
+
+`\themes\next\layout\_layout.swig`
+
+`/themes/next/layout/_layout.swig`
+
+加入
+
+```js
+<script type="text/javascript" src="/js/src/hitokoto.js"></script>
+```
+
+然后就可以用
+
+```html
+<div>
+    <p class="hitokoto"></p>
+    <p class="from"></p>
+</div>
+```
+
+来引用了
+
+如果你想像我这样添加到侧边栏
+
+就在
+
+`\themes\next\layout\_macro\sidebar.swig`
+
+`/themes/next/layout/_macro/sidebar.swig`
+
+的最后一个`</div>`前面加入
+
+```js
+
+		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<div class="Hitokotoframe">
+				<p style="margin:0px; padding:0px;"></p>
+				<div class="HitokotoMain">
+					<p class="hitokoto" style="text-align:center; margin:0px; padding:0px;"></p>
+					<p class="from" style="text-align:right; padding:10px;"></p>
+				</div>
+			</div>
+		</div>
+```
+
+然后就好了
+
+~~不过会有一个神奇的bug：一片文章只能有一处hitokoto~~
+

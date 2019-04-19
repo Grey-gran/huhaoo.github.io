@@ -1,0 +1,99 @@
+---
+title: luogu3808
+date: 2018-01-04 18:45:43
+tags:
+  - luogu
+  - AC自动机
+---
+
+模板题++
+
+<!--more-->
+
+```cpp
+#define N 1000010
+struct trie
+{
+	trie *t[26];
+	trie *fail;
+	int num,vis;
+	trie()
+	{
+		fr(i,0,25)	
+			t[i]=NULL;
+		fail=NULL;
+		num=vis=0;
+	}
+}*root;
+int n,l,ans;
+char s[N];
+#include<queue>
+queue<trie*>q;
+int main()
+{
+	root=new trie;
+	n=read();
+	fr(i,1,n)
+	{
+		scanf("%s",s+1);
+		l=strlen(s+1);
+		trie *k=root;
+		fr(i,1,l)
+		{
+			s[i]-='a';
+			if(k->t[s[i]]==NULL)
+				k->t[s[i]]=new trie;
+			k=k->t[s[i]];
+		}
+		k->num++;
+	}
+	q.push(root);
+	root->fail=root;
+	while(!q.empty())//记住：BFS序！！！
+	{
+		trie *k=q.front();
+		q.pop();
+		fr(i,0,25)
+			if(k->t[i]!=NULL)
+			{
+				q.push(k->t[i]);
+				if(k==root)
+					k->t[i]->fail=root;
+				else
+				{
+					trie *a=k->fail;
+					while(a->fail!=root&&a->t[i]==NULL)
+						a=a->fail;
+					if(a->t[i]==NULL)
+						k->t[i]->fail=root;
+					else
+						k->t[i]->fail=a->t[i];
+				}//连接fail指针
+			}
+			else
+				k->t[i]=k->fail->t[i];//构造trie图
+	}
+	fr(i,0,25)
+		if(root->t[i]==NULL)
+			root->t[i]=root;
+	scanf("%s",s+1);
+	l=strlen(s+1);
+	trie *k=root;
+	fr(i,1,l)
+	{
+		s[i]-='a';
+		k=k->t[s[i]];
+		trie *a=k;
+		while(a!=root&&(!a->vis))
+		{
+			ans+=a->num;
+			a->vis=1;//判重（并且不判重#1会T）
+                     //也可以a->fail=root，但是很毁美观的
+			a=a->fail;
+		}
+	}
+	printf("%d\n",ans);
+	return 0;
+}
+```
+

@@ -1,0 +1,48 @@
+---
+title: luogu2152
+date: 2018-01-12 14:03:50
+tags:
+  - math
+  - python
+  - luogu
+mathjax: on
+---
+
+求$gcd(a,b)$，（$a,b\le10^{10000}$）
+
+<!--more-->
+
+* 正确做法１
+
+  C++高精度模拟辗转相除
+
+* 正确做法2
+
+  C++高进度模拟以下过程
+
+  1. 取出所有的2
+  2. 相减
+  3. 如果有一个数为0，则返回另外一个数和它们公共的2的积，否则返回1
+
+* 正确做法3
+
+  `Python`强做一波
+
+  ```python
+  inp=raw_input().split()
+  while len(inp)==0:
+  	inp=raw_input().split()
+  a=int(inp[0])
+  if len(inp)==1:
+  	inp=raw_input().split()
+  	while len(inp)==0:
+  		inp=raw_input().split()
+  	b=int(inp[0])
+  else:
+  	b=int(inp[1])
+  while b:
+  	a,b=b,a%b
+  print a
+  ```
+
+  ​

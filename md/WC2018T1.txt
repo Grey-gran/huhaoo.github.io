@@ -1,0 +1,88 @@
+---
+title: WC2018T1
+date: 2018-02-21 17:28:16
+tags:
+- WC
+- 爬山算法
+mathjax: on
+coin: on
+---
+
+~~写了个暴力，发现可过~~
+
+学习集训队大爷做法。。。
+
+<!--more-->
+
+```cpp
+namespace bf
+{
+    #define N 100010
+    #define E 1000010
+    int n,begin[N][3],to[E],next[E],e;
+    long long w[E],dis[N][3];
+    void add(int u,int v,long long ww,int cnt)
+    {
+        e++;
+        w[e]=ww;
+        to[e]=v;
+        next[e]=begin[u][cnt];
+        begin[u][cnt]=e;
+    }
+    #define fo(i,a,cnt) for(int i=begin[a][cnt];i;i=next[i])
+    long long ans;
+    void getdis(int u,int f,int cnt)
+    {
+//		printf("%lld %lld %lld %lld\n",u,dis[u][cnt],f,cnt);
+        fo(i,u,cnt)
+        {
+            int v=to[i];
+            if(v==f)continue;
+            dis[v][cnt]=dis[u][cnt]+w[i];
+            getdis(v,u,cnt);
+        }
+    }
+    int main()
+    {
+#ifndef ONLINE_JUDGE
+    //	freopen("/home/huhao/Desktop/.out","w",stdout);
+        freopen("/home/huhao/Desktop/.in","r",stdin);
+#endif
+      //这里主要是怕卡OJ封号
+        n=read();
+        fr(i,0,2)
+            fr(j,2,n)
+            {
+                int u=read(),v=read();
+                long long w=read();
+                add(u,v,w,i);
+                add(v,u,w,i);
+            }
+        srand((unsigned long long)new char);
+        fr(i,1,50)
+        {
+            int u=rand()%n+1;
+            fr(j,1,2)
+            {
+                dis[u][0]=dis[u][1]=dis[u][2]=0;
+                getdis(u,0,0);
+                getdis(u,0,1);
+                getdis(u,0,2);
+                int v=1;
+                fr(k,2,n)
+                    if(dis[v][0]+dis[v][1]+dis[v][2]<dis[k][0]+dis[k][1]+dis[k][2])
+                        v=k;
+                ans=max(ans,dis[v][0]+dis[v][1]+dis[v][2]);
+                u=v;
+            }
+          	//多爬几次，每次少爬些
+        }
+        printf("%lld\n",ans);
+        return 0;
+    }
+}
+int main(){return bf::main();}
+```
+
+复杂度大概是$O(300n)$~~常数巨大~~
+

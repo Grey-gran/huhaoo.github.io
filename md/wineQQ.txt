@@ -1,0 +1,27 @@
+---
+title: wineQQ
+date: 2018-02-21 16:38:48
+tags:
+- linux
+- wine
+coin: on
+---
+
+linux没有现成QQ，很不好，wine也有各种问题，来教一下wine怎么装QQ
+
+<!--more-->
+
+感谢[phpcj](http://phpcj.org/wineqq)
+[downlaod](https://pan.baidu.com/s/1o8CotQU#list/path=%2F)
+提取码：f2sn
+步骤一：
+`sudo add-apt-repository ppa:wine/wine-builds;sudo apt-get update;sudo apt-get install winehq-devel`
+步骤二：
+`tar xvf wineQQ8.9.4_21584.tar.xz -C ~/`
+delete:
+
+```
+rm -rf ~/.wine
+rm -rf ~/.local/share/applications/wine-QQ.desktop
+rm -rf ~/.local/share/icons/hicolor/256x256/apps/QQ.png
+```

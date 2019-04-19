@@ -1,0 +1,81 @@
+---
+title: 矩阵运算
+date: 2019-04-18 10:53:15
+tags:
+- math
+mathjax: on
+---
+
+简单介绍一下矩阵运算。
+
+挖个坑：矩阵逆元
+
+<!--more-->
+
+### 矩阵乘法
+
+$$
+\begin{align}
+c_{i,j}=\sum_{k}a_{i,k}b_{k,j}\tag{1}
+\end{align}
+$$
+
+条件是$A$的宽$=B$的长
+
+### （某种意义上的）矩阵加法
+
+$$
+\begin{align}
+c_{i,j}=a_{i,j}+b_{i,j}\tag{2}
+\end{align}
+$$
+
+条件是$AB$长宽相等
+
+### 矩阵乘常数
+
+$$
+\begin{align}
+a'_{i,j}=c\times a_{i,j}\tag{3}
+\end{align}
+$$
+
+### 矩阵运算性质
+
+#### 交换律
+
+加法显然支持
+
+乘法显然不支持
+
+#### 结合律
+
+加法显然支持
+
+乘法也支持：
+
+$$
+\begin{align}
+d_{i,j}=&\sum_{o}(\sum_{k}a_{i,k}b_{k,o})c_{o,j}\notag\\
+=&\sum_{o,k}a_{i,k}b_{k,o}c_{o,j}\notag\\
+=&\sum_{k}a_{i,k}(\sum_{o}b_{k,o}c_{o,j})\tag{4}
+\end{align}
+$$
+
+#### 乘法分配律
+
+两种情况：
+
+$$
+\begin{align}
+d_{i,j}=&\sum_{k}((a_{i,k}+b_{i,k})c_{k,j})\notag\\
+=&\sum_{k}a_{i,k}c_{k,j}+\sum_{k}b_{i,k}c_{k,j}\tag{5}
+\end{align}
+$$
+
+$$
+\begin{align}
+d_{i,j}=&\sum_{k}(a_{i,k}(b_{k,j}+c_{k,j}))\notag\\
+=&\sum_{k}a_{i,k}b_{k,j}+\sum_{k}a_{i,j}c_{k,j}\tag{6}
+\end{align}
+$$

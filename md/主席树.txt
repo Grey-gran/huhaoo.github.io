@@ -1,0 +1,102 @@
+---
+title: 主席树
+date: 2018-01-15 19:27:34
+tags:
+  - 主席树
+---
+
+主席树是动态开点可过的。。。
+
+以为要写静态的。。。
+
+于是一直不敢写。。。
+
+贴个[模板题](https://www.luogu.org/problemnew/show/P3834#sub)
+
+<!--more-->
+
+```cpp
+#define N 200010
+int n,q;
+int a[N],b[N];
+#include<map>
+map<int,int>t;
+struct tree
+{
+	int num;
+	tree *ls,*rs;
+	tree()
+	{
+		num=0;
+		ls=rs=NULL;
+	}
+}*root[N],*th;
+tree *build(int l,int r)
+{
+	tree *th=new tree;
+	if(l==r)
+		return th;
+	int mid=(l+r)>>1;
+	if(mid>=l)
+		th->ls=build(l,mid);
+	if(mid<r)
+		th->rs=build(mid+1,r);
+	return th;
+}//递归建全0树
+tree *add(tree *k,int pos,int l,int r)
+{
+	tree *th=new tree;
+	if(l==r)
+	{
+		th->num=k->num+1;//有点前缀和的味道
+		return th;
+	}//代表到了叶子结点，直接更新
+	int mid=(l+r)>>1;
+	if(pos<=mid)
+	{
+		th->rs=k->rs;
+		th->ls=add(k->ls,pos,l,mid);
+	}
+	else
+	{
+		th->ls=k->ls;
+		th->rs=add(k->rs,pos,mid+1,r);
+	}//只更新左（右）子树，就可以直接将右（左）子树复制，且只是指针复制，节约内存
+	th->num=th->ls->num+th->rs->num;//pushup
+	return th;
+}
+int query(tree *a,tree *b,int k,int l,int r)
+//运用了主席树可减的特性（类似于前缀和）
+{
+	int mid=(l+r)>>1;
+	if(l==r)
+		return l;
+	int ll=b->ls->num-a->ls->num;//左子树有多少个树
+	if(ll>=k)
+		return query(a->ls,b->ls,k,l,mid);
+	else
+		return query(a->rs,b->rs,k-ll,mid+1,r);
+}
+int main()
+{
+	n=read();
+	q=read();
+	fr(i,1,n)
+		a[i]=b[i]=read();
+	sort(b+1,b+n+1);
+	fr(i,1,n)
+		t[b[i]]=i;
+	fr(i,1,n)
+		a[i]=t[a[i]];//离散化
+	root[0]=build(1,n);//先搞个全为0的树出来
+	fr(i,1,n)
+		root[i]=add(root[i-1],a[i],1,n);//用上一个子树更新（建造这个子树）
+	while(q--)
+	{
+		int f=read(),t=read(),k=read();
+		printf("%d\n",b[query(root[f-1],root[t],k,1,n)]);//查询
+	}
+	return 0;
+}
+```
+

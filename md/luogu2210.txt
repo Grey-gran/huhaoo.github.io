@@ -1,0 +1,119 @@
+---
+title: luogu2210|Haywire
+date: 2018-01-17 15:55:52
+tags:
+  - luogu
+  - 随机化
+mathjax: on
+---
+
+做这道题，我仿佛回到了去年`NOIP`的考场
+
+那是`Day2`，很毒瘤
+
+让人暴力都不会打
+
+然后，我就打了随机化，保证了父节点在子节点的前面，然后$O((n-1)!)$搜索
+
+然后我脑残，强制循环$7!$次（暴力嘛，本来是根据$n$变的，然后循环哪里脑残了）
+
+然后`luogu`上`AC`了，貌似`CCF`得的分也不少
+
+回到了现在，我又打了一个随机。
+
+<!--more-->
+
+然后调次数调了半天，发现不用那么麻烦！
+
+调小点也没事！
+
+`PS:`开始打的是暴力，发现最优方案很多，于是想到了去年`D2T2`
+
+```cpp
+#define N 20
+#define inf (1<<30)
+int n,s[N],f[N],ans,pos[N],p[N],v[N],num;
+void dfs(int x,int w)
+{
+	int ww=w;
+	num=0;
+	fr(i,1,n)
+		if(!p[i])
+			v[++num]=i;
+	fr(i,x,n)//n
+	{
+		int _=inf;
+		fr(j,1,num)//n
+		{
+			int sum=0;
+			fr(k,s[x-1]+1,s[x])//3
+				sum+=v[j]<pos[f[k]]?pos[f[k]]-v[j]:v[j]-pos[f[k]];
+			_=_<sum?_:sum;
+		}
+		ww+=_;
+	}
+	if(ww>=ans)
+		return;//剪枝也过不了n=12
+	if(x==n+1)
+	{
+//		fr(i,1,n)
+//			printf("%d%c",pos[i],i==n?'\n':' ');
+//		printf("%d %d\n",w,cnt);
+		ans=w;
+		return;
+	}
+	fr(i,1,n)
+		if(!p[i])
+		{
+			int ww=w;
+			fr(j,s[x-1]+1,s[x])
+				ww+=i<pos[f[j]]?pos[f[j]]-i:i-pos[f[j]];
+			p[i]=1;
+			pos[x]=i;
+			dfs(x+1,ww);
+			p[i]=0;
+		}
+}
+#include<stdlib.h>
+int main()
+{
+//	freopen("/home/huhao/Desktop/.out","w",stdout);
+	freopen("/home/huhao/Desktop/.in","r",stdin);
+	n=read();
+	fr(i,1,n)
+	{
+		s[i]=s[i-1];
+		fr(j,1,3)
+		{
+			int a=read();
+			if(a<i)
+				f[++s[i]]=a;//只处理编号比它小的距离
+		}
+	}
+	ans=inf;
+	srand((unsigned long long)new char);
+	fr(i,1,n)
+		pos[i]=i;
+	if(n>6)
+		fr(i,1,15000000/n)//随机次数根据n改变(O(次数*n))
+		{
+			fr(j,1,n)
+			{
+				int u=rand()%n+1,v=rand()%n+1;
+				int k=pos[u];
+				pos[u]=pos[v];
+				pos[v]=k;
+			}
+			int ww=0;
+			fr(j,1,n)
+				fr(k,s[j-1]+1,s[j])
+					ww+=pos[j]<pos[f[k]]?pos[f[k]]-pos[j]:pos[j]-pos[f[k]];
+			ans=min(ans,ww);
+		}
+	else
+		dfs(1,0);
+	printf("%d\n",ans);
+	return 0;
+}
+```
+

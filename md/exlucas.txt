@@ -1,0 +1,174 @@
+---
+title: 拓展lucas
+date: 2019-02-13 15:13:34
+tags:
+- exlucas
+- math
+mathjax: on
+---
+
+> 给定$n,m,q$，求
+> $$
+> {n\choose m}\mathrm{mod}~q
+> $$
+>
+
+<!--more-->
+
+显然，我们可以将$q$分解质因数
+$$
+q=\prod_{i}p_i^{c_i}
+$$
+然后求出
+$$
+{n\choose m}\mathrm{mod}~p_k^{c_k}
+$$
+然后crt求解即可
+
+然而上面那个式子并不太好直接求……
+$$
+{n\choose m}\mathrm{mod}~p_k^{c_k}=\dfrac{n!}{m!(n-m)!}\mathrm{mod}~p_k^{c_k}
+$$
+显然，我们可以先把$n!,m!,(n-m)!$的$p_k$提出来，便可以逆元求了，$a!$中$p_k$的个数是
+$$
+g_k(a)=\sum_{i\ge1}\lfloor\dfrac{a}{p_k^i}\rfloor
+$$
+然后我们设
+$$
+f_k(a)=\dfrac{a!}{p_k^{g_{k}(a)}}\\c=c_k-g_k(a)+g_k(b)+g_k(a-b)
+$$
+于是
+$$
+{n\choose m}\mathrm{mod}~p_k^{c_k}=p_k^{c_k-c}(f_{p_k}(a)f_{p_k}^{-1}(b)f_{p_k}^{-1}(a-b)~\mathrm{mod}~p_k^c)
+$$
+考虑求$f_k$
+
+显然$f_k$就是将$a!$中所有$k$给除掉
+$$
+f_k(a)=1\times2\times\dots\times\dfrac{k}{k}\times\dots\times\dfrac{2k}{k}\times\dots\times\dfrac{k^2}{k}\times\dots\times a\\
+=(1\times2\times\dots\times(k-1)\times(k+1)\times\dots\times(2k-1)\times(2k+1)\times\dots\times a)\\\times(1\times2\times\dots\times\dfrac{k}{k}\times\dots\times\dfrac{2k}{k}\times\dots\times\dfrac{k^2}{k}\times\dots\times \lfloor\dfrac ak\rfloor)\\
+=(\prod_{1\le i\le a,a\not|i}i)\times f_{k}(\lfloor\dfrac ak\rfloor)
+$$
+又因为
+$$
+\prod_{0<i<a}i\equiv\prod_{ka<i<(k+1)a}i(\mathrm{mod}~a)
+$$
+所以
+
+
+$$
+f_{k}(a)\equiv f_k(\lfloor\dfrac ak\rfloor)(\prod_{0<i<a}i)^{\lfloor\frac ak\rfloor}(\prod_{1\le i\le{a~\mathrm{mod}~k}}i)(\mathrm{mod}~k)
+$$
+
+
+于是就可以快速求解了！
+
+[模板地址](https://www.luogu.org/problemnew/show/P4720)
+
+[`code`](https://github.com/huhaoo/luogu/blob/master/4720.cpp)
+
+```cpp
+
+#define N 100
+long long a,b,d,c[N],p[N],m[N],t,s[N],ans;
+long long exgcd(long long a,long long b,long long &x,long long &y)
+{
+	if(!b)
+	{
+		x=1;
+		y=0;
+		return a;
+	}
+	long long g=exgcd(b,a%b,x,y),k;
+	k=x;
+	x=y;
+	y=k-(a/b)*y;
+	return g;
+}
+long long inv(long long a,long long b)
+{
+	long long x,y;
+	exgcd(a,b,x,y);
+	return (x%b+b)%b;
+}
+long long pow(long long a,long long b,long long m)
+{
+	if(b<=0)
+		return 1;
+	long long r=1;
+	a%=m;
+	while(b)
+	{
+		if(b&1)
+			r=r*a%m;
+		a=a*a%m;
+		b>>=1;
+	}
+	return r;
+}
+long long calc(long long x,long long p,long long c)
+{
+	if(c<=0)
+		return 1;
+	long long n=pow(p,c,1ll<<60),r=1,k=1;
+	if(x>=p)
+		r=r*calc(x/p,p,c)%n;
+	fr(i,(x/n)*n+1,x)
+		if(i%p!=0)
+			r=r*(i%n)%n;
+	fr(i,1,n)
+		if(i%p!=0)
+			k=k*(i%n)%n;
+	return r*pow(k,x/n,n)%n;
+}
+long long calc(long long x,long long p)
+{
+	long long r=0;
+	while(x>=p)
+	{
+		x/=p;
+		r+=x;
+	}
+	return r;
+}
+void init(int d)
+{
+	fr(i,2,sqrt(d))
+		if(d%i==0)
+		{
+			t++;
+			p[t]=i;
+			while(d%i==0)
+			{
+				d/=i;
+				c[t]++;
+			}
+			_end_=sqrt(d);
+		}
+	if(d!=1)
+	{
+		t++;
+		p[t]=d;
+		c[t]=1;
+	}
+}
+int main()
+{
+	a=read();
+	b=read();
+	d=read();
+	init(d);
+	fr(i,1,t)
+	{
+		s[i]=pow(p[i],c[i],1ll<<60);
+		long long _c=c[i]-calc(a,p[i])+calc(b,p[i])+calc(a-b,p[i]);
+		m[i]=calc(a,p[i],_c)*inv(calc(b,p[i],_c),s[i])%s[i]*inv(calc(a-b,p[i],_c),s[i])%s[i]*pow(p[i],c[i]-_c,1ll<<60)%s[i];
+	}
+	fr(i,1,t)
+		ans=(ans+d/s[i]*inv(d/s[i],s[i])%d*m[i])%d;
+	printf("%lld\n",ans);
+	return 0;
+}
+
+```
+

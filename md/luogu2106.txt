@@ -1,0 +1,74 @@
+---
+title: luogu2106|Sam数
+date: 2018-01-08 13:17:07
+tags:
+  - math
+  - 矩阵快速幂
+  - luogu
+mathjax: on
+---
+
+> 小Z最近发现了一种非常有趣的数，他将这种数称之为 Sam 数。Sam 数具有以下特征：相邻两位的数字之差不超过 2。小Z还将 Sam 数按位数进行了分类，他将一个 k 位 Sam 数称之为 k 阶 Sam 数。但不幸的是小Z发现他数不清第 k 阶的 Sam 数一共有多少个，这个时候机智的他想到了向你求助。
+
+[题目链接](https://www.luogu.org/problemnew/show/2106)
+
+<!--more-->
+
+这应该是我独立思考AC的第一道$假\dot~ NOI/NOI+/CTSC$题。
+
+直接矩阵快速幂。 
+
+初始矩阵：$mar_{i,j}=\cases{1&$|i-j|\le2$ \\ 0&$|i-j|>2$}(mar_{[0..9]\times[0..9]})$
+
+```cpp
+#define C 20
+long long n,ans[C],mar[C][C],ans_[C],mar_[C][C];
+#define mod 1000000007
+int main()
+{
+	n=read()-1;
+	if(!n)
+	{
+		printf("10\n");
+		return 0;
+	}//一位Sam数开头可以为0
+	fr(i,1,9)
+		ans[i]=1;
+	fr(i,0,9)
+		fr(j,max(0,i-2),min(9,i+2))
+			mar[i][j]=1;
+	while(n)
+	{
+		if(n&1)
+		{
+			fr(i,0,9)
+			{
+				ans_[i]=ans[i];
+				ans[i]=0;
+			}
+			fr(i,0,9)
+				fr(j,0,9)
+				{
+					ans[i]=(ans[i]+ans_[j]*mar[i][j]%mod)%mod;
+				}
+		}
+		n>>=1;
+		fr(i,0,9)
+			fr(j,0,9)
+			{
+				mar_[i][j]=mar[i][j];
+				mar[i][j]=0;
+			}
+		fr(i,0,9)
+			fr(j,0,9)
+				fr(k,0,9)
+					mar[i][j]=(mar[i][j]+mar_[i][k]*mar_[k][j]%mod)%mod;
+	}
+	long long anss=0;
+	fr(i,0,9)
+		anss=(anss+ans[i])%mod;
+	printf("%lld\n",anss);
+	return 0;
+}
+```
+

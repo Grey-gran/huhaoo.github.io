@@ -1,0 +1,133 @@
+---
+title: luogu2634|国家集训队|聪聪可可
+date: 2018-01-18 17:09:27
+tags:
+  - luogu
+  - 点分治
+mathjax: on
+---
+
+明显点分治 
+
+时间复杂度$O(n\dot~log_2n)$
+
+<!--more-->
+
+```cpp
+/**********************************************************
+	File:2634.cpp
+	Author:huhao
+	Email:826538400@qq.com
+	Created time:2018-1-18 16:10:32
+**********************************************************/
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+#include<iostream>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),_end_=(b);i<=_end_;i++)
+#define fd(i,a,b) for(int i=(a),_end_=(b);i>=_end_;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=(r<<3)+(r<<1)+(c^48);
+		c=getchar();
+	}
+	return r*t;
+}
+namespace Main
+{
+	#define N 40010
+	int begin[N],w[N],next[N],to[N],e;
+	void add(int uu,int vv,int ww)//后式前向星存储
+	{
+		e++;
+		w[e]=ww;
+		to[e]=vv;
+		next[e]=begin[uu];
+		begin[uu]=e;
+	}
+	int f[N],vis[N],r,s,g[N];
+	long long num[10],ans,d,n;
+	#define fo(i,a) for(int i=begin[a];i;i=next[i])
+	void dp(int x,int fa)//得到根，和以某节点为根时字数大小
+	{
+		f[x]=1;
+		g[x]=0;
+		fo(i,x)
+			if(!vis[to[i]]&&to[i]!=fa)
+			{
+				dp(to[i],x);
+				g[x]=max(g[x],f[to[i]]);
+				f[x]=f[x]+f[to[i]];
+			}
+		g[x]=max(g[x],s-f[x]);
+		if(g[x]<g[r]||!r)
+			r=x;
+	}
+	long long gcd(long long x,long long y)
+	{
+		return y?gcd(y,x%y):x;
+	}
+	void getw(int x,int fa,int ww)
+	{
+		num[ww]++;
+		fo(i,x)
+			if(!vis[to[i]]&&to[i]!=fa)
+				getw(to[i],x,(ww+w[i])%3);
+	}//得到根出发的路径%3的个数
+	void calc(int x)//点分治
+	{
+		vis[x]=1;
+		num[0]=num[1]=num[2]=0;
+		getw(x,0,0);
+		ans+=num[0]*num[0]+num[1]*num[2]*2;
+		fo(i,x)
+			if(!vis[to[i]])
+			{
+				num[0]=num[1]=num[2]=0;
+				getw(to[i],0,w[i]);
+				ans-=num[0]*num[0]+num[1]*num[2]*2;
+			}
+        //统计经过当前节点的路径条数并累加答案
+		int ss=s;
+		fo(i,x)
+			if(!vis[to[i]])
+			{
+				if(f[x]>f[to[i]])
+					s=f[to[i]];
+				else
+					s=ss-f[x];
+				r=0;
+				dp(to[i],0);
+				calc(r);
+			}//点分治
+	}
+	int main()
+	{
+		n=read();
+		fr(i,1,n-1)
+		{
+			int u=read(),v=read(),w=read()%3;
+			add(u,v,w);
+			add(v,u,w);
+		}
+		s=n;
+		dp(1,0);
+		calc(r);
+		d=gcd(ans,n*n);//除去因子
+		printf("%lld/%lld",ans/d,n*n/d);
+		return 0;
+	}
+}
+int main(){return Main::main();}//怕有命名冲突
+```
+

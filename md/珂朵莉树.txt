@@ -1,0 +1,144 @@
+---
+title: 珂朵莉树
+date: 2019-04-01 15:25:32
+tags:
+- 珂朵莉树
+mathjax: on
+---
+
+珂朵莉树（又名老司机树）可以处理部分区间覆盖和查询的问题
+
+<!--more-->
+
+反正也是copy一遍，直接贴网址算了：[oi-wiki-odt](https://oi-wiki.org/ds/odt/)
+
+不过要注意：修改时先`split(r+1)`再`split(l)`
+
+```cpp
+struct _odt
+{
+	int l,r;
+	mutable int v;
+	_odt(int _l=0,int _r=0,int _v=0)
+	{
+		l=_l;
+		r=_r;
+		v=_v;
+	}
+};
+bool operator<(_odt a,_odt b)
+{
+	return a.l<b.l;
+}
+#include<set>
+set<_odt>odt;
+const int N=500010;
+int n,q;
+char c[N];
+#define odtit set<_odt>::iterator
+odtit pos(int p)
+{
+	return --odt.upper_bound(_odt(p,0,0));
+}
+odtit split(int p)
+{
+	if(p==n+1)
+		return odt.end();
+	odtit it=pos(p);
+	if(it->l==p)
+		return it;
+	int v=it->v,l=it->l,r=it->r;
+	odt.erase(it);
+	odt.insert(_odt(l,p-1,v));
+	return odt.insert(_odt(p,r,v)).first;
+}
+void merge(odtit it)
+{
+	while(it->l!=1)
+	{
+		odtit _it=it;
+		_it--;
+		if(_it->v==it->v)
+		{
+			int l=_it->l,r=it->r,v=it->v;
+			odt.erase(it);
+			odt.erase(_it);
+			it=odt.insert(_odt(l,r,v)).first;
+		}
+		else 
+			break;
+	}
+	while(it->r!=n)
+	{
+		odtit _it=it;
+		_it++;
+		if(it->v==_it->v)
+		{
+			int l=it->l,r=_it->r,v=it->v;
+			odt.erase(it);
+			odt.erase(_it);
+			it=odt.insert(_odt(l,r,v)).first;
+		}
+		else 
+			break;
+	}
+}
+void modfiy(int l,int r,int v)
+{
+	odtit _r=split(r+1),_l=split(l);
+	while(_l!=_r)
+		odt.erase(_l++);
+	odtit it=odt.insert(_odt(l,r,v)).first;
+	merge(it);
+}
+int main()
+{
+	n=read();
+	scanf("%s",c+1);
+	fr(i,1,n)
+		c[i]-='A';
+	for(int i=1,j;i<=n;i=j+1)
+	{
+		j=i;
+		while(c[j+1]==c[i]&&j<n)
+			j++;
+		odt.insert(_odt(i,j,c[i]));
+	}
+	q=read();
+	while(q--)
+	{
+		scanf("%s",c);
+		if(*c=='A')
+		{
+			int l=read(),r=read();
+			scanf("%s",c);
+			modfiy(l,r,*c-'A');
+		}
+		else
+		{
+			int l=read(),r=read();
+			odtit _l=pos(l),_r=pos(r);
+			if(_l==_r)
+			{
+				if(l==1||r==n)
+				{
+					printf("Yes\n");
+				}
+				else
+				{
+					if(pos(l-1)->v==pos(r+1)->v)
+						printf("No\n");
+					else
+						printf("Yes\n");
+				}
+			}
+			else 
+			{
+				printf("No\n");
+			}
+		}
+	}
+	return 0;
+}
+```
+

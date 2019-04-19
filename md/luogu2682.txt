@@ -1,0 +1,269 @@
+---
+title: luogu2682
+date: 2019-04-17 12:59:51
+tags:
+- luogu
+- 题答
+mathjax: on
+---
+
+考完省选了，开始划水了QAQ
+
+没有linux版check，只好`wine check.exe`QAQ
+
+<!--more-->
+
+### $\rm Task1$
+
+```
+1 2
+3
+in
+swap
+opp
+5
+in
+swap
+get l
+add tmp
+out
+```
+
+卡卡常就过了
+
+### $\rm Task 2$
+
+注意到
+
+$$
+233=(11101001)_2=2^7+2^6+2^5+2^3+2^0
+$$
+
+位运算再卡卡常即可
+
+注意一点：
+
+可以用`add tmp`替代`swap`
+
+```
+2 2
+6
+in
+add tmp
+L 7
+add tmp
+get r
+add tmp
+4
+wait
+get l
+add tmp
+L 6
+7
+wait
+get u
+add tmp
+wait
+L 5
+get u
+add tmp
+9
+wait
+wait
+get l
+add tmp
+L 3
+wait
+get l
+add tmp
+out
+```
+
+（我的写法是$12\rightarrow 11\rightarrow 21\rightarrow 22$）
+
+### $\rm Task 3$
+
+发现
+
+```cpp
+-2147483648==int(1<<32)
+```
+
+于是and一下就好
+
+```
+1 2
+3
+in
+add tmp
+and -2147483648
+7
+wait
+get l
+add tmp
+get l
+if tmp
+opp
+out
+```
+
+### $\rm Task 4$
+
+试着直接累加
+
+```cpp
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+int main()
+{
+    freopen("4.out","w",stdout);
+    printf("1 1\n257\n");
+    fr(i,1,128)
+        printf("in\nadd tmp\n");
+    printf("out\n");
+    return 0;
+}
+```
+
+得$1$分，不错。
+
+于是只好老老实实写多进程，可以先写好大概，再人工微调
+
+```cpp
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+int main()
+{
+    freopen("4.out","w",stdout);
+    printf("4 2\n");
+    fr(i,1,8)
+    {
+        printf("32\n");
+        fr(j,1,16)
+            printf("in\nadd tmp\n");
+    }
+    return 0;
+}
+```
+
+然后就是调整部分：
+
+```
+line 68:    - 32
+            + 34
+line 101:   - 32
+            + get u
+            + add tmp
+            + 34
+line 134:   - 32
+            + get u
+            + add tmp
+            + 36
+line 167:   - 32
+            + get d
+            + add tmp
+            + get u
+            + add tmp
+            + 39
+line 200:   + add tmp
+            + get d
+            + add tmp
+            + get u
+            + add tmp
+            + get l
+            + add tmp
+            + out
+```
+
+### $\rm Task 5$
+
+容易发现，答案是
+
+```cpp
+(a&b)+((a^b)>>1)
+```
+
+~~又要卡常~~
+
+```
+1 2
+5
+in
+add tmp
+get r
+xor tmp
+R 1
+7
+in
+add tmp
+get l
+and tmp
+get l
+add tmp
+out
+```
+
+### $\rm Task 6$
+
+真·数学题？
+
+```cpp
+a=(a&0x55555555)+((a>>1)&0x55555555)
+a=(a&0x33333333)+((a>>2)&0x33333333)
+a=(a&0x0f0f0f0f)+((a>>4)&0x0f0f0f0f)
+a=(a&0x00ff00ff)+((a>>8)&0x00ff00ff)
+a=(a&0x0000ffff)+((a>>16)&0x0000ffff)
+```
+
+打起来真恶心，所以我~~故意~~不贴代码
+
+### $\rm Task 7$
+
+判断$a<b$然后直接做就好。
+
+但是spj有锅，所以可以
+
+```
+1 1
+3
+in
+swap
+out
+```
+
+### $\rm Task 8$
+
+暴力搞？
+
+goto循环太锅了！
+
+只能打表
+
+```cpp
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+int main()
+{
+    freopen("8.out","w",stdout);
+    int a=1,b=0;
+    printf("1 1\n213\nin\nswap\n");
+    fr(i,1,42)
+    {
+        swap(a,b);
+        a+=b;
+        printf("add -1\nif key\ngoto %d\nset %d\ngoto %d\n",3+5*i,a,213);
+    }
+    printf("out\n");
+    return 0;
+}
+```
+
+### 所有的代码
+
+[`Download`](https://github.com/huhaoo/luogu/raw/master/2682/2682.zip)

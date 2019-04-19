@@ -1,0 +1,130 @@
+---
+title: luogu2221
+date: 2018-08-21 12:14:19
+tags:
+- luogu
+- 概率期望
+mathjax: on
+---
+
+> Y901高速公路是一条重要的交通纽带，政府部门建设初期的投入以及使用期间的养护费用都不低，因此政府在这条高速公路上设立了许多收费站。
+>
+> Y901高速公路是一条由$N-1$段路以及$N$个收费站组成的东西向的链，我们按照由西向东的顺序将收费站依次编号为$1..N$，从收费站$i$行驶到$i+1$(或从$i+1$行驶到$i$)需要收取$V_i$的费用。高速路刚建成时所有的路段都是免费的。
+>
+> 政府部门根据实际情况，会不定期地对连续路段的收费标准进行调整，根据政策涨价或降价。
+>
+> 无聊的小A同学总喜欢研究一些稀奇古怪的问题，他开车在这条高速路上行驶时想到了这样一个问题:对于给定的$l,r(l<r)$,在第$l$个到第$r$个收费站里等概率随机取出两个不同的收费站$a$和$b$，那么从$a$行驶到$b$将期望花费多少费用呢?
+
+[题目地址](https://www.luogu.org/problemnew/show/P2221)
+
+<!--more-->
+
+我们记$i$到$i+1$费用为$w_i$，那么可以转化成序列问题：
+
+$C~l~r~v:\forall i\in[l,r)~w'_i=w_i+v$
+
+$Q~l~r:ans=\dfrac{\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}\sum_{k=i}^jw_k}{\sum_{i=l}^{i-1}\sum_{j=i}^{r-1}1}​$
+
+$\mathrm{set}~ans=\dfrac ab$
+$\therefore a=\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}\sum_{k=i}^jw_k=\sum_{k=l}^{r-1}(w_k\times\sum_{i=l}^k\sum_{j=k}^{r-1}1)$
+$=\sum_{k=l}^{r-1}(k-l+1)(r-k)w_k=\sum_{k=l}^{r'}(k-l+1)(r'-k+1)w_k$
+
+$=\sum_{k=l}^{r'}[-k^2w_k+(l+r')kw_k+(r'+1)(1-l)w_k]$ （$r'=r-1$）
+$b=\sum_{i=l}^{r-1}\sum_{j=i}^{r-1}1=\sum_{i=l}^{r-1}(r-i)=\sum_{i=1}^{r-l}i=\dfrac{(r-l)(r-l+1)}{2}$
+
+维护$k^2w_k,kw_k,w_k$即可
+
+[`code`](https://github.com/huhaoo/luogu/blob/master/2221.cpp)
+
+````cpp
+long long n,q,s[N][2],a[N],v0[N],v1[N],v2[N],s1[N],s2[N],r,c;
+long long build(long long l,long long r)
+{
+	long long k=++c;
+	if(l==r)return k;
+	long long m=(l+r)>>1;
+	s[k][0]=build(l,m);
+	s[k][1]=build(m+1,r);
+	return k;
+}
+void pushdown(long long k,long long l,long long r)
+{
+	if(a[k])
+	{
+		v0[k]+=(r-l+1)*a[k];
+		v1[k]+=(s1[r]-s1[l-1])*a[k];
+		v2[k]+=(s2[r]-s2[l-1])*a[k];
+		a[s[k][0]]+=a[k];a[s[k][1]]+=a[k];
+		a[k]=a[0]=0;
+	}
+}
+void update(long long k,long long l,long long r)
+{
+	if(l==r)return;
+	int m=(l+r)>>1;
+	pushdown(s[k][0],l,m);pushdown(s[k][1],m+1,r);
+	v0[k]=v0[s[k][0]]+v0[s[k][1]];
+	v1[k]=v1[s[k][0]]+v1[s[k][1]];
+	v2[k]=v2[s[k][0]]+v2[s[k][1]];
+}
+void add(long long k,long long l,long long r,long long ll,long long rr,long long v)
+{
+	if(ll<=l&&r<=rr)
+	{
+		a[k]+=v;
+		return;
+	}
+	pushdown(k,l,r);
+	long long m=(l+r)>>1;
+	if(ll<=m)add(s[k][0],l,m,ll,rr,v);
+	if(rr>m)add(s[k][1],m+1,r,ll,rr,v);
+	update(k,l,r);
+}
+long long query(long long k,long long l,long long r,long long ll,long long rr)
+{
+	update(k,l,r);pushdown(k,l,r);
+	if(ll<=l&&r<=rr)
+		return -v2[k]+(ll+rr)*v1[k]+(rr+1)*(1-ll)*v0[k];
+	long long m=(l+r)>>1,ans=0;
+	if(ll<=m)ans+=query(s[k][0],l,m,ll,rr);
+	if(rr>m)ans+=query(s[k][1],m+1,r,ll,rr);
+	return ans;
+}
+long long gcd(long long a,long long b)
+{
+	return b?gcd(b,a%b):a;
+}
+void print(long long k,long long l,long long r)
+{
+	if(!k)return;
+	update(k,l,r);pushdown(k,l,r);
+	printf("%lld %lld %lld %lld %lld\n",l,r,v0[k],v1[k],v2[k]);
+	int m=(l+r)>>1;
+	print(s[k][0],l,m);print(s[k][1],m+1,r);
+}
+int main()
+{
+	n=read();q=read();
+	fr(i,1,n)s1[i]=s1[i-1]+i,s2[i]=s2[i-1]+i*i;
+	r=build(1,n);
+	while(q--)
+	{
+		char opt[10];
+		scanf("%s",opt);
+		if(*opt=='C')
+		{
+			long long ll=read(),rr=read()-1,v=read();
+			add(r,1,n,ll,rr,v);
+		}
+		else
+		{
+			long long ll=read(),rr=read()-1;
+			long long a=query(r,1,n,ll,rr),b=(rr-ll+1)*(rr-ll+2)/2,g;
+			g=gcd(a,b);a/=g;b/=g;
+			printf("%lld/%lld\n",a,b);
+		}
+	}
+	return 0;
+}
+````
+

@@ -1,0 +1,95 @@
+---
+title: tarjan缩点
+date: 2018-01-04 15:57:55
+tags:
+  - tarjan
+  - 缩点
+mathjax: on
+---
+
+> 求有向图（边权为1）上最长链长度
+
+<!--more-->
+
+计几个数组：
+
+`dfn[i]`表示`i`号点被第几个搜索到的
+
+`low[i]`表示`i`和它的搜索子树中所有点`j` 的`min{dfn[j]}`
+
+然后就可以得到：
+
+$low_i=\cases{dfn_i \\ low_v&(u到v有边) \\ dfn_v&(u到v有边)}$
+
+若$dfn_i=low_i$表示`s[top]`到`s[k]`都是在一个强连通分量里的（`s[k]=i`，强连通分量是一个极大的点集满足内部点互相可达）
+
+```cpp
+#define N 1000010
+#include<vector>
+vector<int>t[N],nt[N];
+int n,m,u[N],v[N],g[N],f[N],dfn[N],low[N],top,s[N],sum,ins[N],now,w[N],ans;
+void dfs(int x)
+{
+	now++;
+	dfn[x]=now;
+	low[x]=dfn[x];
+	s[++top]=x;
+	ins[x]=1;
+	fr(i,0,t[x].size()-1)
+	{
+		if(dfn[t[x][i]])
+		{
+			if(ins[t[x][i]])
+				low[x]=min(dfn[t[x][i]],low[x]);
+		}
+		else
+		{
+			dfs(t[x][i]);
+			low[x]=min(low[t[x][i]],low[x]);
+		}//计算low[i]
+	}
+	if(dfn[x]==low[x])
+	{
+		sum++;
+		while(s[top+1]!=x)
+		{
+			ins[s[top]]=0;
+			w[sum]++;
+			f[s[top]]=sum;
+			top--;
+		}
+	}//处理强连通分量
+}
+int calc(int x)
+{
+	if(g[x])
+		return g[x];
+	fr(i,0,nt[x].size()-1)
+		g[x]=max(g[x],calc(nt[x][i]));
+	g[x]+=w[x];
+	return g[x];
+}//DP求最长路径（DAG图）
+int main()
+{
+	n=read();
+	m=read();
+	fr(i,1,m)
+	{
+		u[i]=read();
+		v[i]=read();//方便建新图
+		t[u[i]].push_back(v[i]);
+	}
+	fr(i,1,n)
+		if(!dfn[i])
+			dfs(i);//tarjan缩点
+	fr(i,1,m)
+		if(f[u[i]]!=f[v[i]])
+			nt[f[u[i]]].push_back(f[v[i]]);//不是同一个点就连边
+	fr(i,1,sum)
+		ans=max(ans,calc(i));
+	printf("%d\n",ans);
+	return 0;
+}
+```
+
+时间复杂度：$O(n+m)$

@@ -1,0 +1,54 @@
+---
+title: uoj12|UER 1|猜数
+date: 2018-01-22 09:49:02
+tags:
+  - uoj
+  - math
+mathjax: on
+---
+
+题意：
+
+已知$ab=gl=n^2,g|a,g|b$
+
+给定$g,l$
+
+求最大最小的$a+b$
+
+<!--more-->
+
+我们可以先推一下式子
+
+设$a=xg,b=yg$
+
+$\because ab=gl$
+
+$\therefore l=xyg$
+
+我们可以将$a,b,g,l,n$同时除以$g$
+
+依然有$a'b'=g'l'=n'$
+$\because g'=\dfrac gg=1$
+
+$\therefore a'b'=l'$
+
+因为先后没有关系，我们设$a<b$
+
+小学数学告诉我们$a=1,b=l$时$a+b=1+l$最大，$a=b=\sqrt l$时$a+b=2\sqrt l$最小
+
+```cpp
+long long a,b,t;
+int main()
+{
+	t=read();
+	while(t--)
+	{
+		a=read();
+		b=read();
+		b/=a;
+		printf("%lld %lld\n",int(sqrt(b*1.0))*a*2,a+a*b);
+	}
+	return 0;
+}
+```
+

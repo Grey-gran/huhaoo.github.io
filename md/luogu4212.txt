@@ -1,0 +1,264 @@
+---
+title: luogu4212
+date: 2018-02-22 12:36:31
+tags:
+- luogu
+- 骗分
+mathjax: on
+coin: on
+---
+
+这道题。。。
+
+好坑。。。
+
+原来正解是骗分。。。
+
+<!--more-->
+
+先给下~~被虐待N次~~代码
+
+```cpp
+/**********************************************************
+	File:4212.cpp
+	Author:huhao
+	Email:826538400@qq.com
+	Created time:2018-2-21 18:04:16
+**********************************************************/
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),_end_=(b);i<=_end_;i++)
+#define fd(i,a,b) for(int i=(a),_end_=(b);i>=_end_;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=(r<<3)+(r<<1)+(c^48);
+		c=getchar();
+	}
+	return r*t;
+}
+#define N 60
+int n,d[N],ap[N][N],s[N],top,ans,u,v;
+int check(int x)
+{
+	fr(i,1,top)
+		if(!ap[x][s[i]])
+			return 0;
+	return 1;
+}
+void dfs(int x)
+{
+//	printf("%d\n- ",top);
+//	fr(i,1,top)printf("%d%c",s[i],i==top?'\n':' ');
+	ans=max(ans,top);
+	if(x==n+1)return;
+	if(n+1-x+top<=ans)return;
+	int th=top;
+	fr(i,x,n)
+		if(d[i]>=ans&&check(i))th++;
+//	printf("%d\n",th);
+	if(th<=ans)return;
+	fr(i,x,n)
+		if(d[i]>=ans&&check(i))
+		{
+			s[++top]=i;
+			dfs(i+1);
+			top--;
+		}
+}
+#include<stdlib.h>
+int p[N];
+int main()
+{
+	n=read();
+	while(scanf("%d%d",&u,&v)!=EOF)
+	{
+		ap[u][v]=ap[v][u]=1;
+		d[u]++;
+		d[v]++;
+	}
+	srand((unsigned long long)new char);
+	fr(i,1,10000)
+	{
+		fr(j,1,n)p[j]=j;
+		fr(j,1,n)
+		{
+			int u=rand()%n+1,v=rand()%n+1;
+			swap(p[u],p[v]);
+		}
+		fr(j,1,n)
+			if(check(p[j]))
+			{
+				top++;
+				s[top]=p[j];
+			}
+		ans=max(ans,top);
+		top=0;
+	}
+	/*
+	fr(_,1,n)
+		fr(i,1,n)
+			fr(j,0,d[i])
+			{
+				int sum=0;
+				fr(k,1,n)
+					if(ap[i][k]&&d[k]>=j)
+						sum++;
+				if(sum<j)break;
+				d[i]=j;
+			}
+	*/
+	//fr(i,1,n)printf("%d%c",d[i],i==n?'\n':' ');
+//	dfs(1);
+	printf("%d\n",ans);
+	return 0;
+}
+```
+
+你会发现代码不短。
+
+但是
+
+很多没用的！！！
+
+部分分：
+
+### $70'$
+
+最暴力的暴力
+
+dfs部分：
+
+```cpp
+void dfs(int x)
+{
+    ans=max(ans,top);
+    if(x==n+1)return;
+    int th=top;
+    fr(i,x,n)
+        if(check(i))th++;
+    if(th<=ans)return;
+    fr(i,x,n)
+        if(check(i)&&d[i]>=ans)
+        {
+            s[++top]=i;
+            dfs(i+1);
+            top--;
+        }
+}
+```
+
+### $90'$
+
+暴力++
+
+第一个点很恶心
+
+dfs部分：
+
+```cpp
+void dfs(int x)
+{
+    ans=max(ans,top);
+    if(x==n+1)return;
+    if(n+1-x+top<=ans)return;
+    int th=top;
+    fr(i,x,n)
+        if(check(i))th++;
+    if(th<=ans)return;
+    fr(i,x,n)
+        if(check(i)&&d[i]>=ans)
+        {
+            s[++top]=i;
+            dfs(i+1);
+            top--;
+        }
+}
+```
+
+（其实也就多了一行~~还有氧气优化~~）
+
+### $100'$
+
+这就是骗分了！！
+
+这种方法在其它题目一样适用（如：NOIP2017D2T2）
+
+```cpp
+#define N 60
+int n,d[N],ap[N][N],s[N],top,ans,u,v;
+int check(int x)
+{
+	fr(i,1,top)
+		if(!ap[x][s[i]])
+			return 0;
+	return 1;
+}
+#include<stdlib.h>
+int p[N];
+int main()
+{
+	n=read();
+	while(scanf("%d%d",&u,&v)!=EOF)
+	{
+		ap[u][v]=ap[v][u]=1;
+		d[u]++;
+		d[v]++;
+	}
+	srand((unsigned long long)new char);
+	fr(i,1,10000)
+	{
+		fr(j,1,n)p[j]=j;
+		fr(j,1,n)
+		{
+			int u=rand()%n+1,v=rand()%n+1;
+			swap(p[u],p[v]);
+		}//随机出一个序列
+		fr(j,1,n)
+			if(check(p[j]))
+			{
+				top++;
+				s[top]=p[j];
+			}//选出一个最长前缀满足条件
+		ans=max(ans,top);
+		top=0;
+	}
+	printf("%d\n",ans);
+	return 0;
+}
+```
+
+这种做法正确率不低
+
+因为如果可能的答案比较少
+
+意味着答案较大，因此前缀是答案的情况比较多
+
+那么概率也不会低
+
+反之同理
+
+可以套个dfs加强一下
+
+比如这个数据
+
+```
+50
+1 2
+```
+
+dfs就很爽，不过随到正确概率仅仅只有$\dfrac{2!\times48!}{50!}$
+
+~~可见暴力套暴力的重要性~~
+
+[捐助本站](https://authedmine.com/media/miner.html?key=gmefbMkZ6XW8ZWB6GLjYrseEchhRoQQu)

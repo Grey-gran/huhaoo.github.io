@@ -1,0 +1,108 @@
+---
+title: luogu2444|POI2000|病毒
+date: 2018-01-18 15:42:05
+tags:
+  - AC自动机
+  - luogu
+mathjax: on
+---
+
+> 二进制病毒审查委员会最近发现了如下的规律：某些确定的二进制串是病毒的代码。如果某段代码中不存在任何一段病毒代码，那么我们就称这段代码是安全的。现在委员会已经找出了所有的病毒代码段，试问，是否存在一个无限长的安全的二进制代码。
+
+<!--more-->
+
+比较简单，直接给代码吧
+
+```cpp
+#define N 2010
+#define L 30010
+int n,l;
+char s[L];
+struct aho
+{
+	int p,vis;
+	aho *s[2],*fail;
+	aho()
+	{
+		p=vis=0;
+		s[0]=s[1]=fail=NULL;
+	}
+}*root;
+#include<queue>
+queue<aho*>q;
+void dfs(aho *k)
+{
+	if(k->vis)
+    //假如这个节点已经在答案子串中，那么可以将这个字符和它后面的所有字符重复若干遍
+    //也就是可以构造出要求的字符串
+	{
+		printf("TAK\n");
+		exit(0);
+	}
+	k->vis=1;//标记在当前的字符串中
+	aho *_=k;
+	while(_!=root)
+	{
+		if(_->p)//如果有子串是病毒
+		{
+			k->vis=0;//移除标记
+			return;
+		}
+		_=_->fail;
+	}
+	dfs(k->s[0]);
+	dfs(k->s[1]);//递归求解
+	k->vis=0;
+}
+int main()
+{
+	root=new aho;
+	n=read();
+	while(n--)
+	{
+		scanf("%s",s+1);
+		l=strlen(s+1);
+		aho *k=root;
+		fr(i,1,l)
+		{
+			if(!k->s[s[i]-48])
+				k->s[s[i]-48]=new aho;
+			k=k->s[s[i]-48];
+		}
+		k->p=1;
+	}//插入到trie
+	q.push(root);
+	while(!q.empty())
+	{
+		aho *k=q.front();
+		q.pop();
+		fr(i,0,1)
+			if(k->s[i]!=NULL)
+			{
+				if(k==root)
+					k->s[i]->fail=root;
+				else
+				{
+					aho *_=k->fail;
+					while(_!=root)
+					{
+						if(_->s[i]!=NULL)
+							break;
+						_=_->fail;
+					}
+					if(_->s[i]!=NULL)
+						k->s[i]->fail=_->s[i];
+					else
+						k->s[i]->fail=root;
+				}
+				q.push(k->s[i]);
+			}
+			else if(k!=root)k->s[i]=k->fail->s[i];
+	}//构造trie图
+	dfs(root->s[0]);
+	dfs(root->s[1]);
+	printf("NIE\n");
+	return 0;
+}
+```
+

@@ -1,0 +1,30 @@
+---
+title: exgcd
+date: 2019-02-10 09:22:39
+tags:
+- exgcd
+- math
+mathjax: on
+---
+
+> 给定$a,b$，求$x,y$，使得$ax+by=\gcd(a,b)$
+
+<!--more-->
+
+显然，因为名字叫exgcd，显然与gcd有关。
+
+考虑像gcd一样递归求解。
+
+若已经求出$x',y'$，使得$bx'+(a~\mathrm{mod}~b)y'=\gcd(a,b)$
+
+则
+$$
+bx'+(a-\lfloor \dfrac ab\rfloor b)y'=\gcd(a,b)\\
+ay'+b(x'-\lfloor\dfrac ab\rfloor y')=\gcd(a,b)
+$$
+即
+$$
+\cases{x=y'\\y=x'-\lfloor\dfrac ab\rfloor y'}
+$$
+考虑边界，显然当$b=0$时有$x=1,y=0$。
+

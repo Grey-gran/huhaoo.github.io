@@ -1,0 +1,115 @@
+---
+title: prufer序列
+date: 2018-01-02 16:38:30
+tags:
+  - prufer
+mathjax: on
+---
+
+
+
+`prufer`序列，可以将一个无向图转换为一个序列，这个序列叫做`prufer`序列~~（好像有语病？）~~
+
+<!--more-->
+
+* 树构造`prufer`序列
+  1. 找到度数为1的编号最小的点
+  2. 将与它相邻的点加入`prufer`序列
+  3. 删掉它
+  4. 重复$n-2$次，余下两个点
+
+代码如下
+
+```cpp
+#define N 100010
+vector<int>t[N];
+priority_queue<int>q;
+int n,d[N],prufer[N];
+int main()
+{
+	n=read();
+	fr(i,1,n-1)
+	{
+		int u=read(),v=read();
+		d[u]++;
+		d[v]++;
+		t[u].push_back(v);
+		t[v].push_back(u);
+	}
+	fr(i,1,n)
+	{
+		d[i]--;
+		if(!d[i])
+			q.push(-i);//取相反数就可以由大根堆变为小根堆（忘记小根堆怎么定义了）
+	}
+	fr(i,1,n-2)
+	{
+		int k=-q.top();
+		int o=0;
+		q.pop();
+		fr(j,0,t[k].size()-1)
+			if(d[t[k][j]])
+				o=t[k][j];
+		d[o]--;
+		if(!d[o])
+			q.push(-o);
+		prufer[i]=o;
+	}
+	fr(i,1,n-2)
+		printf("%d%c",prufer[i],i==n-2?'\n':' ');
+	return 0;
+}
+```
+
+树构造`prufer`序列就是模拟定义
+
+* `prufer`序列构造树
+
+  根据定义来想：
+
+  * `prufer`序列第一个数是原树最小的叶子节点的父亲
+
+    原树的叶子结点一定没在`prufer`序列出现
+
+    所以：
+
+    * 第一条可以确定的边由`prufer`序列中没出现过的最小的点和`prufer`序列的第一个点构成
+
+  * 照着 $\uparrow$ 做下去
+
+    做完了，可是只有$n-2$条边~~（QAQ）~~
+
+  * 不是还余下了两个点？
+
+    连接就好了啊
+
+```cpp
+#define N 100010
+#include<queue>
+priority_queue<int>q;
+int n,num[N],prufer[N];
+int main()
+{
+	n=read();
+	fr(i,1,n-2)
+		num[prufer[i]=read()]++;
+	fr(i,1,n)
+		if(!num[i])
+			q.push(-i);
+	fr(i,1,n-2)
+	{
+		int o=-q.top();
+		q.pop();
+		printf("%d %d\n",prufer[i],o);
+		num[prufer[i]]--;
+		if(!num[prufer[i]])
+			q.push(-prufer[i]);
+	}
+	printf("%d ",-q.top());
+	q.pop();
+	printf("%d\n",-q.top());
+	q.pop();//输出队列里剩下的元素（最后一步）
+	return 0;
+}
+```
+

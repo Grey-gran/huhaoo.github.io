@@ -1,0 +1,201 @@
+---
+title: Mathematica&Geogebra入门教程
+date: 2019-03-07 14:29:33
+tags:
+- 教程
+mathjax: on
+---
+
+想$O(1)$做一道（解析）几何题（吊打标算）却力不从心？
+
+想手画$3d$图形却被自己迷到？
+
+来试试mathematica&geogebra吧！
+
+<!--more-->
+
+### Download
+
+~~**Google**或必应**境外版**搜搜吧~~
+
+### Mathematica『入门』教学
+
+#### 简介
+
+* 我也不太会
+* 并不觉得多好用
+* 偷懒最好别用
+* 像python一样是解释类语言
+
+#### 一些函数&用法
+
+下面可以点击看官方教程
+
+* [求和](https://reference.wolfram.com/language/ref/Sum.html)
+
+* [解方程](https://reference.wolfram.com/language/tutorial/SolvingEquations.html)
+
+* [解不等式](https://reference.wolfram.com/language/tutorial/Inequalities-ManipulatingEquationsAndInequalities.html)
+
+* [多项式运算](https://reference.wolfram.com/language/tutorial/StructuralOperationsOnPolynomials.html)
+
+* [积分](https://reference.wolfram.com/language/tutorial/DefiniteIntegrals.html)
+
+  ~~用windwos的同学可以下载[这辆车](https://tieba.baidu.com/p/6036924165)玩玩~~
+
+### Geogebra『从入门到~~跳楼~~』
+
+#### 简介
+
+* 挺好用的
+* 除了精度都挺好（精度也能设置）
+
+#### 2D
+
+##### 鼠标操作
+
+左中键移动，右键（区间）选取
+
+单击选中，双击重新定义
+
+##### 键盘操作
+
+`Ctrl-A`全选
+
+`Ctrl-C`复制
+
+`Ctrl-V`粘贴（位置随机）
+
+`Ctrl-Z`回退
+
+`Ctrl-Y`重做
+
+`Up/Left/Down/Right Arrow`上/左/下/右移动
+
+##### 常用命令
+
+`A=(x,y)`新建点`A`，坐标`(x,y)`，`A`可以省略，省略自动标号
+
+`f(x)`绘制$y=f(x)$
+
+`p(x,y)`如果$[p(x,y)]$，就绘制$(x,y)$最终组成一个图像（即$x,y$的方程，如$x^2+y^2=1$就会绘制一个圆）
+
+##### 图上绘制
+
+自己找，就在顶上那一排
+
+不过注意它是**自动吸附**的
+
+####  3D
+
+##### 鼠标操作
+
+左右键改变角度，中键移动
+
+单击选中，双击重新定义
+
+##### 键盘操作
+
+同2D
+
+##### 常用命令
+
+`A=(x,y,z)`新建点`A`，坐标`(x,y,z)`，`A`可以省略，省略自动标号
+
+`f(x,y)`绘制$z=f(x,y)​$
+
+`p(x,y,z)`如果$[p(x,y,z)]$，就绘制$(x,y,z)$最终组成一个图像（即$x,y,z$的方程，如$x^2+y^2+z^2=1$就会绘制一个圆）
+
+### 例题
+
+教学部分结束了，来做道题巩固一下吧！
+
+#### [Great Circle](http://poj.org/problem?id=2298)
+
+> 求地球上两个城市间最短路径上纬度最大的点的纬度值，答案不唯一输出`undefined`
+
+怎么做呢？
+
+一步步来吧！
+
+##### 转化为解析几何
+
+以球心为原点（记为$A$），地球半径为单位长，`N`方向为$z$正方向建系，且$B$记为$(1,0,0)$
+
+首先先把经纬度转为球上坐标
+
+首先纬度直接关系到$z$值
+
+先过城市（记为$C(x,y,z)$）向$z$作垂线，垂足记为$D​$
+
+再连接$AC$，根据纬度定义，$\angle ACD$就是纬度值
+
+所以$z=AD=AC\sin\angle ACD$
+
+我们还可以得$CD=AC\cos\angle ACD$
+
+我们然后把$C$向$XAY$平面作垂线，垂足记为$E$，连接$EA$
+
+那么$\angle EAB$为纬度值
+
+于是$x=EA\cos\angle EAB,y=EA\sin\angle EAB$
+
+如图：
+
+![](math-geo/1.png)
+
+##### 求$z$值最大的点
+
+1. 记二个城市为$CD$，取$CD$中点$E$
+2. 连射线$AE$，交圆与$F$，作平面$CDF$，这个平面交圆就包含它的路径，但是$z$最大的点可能会在另一半弧，这样的话就是$\max(z_C,z_D)$
+
+如图：
+
+![](math-geo/2.png)
+
+隐藏了部分点，就给[资源连接](https://www.geogebra.org/m/g4pdcf8j)
+
+##### 怎么判断点在哪段弧中
+
+如图：
+
+![](math-geo/3.png)
+
+显然，直线距离越长弧越长，那么显然可以直接比较直线距离即可
+
+##### 怎么写代码？
+
+似乎mathematica没用啊？
+
+真是naive！
+
+其它都好求，可是
+$$
+\cases{ax+by+cz+d=0\\x^2+y^2+z^2=1}
+$$
+怎么求解呢？
+
+我们可以将$z$当已知，然后求出有解情况
+
+然后就要用mathematic求了：
+
+```mathematica
+Solve[{a x+b y+c z+d==0&&x^2+y^2+z^2==1},{x,y}]
+```
+
+还要考虑$b=0$
+
+于是再打个
+
+```mathematica
+Solve[{a x+c z+d==0&&x^2+y^2+z^2==1},{x,y}]
+```
+
+判断一下就好了
+
+##### 错了不知道怎么错的
+
+~~我到现在都不知道我怎么错的~~
+
+[`click here`](https://www.udebug.com/UVa/10809)
+

@@ -1,0 +1,322 @@
+---
+title: c++ stl常数简析
+date: 2019-04-02 11:41:54
+tags:
+- 卡常
+mathjax: on
+---
+
+简略分析一下c++ stl常数。
+
+<!--more-->
+
+### `template`对常数影响
+
+```cpp
+int f(int a,int b)
+{
+	return a+b;
+}
+int main()
+{
+	for(int i=1;i<=1000000000;i++)f(i,i);
+	return 0;
+}
+```
+
+在不开O2时跑$2.99s$（开O2跑$0.00s$，显然被优化掉了，就不考虑了）
+
+```cpp
+template<class _a,class _b>
+_a f(_a a,_b b)
+{
+	return a+b;
+}
+int main()
+{
+	for(int i=1;i<=1000000000;i++)f(i,i);
+	return 0;
+}
+```
+
+不开O2时跑$2.97s$
+
+同样的：
+
+```cpp
+#include<stdio.h>
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=(r<<3)+(r<<1)+(c^48);
+		c=getchar();
+	}
+	return r*t;
+}
+int main()
+{
+	freopen("timetest.in","r",stdin);
+	for(int i=1;i<=10000000;i++)
+		read();
+	return 0;
+}
+```
+
+和
+
+```cpp
+#include<stdio.h>
+template<class _t>
+_t read()
+{
+	_t r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=(r<<3)+(r<<1)+(c^48);
+		c=getchar();
+	}
+	return r*t;
+}
+int main()
+{
+	freopen("timetest.in","r",stdin);
+	for(int i=1;i<=10000000;i++)
+		read<int>();
+	return 0;
+}
+```
+
+都在$0.35s$上下徘徊
+
+大致结论：
+
+**template几乎不会影响常数**
+
+### 部分STL容器分析
+
+#### `complex`
+
+它的实现：
+
+它是由一个带`private`的`struct`（什么鬼啊）
+
+1. 其中`private`中有`_M_real`,`_M_imag`分别表示实部，虚部
+2. `public`则是`real(),imag()`函数，初始化函数和重载运算符
+
+其中`real(),imag()`长这样：
+
+```cpp
+      _GLIBCXX_ABI_TAG_CXX11
+      constexpr _Tp
+      real() const { return _M_real; }
+
+      _GLIBCXX_ABI_TAG_CXX11
+      constexpr _Tp
+      imag() const { return _M_imag; }
+```
+
+~~说实话，我没看懂~~，但是它似乎没有`inline`，所以每次访问似乎都是由函数得到值的。
+
+然后就是它的加减乘除和赋值:
+
+```cpp
+  template<typename _Tp>
+    template<typename _Up>
+    complex<_Tp>&
+    complex<_Tp>::operator=(const complex<_Up>& __z)
+    {
+      _M_real = __z.real();
+      _M_imag = __z.imag();
+      return *this;
+    }
+
+  // 26.2.5/9
+  template<typename _Tp>
+    template<typename _Up>
+    complex<_Tp>&
+    complex<_Tp>::operator+=(const complex<_Up>& __z)
+    {
+      _M_real += __z.real();
+      _M_imag += __z.imag();
+      return *this;
+    }
+
+  // 26.2.5/11
+  template<typename _Tp>
+    template<typename _Up>
+    complex<_Tp>&
+    complex<_Tp>::operator-=(const complex<_Up>& __z)
+    {
+      _M_real -= __z.real();
+      _M_imag -= __z.imag();
+      return *this;
+    }
+
+  // 26.2.5/13
+  // XXX: This is a grammar school implementation.
+  template<typename _Tp>
+    template<typename _Up>
+    complex<_Tp>&
+    complex<_Tp>::operator*=(const complex<_Up>& __z)
+    {
+      const _Tp __r = _M_real * __z.real() - _M_imag * __z.imag();
+      _M_imag = _M_real * __z.imag() + _M_imag * __z.real();
+      _M_real = __r;
+      return *this;
+    }
+
+  // 26.2.5/15
+  // XXX: This is a grammar school implementation.
+  template<typename _Tp>
+    template<typename _Up>
+    complex<_Tp>&
+    complex<_Tp>::operator/=(const complex<_Up>& __z)
+    {
+      const _Tp __r =  _M_real * __z.real() + _M_imag * __z.imag();
+      const _Tp __n = std::norm(__z);
+      _M_imag = (_M_imag * __z.real() - _M_real * __z.imag()) / __n;
+      _M_real = __r / __n;
+      return *this;
+    }
+
+```
+
+常规写法，不过~~似乎~~滥用了没加`inilne`的函数
+
+下面还有一堆我看不懂的数学函数，pass了。
+
+似乎常数没有想象中的大。
+
+#### `pair`
+
+开头十分友好，阅读体验极佳
+
+```cpp
+      typedef _T1 first_type;    /// @c first_type is the first bound type
+      typedef _T2 second_type;   /// @c second_type is the second bound type
+
+      _T1 first;                 /// @c first is a copy of the first object
+      _T2 second;                /// @c second is a copy of the second object
+```
+
+下面似乎都不常用，就pass了。
+
+所以：
+
+可以认为`pair`常数和手写一个`struct`常数相近。
+
+#### 其它
+
+看不懂QAQ
+
+### 部分STL函数分析
+
+#### `min/max`
+
+~~被无数人喷过的函数~~
+
+```cpp
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR
+    inline const _Tp&
+    min(const _Tp& __a, const _Tp& __b)
+    {
+      // concept requirements
+      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
+      //return __b < __a ? __b : __a;
+      if (__b < __a)
+	return __b;
+      return __a;
+    }
+```
+
+`//return __b < __a ? __b : __a;`这操作不得不佩服
+
+`__glibcxx_function_requires(_LessThanComparableConcept<_Tp>)`强行CE也还行（不过似乎不影响常数）
+
+```cpp
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR
+    inline const _Tp&
+    max(const _Tp& __a, const _Tp& __b)
+    {
+      // concept requirements
+      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
+      //return  __a < __b ? __b : __a;
+      if (__a < __b)
+	return __b;
+      return __a;
+    }
+```
+
+操作同样神奇。
+
+#### `swap`
+
+```cpp
+  template<typename _Tp>
+    inline
+#if __cplusplus >= 201103L
+    typename enable_if<__and_<__not_<__is_tuple_like<_Tp>>,
+			      is_move_constructible<_Tp>,
+			      is_move_assignable<_Tp>>::value>::type
+    swap(_Tp& __a, _Tp& __b)
+    noexcept(__and_<is_nothrow_move_constructible<_Tp>,
+	            is_nothrow_move_assignable<_Tp>>::value)
+#else
+    void
+    swap(_Tp& __a, _Tp& __b)
+#endif
+    {
+      // concept requirements
+      __glibcxx_function_requires(_SGIAssignableConcept<_Tp>)
+
+      _Tp __tmp = _GLIBCXX_MOVE(__a);
+      __a = _GLIBCXX_MOVE(__b);
+      __b = _GLIBCXX_MOVE(__tmp);
+    }
+```
+
+`_GLIBCXX_MOVE`这个函数似乎可以加快速度
+
+#### `random_shuffle`
+
+~~全村的希望~~
+
+```cpp
+  template<typename _RandomAccessIterator>
+    inline void
+    random_shuffle(_RandomAccessIterator __first, _RandomAccessIterator __last)
+    {
+      // concept requirements
+      __glibcxx_function_requires(_Mutable_RandomAccessIteratorConcept<
+	    _RandomAccessIterator>)
+      __glibcxx_requires_valid_range(__first, __last);
+
+      if (__first != __last)
+	for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+	  {
+	    // XXX rand() % N is not uniformly distributed
+	    _RandomAccessIterator __j = __first
+					+ std::rand() % ((__i - __first) + 1);
+	    if (__i != __j)
+	      std::iter_swap(__i, __j);
+	  }
+    }
+```
+
+$O(n)$级别的，似乎不慢。
+
+### 未完待续

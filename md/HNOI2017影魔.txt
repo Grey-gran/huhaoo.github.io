@@ -1,0 +1,121 @@
+---
+title: HNOI2017影魔
+date: 2019-02-14 10:46:19
+tags:
+- HNOI
+mathjax: on
+---
+
+>给定排列$k$，和贡献$p_1,p_2$，每次给定$l,r$，求：
+>$$
+>\sum_{l\le i< j\le r}p_1[\max_{i<x<j}k_x<k_i,k_j]+p_2([k_i<\max_{i<x<j}k_x<k_j]\mathrm{or}[k_j<\max_{i<x<j}k_x<k_i])
+>$$
+>
+
+<!--more-->
+
+不妨分开计算，前一部分记为$Ap_1$，后一部分记为$Bp_2$
+
+$p_1$产生的贡献次数就是$[l,r]$中满足区间端点是最大、次大值的区间个数。
+
+不妨枚举次次大值（当然要考虑不存在的情况）
+$$
+A=r-l+\sum_{l\le i< j\le r}[\max_{i<x<j}k_x<k_i][\max_{i<x<j}k_x<k_j]\\
+=r-l+\sum_{l<x<r}\sum_{l\le i<x}\sum_{x<j\le r}[k_x<k_i][k_x<k_j][\max_{i<y<j}k_y=k_x]
+$$
+我们假设$M_x$为包含$x$且最大值为$k_x$的最长区间
+
+于是
+$$
+A=r-l+\sum_{l<x<r}\sum_{l\le i<x}\sum_{x<k\le r}[k_x<k_i][k_x<k_j][[i+1,j-1]\subset M_x]
+$$
+显然，假如$[i+1,j-1]\not= M_x$，假如$[i,j-1]\subset M_x$于是$[k_x<k_i]=0$，假如$[i+1,j]\subset M_x$于是$[k_x<k_j]=0$
+
+于是
+$$
+[[i+1,j-1]=M_x]=[k_x<k_i][k_x<k_j][[i+1,j-1]\subset M_x]
+$$
+所以
+$$
+A=r-l+\sum_{l<x<r}\sum_{l\le i<x}\sum_{x<k\le r}[[i+1,j-1]=M_x]\\
+=r-l+\sum_{l<x<r}[M_x\subset[l+1,r-1]]
+$$
+求法接下来讲
+
+接下来看$B$
+$$
+B=\sum_{l<x<r}\sum_{l\le i<x}\sum_{x<k\le r}[(k_i<k_x<k_j)\mathrm{or}(k_j<k_x<k_i)][[i+1,j-1]\subset M_x]
+$$
+显然
+$$
+[(k_i<k_x<k_j)\mathrm{or}(k_i>k_x>k_j)]\\
+=[\mathrm{not}([k_x>k_i][k_x>k_j]\mathrm{or}[k_x<k_x][k_x<k_j])]\\
+=[(\mathrm{not}([k_x>k_i][k_x>k_j]))\mathrm{or}(\mathrm{not}([k_x<k_i][k_x<k_j]))]\\
+=1-[k_x>k_i][k_x>k_j]-[k_x<k_i][k_x<k_j]
+$$
+于是
+$$
+B=\sum_{l\le i<x<j\le r}[[i+1,j-1]\subset M_x](1-[k_x>k_i][k_x>k_j]-[k_x<k_i][k_x<k_j])\\
+={r-l+1\choose3}-C-D
+$$
+显然
+$$
+C=A-(r-l)\\
+D=\sum_{l\le i<x<j\le r}[[i,j]\subset M_x]
+$$
+那么假如$M_x=[a_x,b_x]$
+$$
+D=\sum_{l<x<r}(x-\max(a_x,l))(\min(b_x,r)-x)
+$$
+求和条件取等也行
+$$
+D=\sum_{l\le x\le r}(x-\max(a_x,l))(\min(b_x,r)-x)
+$$
+这时就要考虑一下$M$的性质了
+
+假设，$M_0=M_{n+1}=[1,n]$
+
+就有
+$$
+M_x\sub M_{a_x-1},M_x\sub M_{b_x+1}
+$$
+所以除了区间最大值，其它必定有$a_x\ge l$或$b_x\le r$
+
+于是可以划分为两个小问题了
+
+具体来说就是如果$[l,r]$从$m$分开，那么（$l',r'$是询问区间）
+$$
+D_{l,r}=D_{l,m-1}+D_{m+1,r}+(m-l)(r-m)
+$$
+我们可以类似线段树和整体二分地搞
+
+比如离散化后的数据
+
+```
+7 9 5 1 3 10 6 8 2 4
+```
+
+它长这样（上面的数字时整颗子树被查询时的贡献，红边表示祖先中位置靠左的第一个点，蓝边表示靠右的第一个点（是父亲就不算））
+
+![](/home/huhao/blog/source/_posts/HNOI2017影魔/1.png)
+
+然后查询时，显然，我们可以把它从中间断开
+
+然后肯定是连续一段深度加大的，我们可以沿着有颜色/树边倍增（这自然有一前一后两个数组）
+
+显然，这样计算十分方便。
+
+至于$A$，考虑它有几项不行，显然，只要父亲在范围外，那么它的所有祖先都不行，让端点向上倍增就行了
+
+ 所以我们可以求出
+$$
+\mathrm{ans}=p_1A+p_2B\\
+=p_1A+p_2({r-l+1\choose 3}-C-D)\\
+=p_1A+p_2{r-l+1\choose 3}-p_2(A-(r-l))-p_2D\\
+=(p_1-p_2)A+p_2{r-1+1\choose 3}+p_2(r-l)-p_2D
+$$
+中$A,D$取值
+
+综上，可以在$O((n+m)\lg n)$的时间内求解！
+
+然而因为码量问题（以及调试难度），无代码。

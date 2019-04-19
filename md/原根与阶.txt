@@ -1,0 +1,23 @@
+---
+title: 简述原根与阶
+date: 2019-02-18 11:23:48
+tags:
+- math
+mathjax: on
+---
+
+NTT要用，就记一下吧。
+
+<!--more-->
+
+若$\gcd(a,m)=1$
+
+阶$\mathrm{ord}_m(a)$定义如下
+$$
+\mathrm{ord}_m(a)=\min_{x>0,a^x\equiv1(\mathrm{mod}~m)}x
+$$
+原根：
+
+若$\mathrm{ord}_m(a)=\phi(m)$，那么$a$就是$m$的原根
+
+求法：手算（雾）/枚举

@@ -1,0 +1,137 @@
+---
+title: 带花树
+date: 2018-01-22 08:46:41
+tags:
+  - 带花树
+mathjax: on
+---
+
+学了学带花树，发现不懂，然后就打了个板子，没加
+
+```cpp
+q.pop();
+```
+
+于是调了$1day$
+
+<!--more-->
+
+就贴个板子，写写注释吧
+
+```cpp
+#include<vector>
+#define N 510
+int n,e,p[N],ans,odd[N],f[N],pre[N],cnt,vis[N];
+vector<int>t[N];
+#include<queue>
+queue<int>q;
+#define debug printf("WO TAI RUO LE\n")
+int getf(int x)
+{
+	return f[x]=(f[x]==x)?x:getf(f[x]);
+}
+int lca(int u,int v)
+{
+	cnt++;
+	while(vis[u]!=cnt)
+	{
+		if(u)
+		{
+			u=getf(u);
+			if(vis[u]==cnt)
+				return u;
+			vis[u]=cnt;
+			if(p[u])
+				u=getf(pre[p[u]]);
+			else
+				u=0;
+		}
+		int k=u;
+		u=v;
+		v=k;
+	}
+	return u;
+}//不知所云
+void circle(int u,int v,int ff)
+{
+	while(getf(u)!=ff)
+	{
+		pre[u]=v;
+		if(odd[p[u]]==1)
+		{
+			odd[p[u]]=0;
+			q.push(p[u]);
+		}
+		if(getf(p[u])==p[u])
+			f[p[u]]=ff;
+		if(getf(u)==u)
+			f[u]=ff;
+		v=p[u];
+		u=pre[v];
+	}
+}//不知所云+1
+int flower(int k)
+{
+	fr(i,1,n)
+		odd[i]=-1,f[i]=i;
+	odd[k]=0;
+	while(!q.empty())q.pop();
+	q.push(k);
+	while(!q.empty())
+	{
+		int x=q.front();
+		q.pop();
+		fr(i,0,t[x].size()-1)
+		{
+			int v=t[x][i];
+			if(odd[v]==-1)
+			{
+				pre[v]=x;
+				odd[v]=1;
+				if(!p[v])
+				{
+					int las,t,now=v;
+					while(now)
+					{
+						t=pre[now];
+						las=p[t];
+						p[now]=t;
+						p[t]=now;
+						now=las;
+					}
+					return 1;
+				}
+				odd[p[v]]=0;
+				q.push(p[v]);
+			}//处理一个新找到的点
+			else
+				if(odd[v]==0&&getf(x)!=getf(v))
+				{
+					int l=lca(x,v);
+					circle(x,v,l);
+					circle(v,x,l);
+				}//不知所云+2
+		}
+	}
+	return 0;
+}
+int main()
+{
+	n=read();
+	e=read();
+	fr(i,1,e)
+	{
+		int u=read(),v=read();
+		t[u].push_back(v);
+		t[v].push_back(u);
+	}
+	fr(i,1,n)
+		if(!p[i])
+			ans+=flower(i);
+	printf("%d\n",ans);
+	fr(i,1,n)
+		printf("%d%c",p[i],i==n?'\n':' ');
+	return 0;
+}
+```
+

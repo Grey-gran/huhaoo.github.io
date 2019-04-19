@@ -1,0 +1,108 @@
+---
+title: loj2323|luogu4005|清华集训|小Y和地铁
+date: 2018-01-07 15:55:07
+tags:
+  - loj
+  - luogu
+  - 清华集训
+  - 搜索
+mathjax: on
+---
+
+`thkkkdalao`太强了！
+
+<!--more-->
+
+![](loj2323luogu4005小Y和地铁/1.png)
+
+我们发现一个只有四种情况，在想一想：
+
+![](loj2323luogu4005小Y和地铁/2.png)
+
+两个方框内的两种情况对后面的影响完全相同。
+
+- 第一个
+
+  破坏了`1-3`没有破坏`2-4`
+
+- 第二个
+
+  没有破坏`1-3`破坏了`2-4`
+
+  ​然后我们分两种情况：第一个、第二个，然后因为同种对后面影响相同，对前面都没影响，所以只需要比较前面对当前位置的影响，取较低值就好了。
+
+  ​影响可以用树状数组维护。
+
+```cpp
+#define N 110
+int t,n,a[N],l[N],r[N],cnt,ans;
+int bitup[N],bitdown[N];
+void add(int *a,int x,int w)
+{
+	while(x<=n)
+	{
+		a[x]+=w;
+		x+=(x&(-x));
+	}
+}
+int query(int *a,int x)
+{
+	int r=0;
+	while(x)
+	{
+		r+=a[x];
+		x-=(x&(-x));
+	}
+	return r;
+}
+#define inf (1<<20)
+void dfs(int x,int w)
+{
+	if(w>=ans)
+		return;
+	if(x>cnt)
+	{
+		ans=w;
+		return;
+	}
+	int ww=0;
+	//up
+	ww=w+min(query(bitup,r[x])-query(bitup,l[x]-1),
+			query(bitdown,n)-query(bitdown,l[x]-1)
+			+query(bitup,n)-query(bitup,r[x]-1));
+	add(bitup,r[x],1);
+	dfs(x+1,ww);
+	add(bitup,r[x],-1);
+	//down
+	ww=w+min(query(bitdown,r[x])-query(bitdown,l[x]-1),
+			query(bitup,n)-query(bitup,l[x]-1)
+			+query(bitdown,n)-query(bitdown,r[x]-1));
+	add(bitdown,r[x],1);
+	dfs(x+1,ww);
+	add(bitdown,r[x],-1);
+}
+int main()
+{
+	t=read();
+	while(t--)
+	{
+		n=read();
+		fr(i,1,n)
+			a[i]=read();
+		cnt=0;
+		fr(i,1,n)
+			fr(j,i+1,n)
+				if(a[i]==a[j])
+				{
+					cnt++;
+					l[cnt]=i;
+					r[cnt]=j;
+				}//处理出每对点
+		ans=inf;
+		dfs(1,0);
+		printf("%d\n",ans);
+	}
+	return 0;
+}
+```
+

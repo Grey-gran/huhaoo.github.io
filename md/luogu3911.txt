@@ -1,0 +1,93 @@
+---
+title: luogu3911
+date: 2018-11-01 13:15:13
+tags:
+- math
+- luogu
+mathjax: on
+---
+
+求$ans=\sum_{i=1}^N\sum_{j=1}^N\mathrm{lcm}(A_i,A_j)$
+
+<!--more-->
+
+
+记$n=5\times10^4,a_i=\sum_{j=1}^N[A_j=i]$
+
+那么
+
+$$ans=\sum_{i=1}^n\sum_{j=1}^na_ia_j\mathrm{lcm}(i,j)$$
+$$=\sum_{i=1}^n\sum_{j=1}^n\dfrac{a_ia_jij}{\mathrm{gcd}(i,j)}$$
+$$=\sum_{k=1}^n\sum_{i=1}^n\sum_{j=1}^n\dfrac{a_ia_jij}{k}[\mathrm{gcd}(i,j)=k]$$
+$$=\sum_{k=1}^n\sum_{i=1}^{\lfloor\frac nk\rfloor}\sum_{j=1}^{\lfloor\frac nk\rfloor}a_{ik}a_{jk}ijk[\mathrm{gcd}(i,j)=1]$$
+
+枚举$k$，为方便，记$n_k=\lfloor\dfrac nk\rfloor $
+
+记
+
+$$f_{k,x}=\sum_{i=1}^{n_k}\sum_{j=1}^{n_k}ijk^2a_{ik}a_{ik}[\mathrm{gcd}(i,j)=x]$$
+$$g_{k,x}=\sum_{i=1}^{n_k}\sum_{j=1}^{n_k}ijk^2a_{ik}a_{ik}[x|\mathrm{gcd}(i,j)]$$
+
+易得
+
+$$g_{k,x}=\sum_{i=1}^{n_{kx}}\sum_{j=1}^{n_{kx}}ijk^2x^2a_{ikx}a_{jkx}$$
+
+记
+
+$$g'_x=\sum_{i=1}^{n_x}\sum_{j=1}^{n_x}ija_{ix}a_{jx}=(\sum_{i=1}^{n_x}ia_{ix})(\sum_{j=1}^{n_x}ja_{jx})=(\sum_{i=1}^{n_x}ia_{ix})^2$$
+
+不难发现，我们可以预处理出每个$g_x'$，就可以$O(1)$求$g_{k,x}$了，即
+
+$$g_{k,x}=k^2x^2g'_{kx}$$
+
+考虑求$f_{k,x}$，发现可以莫比乌斯反演
+
+$$\because g_{k,x}=\sum_{x|d}f_{k,d}$$
+$$\therefore f_{k,x}=\sum_{x|d}\mu_{\frac dx}g_{k,d}=\sum_{i=1}^{n_{kx}}\mu_i g_{k,ix}$$
+$$\therefore f_{k,1}=\sum_{i=1}^{n_k}\mu_{i}g_{k,i}$$
+
+综上所述：
+
+$$ans=\sum_{k=1}^n\dfrac{f_{k,1}}k=\sum_{k=1}^n\dfrac{\sum_{i=1}^{n_k}\mu_ig_{k,i}}{k}$$
+$$=\sum_{k=1}^n\dfrac{\sum_{i=1}^{n_k}\mu_ii^2k^2g_{ik}'}{k}=\sum_{k=1}^n\sum_{i=1}^{n_k}\mu_ii^2kg_{ik}'$$
+
+[code](https://github.com/huhaoo/luogu/blob/master/3911.cpp)（求$\mu$那里有点丑，不要在意）
+
+```cpp
+#define N 50010
+long long n=50000,a[N],mu[N],g[N],ans;
+int main()
+{
+	fr(i,1,read())a[read()]++;
+	fr(x,1,n)
+	{
+		fr(i,1,n/x)g[x]+=i*a[i*x];
+		g[x]*=g[x];
+	}
+	fr(i,1,n)
+	{
+		mu[i]=1;
+		int k=i;
+		fr(j,2,sqrt(i))
+			if(k%j==0)
+			{
+				if((k/j)%j==0)
+				{
+					mu[i]=0;
+					break;
+				}
+				mu[i]=-mu[i];
+				k/=j;
+			}
+		if(k!=1&&mu[i]!=0)
+		{
+			if(int(sqrt(k))*int(sqrt(k))==k)mu[i]=0;
+			else mu[i]=-mu[i];
+		}
+	}
+	fr(k,1,n)fr(i,1,n/k)
+		ans+=mu[i]*i*i*k*g[i*k];
+	printf("%lld\n",ans);
+	return 0;
+}
+```

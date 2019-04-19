@@ -1,0 +1,51 @@
+---
+title: C++中priority_queue详解
+date: 2018-11-07 19:24:04
+tags:
+- STL
+mathjax: on
+---
+
+`priority_queue`是一个神奇的容器（简称为“优先队列”）。
+
+<!--more-->
+
+一般定义：
+
+```cpp
+priority_queue<int>q;
+```
+
+当然，这是大根堆。
+
+我们可以这样定义小根堆。
+
+```cpp
+priority_queue<int,vector<int>,greater<int> >q;//"> >"必须有空格，不然会解译为左移
+```
+
+其它定义：
+
+~~~cpp
+struct _
+{
+    ...
+};
+bool operator<(_ a,_ b)
+{
+    ...
+}
+priority_queue<_>q;
+~~~
+
+值得注意的是：越大的在越前面！
+
+使用方式：
+
+```cpp
+q.empty();//返回容器是否为空
+q.pop();//弹出最大元素
+q.push();//在q中加入元素
+q.top();//返回q中最大元素
+```
+

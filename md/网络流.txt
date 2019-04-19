@@ -1,0 +1,119 @@
+---
+title: 网络流dinic
+date: 2018-01-19 18:56:00
+tags:
+  - 网络流
+mathjax: on
+---
+
+发现我有好多算法只是不~~想~~会写。。。
+
+<!--more-->
+
+看着题解~~抄~~查了好久。。。
+
+[模板](https://www.luogu.org/problemnew/show/3376)
+
+```cpp
+#include<queue>	
+namespace dinic//无他，怕begin冲突尔
+{
+	#define N 10010
+	#define M 200010
+	int n,m,s,t,e,begin[N],next[M],to[M],w[M],ans,h[N];
+	void add(int uu,int vv,int ww)
+	{
+		e++;
+		w[e]=ww;
+		to[e]=vv;
+		next[e]=begin[uu];
+		begin[uu]=e;
+	}
+	queue<int>q;
+	#define fo(i,a) for(int i=begin[a];i;i=next[i])
+	void bfs()
+    //从汇点，沿着反向边走到每个边的最短距离
+	{
+		h[t]=1;//汇点到汇点距离初始化为1（雾）（不会出事的，怕为0的话会出事）
+		q.push(t);
+		while(!q.empty())
+		{
+			int t=q.front();
+			q.pop();
+			fo(i,t)
+				if(w[i^1])//如果反向边有流量
+				{
+					int v=to[i];
+					if(h[v])continue;//如果已经到过了，就没必要再走一遍了
+                                     //反正不会使距离缩短
+					h[v]=h[t]+1;
+					if(v==s)//到了源点就退出，因为距离就不会比源点小了，在dfs时不会遍历到
+                            //可以减短时间复杂度
+					{
+						while(!q.empty())//把队列所有元素弹出
+							q.pop();
+						return;
+					}
+					q.push(v);
+				}
+		}
+	}
+	#define _min_(a,b) ((a)<(b)?(a):(b))
+	#define _max_(a,b) ((a)>(b)?(a):(b))
+	int dfs(int x,int m)
+    //指到达x点的一条增广路能流到x的最大流量
+    //返回的是这条增广路的最大贡献
+	{
+		if(x==t)//到达汇点，返回当前流量
+			return m;
+		int f=0,th;
+		fo(i,x)
+			if(w[i])//如果流量为0，就没必要流了
+			{
+				int v=to[i];
+				if(h[x]-1!=h[v])//去baidu dinic吧，只流向比它到汇点距离小的点
+                                //可以发现它们距离差始终为1
+					continue;
+				th=dfs(v,_min_(m,w[i]));//卡常++
+                                        //尽可能多的流向那个点
+                                        //然后得到可以向这个点流多少流量且都可以到达汇点
+				w[i]-=th;//正向边减流量
+				w[i^1]+=th;//反向边加流量（baidu dinic or EK）
+				f+=th;//增加这个点可以经过的流量
+				m-=th;//最大的流量流了一些到了v，所以要减去
+			}
+		return f;//返回当前可以经过这个节点的最大流量
+	}
+	#define inf (1<<25)
+	int dinic()
+	{
+		fr(i,1,n)
+			h[i]=0;//初始化到汇点距离为0
+		bfs();//bfs求到汇点距离
+		if(!h[s])//无法从汇点走反向边到源点
+			return 0;
+		ans+=dfs(s,inf);//找出一些增广路
+		return 1;
+	}
+	int main()
+	{
+		add(0,0,0);//强行将边改成从2开始
+		n=read();
+		m=read();
+		s=read();
+		t=read();
+		fr(i,1,m)
+		{
+			int u=read(),v=read(),w=read();
+			add(u,v,w);//插入流量为w正向边
+			add(v,u,0);//插入流量为0反向边
+            //你会惊喜得发现反向边编号^1=正向边编号
+		}
+		for(;dinic(););
+		printf("%d\n",ans);
+		return 0;
+	}
+}
+int main(){return dinic::main();}
+```
+

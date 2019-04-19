@@ -1,0 +1,100 @@
+---
+title: 二次剩余
+date: 2019-02-18 09:09:00
+tags:
+- math
+- 二次剩余
+mathjax: on
+---
+
+>求
+>$$
+>\sqrt k~\mathrm{mod}~p
+>$$
+>即求$x$，满足
+>$$
+>x^2\equiv k(\mathrm{mod}~p)
+>$$
+>其中$p$是质数，且$p\not=2$
+
+<!--more-->
+
+#### 一些性质
+
+首先，一个显然的性质：
+
+若$k$存在$x$满足$x^2\equiv k$，那么
+$$
+k^{\frac{p-1}{2}}\equiv 1(\mathrm{mod}~p)
+$$
+
+证明：
+$$
+p|k^{p-1}-1\\
+p|(k^{\frac{p-1}{2}}-1)(k^{\frac{p-1}{2}}+1)\\
+\because p\in\mathrm{prime},p\not=2\\
+\therefore p|k^{\frac{p-1}{2}}-1~\mathrm{or}~p|k^{\frac{p-1}{2}}+1
+$$
+但如果$p|k^{\frac{p-1}{2}}+1$
+
+那么$p|x^{p-1}+1$
+
+不符合费马小定理
+
+于是有上面那个式子
+
+同时，我们知道，如果不为$0$的数$a$，有
+$$
+a^{\frac{p-1}{2}}\equiv -1(\mathrm{mod}~p)
+$$
+
+
+#### 求解：Cipolla算法
+
+首先先随机出一个数$a$使得它不存在$x$使$x^2\equiv a^2-k$
+
+显然，这样期望次数是$2$（证明我也不会）
+
+并且有一个很好的性质：
+$$
+((a+\sqrt{a^2-k})^{\frac{p+1}{2}})^2\equiv k
+$$
+证明：
+$$
+(a+\sqrt{a^2-k})^{p+1}\equiv(a+\sqrt{a^2-k})^p(a+\sqrt{a^2-k})\\
+\equiv(a^p+\sqrt{a^2-k}^p)(a+\sqrt{a^2-k})
+$$
+又因为
+$$
+\sqrt{a^2-k}^p\equiv(a^2-k)^{\frac{p-1}{2}}\sqrt{a^2-k}\\
+\equiv-\sqrt{a^2-k}
+$$
+所以
+$$
+(a+\sqrt{a^2-k})^{p+1}\equiv(a-\sqrt{a^2-k})(a+\sqrt{a^2-k})\\
+\equiv a^2-(a^2-k)\\
+\equiv k(\mathrm{mod}~p)
+$$
+可是我们并不知道$\sqrt{a^2-k}$，同时这个数在$\mathrm{mod}~p$下无意义
+
+于是我们需要仿照复数定义一下：
+
+每个数都表示为$x+y\sqrt{a^2-k}$，简单记为$(x,y)$
+
+我们就有下面运算：
+$$
+c(x,y)=(xc,yc)\\
+(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2)\\
+(x_1,y_1)(x_2,y_2)=(x_1+y_1\sqrt{a^2-k})(x_2+y_2\sqrt{a^2-k})\\
+=x_1x_2+y_1y_2(a^2-k)+(x_1y_2+x_2y_1)\sqrt{a^2-k}\\
+=(x_1x_2+y_1y_2(a^2-k),(x_1y_2+x_2y_1)\sqrt{a^2-k})
+$$
+最后答案就是
+$$
+x\equiv(a,1)^{\frac{p+1}2}(\mathrm{mod}~p)
+$$
+我们可以用快速幂求解
+
+可以证明（意思是我不会证）：
+
+$x$的$\sqrt{a^2-k}$项为$0$

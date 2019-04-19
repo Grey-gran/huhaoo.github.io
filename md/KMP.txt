@@ -1,0 +1,113 @@
+---
+title: KMP快速匹配字符串
+date: 2018-01-05 13:24:21
+tags:
+  - KMP
+mathjax: on
+---
+
+最近[模板](http://huhaoo.coding.me/tags/%E6%A8%A1%E6%9D%BF/)题搞得有点多啊。
+
+~~还不是本蒟蒻太菜集训时候发现啥也不会来狂补~~
+
+<!--more-->
+
+`KMP`的精华在于`next`数组
+
+`next`数组的定义是：
+
+$next_i$表示$S_{1\dots\ i}$（$S$从$1$开始）中最大的$len$
+
+使$S_{1\dots len}=S_{(i-len+1)\dots i}$
+
+且$next_1=0$
+
+举个~~栗~~子
+
+`S='ABCABABCA'`
+
+| `i`       | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    |
+| --------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| `S[i]`    | A    | B    | C    | A    | B    | A    | B    | C    | A    |
+| `next[i]` | 0    | 0    | 0    | 1    | 2    | 1    | 2    | 3    | 4    |
+
+然后我们可以计算`next[i]`了
+
+* $next_i\le next_{i-1}+1$
+
+  显然，不过没用
+
+* $next_i=next_{i-1}+1$当且仅当$S_i=S_{1+next_{i-1}}$
+
+  也显然，原因自己想
+
+  以`ABCABC`、`ABCABD`为例，已知：$next_5=2$
+
+  若$S_6=S_3$（`ABCABC`），$next_6=3$，符合
+
+  若$S_6\not=S_3$（`ABCABD`），$next_6=1<next_5+1=3$，符合
+
+* 若$S_i\not=S_{next_{i-1}~+1}$，就去看$S_i$是否<big>$=S_{1+next_{next_{i-1}}}$</big>，若是，则$next_i=1+next_{next_{i-1}}$
+
+  不解释，结合`next`的定义想一想，就知道了
+
+  也给个例子：
+
+  `ABCDABCA`
+
+  已知$next_7=3$，且$S_8\not=S_4$
+
+  且得出$next_8=1+next_{next_4}=1$
+
+  （比较显然吧）
+
+* 若还不等于，就照着$\uparrow$做，直到等于或为$0$为止
+
+* 若实在$=0$了，直接得出结论：$next_i=\cases{1&$S_i=S_1$\\0&$S_i\not=S_0$}$
+
+查询和插入差不多，具体看代码。
+
+例题：[Luogu3375](https://www.luogu.org/problemnew/show/3375)
+
+裸的模板题，不解释。
+
+```cpp
+#define N 1000010
+char s1[N],s2[N];
+int l1,l2,n[N];
+int main()
+{
+	scanf("%s%s",s1+1,s2+1);
+	l1=strlen(s1+1);
+	l2=strlen(s2+1);
+	fr(i,2,l2)
+	{
+		int k=n[i-1];
+		while(s2[k+1]!=s2[i]&&k)
+			k=n[k];
+		if(s2[k+1]==s2[i])
+			n[i]=k+1;
+	}
+	int k=0;
+	fr(i,1,l1)
+	{
+		if(s2[k+1]==s1[i])
+			k++;
+		else
+		{
+			while(k&&s2[k+1]!=s1[i])
+				k=n[k];
+			k++;
+		}
+		if(k==l2)
+		{
+			printf("%d\n",i-l2+1);
+			k=n[k];
+		}
+	}
+	fr(i,1,l2)
+		printf("%d%c",n[i],i==l2?'\n':' ');
+	return 0;
+}
+```
+

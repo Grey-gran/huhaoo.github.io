@@ -1,0 +1,55 @@
+---
+title: luogu2330
+date: 2017-12-10 13:17:09
+tags:
+  - luogu
+  - dijkstra
+mathjax: on
+---
+
+题目好像好难看懂。。
+
+<!--more-->
+
+就是最小生成树。
+
+白白给题目加上`unsigned long long _=`$2^{64}-1$层难度`buff`
+
+```cpp
+#define M 50010
+#define N 310
+struct road
+{
+	int u,v,w;
+}r[M];
+int f[N],n,m,ans;
+int getf(int x)
+{
+	return f[x]=(f[x]==x?x:getf(f[x]));
+}
+bool cmp(road a,road b)
+{
+	return a.w<b.w;
+}
+int main()
+{
+//	freopen(".out","w",stdout);
+	freopen(".in","r",stdin);
+	n=read();
+	m=read();
+	fr(i,1,m)
+		r[i].u=read(),r[i].v=read(),r[i].w=read();
+	sort(r+1,r+m+1,cmp);
+	fr(i,1,n)
+		f[i]=i;
+	fr(i,1,m)
+		if(getf(r[i].u)!=getf(r[i].v))
+		{
+			f[getf(r[i].u)]=getf(r[i].v);
+			ans=r[i].w;
+//			printf("%d\n",r[i].w);
+		}
+	printf("%d %d\n",n-1,ans);
+  	return 0;
+}
+```

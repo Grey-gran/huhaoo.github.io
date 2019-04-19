@@ -1,0 +1,79 @@
+---
+title: UOJ69
+date: 2017-12-09 09:28:36
+tags:
+  - uoj
+  - 提交答案
+mathjax: on
+---
+
+~~一道我也不知道怎么AC的题~~
+
+<!--more-->
+
+我们设单次正确的概率为$p$，总正确率为$P$，来分析以下代码：
+
+```cpp
+input n
+input m
+a = 0
+b = 1
+c = a + b
+c = c % m
+a = b
+b = c
+n = n - 1
+p = n == 0
+if p goto 5
+```
+
+如果我们那么写，P=$(\dfrac18×\dfrac18×\dfrac18)^n$，若$n=200$,$P<8^{−600}$
+
+期望得分：$0′$~$1′$
+
+首先，我们先解决$c=a+b$
+
+我们可以多取几个值，然后，判相等，还有，请不要打注释。
+
+```cpp
+c = a + b
+d = a + b          //重复算两次
+e = c - d          //当e为0时，c=d
+if e goto 1        //1是这个程序段的1，可以降低出错概率
+```
+
+出错概率很小，当且仅当$e$和$c$或$d$同时出错，而且要求$c≠d$,$e≠0$，所以。。。
+
+同样的思路：
+
+```cpp
+input a
+input b
+c = 0
+d = 1
+e = c + d
+f = c + d
+g = e - f
+if g goto 5
+c = d
+d = e
+e = c % b
+f = c % b
+g = e - f
+if g goto 11
+c = e
+e = d % b
+f = d % b
+g = e - f
+if g goto 16
+d = e
+e = a - 1
+f = a - 1
+g = e - f
+if g goto 21
+a = e
+if a goto 5
+output c
+```
+
+然后果断出现一行绿绿的$100$.

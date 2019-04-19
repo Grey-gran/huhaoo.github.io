@@ -1,0 +1,82 @@
+---
+title: excrt
+date: 2019-02-10 09:29:35
+tags:
+- excrt
+mathjax: on
+---
+
+> 给定$n$组非负整数$a_i,b_i$，求最小$x$使
+> $$
+> \forall i,x\equiv b_i(\mathrm{mod}~a_i)
+> $$
+> 数据保证有解
+
+<!--more-->
+
+当$n=2$时，条件为
+$$
+\cases{x\equiv b_1(\mathrm{mod}~a_1)\\x\equiv b_2(\mathrm{mod}~a_2)}
+$$
+显然存在整数$k_1,k_2$
+$$
+x=k_1a_1+b_1=k_2a_2+b_2
+$$
+那么
+$$
+a_1k_1+a_2(-k_2)=(b_2-b_1)
+$$
+若$\gcd(a_1,a_2)\not|(b_2-b_1)$，则无解
+
+否则可以用[exgcd](https://huhaoo.github.io/2019/02/10/exgcd)求$k$
+
+可以求出当
+$$
+x\equiv k_1a_1+b_1(\mathrm{mod}~\mathrm{lcm}(a_1,a_2))
+$$
+发现变回同样的形式了，依次求解即可。
+
+[例题](https://www.luogu.org/problemnew/show/P4777)
+
+[`code`](https://github.com/huhaoo/luogu/blob/master/4777.cpp)
+
+```cpp
+
+__int128 n;
+__int128 a1,a2,b1,b2,k1,k2,g;
+__int128 exgcd(__int128 a,__int128 b,__int128 &x,__int128 &y)//ax+by=gcd(a,b)
+{
+	if(!b)
+	{
+		x=1;
+		y=0;
+		return a;
+	}
+	__int128 g=exgcd(b,a%b,x,y),k;
+	k=x;
+	x=y;
+	y=k-(a/b)*y;
+	return g;
+}
+int main()
+{
+	n=read()-1;
+	a1=read();
+	b1=read();
+	fr(i,1,n)
+	{
+		a2=read();
+		b2=read();
+		g=exgcd(a1,a2,k1,k2);
+//		k2=-k2;
+		k1*=(b2-b1)/g;
+//		k2*=(b2-b1)/g;
+		b1=k1*a1+b1;
+		a1*=a2/g;
+		b1=(b1%a1+a1)%a1;
+	}
+	printf("%lld\n",(long long)(b1));
+	return 0;
+}
+```
+

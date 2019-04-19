@@ -1,0 +1,30 @@
+---
+title: exbsgs
+date: 2019-02-20 14:42:57
+tags:
+- exbsgs
+- math
+mathjax: on
+---
+
+> 已知$a,p,b$，求
+> $$
+> a^x\equiv b(\mathrm{mod}~p)
+> $$
+>
+
+<!--more-->
+
+不妨考虑$\gcd(a,p)=1$的情况
+
+我们发现$a^x(a^\sqrt p)^y=a^{x+y\sqrt p}$
+
+可以将$a^{1\dots\sqrt p}$存下来，然后用$(a^{\sqrt p(1\dots\sqrt p)})^{-1}$去查询
+
+然后发现这要用到逆元，$\gcd(a,p)\not=1$没法搞
+
+那么我们可以这样做，设$g=\gcd(a,p)$
+$$
+a^{x-1}\equiv \dfrac bp(\dfrac ag)^{-1}(\mathrm{mod}~\dfrac pg)
+$$
+递归求解即可，不过如果$g\not| b$，那么无解

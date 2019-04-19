@@ -1,0 +1,89 @@
+---
+title: luogu1972|SDOI2009|HH的项链
+date: 2018-01-07 18:32:54
+tags:
+  - 莫队
+  - luogu
+  - SDOI
+mathjax: on
+---
+
+被`thkkk dalao`因为某个原因让我来做这道题（我才不会告诉你我没有项链呢）
+
+<!--more-->
+
+简直就是[莫队模板题](http://huhaoo.coding.me/2018/01/06/%E8%8E%AB%E9%98%9F/#more) 的弱化版
+
+时间复杂度：$O(n^{\frac32})$据说有$O(n\dot~log_2n)$的做法
+
+然后我再次开小数组
+
+```cpp
+#define M 200010
+#define N 50010
+#define C 1000010
+struct query
+{
+	int l,r,pos;
+}q[M];
+int n,a[N],p[C],t,len,ans[M];
+bool cmp(query a,query b)
+{
+	if(a.l/len==b.l/len)
+		return a.r<b.r;
+	return a.l<b.l;
+}
+int main()
+{
+	n=read();
+	len=int(sqrt(n*1.0));
+	fr(i,1,n)
+		a[i]=read();
+	t=read();
+	fr(i,1,t)
+	{
+		q[i].l=read();
+		q[i].r=read();
+		q[i].pos=i;
+	}
+	sort(q+1,q+t+1,cmp);
+	fr(i,1,t)
+	{
+		ans[q[i].pos]=ans[q[i-1].pos];
+		if(q[i].l<q[i-1].l)
+			fr(j,q[i].l,q[i-1].l-1)
+			{
+				if(!p[a[j]])
+					ans[q[i].pos]++;
+				p[a[j]]++;
+			}
+		if(q[i].r>q[i-1].r)
+			fr(j,q[i-1].r+1,q[i].r)
+			{
+				if(!p[a[j]])
+					ans[q[i].pos]++;
+				p[a[j]]++;
+			}
+		if(q[i].l>q[i-1].l)
+			fr(j,q[i-1].l,q[i].l-1)
+			{
+				p[a[j]]--;
+				if(!p[a[j]])
+					ans[q[i].pos]--;
+			}
+		if(q[i].r<q[i-1].r)
+			fr(j,q[i].r+1,q[i-1].r)
+			{
+				p[a[j]]--;
+				if(!p[a[j]])
+					ans[q[i].pos]--;
+			}
+	}
+	fr(i,1,t)
+		printf("%d\n",ans[i]);
+	return 0;
+}
+```
+
+
+

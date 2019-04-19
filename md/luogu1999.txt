@@ -1,0 +1,99 @@
+---
+title: luogu1999
+date: 2018-07-04 14:18:30
+tags:
+- 找规律
+- math
+mathjax: on
+---
+
+> 在$a$维空间的元素中，包含着多少个$b$维空间的元素。
+
+<!--more-->
+
+先打表找找规律。
+
+* $1D$
+
+  * ![](luogu1999/1.png)
+
+* $2D$
+
+  * ![](luogu1999/2.png)
+
+* $3D$
+
+  * ![](luogu1999/3.png)
+
+* $4D$
+
+  * 计有$x_d$个$dD$立方体
+
+  * 怎么构造？？
+
+  * 考虑四位轴位$a$，即使用$(x,y,z,a)$表示坐标
+
+  * 那么四位立方体就是$(0/1,0/1,0/1,0/1)$
+
+    * $0D$
+
+      就是每个坐标对应元素，$\therefore x_0=2^4=16$
+
+    * $1D$
+
+      就是在某个坐标轴上投影重合的$2$个点
+
+      也就是确定某三个轴坐标，另一个分别取$0/1$
+
+      $\therefore x_1=C_4^3 2^3=4\times8=32$
+
+    * $2/3/4D$
+
+      同理，分别确定$2/1/0$个轴坐标
+
+      有$x_2=C_4^22^2=6\times4=24,x_3=C_4^12^1=8,x_4=C_4^02^0=1$
+
+* $iD$
+
+  我们计$f_{i,j}$表示$iD$立方体中$jD$立方体数
+
+  同理（$4D/1D$）
+
+  就是选出$j$个坐标轴，确定$0/1$
+
+  其他轴都取$0/1$，此步骤所得的所有点确定一格$jD$立方体
+
+  $\therefore f_{i,j}=C_i^j2^j$
+
+  [`code`](https://github.com/huhaoo/luogu/blob/master/1999.cpp)$\leftarrow$点这
+
+```cpp
+#define mod 1000000007
+#define N 100010
+#define k 100000
+long long power(long long x,long long y,long long p)
+{
+	long long r=1;
+	while(y)
+	{
+		if(y&1)r=r*x%p;
+		x=x*x%p;
+		y>>=1;
+	}
+	return r;
+}
+long long f[N],pf[N],n,m,t,p[N];
+int main()
+{
+	f[0]=p[0]=1;
+	fr(i,1,k)
+		f[i]=f[i-1]*i%mod,p[i]=p[i-1]*2%mod;
+	pf[k]=power(f[k],mod-2,mod);
+	fd(i,k-1,0)pf[i]=pf[i+1]*(i+1)%mod;
+	n=read();
+	m=read();
+	printf("%lld\n",n>=m?f[n]*pf[m]%mod*pf[n-m]%mod*p[n-m]%mod:0);
+	return 0;
+}
+```
+

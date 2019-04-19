@@ -1,0 +1,106 @@
+---
+title: 51nod1491
+date: 2018-01-03 13:32:25
+tags:
+  - 51nod
+  - 斐波拉契数列
+mathjax: on
+---
+
+$q=\dfrac{\sqrt5+1}2$，在黄金系统下面$a_i(i\in[1,n])$等于$\sum_{i=0}^na_i\dot\ q^{n-i}$，其中$a_i\in\{0,1\}$。
+
+现在给出两个黄金系统下面的数字，请比较他们的大小。
+
+<!--more-->
+
+先推一下：
+
+$q^0=1$
+
+$q^1=\dfrac{\sqrt5+1}{2}$
+
+$q^2=\dfrac{(\sqrt5+1)^2}4=\dfrac{6+2\sqrt5}{4}=\dfrac{\sqrt5+3}2$
+
+发现$q^2=q^1+q^0$
+
+于是有：$q^{i+2}=q^2\dot\ q^i=(q^1+q^0)\dot\ q^i=q^{i+1}+q^i$
+
+这不就是斐波拉契数列？？
+
+于是就可以做了
+
+斐波拉契数列的判大小，看程序吧![](http://img.uoj.ac/utility/bear-flying.gif)
+
+```cpp
+#define N 100010
+char a[N],b[N];
+int n,m,c[N],d[N];
+int main()
+{
+	scanf("%s%s",a+1,b+1);
+	n=strlen(a+1);
+	m=strlen(b+1);
+	fr(i,1,n)
+		c[i]=a[n-i+1]-48;
+	fr(i,1,m)
+		d[i]=b[m-i+1]-48;
+	while(!c[n])
+		n--;
+	while(!d[m])
+		m--;
+	n=max(n,m);
+	fr(i,1,n)
+		c[i]-=d[i];
+	fd(i,n,1)
+	{
+		if(c[i]>=2)
+		{
+			printf(">\n");
+			return 0;
+		}
+		if(c[i]<=-2)
+		{
+			printf("<\n");
+			return 0;
+		}//这两个在下面解释
+		if(i>=3)
+		{
+			c[i-1]+=c[i];
+			c[i-2]+=c[i];
+			c[i]=0;
+		}
+	}
+	if(c[2]<0)
+		printf("<\n");
+	else
+		if(c[2]>0)
+			printf(">\n");
+		else
+			if(c[1]<0)
+				printf("<\n");
+			else
+				if(c[1])
+					printf(">\n");
+				else
+					printf("=\n");//最后两位特判掉（相当于边界）
+	return 0;
+}
+```
+
+解释：
+
+满足$c_{j}\in\{-1,0,1\}(j<i)$且有$c_i=2(or -2)$
+
+$\therefore C=\{\cdots,x,a,b,2\}(a,b\in\{-1,0,1\})\rightarrow C=\{\cdots,x,a+2,b+2\}$
+
+我们可以得到：$a+2>0,b+2>0$
+
+在提出来：$C=\{\cdots,x+1,a+3,b+1\}$
+
+其中：$b+1\ge0,a+3\ge2$
+
+又得到了开始的情况！
+
+所以$C$一定是大于$0$的！
+
+然后$c_i=-2$的情况同理：$C<0$

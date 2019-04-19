@@ -1,0 +1,33 @@
+---
+title: Uoj8.Quine
+date: 2018-05-01 15:55:11
+tags:
+- uoj
+- c++
+mathjax: on
+---
+
+貌似之前发过一次了……
+
+不过这次做法不一样。
+
+<!--more-->
+
+这个代码超短超好写的。
+
+```cpp
+#include<stdio.h>
+int main()
+{
+	freopen(__FILE__,"r",stdin);
+	char c;
+	while((c=getchar())!=EOF)putchar(c);
+	return 0;
+}
+```
+
+解释一下：`__FILE__`就是获取当前文件名
+
+然后实测被各大OJ
+
+Kill掉了！

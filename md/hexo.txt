@@ -1,0 +1,198 @@
+---
+title: 用hexo+next搭建coding博客
+date: 2017-12-09 09:26:09
+tags:
+  - hexo
+mathjax: on
+---
+
+先来一波福利，就是给出我的博客下载地址
+
+[github](https://github.io/huhaoo/blog)
+
+<!--more-->
+
+### 安装hexo
+
+#### 安装git和npm
+
+这个不想说，自己去网上找
+
+#### 安装hexo
+
+`npm install hexo-cli -g`
+
+### 初始化博客
+
+- 用`hexo init blog`来初始化博客，就会出现这样：
+
+- ![](hexo/1.png)
+
+- 然后`cd`进入`blog`：`cd blog`
+
+- 让后就是`npm install`
+
+  这一步我也不知道有什么用。。。
+
+  不过网上攻略有的步骤这样做（比如什么`hexo ... install`）会有奇效
+
+- 最后`hexo s`去<http://localhost:4000/>看看自己美~~丑~~丽~~陋~~的博客了（说真的初始主题好丑）
+
+- ![](hexo/2.png)
+
+- ![](hexo/3.png)
+
+  ​
+
+### 博客的初始配置
+
+- `vim _config.yml` 这样进入**博客配置文件**
+
+  ```
+  title: Huhao's home
+  subtitle:
+  description:
+  author: Huhao
+  language: zh-Hans
+  timezone:
+  ```
+
+  开头我搞成了这样
+
+  从上至下依次是：
+
+  ```
+  标题
+  副标题
+  描述
+  作者
+  语言
+  时区
+  ```
+
+  然后在`15`行（应该是）的
+
+  `url: http://yoursite.com`中填上域名
+
+  最后在最后几行改成我这样
+
+  ```
+  deploy:
+   type: git
+   repo: https://git.coding.net/huhaoo/huhaoo.coding.me.git
+   branch: master
+   message: blog update
+  ```
+
+### Next 主题初始化
+
+- `git clone https://github.com/iissnan/hexo-theme-next themes/next`
+- 改**根目录下**`_config` 中的`theme:landspace`为`theme: next`
+- 可以`hexo s`一下看看
+- ![](hexo/4.png)
+
+顺便给大家推荐以下更改：
+
+- `vim themes/next/_config.yml`
+
+- ```
+  # Schemes
+  scheme: Muse
+  #scheme: Mist
+  #scheme: Pisces
+  #scheme: Gemini
+  ```
+
+  改为
+
+  ```
+  # Schemes
+  #scheme: Muse
+  #scheme: Mist
+  scheme: Pisces
+  #scheme: Gemini
+  ```
+
+- ```
+  # Canvas-nest
+  canvas_nest: true
+
+  # three_waves
+  three_waves: false
+
+  # canvas_lines
+  canvas_lines: false
+
+  # canvas_sphere
+  canvas_sphere: false
+
+  # Only fit scheme Pisces
+  # Canvas-ribbon
+  canvas_ribbon: true
+  ```
+
+  在某个地方（`600`行左右）有这个（`5`个`false`）
+
+- 再看看咋样了
+
+- ![](hexo/5.png)
+
+### 写下一片博文
+
+#### 新建文章
+
+- 就是`hexo n ......`
+
+#### 写博文
+
+- 推荐`Typora` 和`moeditor`
+
+
+- `---title: testlatexdate: 2017-10-03 10:52:27tags:  - test---$x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$`
+
+- 欣喜交加接了片博文，看了看：
+
+- ![](hexo/6.png)
+
+  `What???`
+
+### Mathjax
+
+- 良心的`next`已经为我们准备好了，只要：
+
+  ```
+  mathjax:
+    enable: false
+    per_page: false
+    cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
+  ```
+
+  改为
+
+  ```
+  mathjax:
+    enable: true
+    per_page: true
+    cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
+  ```
+
+  就好了
+
+- ![](hexo/7.png)
+
+- 点进去就挂了QAQ
+
+- 于是，每次写文章就更麻烦了
+
+- `mathjax: on`
+
+- 每次都要写
+
+- 不过美丽的`mathjax`就出来了
+
+### 其它美丽的配置
+
+#### 添加顶部加载条
+
+- `vim themes/next/layout/_partials/head.swig`
+- `<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">`

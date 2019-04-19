@@ -1,0 +1,96 @@
+---
+title: 线性基模板(luogu3812)
+date: 2018-01-05 12:14:51
+tags:
+  - luogu
+  - 线性基
+mathjax: on
+---
+
+Luogu上的一道模板题，也是线性基最基础的运用。
+
+<!--more-->
+
+线性基，指的是：
+
+一个序列$\{s_i\}(i\in[0,m])$
+
+其中$m$通常取到$\lfloor log_2k\rfloor$，$k$是输入数据的最大值
+
+先来看[洛谷](https://www.luogu.org/problemnew/show/3812)的那个模板题
+
+> 给定$n$个整数$S1,S_2\dots S_n$（数字可能重复），求在这些数中选取任意个，使得他们的异或和最大。
+
+> （$n\le50$，$0\le S_i\le2^{50}$）
+
+$n\le50$。。。
+
+~~可以搜索剪枝吧~~
+
+~~太小了吧~~
+
+来看看线性基：
+
+* $\forall k$，$2^{k+1}>S_k\ge2^k$
+
+  就是$S_k$最高位（$2$进制下）一定在第$k$位。
+
+* $\forall k,\exists p_{1..j}$，$S_{p_1}~xor~S_{p_2}\dots xor~S_{p_j}$
+
+  也就是说在考虑异或的情况下，这组线性基可以表示所有输入的数
+
+所以线性基插入就是这个样子：
+
+对于每一个数$a$：
+
+* 找到它的最高位$k$（$2$进制下）
+
+  * 若$S_k=0$
+
+    直接`s[k]=a`
+
+    并且退出
+
+  * 若$S_k\not=0$
+
+    就`a^=s[k]`
+
+    再重复一遍
+
+关于那个`a^=k`
+
+$\because a~xor~S_k~xor~S_k=a$
+
+$\therefore a$可以用$a~xor~S_k,S_k$表示
+
+$\therefore$这样不会错
+
+查询就很简单了，不解释了，稍微想想就可以想出，看看代码吧。
+
+```cpp
+#define M 70
+long long n,s[70],ans;
+int main()
+{
+	n=read();
+	fr(i,1,n)
+	{
+		long long a=read();
+		fd(i,60,0)
+			if(a>=(1ll<<i))
+				if(!s[i])
+				{
+					s[i]=a;
+					break;
+				}
+				else
+					a^=s[i];//插入
+	}
+	fd(i,60,0)
+		if((ans^s[i])>ans)
+			ans^=s[i];//查询
+	printf("%lld\n",ans);
+	return 0;
+}
+```
+

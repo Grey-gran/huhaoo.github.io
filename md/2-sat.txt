@@ -1,0 +1,99 @@
+---
+title: 2-sat
+date: 2018-08-03 15:41:25
+tags:
+- 2-sat
+mathjax: on
+---
+
+[模板地址](https://www.luogu.org/problemnew/show/P4782)
+
+> 有$n$个布尔变量 $x_1$~$x_n$ ，另有$m$个需要满足的条件，每个条件的形式都是“ $x_i=0/1$或 $x_j=0/1$”。比如“ $x_1=1$或 $x_3=0$”、“ $x_7=0$或 $x_2=0$”。2-SAT 问题的目标是给每个变量赋值使得所有条件得到满足。
+
+<!--more-->
+
+我们可以将一个点$i$看成$2i,2i+1$两个点，表示$i$取$0,1$，$i$取值相当于在$2i,2i+1$中选一个点，就将题目变为求一个合法的选点方案
+
+我们记一条边$(u,v)$表示，选$u$就须选$v$
+
+那么$(x=a)\rightarrow(y=b)$就连$(2x+a,2y+b)$与$(2y+1-b,2x+1-a)$（逆否命题）
+
+我们可以将$(x=a)or(y=b)$变成$((x=1-a)\rightarrow(y=b))and(((y=1-b)\rightarrow(x=a)))$（不过只要两条边，因为拆分出的互为逆否命题）
+
+为了方便，记选的集合为$A$，$B_u$为$u$能通过边走到的点
+
+然后我们发现$u\in A$，那么$\forall v\in B_u,v\in A$
+
+以及$(u\in A)+((u~xor~1)\in A)=1$（即一个变量一个权值）
+
+我们可以缩环，选一个环相当于选里面的点。
+
+这样就变成了DAG
+
+我们可以先用反向边拓扑排序，这样选小的就不会强制选大的了。
+
+[`code`](https://github.com/huhaoo/template/blob/master/2-sat.cpp)
+
+```cpp
+namespace run
+{
+	#define N 8000010
+	int n,e,m,u[N],v[N],begin[N],next[N],to[N],s[N],top,f[N],nn,dfn[N],low[N],k,d[N],l,r,q[N],rank[N],is[N];
+	#define fo(i,a) for(int i=begin[a];i;i=next[i])
+	void add(int uu,int vv)
+	{
+		e++;
+		u[e]=uu;v[e]=vv;
+		next[e]=begin[uu];
+		begin[uu]=e;
+		to[e]=vv;
+	}
+	void tarjan(int u)
+	{
+		int v;low[u]=dfn[u]=++k;s[++top]=u;is[u]=1;
+		fo(i,u)if(dfn[v=to[i]])
+		{
+			if(is[v])low[u]=min(low[u],dfn[v]);
+		}
+		else
+		{
+			tarjan(v);low[u]=min(low[u],low[v]);
+		}
+		if(dfn[u]==low[u])
+		{
+			nn++;
+			while(s[top+1]!=u){f[s[top]]=nn;is[s[top]]=0;top--;}
+		}
+	}
+	int main()
+	{
+		n=read();
+		m=read();
+		fr(i,1,m)
+		{
+			int u=read()*2+read(),v=read()*2+read();
+			add(u^1,v);add(v^1,u);
+		}
+		fr(i,2,2*n+1)if(!dfn[i])tarjan(i);
+		fr(i,1,n)if(f[i*2]==f[i*2+1]){printf("IMPOSSIBLE");return 0;}
+		e=0;fr(i,1,n)begin[i]=0;
+		fr(i,1,e)if(f[u[i]]!=f[v[i]]){add(f[v[i]],f[u[i]]);d[u[i]]++;}
+		l=1;r=0;
+		fr(i,1,nn)if(!d[i])q[++r]=i;
+		while(l<=r)
+		{
+			int t=q[l],v;rank[t]=l;l++;
+			fo(i,l)
+			{
+				d[v=to[i]]--;
+				if(!d[v])q[++r]=v;
+			}
+		}
+		printf("POSSIBLE\n");
+		fr(i,1,n)printf("%d%c",rank[f[i<<1]]>rank[f[i<<1|1]],i==n?'\n':' ');
+		return 0;
+	}
+}
+int main(){return run::main();}
+```
+

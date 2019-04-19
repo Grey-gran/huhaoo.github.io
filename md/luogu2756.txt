@@ -1,0 +1,144 @@
+---
+title: luogu2756
+date: 2018-01-22 09:23:19
+tags:
+  - luogu
+  - 带花树
+mathjax: on
+---
+
+这道题，本来是用匈牙利做的，不过看了这个输入，就想练习一下带花树
+
+<!--more-->
+
+还是对这模板调了一下，不过~~好像还背不了~~
+
+```cpp
+#define N 210
+#include<vector>
+vector<int>t[N];
+int nn,n,u,v;
+#include<queue>
+queue<int>q;
+int p[N],odd[N],vis[N],cnt,f[N],ans,pre[N];
+int getf(int x)
+{
+	return f[x]=f[x]==x?x:getf(f[x]);
+}
+int lca(int u,int v)
+{
+	cnt++;
+	while(vis[u]!=cnt)
+	{
+		if(u)
+		{
+			u=getf(u);
+			if(vis[u]==cnt)
+				return u;
+			vis[u]=cnt;
+			if(p[u])
+				u=getf(pre[p[u]]);
+			else
+				u=0;
+		}
+		int k=u;
+		u=v;
+		v=k;
+	}
+	return u;
+}//这里背下来了
+void circle(int u,int v,int ff)
+{
+	while(getf(u)!=ff)
+	{
+		pre[u]=v;
+		if(odd[p[u]]==1)
+		{
+			odd[p[u]]=0;
+			q.push(p[u]);
+		}
+		if(f[p[u]]==p[u])
+			f[p[u]]=ff;
+		if(f[u]==u)
+			f[u]=ff;
+		v=p[u];
+		u=pre[v];
+	}
+}//这里还差一点
+int flower(int x)
+{
+	fr(i,1,n)
+	{
+		f[i]=i;
+		odd[i]=-1;
+	}
+	odd[x]=0;
+	while(!q.empty())q.pop();
+	q.push(x);
+	while(!q.empty())
+	{
+		int u=q.front();
+		q.pop();
+		fr(i,0,t[u].size()-1)
+		{
+			int v=t[u][i];
+			if(odd[v]==-1)
+			{
+				pre[v]=u;
+				odd[v]=1;//这个地方背错了一点
+				if(!p[v])
+				{
+					int th,las,now=v;
+					while(now)
+					{
+						th=pre[now];
+						las=p[th];
+						p[th]=now;
+						p[now]=th;
+						now=las;
+					}
+					return 1;
+				}
+				odd[p[v]]=0;
+				q.push(p[v]);
+			}
+			else
+				if(!odd[v]&&getf(u)!=getf(v))
+				{
+					int l=lca(u,v);
+					circle(u,v,l);
+					circle(v,u,l);
+				}//这里也背下来了
+		}
+	}
+	return 0;
+}
+int main()
+{
+	nn=read();
+	n=read();
+	u=read();
+	v=read();
+	while(u!=-1&&v!=-1)
+	{
+		t[u].push_back(v);
+		t[v].push_back(u);
+		u=read();
+		v=read();
+	}
+	fr(i,1,nn)
+		if(!p[i])
+			ans+=flower(i);
+	if(!ans)
+	{
+		printf("No Solution!\n");
+		return 0;
+	}
+	printf("%d\n",ans);
+	fr(i,1,nn)
+		if(p[i])
+			printf("%d %d\n",i,p[i]);
+	return 0;
+}
+```
+

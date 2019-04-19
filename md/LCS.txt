@@ -1,0 +1,84 @@
+---
+title: 求LCS的长度和数量
+date: 2017-12-09 09:28:31
+tags:
+  - LCS
+  - DP
+mathjax: on
+---
+
+DP求LCS的长度和数量
+
+<!--more-->
+
+### 子串
+
+给定一个字符串 $A_{1..n}$
+
+对于任意一个集合 $G_{1..m}$ 并且 $1≤G_1<G_2<⋯<G_m≤n$
+
+那么 $A_{G_{1..m}}$ 就是 $A$ 的一个子串
+
+如：
+
+`AABC` 就是`ABCABC`的一个子串
+
+### LCS
+
+给定两个字符串 $A,B$ ，求出他们最长的公共子串 $C$
+
+意思是： $C$ 既是 $A$ 的子串，又是 $B$ 的子串
+
+### 求法
+
+先给出代码：
+
+```cpp
+#define mod 1000000007
+#define N 5010
+int n,m,f[N][N],h[N][N],ans;
+char s1[N],s2[N];
+int main()
+{
+	scanf("%s%s",s1+1,s2+1);
+	n=strlen(s1+1);
+	m=strlen(s2+1);
+	fr(i,1,n)
+		f[i][0]=1;
+	fr(i,0,m)
+		f[0][i]=1;
+	fr(i,1,n)
+		s1[i]-='a'-1;
+	fr(i,1,m)
+		s2[i]-='a'-1;
+	fr(i,1,n)
+		fr(j,1,m)
+			if(s1[i]==s2[j])
+			{
+				h[i][j]=h[i-1][j-1]+1;
+				f[i][j]=f[i-1][j-1];
+				if(h[i-1][j]==h[i][j])
+					f[i][j]=(f[i][j]+f[i-1][j])%mod;
+				if(h[i][j-1]==h[i][j])
+					f[i][j]=(f[i][j]+f[i][j-1])%mod;
+			}
+			else
+			{
+				h[i][j]=max(h[i-1][j],h[i][j-1]);	
+				if(h[i-1][j]==h[i][j])
+					f[i][j]=(f[i][j]+f[i-1][j])%mod;
+				if(h[i][j-1]==h[i][j])
+					f[i][j]=(f[i][j]+f[i][j-1])%mod;
+				if(h[i-1][j-1]==h[i][j])
+					f[i][j]=(f[i][j]-f[i-1][j-1]+mod)%mod;
+			}
+	printf("%d\n%d\n",h[n][m],f[n][m]);
+	return 0;
+}
+```
+
+$h_{n,m}$ 表示`LCS长度
+
+$f_{n,m}$ 表示LCS个数
+
+就是一个`DP`看代码还直观些。

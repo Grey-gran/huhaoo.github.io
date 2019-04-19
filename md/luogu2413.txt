@@ -1,0 +1,81 @@
+---
+title: luogu2413|yyy loves physics IV
+date: 2018-01-26 10:24:45
+tags:
+  - string
+  - 模拟
+mathjax: on
+---
+
+看了别人的，感觉我做的好复杂。
+
+<!--more-->
+
+考虑递归，我们可以将一个串分两种方法处理。
+
+先处理`,`
+
+因为有`,`时处理`()`不好办
+
+可是在没有`,`时处理`,`时依旧好办
+
+```cpp
+#define N 110
+int n,l;
+double p[N];
+char s[1000010];
+double calc(int l,int r,int opt)
+{
+	if(l==r)return p[s[l]-'A'];
+	if(opt&1)
+	{
+		int k=l;
+		double p=1.0;
+		int t=0;
+		fr(i,l,r)
+		{
+			if(s[i]=='(')t++;
+			if(s[i]==')')t--;
+			if(!t&&s[i]==',')
+			{
+				p*=1-calc(k,i-1,2);
+				k=i+1;
+			}
+		}
+		p*=1-calc(k,r,2);
+		return 1-p;
+	}
+	else
+	{
+		int k;
+		double p=1.0;
+		int t=0;
+		fr(i,l,r)
+		{
+			if(s[i]=='(')
+			{
+				if(!t)k=i+1;
+				t++;
+			}
+			if(s[i]==')')
+			{
+				t--;
+				if(!t)
+					p*=calc(k,i-1,1);
+			}
+		}
+		return p;
+	}
+}
+int main()
+{
+	n=read();
+	scanf("%s",s+1);
+	l=strlen(s+1);
+	fr(i,0,n-1)
+		scanf("%lf",&p[i]);
+	 printf("%.4lf",calc(1,l,1));
+	return 0;
+}
+```
+

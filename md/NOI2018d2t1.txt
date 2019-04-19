@@ -1,0 +1,165 @@
+---
+title: NOI2018屠龙勇士
+date: 2019-02-10 10:47:15
+tags:
+- NOI
+- excrt
+- math
+mathjax: on
+---
+
+> 一个可重集合$A$，初始$m$个元素，进行$n$次操作，有两个个数列$h_{1\dots n},b_{1\dots n}$。第$i$次在$A$中选出一个元素$a_i$：若$A$中存在不大于$h_i$的元素，$a_i$就等于$A$中不大于$h_i$的最大的数，若不存在，$a_i$等于$A$中最小的数。选好$a_i$后，在$A$中删掉一个（若有不止一个）$a_i$并且向$A$中加入$b_i$。
+>
+> 然后你还有一个数列$p_{1\dots n}$，求最小的$x$，使得对于所有$i$
+> $$
+> h_i-a_ix\le0,(-h_i+a_ix)\mathrm{mod}~p_i=0
+> $$
+> 输入顺序：$n~m~h_{1\dots n}~p_{1\dots n}~b_{1\dots n}~A_{1\dots m}$
+
+<!--more-->
+
+显然，$a_i$可以轻易得出
+
+把条件分开考虑。
+$$
+\forall i,h_i-a_ix\le0\\
+\forall i,a_ix\ge h_i\\
+\forall i,x\ge \dfrac {h_i}{a_i}
+$$
+前面的条件即
+$$
+x\ge\max_{i=0}^n\dfrac{h_i}{a_i}
+$$
+现在主要考虑后面的条件。
+
+发现可以变成
+$$
+\forall i,a_ix\equiv h_i(\mathrm{mod}~p_i)
+$$
+考虑处理一下
+$$
+a_ix\equiv h_i(\mathrm{mod}~p_i)
+$$
+若$\gcd(a_i,p_i)=1$显然，可以转换为
+$$
+x\equiv h_ia_i^{-1}(\mathrm{mod}~p_i)
+$$
+若$\gcd(a_i,p_i)\not=1$，记$g=\gcd(a_i,p_i)$
+
+若$g\not|h_i$，显然无解
+
+否则可以转换为：
+$$
+\dfrac{a_i}g x\equiv\dfrac{h_i}g(\mathrm{mod}~\dfrac{p_i}g)
+$$
+就用上面方法：
+$$
+x\equiv(\dfrac{h_i}g)(\dfrac{a_i}g)^{-1}(\mathrm{mod}~\dfrac{p_i}g)
+$$
+
+
+可以用[excrt](https://huhaoo.github.io/2019/02/10/excrt/)得出
+$$
+x\equiv a(\mathrm{mod}~p)
+$$
+中的$a,p$
+
+然后就可以得出
+$$
+x_{\min}=a+p\lceil\dfrac{\lceil\max_{i=0}^n\frac{h_i}{a_i}\rceil-a}p\rceil
+$$
+
+[`code`](https://github.com/huhaoo/luogu/blob/master/4774.cpp)
+
+```cpp
+#define N 100010
+#include<set>
+int T,n,m;
+__int128 h[N],p[N],b[N],a[N],ans;
+multiset<__int128>A;
+__int128 exgcd(__int128 a,__int128 b,__int128 &x,__int128 &y)
+{
+	if(!b)
+	{
+		x=1;
+		y=0;
+		return a;
+	}
+	__int128 g=exgcd(b,a%b,x,y),k;
+	k=x;
+	x=y;
+	y=k-(a/b)*y;
+	return g;
+}
+__int128 gcd(__int128 a,__int128 b)
+{
+	return b?gcd(b,a%b):a;
+}
+int main()
+{
+	T=read();
+	while(T--)
+	{
+		A.clear();
+		A.insert(0);
+		n=read();
+		m=read();
+		fr(i,1,n)
+			h[i]=read();
+		fr(i,1,n)
+			p[i]=read();
+		fr(i,1,n)
+			b[i]=read();
+		fr(i,1,m)
+			A.insert(-read());
+		fr(i,1,n)
+		{
+			multiset<__int128>::iterator it=A.lower_bound(-h[i]);
+			if(*it==0)
+				it--;
+			a[i]=-*it;
+			A.erase(it);
+			A.insert(-b[i]);
+		}
+		ans=0;
+		fr(i,1,n)
+			ans=max(ans,(h[i]+a[i]-1)/a[i]);
+		fr(i,1,n)
+		{
+			__int128 g=gcd(a[i],p[i]),x,y;
+			if(g!=1)
+			{
+				if(h[i]%g)
+				{
+					printf("-1\n");
+					goto end;
+				}
+				h[i]/=g;
+				a[i]/=g;
+				p[i]/=g;
+			}
+			exgcd(a[i],p[i],x,y);
+			a[i]=x;
+			a[i]=(a[i]*h[i]%p[i]+p[i])%p[i];
+		}
+		fr(i,2,n)
+		{
+			__int128 g=gcd(p[1],p[i]),k1,ki;
+			if((a[i]-a[1])%g)
+			{
+				printf("-1\n");
+				goto end;
+			}
+			exgcd(p[1],p[i],k1,ki);
+			k1*=(a[i]-a[1])/g;
+			a[1]=k1*p[1]+a[1];
+			p[1]*=p[i]/g;
+			a[1]=(a[1]%p[1]+p[1])%p[1];
+		}
+		printf("%lld\n",(long long)(a[1]+p[1]*((ans-a[1]+p[1]-1)/p[1])));
+		end:;
+	}
+	return 0;
+}
+```
+

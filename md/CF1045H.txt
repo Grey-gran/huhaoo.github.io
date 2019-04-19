@@ -1,0 +1,149 @@
+---
+title: CF1045H Self-exploration
+date: 2019-01-09 14:54:11
+tags:
+- CF
+- math
+mathjax: on
+---
+
+> 求在$[A,B]$区间内有多少数满足在二进制下：
+>
+> - 子串$00$的个数为$c_{00}$。
+> - 子串$01$的个数为$c_{01}$。
+> - 子串$10$的个数为$c_{10}$。
+> - 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。
+>
+> $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$
+
+<!--more-->
+
+首先，符合条件的数（记为$x$）肯定是$l=1+\sum_i c_i$位数
+
+然后首位肯定是$1$（鬼都知道）
+
+然后我们就可以用$l-1$个$00,01,10,11$（记为$a,b,c,d$）表示（即这一位和前面那位）
+
+然后第一个肯定是$c,d$接下来就是
+$$
+a,c\rightarrow a,b\\
+b,d\rightarrow c,d
+$$
+我们就可以得到这$l-1$个字符连起来长这样
+$$
+...(d)...c...(a)...b...(d)...c...(a)...b...
+$$
+然后我们知道：把$n$有序（即顺序不同算不同方案）地分为$k$个可以为$0$数，方案为$n+k-1\choose n-1$
+
+把$A,B$分别考虑，如果位数大于$l$，就是
+$$
+{c_{11}+c_{01}\choose c_{11}-1}{c_{00}+c_{10}-1\choose c_{00}-1}
+$$
+如果位数小于$l$，就是$0$
+
+否则，考虑$A$（或$B$）每一位，如果是$0$，那么没选择，直接对应的$c$减$1$
+
+如果是$1$，那么$x$这一位选$0$就没有限制了！可以和上面差不多地算
+
+选$1$就给此时对应的$c$减$1$，然后继续看下面的位
+
+最后考虑一下$A,B​$即可
+
+[`my code`](https://github.com/huhaoo/codeforces/blob/master/problems/1045H.cpp)
+
+```cpp
+#define N 100010
+#define mod 1000000007
+char x[N],y[N];
+long long a,b,c,d;
+long long f[N],pf[N],n;
+long long C(long long a,long long b)
+{
+	return f[a]*pf[b]%mod*pf[a-b]%mod;
+}
+long long calc(long long a,long long b)
+{
+	if(b==0)
+		return a==0;
+	return C(a+b-1,b-1);
+}
+long long calc(char *s,long long a,long long b,long long c,long long d,long long op)
+{
+	while(s[1]=='0')
+		s++;
+	long long l=strlen(s+1);
+	if(l<=a+b+c+d)
+		return 0;
+	if(b!=c&&b+1!=c)
+		return 0;
+	if(l>a+b+c+d+1)
+	{
+		return calc(d,b+1)*calc(a,c);
+	}
+	long long r=0;
+	fr(i,2,l)
+		if(s[i]=='0')
+		{
+			if(s[i-1]=='0')
+				a--;
+			else
+				c--;
+		}
+		else
+		{
+			if(s[i-1]=='0')
+			{
+				if(a>0)
+					if(b==c||b==c+1)
+						r=(r+calc(d,b)*calc(a-1,c+1))%mod;
+			}
+			else
+			{
+				if(c>0)
+					if(b+1==c||b==c)
+					{
+						r=(r+calc(d,b)*calc(a,c))%mod;
+					}
+			}
+			if(s[i-1]=='0')
+				b--;
+			else
+				d--;
+			if(a<0||b<0||c<0||d<0)
+				break;
+		}
+	return (r+(a==0&&b==0&&c==0&&d==0)*op)%mod;
+}
+long long pow(long long a,long long b,long long m)
+{
+	long long r=1;
+	a%=m;
+	while(b)
+	{
+		if(b&1)
+			r=r*a%m;
+		a=a*a%m;
+		b>>=1;
+	}
+	return r;
+}
+int main()
+{
+	scanf("%s",x+1);
+	scanf("%s",y+1);
+	a=read();
+	b=read();
+	c=read();
+	d=read();
+	n=100001;
+	f[0]=1;
+	fr(i,1,n)
+		f[i]=f[i-1]*i%mod;
+	pf[n]=pow(f[n],mod-2,mod);
+	fd(i,n-1,0)
+		pf[i]=pf[i+1]*(i+1)%mod;
+	printf("%lld\n",(calc(y,a,b,c,d,1)-calc(x,a,b,c,d,0)+mod)%mod);
+	return 0;
+}
+```
+

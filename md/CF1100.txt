@@ -1,0 +1,225 @@
+---
+title: CF1100的ABCF题解
+date: 2019-01-14 10:02:46
+tags:
+- CF
+mathjax: on
+---
+
+DE比赛时没弄出来，我好菜啊。
+
+于是只有ABCF的题解
+
+<!--more-->
+
+#### A
+
+枚举。
+
+[`code`](https://github.com/huhaoo/codeforces/blob/master/problems/1100A.cpp)
+
+```cpp
+#define N 1010
+int a[N],n,k,s0,s1,a0,a1,ans;
+int main()
+{
+	n=read();
+	k=read();
+	fr(i,1,n)
+	{
+		a[i]=read();
+		if(a[i]==1)
+			s1++;
+		else
+			s0++;
+	}
+	fr(i,1,n)
+	{
+		a0=s0;
+		a1=s1;
+		fr(j,1,n)
+			if(i%k==j%k)
+			{
+				if(a[j]==1)
+					a1--;
+				else
+					a0--;
+			}
+		ans=max(ans,abs(a1-a0));
+	}
+	printf("%d\n",ans);
+	return 0;
+}
+```
+
+#### B
+
+用一个数组记录，维护非$0$的位置的个数。
+
+[`code`](https://github.com/huhaoo/codeforces/blob/master/problems/1100B.cpp)
+
+```cpp
+#define N 400010
+int n,m,a,t[N],s;
+int main()
+{
+	n=read();
+	m=read();
+	fr(i,1,m)
+	{
+		a=read();
+		if(!t[a])
+			s++;
+		t[a]++;
+		if(s==n)
+		{
+			s=0;
+			putchar('1');
+			fr(i,1,n)
+			{
+				t[i]--;
+				if(t[i])
+					s++;
+			}
+		}
+		else
+			putchar('0');
+	}
+	putchar('\n');
+	return 0;
+}
+```
+
+#### C
+
+容易发现：
+$$
+R=r\sin(\dfrac\pi n)/(1-\sin(\dfrac\pi n))
+$$
+[`code`](https://github.com/huhaoo/codeforces/blob/master/problems/1100C.cpp)
+
+```cpp
+double n,r;
+int main()
+{
+	n=1.*read();
+	r=1.*read();
+	printf("%.10lf\n",r*sin(acos(-1.)/n)/(1-sin(acos(-1.)/n)));
+	return 0;
+}
+```
+
+#### F
+
+首先先要会线性基（插入，查询，合并都要）
+
+然后可以发现：
+
+如果处理出了一个点$mid$向左和向右的线性基（分别处理到了$l,r$），那么询问$a,b$可以根据这处理出来的条件是$l\le a\le mid\le b\le r$，并且可以直接合并$a\rightarrow mid$和$mid\rightarrow b$直接求
+
+显然每次切中点是最优的
+
+那么可以整体二分。
+
+[`code`](https://github.com/huhaoo/codeforces/blob/master/problems/1100F.cpp)
+
+```cpp
+#define N 1000010
+#define B 25
+#include<stdlib.h>
+int n,q,ans[N],v[N],b=20,lx[N][B],rx[N][B],ax[N];
+void insert(int *x,int v)
+{
+		fd(i,b,0)
+			if(v>=(1<<i))
+			{
+				if(!x[i])
+				{
+					x[i]=v;
+					break;
+				}
+				else
+					v^=x[i];
+			}
+}
+void merge(int *x,int *y)
+{
+	if(rand()&1)
+		swap(x,y);
+	fr(i,0,b)
+		ax[i]=x[i];
+	fd(i,b,0)
+		if(y[i])
+			insert(ax,y[i]);
+}
+struct query
+{
+	int l,r,p;
+}a[N],_a[N];
+void calc(int l,int r,int ll,int rr)
+{
+	if(ll>rr)
+		return;
+	int mid=(l+r)>>1,p1,p2,p3;
+	fr(i,ll,rr)
+		_a[i]=a[i];
+	p1=ll-1;
+	fr(i,ll,rr)
+		if(_a[i].r<mid)
+			a[++p1]=_a[i];
+	p2=p1;
+	fr(i,ll,rr)
+		if(_a[i].r>=mid&&_a[i].l<=mid)
+			a[++p2]=_a[i];
+	p3=p2;
+	fr(i,ll,rr)
+		if(_a[i].l>mid)
+			a[++p3]=_a[i];
+	if(p1!=p2)
+	{
+		fr(i,0,b)
+			lx[mid][i]=rx[mid][i]=0;
+		insert(lx[mid],v[mid]);
+		fd(i,mid-1,l)
+		{
+			fr(j,0,b)
+				lx[i][j]=lx[i+1][j];
+			insert(lx[i],v[i]);
+		}
+		fr(i,mid+1,r)
+		{
+			fr(j,0,b)
+				rx[i][j]=rx[i-1][j];
+			insert(rx[i],v[i]);
+		}
+		fr(i,p1+1,p2)
+		{
+			merge(lx[a[i].l],rx[a[i].r]);
+			fd(j,b,0)
+				if((ans[a[i].p]^ax[j])>ans[a[i].p])
+					ans[a[i].p]^=ax[j];
+		}
+	}
+	calc(l,mid-1,ll,p1);
+	calc(mid+1,r,p2+1,rr);
+}
+int main()
+{
+	srand((unsigned long long)new char);
+	n=read();
+	fr(i,1,n)
+		v[i]=read();
+	q=read();
+	fr(i,1,q)
+	{
+		a[i].l=read();
+		a[i].r=read();
+		a[i].p=i;
+	}
+	calc(1,n,1,q);
+	fr(i,1,q)
+		printf("%d\n",ans[i]);
+	return 0;
+}
+```
+

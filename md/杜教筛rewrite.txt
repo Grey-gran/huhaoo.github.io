@@ -1,0 +1,98 @@
+---
+title: 杜教筛
+date: 2019-03-12 11:41:47
+tags:
+- 杜教筛
+- math
+mathjax: on
+---
+
+> 求
+> $$
+> \sum_{i\le n}\mu(i),\sum_{i\le n}\phi(i)
+> $$
+
+<!--more-->
+
+#### 狄利克雷卷积
+
+$$
+(f*g)(i)=\sum_{d|i}f(d)g(\dfrac id)
+$$
+
+记
+
+$$
+I(n)=1\\
+1(n)=[n=1]\\
+id^k(n)=n^k\\
+\sigma^k(n)=\sum_{d|n}d^k
+$$
+
+其中$1$是单位元（应该可以写成$e$）
+
+有
+
+$$
+I*\mu=1
+$$
+
+$$
+I*\phi=id
+$$
+
+#### 莫比乌斯反演
+
+$$
+f(i)=\sum_{i|j}g(j)\Leftrightarrow g(i)=\sum_{i|j}f(j)\mu(\dfrac ji)\\
+f(i)=\sum_{j|i}g(j)\Leftrightarrow g(j)=\sum_{j|i}f(j)\mu(\dfrac ij)
+$$
+
+~~背起来很好，因为差多少倍就乘$\mu$几~~
+
+#### 杜教筛
+
+记$s(f)(i)=\sum_{j\le i}f(i)$
+
+ 即求$s(\mu)(n),s(\phi)(n)$
+
+$$
+s(f*g)(n)\\
+=\sum_{i\le n}\sum_{d|i}f(d)g(\dfrac id)\\
+=\sum_{d\le n}f(d)\sum_{d|i}g(\dfrac id)\\
+=\sum_{d\le n}f(d)\sum_{i\le \frac nd}g(i)\\
+=\sum_{d\le n}f(d)s(g)(\lfloor\dfrac nd\rfloor)
+$$
+
+$$
+s(g)(n)=s(f*g)(n)-\sum_{d=2}^nf(d)s(g)(\lfloor\dfrac nd\rfloor)
+$$
+
+于是我们要求$f$容易求，$s(f*g)(n)$容易求
+
+##### $\mu$
+
+$$
+f=I,g=\mu\\
+s(\mu)(n)=1-\sum_{d=2}^ns(\mu)(\lfloor\dfrac nd\rfloor)
+$$
+
+整除分块即可
+
+##### $\phi$
+
+$$
+f=I,g=\phi\\
+s(\phi)(n)=\dfrac{n(n+1)}2-\sum_{d=2}^ns(\phi)(\lfloor\dfrac nd\rfloor)
+$$
+
+整除分块即可
+
+#### 实现细节
+
+小的先预处理出来
+
+然后因为$\lfloor\dfrac{\lfloor\frac na\rfloor}{b}\rfloor=\lfloor\dfrac n{ab}\rfloor$
+
+所以可以记录$\lfloor\dfrac na\rfloor$的值
+

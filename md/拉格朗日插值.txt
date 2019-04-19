@@ -1,0 +1,86 @@
+---
+title: 拉格朗日插值
+date: 2018-08-05 10:11:50
+tags:
+- 拉格朗日插值
+- math
+mathjax: on
+---
+
+>由~~小学知识~~可知， $n$ 个点 $(x_i,y_i)$ 可以唯一地确定一个多项式
+>
+>现在，给定 $n$ 个点，请你确定这个多项式，并将 $k$ 代入求值
+
+[模板链接](https://www.luogu.org/problemnew/show/P4781)
+
+<!--more-->
+
+~~这其实是一道结论题~~
+
+看到这题，我们先会想高斯消元。
+
+可是高斯消元是$O(n^3)$的，得松一下。
+
+于是我们可以考虑上网搜题解。
+
+题解告诉我们：
+
+原多项式长这样：
+
+$$F(x)=\sum_{i=1}^ny_i\times\dfrac{\prod_{1\le j\le n,j!=i}(x-x_j)}{\prod_{1\le j\le n,j!=i}(x_i-x_j)}$$
+
+然后直觉告诉我们这是对的……
+
+考虑证明：
+
+* 分母非$0$
+
+  分母为$0$当且仅当存在$x_i=x_j$
+
+  如果对应$y_i=y_j$，对应同一点，可以忽略（数据中也没有）
+
+  如果对应$y_i\not=y_j$，数学知识告诉我们这不是一个函数，~~题目没说怎么处理，也可以忽略~~
+
+* 经过$(x_k,y_k)$
+
+  代值就好了。
+
+  对于$\sum$中的每个$i$，若$i=k$，可以看出对应值为$y_k\times1=y_k$，若$i\not=k$，分子必有一项为$0$（分子中$\prod$对应$j=k$项为$0$
+
+然后模拟就好了
+
+[code](https://github.com/huhaoo/template/blob/master/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC.cpp)
+
+```cpp
+#define mod 998244353
+long long power(long long x,long long y,long long p)
+{
+	long long r=1;
+	while(y)
+	{
+		if(y&1)r=r*x%p;
+		x=x*x%p;
+		y>>=1;
+	}
+	return r;
+}
+#define N 2010
+long long x[N],y[N],n,v,ans;
+int main()
+{
+	n=read();
+	v=read();
+	fr(i,1,n)x[i]=read(),y[i]=read();
+	fr(i,1,n)
+	{
+		long long k=1;
+		fr(j,1,n)if(i!=j)k=k*(x[i]+mod-x[j])%mod;
+		k=power(k,mod-2,mod);
+		fr(j,1,n)if(i!=j)k=k*(v+mod-x[j])%mod;
+		k=k*y[i]%mod;
+		ans=(ans+k)%mod;
+	}
+	printf("%lld\n",ans);
+	return 0;
+}
+```

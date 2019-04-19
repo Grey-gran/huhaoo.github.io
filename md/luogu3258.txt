@@ -1,0 +1,88 @@
+---
+title: luogu3258|JLOI2014|松鼠的新家
+date: 2018-01-21 15:23:44
+tags:
+  - LCA
+  - luogu
+mathjax: on
+---
+
+找树链剖分时找到了这题，然后就愉快得写了$lca$
+
+<!--more-->
+
+离线的话很好啊，不用写线段树了。
+
+```cpp
+#define N 300010
+#define M 30
+int n,p[N],ans[N],f[N][M+10],s[N],d[N];
+#include<vector>
+vector<int>t[N];
+void dfs(int x)
+{
+	fr(i,0,t[x].size()-1)
+		if(t[x][i]!=f[x][0])
+		{
+			d[t[x][i]]=d[x]+1;
+			f[t[x][i]][0]=x;
+			dfs(t[x][i]);
+		}
+}
+int lca(int u,int v)
+{
+	if(d[u]<d[v]){int k=u;u=v;v=k;}
+	fd(i,M,0)
+		if((1<<i)<=d[u]-d[v])
+			u=f[u][i];
+	fd(i,M,0)
+		if(f[u][i]!=f[v][i])
+		{
+			u=f[u][i];
+			v=f[v][i];
+		}
+	return u==v?u:f[u][0];
+}//倍增LCA
+void calc(int x)
+{
+	ans[x]=s[x];
+	fr(i,0,t[x].size()-1)
+		if(t[x][i]!=f[x][0])
+		{
+			calc(t[x][i]);
+			ans[x]+=ans[t[x][i]];
+		}
+}
+int main()
+{
+	n=read();
+	fr(i,1,n)
+		p[i]=read();
+	fr(i,1,n-1)
+	{
+		int u=read(),v=read();
+		t[u].push_back(v);
+		t[v].push_back(u);
+	}
+	d[1]=1;
+	dfs(1);
+	fr(i,1,M)
+		fr(j,1,n)
+			f[j][i]=f[f[j][i-1]][i-1];
+	fr(i,1,n-1)
+	{
+		s[p[i]]++;
+		s[p[i+1]]++;
+		int k=lca(p[i],p[i+1]);
+		s[k]--;
+		s[f[k][0]]--;//感性理解
+	}
+	calc(1);
+	fr(i,2,n)
+		ans[p[i]]--;
+	fr(i,1,n)
+		printf("%d\n",ans[i]);
+	return 0;
+}
+```
+

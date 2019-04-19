@@ -1,0 +1,96 @@
+---
+title: 倍增算法求LCA
+date: 2017-12-09 09:28:27
+tags:
+  - LCA
+  - 倍增
+mathjax: on
+---
+
+### LCA
+
+就是给定一棵**有根**树，和两个点，求他们的最近公共祖先（深度最大）
+
+<!--more-->
+
+### 一般算法
+
+先将两个点 $u,v$ 移到同一层，再同时上移，直到相等（比较容易想到不是吗）
+
+单次复杂度： $O(n)$
+
+### 倍增算法
+
+求出每个点$i$距离为$2^k$的祖先（若没有则为$0$）
+
+可以用以下式子以O(1)O(1)的时间复杂度求出：
+
+$f_{i,j}=f_{f_{i,j−1}, j−1}$
+
+然后求就用一般算法的思想
+
+代码如下：
+
+```cpp
+#define N 500010
+int e,t[N<<1],nex[N<<1],beg[N],f[N][20],n,m,r,h[N];
+#define fo(i,a) for(int i=beg[a];i;i=nex[i])
+void add(int u,int v)
+{
+	e++;
+	t[e]=v;
+	nex[e]=beg[u];
+	beg[u]=e;
+}//加入边
+void getf0(int x)
+{
+	fo(i,x)
+		if(t[i]!=f[x][0])
+		{
+			h[t[i]]=h[x]+1;
+			f[t[i]][0]=x;
+			getf0(t[i]);
+		}
+}//得出f[i][0]
+int main()
+{
+	n=read();
+	m=read();
+	r=read();
+	fr(i,1,n-1)
+	{
+		int u=read(),v=read();
+		add(u,v);
+		add(v,u);
+	}
+	h[r]=1;
+//	f[r][0]=r;
+	getf0(r);
+	fr(j,1,18)
+		fr(i,1,n)
+			f[i][j]=f[f[i][j-1]][j-1];//得出f[i][j]
+	while(m--)
+	{
+		int u=read(),v=read();
+		if(h[u]<h[v])
+			swap(u,v);
+		fd(i,18,0)
+			if(h[f[u][i]]>=h[v])
+				u=f[u][i];//移到同一层
+		if(u==v)
+		{
+			printf("%d\n",u);
+			continue;
+		}
+		fd(i,18,0)
+			if(f[u][i]!=f[v][i])
+			{
+				u=f[u][i];
+				v=f[v][i];
+			}//同时上移
+		printf("%d\n",f[u][0]);//记得只是最逼近的，还用上一层
+	}
+	return 0;
+}
+```
+

@@ -1,0 +1,272 @@
+---
+title: 莫队算法初步
+date: 2018-01-06 16:23:37
+tags:
+  - 莫队
+mathjax: on
+---
+
+莫队——优雅的暴力
+
+<!--more-->
+
+先给出[例题](https://www.luogu.org/problemnew/show/P1903)
+
+> 一个数列，两种操作：修改一个数的值；求一个区间内不同种类数的种数
+
+* `Sample Input:`
+
+  ```
+  6 5
+  1 2 3 4 5 5
+  Q 1 4
+  Q 2 6
+  R 1 2
+  Q 1 4
+  Q 2 6
+  ```
+
+* `Sample Output:`
+
+  ```
+  4
+  4
+  3
+  4
+  ```
+
+我们考虑一下做法：
+
+暴力$O(n\dot~m)$不解释，~~Luogu上可过~~
+
+那么就来看看这个优雅的暴力——莫队
+
+我们先不考虑修改，只考虑询问，来个新样例：
+
+* `Sample Input 2:`
+
+  ```
+  4 6
+  1 2 1 3
+  Q 1 2
+  Q 1 3
+  Q 1 4
+  Q 2 3
+  Q 2 4
+  Q 3 4
+  ```
+
+`Sample Output 2`就你们手推吧。
+
+我们发现`1~2`在`Q 1 2`时遍历了一遍，`Q 1 3`时又遍历了一遍，`Q 1 4`时也是如此。	
+
+我们就考虑可不可以像`manacher`算法一样用已知呢？
+
+显然可以，这也满足莫队算法的一个要求：
+
+$(x,y)->\{(x,y+1),(x,y-1),(x+1,y),(x-1,y)\}$
+
+意思是知道$(x,y)$的答案，就可以较快得求出$(x,y+1),(x,y-1),(x+1,y),(x-1,y)$的答案。
+
+然后我们就可以由上一个得出的答案计算下一个。
+
+但是。。。
+
+```
+10 10
+1 2 3 4 5 6 7 8 9 10
+1 1
+10 10
+1 1
+10 10
+1 1
+10 10
+1 1
+10 10
+1 1
+10 10
+```
+
+这的来回推多少遍。。。
+
+根据$l$排序不就好了吗？
+
+再来个反例：
+
+```
+10 10
+1 2 3 4 5 6 7 8 9 10
+1 10
+2 1
+3 10
+4 1
+5 10
+6 1
+7 10
+8 1
+9 10
+10 1
+```
+
+这也十分慢了。。。
+
+我们发现只考虑了$l$，没有考虑$r$
+
+那么怎么考虑呢？
+
+我们可以用分块解决，把$l$分成$\sqrt n$块就好了，同一块里的就比较$r$，这样期望就是$n^{\frac32}$
+
+`cmp`函数：
+
+```cpp
+//(len=sqrt(n))
+bool cmp(query x,query y)
+{
+	if(x.l/len!=y.l/len)
+    	return x.l<y.l;
+  	return x.r<y.r;
+}
+```
+
+带修改的呢？？
+
+我们加一维表示修改次数，每个询问都加上上一次修改的标号。
+
+接着用之前的方法，构造出新的`cmp`：
+
+```cpp
+bool cmp(query a,query b)
+{
+	if(a.l/len!=b.l)
+		return a.l<b.l;
+	if(a.r/len!=b.r)
+		return a.r<b.r;
+	return a.pre<b.pre;
+}
+```
+
+然后就和之前的方法一样，一个一个数推。
+
+我们取$len=n^{\frac 23}$，我也不知道为什么，数学太差没办法
+
+这样就是$O(n^{\frac53})$的时间复杂度了。
+
+`时间复杂度--`，`代码复杂度*=n`
+
+`code:`
+
+```cpp
+#define N 10010
+int n,t,a[N],len,nc,nq,num[N],ans,print[N];
+char opt[100010];
+struct query
+{
+	int l,r,pre,num;
+}q[N];
+struct change
+{
+	int pos,bef,aft;
+}c[N];
+bool cmp(query a,query b)
+{
+	if(a.l/len!=b.l)
+		return a.l<b.l;
+	if(a.r/len!=b.r)
+		return a.r<b.r;
+	return a.pre<b.pre;
+}
+int main()
+{
+	n=read();
+	len=pow(n,2.0/3);
+	t=read();
+	fr(i,1,n)
+		a[i]=read();
+	while(t--)
+	{
+		scanf("%s",opt);
+		if(*opt=='Q')
+		{
+			nq++;
+			q[nq].l=read();
+			q[nq].r=read();
+			q[nq].pre=nc;//之前的第一次询问编号，推时间的时候需要特别考虑
+			q[nq].num=nq;//记录是第几个询问，因为不是氨输入顺序询问
+		}
+		else
+		{
+			nc++;
+			c[nc].pos=read();
+			c[nc].bef=a[c[nc].pos];
+			c[nc].aft=a[c[nc].pos]=read();//记录每个修改前后的a数组
+		}
+	}
+	fd(i,nc,1)
+		a[c[i].pos]=c[i].bef;//还原a数组
+	sort(q+1,q+nq+1,cmp);//排序
+	fr(i,1,nq)
+	{
+		if(q[i].r>q[i-1].r)
+			fr(j,q[i-1].r+1,q[i].r)
+			{
+				if(!num[a[j]])
+					ans++;
+				num[a[j]]++;
+			}
+		if(q[i].l<q[i-1].l)
+			fd(j,q[i-1].l-1,q[i].l)
+			{
+				if(!num[a[j]])
+					ans++;
+				num[a[j]]++;
+			}
+		if(q[i].l>q[i-1].l)
+			fr(j,q[i-1].l,q[i].l-1)
+			{
+				num[a[j]]--;
+				if(!num[a[j]])
+					ans--;
+			}
+		if(q[i].r<q[i-1].r)
+			fd(j,q[i-1].r,q[i].r+1)
+			{
+				num[a[j]]--;
+				if(!num[a[j]])
+					ans--;
+			}//改左右界，被thkkk(dalao)说写得shi
+		if(q[i].pre<q[i-1].pre)
+			fd(j,q[i-1].pre,q[i].pre+1)
+			{
+				a[c[j].pos]=c[j].bef;
+				if(q[i].l<=c[j].pos&&q[i].r>=c[j].pos)
+				{
+					if(!num[c[j].bef])
+						ans++;
+					num[c[j].bef]++;
+					num[c[j].aft]--;
+					if(!num[c[j].aft])
+						ans--;
+				}
+			}
+		if(q[i].pre>q[i-1].pre)
+			fr(j,q[i-1].pre+1,q[i].pre)
+			{
+				a[c[j].pos]=c[j].aft;
+				if(q[i].l<=c[j].pos&&q[i].r>=c[j].pos)
+				{
+					if(!num[c[j].aft])
+						ans++;
+					num[c[j].aft]++;
+					num[c[j].bef]--;
+					if(!num[c[j].bef])
+						ans--;
+				}
+			}//推时间，需要认真想想
+		print[q[i].num]=ans;//对应到输入顺序
+	}
+	fr(i,1,nq)
+		printf("%d\n",print[i]);
+	return 0;
+}
+```
+

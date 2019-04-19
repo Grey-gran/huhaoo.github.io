@@ -1,0 +1,134 @@
+---
+title: luogu5177
+date: 2019-01-05 08:50:20
+tags:
+- math
+- luogu
+mathjax: on
+---
+
+> $$
+> \sum_{i=1}^n\sum_{j=1}^n[\min(i,j)\le i\oplus j\le \max(i,j)]
+> $$
+>
+>
+
+<!--more-->
+$$
+\dots=2\sum_{i=1}^{n}\sum_{j=i+1}^n[i \le i\oplus j\le j]
+$$
+
+因为只牵扯到$\oplus$和$\le,\ge$，用**二进制**表示更方便
+
+先考虑什么$i,j(i<j)$满足条件
+
+| $i$  | $j$  | $i\oplus j$ |
+| :--: | :--: | :---------: |
+| $0$  | $0$  |     $0$     |
+| $0$  | $1$  |     $1$     |
+| $1$  | $0$  |     $1$     |
+| $1$  | $1$  |     $0$     |
+
+我们称满足$i \le i\oplus j$为满足$A$，满足$i\oplus j\le j$为满足$B$
+
+显然：$j$的位数**大于**$i$的位数，不然肯定不满足$B$
+
+首先会发现**无须处理$A$**，因为根据上一条，$A$已经被满足了
+
+于是只需要处理$B$
+
+根据上面那张$\oplus$表，我们可以得知：
+
+（下面按位**从大往小**说）
+
+首先，如果$i=0$，那么$i\oplus j=j$，对结果**无影响**。
+
+其次，如果$i\not=0$，那么$j=0$则**肯定可以**，$j\not=0$就**肯定不行**，都可以从此退出。
+
+于是，我们知道满足下面两个条件的一定同时满足$A,B$：
+
+1. $j$的位数**大于**$i$的位数
+
+2. $i$的第一个$1$所在位对应的$j$的位**一定**为$0$
+
+（尽管$i$没有一个位置是$1$也满足$B$，但是规定了$i>0$）
+
+然而确定$i$之后还要卡$j$的上界，所以还不如卡$j$
+
+但这样不好直接判断，不如求每个$j$对应有多少$i$同时满足$A,B$
+
+首先$i$的前缀$0$无意义，就看有多少位置可以放$i$的**第一个**$1$
+
+然后后面的就可以直接随便填了。
+
+然后发现方案数就是把$j$的**最高位去掉**！
+
+我们可以考虑去掉的和。
+
+显然对于$n$的非最高位$k$，去掉$2^k(2^{k+1}-2^k)$
+
+然后最高位$2^k(n-2^k+1)$
+
+[`my code`](https://github.com/huhaoo/luogu/blob/master/5177.cpp)
+
+```cpp
+#define mod 1000000007
+long long n,ans;
+long long pow(long long a,long long b,long long m)
+{
+    long long r=1;
+    a%=m;
+    while(b)
+    {
+        if(b&1)
+            r=r*a%m;
+        a=a*a%m;
+        b>>=1;
+    }
+    return r;
+}
+long long f[70],s[30],t;
+void print(long long v)
+{
+    if(!v)
+        return;
+    t=0;
+    while(v)
+    {
+        s[++t]=v%10;
+        v/=10;
+    }
+    while(t)
+    {
+        putchar(s[t]+48);
+        t--;
+    }
+    putchar(10);
+}
+long long p2=pow(2,mod-2,mod);
+int main()
+{
+    fr(i,1,60)
+        f[i]=(f[i-1]-(1ll<<i)%mod*(((1ll<<(i+1))-(1ll<<i))%mod)%mod+mod)%mod;
+    fr(T,1,read())
+    {
+        scanf("%lld",&n);
+        ans=(n%mod*((n+1)%mod)%mod*p2%mod-1+mod)%mod;
+        if(n!=1)
+        {
+            int i=int(log2(n));
+            if(i)
+                ans=(ans+f[i-1])%mod;
+            ans=(ans-(1ll<<i)%mod*((n-(1ll<<i)+1)%mod)%mod+mod)%mod;
+        }
+        print(ans*2%mod);
+    }
+    return 0;
+}
+
+```
+
+PS:
+
+* $2$ 的逆元可以打表（就可以不写快速幂了）
+* 输出优化不用写也行

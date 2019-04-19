@@ -1,0 +1,63 @@
+---
+title: 割点
+date: 2018-01-19 09:03:20
+tags:
+  - 割点
+mathjax: on
+---
+
+割点，普遍使用`tarjan`算法，复杂度大概是$O(n+e)$级别（自己瞎猜的，错了欢迎指出）
+
+[模板题](https://www.luogu.org/problemnew/show/P3388)
+
+<!--more-->
+
+学过`tarjan`的（强连通分量，`tarjan-lca` （不过没多大关系））
+
+```cpp
+#include<vector>
+#define N 100010
+int n,e,low[N],dfn[N],cnt,ans[N],l;
+//low自己和dfs子树中所有节点能追溯到的最早的节点的dfn
+//dfn dfs序
+vector<int>t[N];
+void tarjan(int x,int ir)
+//x当前节点，ir是否是root
+{
+	int c=0,p=0;
+	low[x]=dfn[x]=++cnt;
+	fr(i,0,t[x].size()-1)
+		if(dfn[t[x][i]])
+			low[x]=min(low[x],dfn[t[x][i]]);
+		else
+		{
+			c++;
+			tarjan(t[x][i],0);
+			if((ir&&c>1)||(!ir&&low[t[x][i]]==dfn[x]))
+				p=1;
+			low[x]=min(low[x],low[t[x][i]]);
+		}
+	if(p)
+		ans[++l]=x;
+}
+int main()
+{
+	n=read();
+	e=read();
+	while(e--)
+	{
+		int u=read(),v=read();
+		t[u].push_back(v);
+		t[v].push_back(u);
+	}
+	fr(i,1,n)
+		if(!dfn[i])
+			tarjan(i,1);
+	sort(ans+1,ans+l+1);
+	printf("%d\n",l);
+	fr(i,1,l)
+		printf("%d%c",ans[i],i==l?'\n':' ');
+	return 0;
+}
+```
+

@@ -1,0 +1,148 @@
+---
+title: LCT
+date: 2018-08-15 16:13:28
+tags:
+- LCT
+- splay
+mathjax: on
+---
+
+[模板地址](https://www.luogu.org/problemnew/show/P3690)
+
+<!--more-->
+
+[google上看到的](https://courses.csail.mit.edu/6.851/spring12/scribe/L19.pdf)
+
+[这篇很好啊](http://www.cnblogs.com/flashhu/p/8324551.html)
+
+[`code`](https://github.com/huhaoo/template/blob/master/LCT.cpp)
+
+如何使用：
+
+`t`为变量类型，如`int`
+
+`_size`为点集大小（编号$[1,n]$）
+
+`opt`为统计操作，如：
+
+询问链（只能询问链的）所有点权的异或值（`int`类型）：
+
+```cpp
+int opt(int a,int b){return a^b;}
+```
+
+`query`：链询问
+
+`link/cut`：连/删边
+
+`modfiy`：修改点权
+
+`clear`：初始化，$O(n)$
+
+```cpp
+#include<string.h>
+template<class t,int _size,t (*opt)(t a,t b)>
+class LCT
+{
+	private:
+	#define size (_size+1)
+		int s[size][2],rev[size],f[size],q[size],cnt;
+		t v[size],sum[size];
+	#undef size
+		int isroot(int k){return s[f[k]][0]!=k&&s[f[k]][1]!=k;}
+		int wson(int k){return s[f[k]][1]==k;}
+		void update(int k){sum[k]=opt(v[k],opt(sum[s[k][0]],sum[s[k][1]]));}
+		void reverse(int k)
+		{
+			if(rev[k])
+			{
+				rev[s[k][0]]^=1;rev[s[k][1]]^=1;rev[k]=0;
+				swap(s[k][0],s[k][1]);
+			}
+		}
+		void rorate(int k)
+		{
+			if(isroot(k))return;
+			int ff=f[k],o=wson(k);
+			if(!isroot(ff))s[f[ff]][wson(ff)]=k;
+			f[k]=f[ff];f[ff]=k;f[s[k][o^1]]=ff;
+			s[ff][o]=s[k][o^1];s[k][o^1]=ff;
+			update(ff);update(k);
+		}
+		void splay(int k)
+		{
+			int i=k;q[cnt=1]=k;
+			while(!isroot(i)){q[++cnt]=f[i];i=f[i];}
+			while(cnt){reverse(q[cnt]);cnt--;}
+			while(!isroot(k))
+			{
+				int ff=f[k];
+				if(!isroot(ff))rorate((wson(ff)==wson(k))?ff:k);
+				rorate(k);
+			}
+		}
+		void access(int k)
+		{
+			int l=0;
+			while(k)
+			{
+				splay(k);
+				s[k][1]=l;update(k);
+				l=k;k=f[k];
+			}
+		}
+		void makeroot(int k){access(k);splay(k);rev[k]^=1;}
+		int findroot(int k)
+		{
+			access(k);splay(k);reverse(k);
+			while(s[k][0])
+			{
+				k=s[k][0];
+				reverse(k);
+			}
+			return k;
+		}
+		void split(int u,int v)
+		{
+			makeroot(u);
+			access(v);
+		}
+	public:
+		t query(int u,int v)
+		{
+			split(u,v);splay(v);
+			return sum[v];
+		}
+		int link(int u,int v)
+		{
+			makeroot(u);
+			if(findroot(v)==u)return 1;
+			f[u]=v;
+			return 0;
+		}
+		//1:u,v in a tree
+		int cut(int u,int v)
+		{
+			makeroot(u);
+			if(findroot(v)!=u)return 1;
+			if(f[u]!=v||s[u][1])return 1;
+			f[u]=s[v][0]=0;
+			return 0;
+		}
+		//1:(u,v) not in E
+		void modfiy(int k,t val)
+		{
+			splay(k);v[k]=val;
+			update(k);
+		}
+	#define mem(k) memset(k,0,sizeof(k))
+		LCT()
+		{
+			mem(s);mem(rev);mem(f);mem(q);cnt=0;
+			mem(v);mem(sum);
+		}
+		void clear(){LCT();}
+	#undef mem
+};
+```
+

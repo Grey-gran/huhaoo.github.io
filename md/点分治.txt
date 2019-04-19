@@ -1,0 +1,134 @@
+---
+title: 点分治
+date: 2018-01-07 14:24:13
+tags:
+  - 点分治
+mathjax: on
+---
+
+* [模板题](https://www.luogu.org/problemnew/show/3806)
+* 数组开小，身败名裂
+
+<!--more-->
+
+>给定一棵有n个点的树
+>
+>询问树上距离为k的点对是否存在。
+
+就是找出树的重心，处理经过它的路径，并且再对它的子树这样做。
+
+说起来简单，做起来不一定（一道题花了$2$天）
+
+```cpp
+#include<vector>
+#define inf (1<<30)
+#define N 10010
+#define M 20010
+#define K 20000010
+int num[N],root,cnt,q,w[M],n,d[N],minn,v[M],beg[M],nex[M],_e,gf[N],p[N],r[N];
+//num：以某点为根的子树大小
+//root：根
+//p：判断某点是否经过过
+//r[i]：以i为根i的子树中最大的子树大小
+bool ans[K];
+#define fo(i,a) for(int i=beg[a];i;i=nex[i])
+inline void add(int u,int vv,int ww)
+{
+	_e++;
+	w[_e]=ww;
+	v[_e]=vv;
+	nex[_e]=beg[u];
+	beg[u]=_e;
+}//链式前向星加边
+int ss;
+inline void getroot(int x,int f)
+//f是父亲节点，x是当前节点
+{
+	num[x]=1;
+	fo(i,x)
+	{
+		int vv=v[i];
+		if(vv==f||p[vv])
+			continue;
+		getroot(vv,x);//递归处理它的子树
+		num[x]=num[x]+num[vv];
+		r[x]=max(r[x],num[vv]);
+	}
+	int __=max(r[x],ss-num[x]);
+	if(__<minn)
+	{
+		root=x;
+		minn=__;
+	}
+}
+inline void getd(int x,int f,int s)//得出所有进过x的长度
+//x、f同上，s是深度
+{
+	d[cnt]=s;
+	int __=cnt;
+	fo(i,x)
+	{
+		int vv=v[i],ww=w[i];
+		if(vv==f||p[vv])
+			continue;
+		cnt++;
+		if(!gf[__])
+			gf[cnt]=vv;
+		else
+			gf[cnt]=gf[__];//计算它是哪个子树里的
+		getd(vv,x,s+ww);//递归，并且深度增加
+	}
+}
+inline void calc(int x)
+//x同上
+{
+	cnt=1;
+	p[x]=1;//标记点（相当于删除）
+	getd(x,0,0);
+	fr(i,1,cnt)
+		fr(j,1,cnt)
+			if(gf[i]!=gf[j])//两条边在根的同一子树不能加入答案
+				ans[d[i]+d[j]]=1;
+	fo(i,x)
+	{
+		int vv=v[i],ww=w[i];
+		if(p[vv])
+			continue;
+		cnt=0;
+		root=0;//可以无视此行
+		minn=inf;
+		ss=r[vv];
+		root=vv;//这行也是
+		getroot(vv,x);//得到子树的根
+		calc(root);//递归处理其它路径
+	}
+}
+#include<stdlib.h>
+int main()
+{
+//	freopen("/home/huhao/Desktop/.out","w",stdout);
+	freopen("/home/huhao/Desktop/.in","r",stdin);
+	n=read();
+	q=read();
+	root=1;
+	minn=inf;
+	fr(i,1,n-1)
+	{
+		int u=read(),v=read(),w=read();
+		add(u,v,w);
+		add(v,u,w);//加边
+	}
+	ss=n;//设置开始树的大小
+	srand((unsigned long long)new char);
+	getroot(rand()%n+1,0);//防止无良出题人卡getroot(1,0)（当然是我做不出来的时候瞎想的）
+                          //得到最开始树的重心
+	calc(root);//直接处理出有哪些长度的路径
+	while(q--)
+		if(ans[read()])
+			printf("AYE\n");
+		else
+			printf("NAY\n");
+	return 0;
+}
+```
+

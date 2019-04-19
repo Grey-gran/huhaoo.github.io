@@ -1,0 +1,86 @@
+---
+title: min25
+date: 2019-03-25 16:18:04
+tags:
+- min25
+- math
+mathjax: on
+---
+
+min25可以（据说）在$O(\dfrac{n^{\frac 34}}{\log n})$（还有的说是$O(n^{1-\epsilon})$的近线性复杂度），求出满足下列条件的函数和
+
+1. $f(p)$是一个关于$p$的多项式
+2. $f(p^c)$可以简单算出
+3. $f(ab)=f(a)f(b)$
+
+（上面$p$为质数，$a,b$互质）
+
+<!--more-->
+
+下面我们记$p_i$为第$i$个质数
+
+### 快速求$\sum_{i\le n}[i\in\mathrm{prime}]i^k$
+
+我们设$g(n,i)$表示所有$j$是质数或$j$的最小质因数**大于**$p_i$的$j^k$的和
+
+如果$p_i^2\le n$有
+$$
+\begin{align}
+g(n,i)&=g(n,i-1)-p_i^k(g(\lfloor\dfrac{n}{p_i}\rfloor,i-1)-\sum_{j=1}^{i-1}p_j^k)
+\end{align}
+$$
+
+否则不能除掉任何数，即$g(n,i)=g(n,i-1)$
+
+因为$\dfrac nk​$只有$\sqrt n​$级别种取值，可以滚动数组，这怎么看复杂度都是$O(\dfrac{n^2}{\log n})​$但是据说复杂度$O(n^{0.75})​$（真玄学）
+
+代码长这样：
+
+```cpp
+for(int i=1;i<=...;i++)
+	for(int j=...;j;j--)
+		f[j]=f[j]-pow(p[i],k)*(f[j/p[i]]-sum[i-1]);
+```
+
+~~这样完美地不会修改任何不应修改的值~~
+
+但是这就是真$O(\dfrac{n^2}{\log n})​$了
+
+我们应该加个剪枝
+
+```cpp
+for(int i=1;i<=...;i++)
+	for(int j=...;j;j--)
+	{
+		if(j<p[i]*p[i])
+			break;
+		f[j]=f[j]-pow(p[i],k)*(f[j/p[i]]-sum[i-1]);
+	}
+```
+
+显然，如果$j$已经小于$p_i^2$了（即直接复制上一个，不修改），那么后面的也不可能可以修改了。
+
+这样的复杂度很玄学，我也不知道是多少。
+
+边界显然：
+$$
+\begin{align}
+f(n,0)&=\sum_{i=1}^ni^k
+\end{align}
+$$
+这可以$O(k^2)​$甚至（打表打出来系数后）$O(k)​$求出来
+
+### 快速求$\sum_{i=1}^nf(i)$
+
+仿照上面的，设$g'(n,i)$表示最小质因子**不小于**$p_i$的在$[2,n]$的数的$f$之和
+$$
+\begin{align}
+g'(n,i)&=(\sum_{j\ge i}\sum_{c\ge 1,p_j^{c+1}\le n}f(p_j^c)g'(\lfloor\dfrac{n}{p_j^c}\rfloor,j+1)+f(p_j^{c+1}))+(\sum_{p_j\le n}f(p_j)-\sum_{j=1}^{i-1}f(p_j))
+\end{align}
+$$
+前面一个括号里的是合数，后面的是质数
+
+可以递归求$g'$。
+
+最后答案是$g'(n,1)+f(1)$
+

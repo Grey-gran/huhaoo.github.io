@@ -1,0 +1,236 @@
+---
+title: 对拍shell
+date: 2018-02-11 13:39:37
+tags:
+  - linux
+  - shell
+coinmax: on
+---
+
+写了个对拍程序（shell）
+
+还行，比较美观
+
+<!--more-->
+
+先给出接口：
+
+* 两个程序源文件：
+  * `1.cpp`
+  * `2.cpp`
+* 数据生成器：
+  * `gen.cpp`
+* 文件：
+  * 不需要开
+* 错误`IO`
+  * 默认在`wrong/`里
+
+`Q&A:`
+
+* 为什么需要密码？
+
+  需要删除、复制文件，方便使用
+
+* 为什么会各种挂？
+
+  我不背锅
+
+运行截图
+
+![](对拍shell/1.png)
+
+源文件所在目录，错误程序在`wrong/`里，需要输密码
+
+![](对拍shell/2.png)
+
+`wrong/`内部截图，有每个错误`IO`
+
+![](对拍shell/3.png)
+
+```shell
+g++ gen.cpp -o gen -O2
+g++ 1.cpp -o 1 -O2
+g++ 2.cpp -o 2 -O2
+AC="\033[32m Accepted \033[0m"
+WA="\033[31m Wrong Answer \033[0m"
+WAtot=0
+ACtot=0
+num=0
+sudo rm -f wrong/*
+sudo rmdir wrong/
+sudo mkdir "wrong/"
+for i in {1..30};
+do
+	./gen>.in
+	./1<.in>.out
+	./2<.in>.ans
+	if diff .out .ans;
+	then
+		echo -e "\033[32m · Accepted on test #$i\033[0m"
+		ACtot=$(($ACtot+1))
+	else
+		num=$(($num+1))
+		echo -e "\033[31m · Wrong Answer on test #$i , the file save in /wrong/$num.(in/out/ans)\033[0m"
+		WAtot=$(($WAtot+1))
+		sudo cp -f .in wrong/$num.in
+		sudo cp -f .out wrong/$num.out
+		sudo cp -f .ans wrong/$num.ans
+	fi
+	rm .in
+	rm .out
+	rm .ans
+done
+rm 1
+rm 2
+rm gen
+echo ""
+echo ""
+echo "Counts:"
+echo -e "\033[32m · Accepted: $ACtot \033[0m"
+echo -e "\033[31m · Wrong Answer: $WAtot \033[0m"
+score=$((100*$ACtot/$(($ACtot+$WAtot))))
+Red=31
+Yel=71
+if [ $score -lt $Red ];
+then
+	echo -e "\033[31m · Score: $score \033[0m"
+elif [ $score -lt $Yel ];
+then
+	echo -e "\033[33m · Score: $score \033[0m"
+else
+	echo -e "\033[32m · Score: $score \033[0m"
+fi
+```
+
+又改了改，就不截图了。
+
+```sh
+g++ gen.cpp -o gen -O2
+g++ 1.cpp -o 1 -O2
+g++ 2.cpp -o 2 -O2
+AC="\033[32m Accepted \033[0m"
+WA="\033[31m Wrong Answer \033[0m"
+WAtot=0
+ACtot=0
+num=0
+sudo rm -f wrong/*
+sudo rmdir wrong/
+sudo mkdir "wrong/"
+for i in {1..300};
+do
+	./gen>.in
+	./1<.in>.out
+	./2<.in>.ans
+	if diff .out .ans > dif;
+	then
+		echo -e "\033[32m ✔ Accepted on test #$i\033[0m"
+		ACtot=$(($ACtot+1))
+	else
+		num=$(($num+1))
+		echo -e "\033[31m ✘ Wrong Answer on test #$i , the file save in /wrong/$num.(in/out/ans)\033[0m"
+		WAtot=$(($WAtot+1))
+		sudo cp -f .in wrong/$num.in
+		sudo cp -f .out wrong/$num.out
+		sudo cp -f .ans wrong/$num.ans
+	fi
+	rm dif
+	rm .in
+	rm .out
+	rm .ans
+done
+rm 1
+rm 2
+rm gen
+echo ""
+echo ""
+echo "Counts:"
+echo -e "\033[32m · Accepted: $ACtot \033[0m"
+echo -e "\033[31m · Wrong Answer: $WAtot \033[0m"
+score=$((100*$ACtot/$(($ACtot+$WAtot))))
+Red=31
+Yel=71
+if [ $score -lt $Red ];
+then
+	echo -e "\033[31m · Score: $score \033[0m"
+elif [ $score -lt $Yel ];
+then
+	echo -e "\033[33m · Score: $score \033[0m"
+else
+	echo -e "\033[32m · Score: $score \033[0m"
+fi
+```
+
+然后再加个读入。
+
+```sh
+g++ gen.cpp -o gen -O2
+g++ 1.cpp -o 1 -O2
+g++ 2.cpp -o 2 -O2
+AC="\033[32m Accepted \033[0m"
+WA="\033[31m Wrongdir Answer \033[0m"
+WAtot=0
+ACtot=0
+Wrongnum=0
+Wrongdir="wrong"
+echo "Please write a number means the number of executions"
+read num
+expr $num + 1 &>.check
+flag=$?
+True=0
+while [ $flag -ne $True ];
+do
+	echo "It isn't a number,please write again!"
+	read num
+	expr $num + 6 &>.check
+	flag=$?
+done
+rm .check
+sudo rm -f $Wrongdir/*
+sudo rmdir $Wrongdir/
+sudo mkdir "$Wrongdir/"
+i=1
+while [ $i -lt $(($num+1)) ];
+do 
+	./gen>.in
+	./1<.in>.out
+	./2<.in>.ans
+	if diff .out .ans > .dif;
+	then
+		echo -e "\033[32m ✔ Accepted on test #$i\033[0m"
+		ACtot=$(($ACtot+1))
+	else
+		Wrongnum=$(($Wrongnum+1))
+		echo -e "\033[31m ✘ Wrongdir Answer on test #$i , the file save in /$Wrongdir/$Wrongnum.(in/out/ans)\033[0m"
+		WAtot=$(($WAtot+1))
+		sudo cp -f .in $Wrongdir/$Wrongnum.in
+		sudo cp -f .out $Wrongdir/$Wrongnum.out
+		sudo cp -f .ans $Wrongdir/$Wrongnum.ans
+	fi
+	rm .dif
+	rm .in
+	rm .out
+	rm .ans
+	i=$(($i+1))
+done
+rm 1
+rm 2
+rm gen
+echo ""
+echo ""
+echo "Counts:"
+echo -e "\033[32m · Accepted: $ACtot \033[0m"
+echo -e "\033[31m · Wrongdir Answer: $WAtot \033[0m"
+score=$((100*$ACtot/$(($ACtot+$WAtot))))
+Red=31
+Yel=71
+if [ $score -lt $Red ];
+then
+	echo -e "\033[31m · Score: $score \033[0m"
+elif [ $score -lt $Yel ];
+then
+	echo -e "\033[33m · Score: $score \033[0m"
+else
+	echo -e "\033[32m · Score: $score \033[0m"
+fi
+```
+
