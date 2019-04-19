@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[矩阵运算]]></title>
+    <url>%2F2019%2F04%2F18%2F%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%2F</url>
+    <content type="text"><![CDATA[简单介绍一下矩阵运算。 挖个坑：矩阵逆元]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HNOI2019白兔之舞]]></title>
+    <url>%2F2019%2F04%2F18%2FHNOI2019%E7%99%BD%E5%85%94%E4%B9%8B%E8%88%9E%2F</url>
+    <content type="text"><![CDATA[题目链接 前置知识 单位根反演 多项式算法]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>HNOI</tag>
+        <tag>单位根反演</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[luogu2682]]></title>
     <url>%2F2019%2F04%2F17%2Fluogu2682%2F</url>
     <content type="text"><![CDATA[考完省选了，开始划水了QAQ 没有linux版check，只好wine check.exeQAQ]]></content>
@@ -12,19 +30,10 @@
   <entry>
     <title><![CDATA[单位根反演]]></title>
     <url>%2F2019%2F04%2F16%2F%E5%8D%95%E4%BD%8D%E6%A0%B9%E5%8F%8D%E6%BC%94%2F</url>
-    <content type="text"><![CDATA[给定$n,k,p$，求$$\begin{align}\sum_{i\equiv p(\bmod k)}{n\choose i}\tag{1}\end{align}$$]]></content>
+    <content type="text"><![CDATA[给定$n,k,p$，求 $$\begin{align}\sum_{i\equiv p(\bmod k)}{n\choose i}v^i\tag{1}\end{align}$$ 还有Ex版 给定$n,k,p$，求$$\begin{align}\sum_{i}{n\choose ki+p}g_{ki+p}\tag{Ex1}\end{align}$$ 其中$g_{i}=g_{i-1}+g_{i-2},g_{0}=g_{1}=1$ 前置知识： 单位根的性质PS：那里$\omega$打成了$w$ 矩阵运算]]></content>
       <tags>
         <tag>math</tag>
         <tag>单位根反演</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[HNOI2019鱼]]></title>
-    <url>%2F2019%2F04%2F15%2FHNOI2019%E9%B1%BC%2FHNOI2019%E9%B1%BC%2F</url>
-    <content type="text"><![CDATA[全考场就我不会]]></content>
-      <tags>
-        <tag>math</tag>
-        <tag>HNOI</tag>
       </tags>
   </entry>
   <entry>
@@ -112,8 +121,8 @@
     <url>%2F2019%2F03%2F05%2FNOI2015%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
       <tags>
-        <tag>sa</tag>
         <tag>NOI</tag>
+        <tag>sa</tag>
       </tags>
   </entry>
   <entry>
@@ -379,8 +388,8 @@
     <url>%2F2018%2F07%2F05%2FHNOI2017%E7%A4%BC%E7%89%A9%2F</url>
     <content type="text"><![CDATA[FFT巧妙啊]]></content>
       <tags>
-        <tag>FFT</tag>
         <tag>HNOI</tag>
+        <tag>FFT</tag>
       </tags>
   </entry>
   <entry>
