@@ -109,28 +109,24 @@
 
 
 
-  <meta name="description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文 我语文没上过D，请见谅，如果有人愿意帮我改改，那我万分感谢">
-<meta name="keywords" content="string,回文自动机">
+  <meta name="description" content="反正出毒瘤题的dalao都会">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回文自动机">
-<meta property="og:url" content="https://huhaoo.github.io/2019/03/12/回文自动机/index.html">
+<meta property="og:title" content="Latex入门指北">
+<meta property="og:url" content="https://huhaoo.github.io/2019/04/29/Latex入门指北/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文 我语文没上过D，请见谅，如果有人愿意帮我改改，那我万分感谢">
+<meta property="og:description" content="反正出毒瘤题的dalao都会">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/1.png">
-<meta property="og:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/2.png">
-<meta property="og:updated_time" content="2019-03-15T11:38:24.000Z">
+<meta property="og:updated_time" content="2019-04-29T06:32:29.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="回文自动机">
-<meta name="twitter:description" content="给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。  学习论文 我语文没上过D，请见谅，如果有人愿意帮我改改，那我万分感谢">
-<meta name="twitter:image" content="https://huhaoo.github.io/2019/03/12/回文自动机/回文自动机/1.png">
+<meta name="twitter:title" content="Latex入门指北">
+<meta name="twitter:description" content="反正出毒瘤题的dalao都会">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/2019/03/12/回文自动机/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2019/04/29/Latex入门指北/"/>
 
 
 
@@ -140,7 +136,7 @@
   };
 </script>
 
-  <title>回文自动机 | Huhao's blog</title>
+  <title>Latex入门指北 | Huhao's blog</title>
   
 
 
@@ -348,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/03/12/回文自动机/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/04/29/Latex入门指北/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -365,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">回文自动机
+          <h1 class="post-title" itemprop="name headline">Latex入门指北
               
             
           </h1>
@@ -391,24 +387,12 @@
                 
               
 
-              <time title="Created: 2019-03-12 20:12:40" itemprop="dateCreated datePublished" datetime="2019-03-12T20:12:40+08:00">2019-03-12</time>
+              <time title="Created: 2019-04-29 12:45:20 / Modified: 14:32:29" itemprop="dateCreated datePublished" datetime="2019-04-29T12:45:20+08:00">2019-04-29</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-15 19:38:24" itemprop="dateModified" datetime="2019-03-15T19:38:24+08:00">2019-03-15</time>
               
             
           </span>
@@ -422,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/12/回文自动机/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/12/回文自动机/" itemprop="commentCount"></span>
+                <a href="/2019/04/29/Latex入门指北/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/29/Latex入门指北/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -451,37 +435,54 @@
       
 
       
-        <blockquote>
-<p>给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。</p>
-<p>对于给你的这个字符串$s$，求所有回文子串中的最大存在值。</p>
-</blockquote>
-<p><a href="https://github.com/huhaoo/OIths/blob/master/string/PalindromicTree.pdf" target="_blank" rel="noopener">学习论文</a></p>
-<p>我语文<del>没上过D</del>，请见谅，如果有人愿意帮我改改，那我万分感谢</p>
+        <p><del>反正出毒瘤题的dalao都会</del></p>
 <a id="more"></a>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>回文树大概长这样</p>
-<p><img src="回文自动机/1.png" alt=""></p>
-<p>和其它自动机（但是它却叫『回文树』）类似的，它也是由转移边和fail组成，每个节点就是一个回文串，每个节点都可以代表所有对应它的回文子串。</p>
-<p>因为回文串长度分为奇数和偶数，我们可以像manacher那样加入<code>#</code>（但是因为这个已经很难调了，加个岂不会调死）</p>
-<p>但是我们发现建两棵树也没什么不妥吧。</p>
-<p>和其它的自动机一样，fail连向的是它的后缀，但是转移边并非单纯向后加一个字符，而是在前后各加一个相同的字符（不难理解，因为要保证存的是回文串）</p>
-<h3 id="建造"><a href="#建造" class="headerlink" title="建造"></a>建造</h3><p>我们开始是有两个节点，代表长度为$-1,0$的回文串（分别表示奇数和偶数长度），它们都是空的（也就是无代表意义），仅仅方便建造，$0$的fail指向$-1$。</p>
-<p>类似后缀自动机，我们用增量法。</p>
-<p>每次增加位置$p$，我们都从以上一个字符结尾的最长对应的节点开始，不断沿着fail走，直到那个节点对应以前一个位置为右端点的字符串两边字符相同，这里贴出论文中的那张图</p>
-<p><img src="回文自动机/2.png" alt=""></p>
-<p>我们就这么找到A，然后两边添加<code>X</code>就到了现在的回文串了（即<code>XAX</code>），很显然，这个节点就是以$p$结尾的最长回文字串对应的树上节点。（同时，这个时候长度$-1$节点优势出来了，如果没有<code>X</code>能匹配条件就是同一个位置的$s_p=s_p$，就自然得到了代表字符<code>X</code>的节点。）此时要判断一下：没有这个节点，就需要新建。</p>
-<p>然后我们连fail，从<code>A</code>出发，还是那样走，走到<code>B</code>，就是它的fail节点了。</p>
-<p>显然，这个节点是不需新建的，<code>A</code>的前$len_B$位和后$len_B$位相同，都是<code>B</code>，前$len_B​$位的两端根据回文串对应关系，都是<code>X</code>，后面被钦定了是<code>X</code>，于是这个节点<code>XBX</code>肯定已经被包含了。</p>
-<p>如果fail没匹配到，那么将它连向长度为$0​$的那个节点，显然这是可行的（因为这是所有节点的后缀）。</p>
-<h3 id="正确性证明"><a href="#正确性证明" class="headerlink" title="正确性证明"></a>正确性证明</h3><p>还是在图上</p>
-<p>增加当前字符<code>X</code>，如果<code>XAX</code>的后缀没有被包含在树中，那才是不正确的，相反如果每次增加时所有后缀都在树上就是对的</p>
-<p>然而我们找<code>XAX</code>的fail的时候，已经说明了<code>XBX</code>已经被包含在树中了</p>
-<p>同理找<code>XBX</code>的fail时会证明一个比<code>XBX</code>短的后缀在树中</p>
-<p>类似归纳法递归下去，所有回文串就都会在树中，于是这是正确的</p>
-<p>因为每次只增加一个回文串，所以这是$O(n)$的</p>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>APIO2014|luogu3649 回文串</p>
-<p>建出树来，类似后缀自动机统计出现次数即可</p>
-<p><a href="https://github.com/huhaoo/template/blob/master/%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA.cpp" target="_blank" rel="noopener"><code>code</code></a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 300010</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,t[N][<span class="number">30</span>],w[N],l[N],f[N],c,ans;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s+<span class="number">1</span>);</span><br><span class="line">	n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">	c=<span class="number">2</span>;</span><br><span class="line">	f[<span class="number">1</span>]=f[<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">	l[<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> j=<span class="number">2</span>;</span><br><span class="line">	s[<span class="number">0</span>]=<span class="string">'#'</span>;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(s[i-l[j]<span class="number">-1</span>]!=s[i])</span><br><span class="line">			j=f[j];</span><br><span class="line">		<span class="keyword">if</span>(!t[j][s[i]-<span class="string">'a'</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			c++;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> k=j;</span><br><span class="line">			l[c]=l[k]+<span class="number">2</span>;</span><br><span class="line">			k=f[k];</span><br><span class="line">			<span class="keyword">while</span>(s[i-l[k]<span class="number">-1</span>]!=s[i])</span><br><span class="line">				k=f[k];</span><br><span class="line">			f[c]=t[k][s[i]-<span class="string">'a'</span>];</span><br><span class="line">			<span class="keyword">if</span>(!f[c])</span><br><span class="line">				f[c]=<span class="number">2</span>;</span><br><span class="line">			t[j][s[i]-<span class="string">'a'</span>]=c;</span><br><span class="line">		&#125;</span><br><span class="line">		j=t[j][s[i]-<span class="string">'a'</span>];</span><br><span class="line">		w[j]++;</span><br><span class="line">	&#125;</span><br><span class="line">	fd(i,c,<span class="number">1</span>)</span><br><span class="line">		w[f[i]]+=w[i];</span><br><span class="line">	fr(i,<span class="number">1</span>,c)</span><br><span class="line">		ans=max(ans,l[i]*w[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安装-LaTeX"><a href="#安装-LaTeX" class="headerlink" title="安装 $\LaTeX$"></a>安装 $\LaTeX$</h2><p>推荐安装<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2018.iso" target="_blank" rel="noopener">Texlive</a></p>
+<p>然后建议用<code>vscode</code>来写（其它的我也不会配）</p>
+<p>然后安装一个<code>Latex workshop</code></p>
+<p>配置参考<a href="https://blog.csdn.net/autoliuweijie/article/details/80317313" target="_blank" rel="noopener">这</a></p>
+<p>把那复制到<code>setting</code>里就好了</p>
+<p>然后<code>Ctrl+Alt+B</code>编译<code>Ctrl+Alt+V</code>查看</p>
+<h2 id="简单教程"><a href="#简单教程" class="headerlink" title="简单教程"></a>简单教程</h2><p>注：下面都是给$\LaTeX$代码，具体实现不方便（懒得）截图，请自行编译</p>
+<h3 id="标题、作者、正文"><a href="#标题、作者、正文" class="headerlink" title="标题、作者、正文"></a>标题、作者、正文</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">title</span><span class="string">&#123;Title&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">author</span><span class="string">&#123;Author&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">date</span><span class="string">&#123;\today&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">maketitle</span></span></span><br><span class="line"></span><br><span class="line">Text</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>仿照这样写即可</p>
+<h3 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h3><h4 id="引入包？"><a href="#引入包？" class="headerlink" title="引入包？"></a>引入包？</h4><p>有的时候数学公式<del>不能用</del>，可能是你<del>打错了</del>没引入包</p>
+<p>具体：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;...&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="formula">$|A|<span class="tag">\<span class="name">ge</span></span> |O|$</span></span><br><span class="line"></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula">|A|<span class="tag">\<span class="name">ge</span></span> |O|</span></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="颜色大小和字体？"><a href="#颜色大小和字体？" class="headerlink" title="颜色大小和字体？"></a>颜色大小和字体？</h4><p>颜色需要引入<code>color</code>包</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;color&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">rm</span></span> <span class="tag">\<span class="name">color</span><span class="string">&#123;red&#125;</span></span><span class="tag">\<span class="name">tiny</span></span> red~tiny~word(rm)</span></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="对齐-换行"><a href="#对齐-换行" class="headerlink" title="对齐/换行"></a>对齐/换行</h4><p>需要引入<code>amsmath</code></p>
+<p>使用<code>aligned</code>即可</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;amsmath&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">begin</span><span class="string">&#123;aligned&#125;</span></span></span></span><br><span class="line"><span class="formula">    |A|<span class="tag">\<span class="name">ge</span></span>&amp; |O|<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula">    |O|<span class="tag">\<span class="name">le</span></span>&amp; |A|</span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">end</span><span class="string">&#123;aligned&#125;</span></span></span></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="引用，标号"><a href="#引用，标号" class="headerlink" title="引用，标号"></a>引用，标号</h4><p>用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;equation&#125;</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<p>代替<code>$$</code></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;amsmath&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span><span class="tag">\<span class="name">label</span><span class="string">&#123;1&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;aligned&#125;</span></span></span><br><span class="line">	|A|<span class="tag">\<span class="name">ge</span></span>&amp; |O|<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	|O|<span class="tag">\<span class="name">le</span></span>&amp; |A|</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;aligned&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">ref</span><span class="string">&#123;1&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>不出意外<code>\ref</code>会出锅，<del>并且我按照网上的编译几次修不好</del></p>
+<h4 id="cases-matrix等多行公式"><a href="#cases-matrix等多行公式" class="headerlink" title="cases,matrix等多行公式"></a>cases,matrix等多行公式</h4><p>与markdown下的略有区别</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;amsmath&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula">|x|=<span class="tag">\<span class="name">begin</span><span class="string">&#123;cases&#125;</span></span>x&amp;x&gt;0<span class="tag">\<span class="name">\</span></span>-x&amp;x<span class="tag">\<span class="name">le</span></span> 0<span class="tag">\<span class="name">end</span><span class="string">&#123;cases&#125;</span></span></span></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula">fib(n)=<span class="tag">\<span class="name">begin</span><span class="string">&#123;bmatrix&#125;</span></span>1&amp;1<span class="tag">\<span class="name">\</span></span>1&amp;0<span class="tag">\<span class="name">end</span><span class="string">&#123;bmatrix&#125;</span></span>^n<span class="tag">\<span class="name">begin</span><span class="string">&#123;bmatrix&#125;</span></span>1<span class="tag">\<span class="name">\</span></span>0<span class="tag">\<span class="name">end</span><span class="string">&#123;bmatrix&#125;</span></span>_&#123;1,1&#125;</span></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="段落，章节"><a href="#段落，章节" class="headerlink" title="段落，章节"></a>段落，章节</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;amsmath&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;C++ 怎么学&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subsection</span><span class="string">&#123;入门&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">paragraph</span><span class="string">&#123;上luogu&#125;</span></span>上面人均AKIOI</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subsection</span><span class="string">&#123;退役&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">paragraph</span><span class="string">&#123;我太菜了&#125;</span></span>觉得自己拖低luogu平均水平</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>在<code>\maketitle</code>下面加入<code>\tableofcontents</code>再编译两遍即可</p>
+<p><del>我这里编译两遍的都不行</del></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>加入<code>graphicx</code>包</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;graphicx&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">includegraphics</span><span class="string">[width = 0.9\textwidth]</span><span class="string">&#123;1.jpg&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>先说居中：<code>\centering</code></p>
+<p>这样就是将<code>1.jpg</code>缩放到页面的$0.9$倍</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;graphicx&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">centering</span></span></span><br><span class="line"><span class="tag">\<span class="name">scalebox</span><span class="string">&#123;5&#125;</span></span><span class="comment">%大小为5（自行感受）</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;|l|c|r|&#125;</span></span><span class="comment">%l是靠左 c是居中 r是靠右</span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	a&amp;b&amp;c<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	d&amp;e&amp;f<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><p>一行多列：<code>\multicolumn{}{}{}</code></p>
+<p>如：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;graphicx&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">centering</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;|l|c|r|&#125;</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	<span class="tag">\<span class="name">multicolumn</span><span class="string">&#123;2&#125;</span><span class="string">&#123;|c|&#125;</span><span class="string">&#123;ab&#125;</span></span>&amp;c<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	d&amp;e&amp;f<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>一列多行：<code>multirow{}*{}</code></p>
+<p>如果用<code>hilne</code>会一整条先穿过文字，可以用<code>\cilne{start-end}</code></p>
+<p>下面就用<code>~</code>填充</p>
+<p>如：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;multirow&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">centering</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;|l|c|r|&#125;</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	<span class="tag">\<span class="name">multirow</span><span class="string">&#123;2&#125;</span></span>*&#123;ad&#125;&amp;b&amp;c<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">cline</span><span class="string">&#123;2-3&#125;</span></span></span><br><span class="line">	~&amp;e&amp;f<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	g&amp;h&amp;i<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>多行多列：把它们套起来即可</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;multirow&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">centering</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;|l|c|r|&#125;</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	<span class="tag">\<span class="name">multicolumn</span><span class="string">&#123;2&#125;</span><span class="string">&#123;|c|&#125;</span><span class="string">&#123;\multirow&#123;2&#125;</span></span>*&#123;abde&#125;&#125;&amp;c<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">cline</span><span class="string">&#123;3-3&#125;</span></span></span><br><span class="line">	<span class="tag">\<span class="name">multicolumn</span><span class="string">&#123;2&#125;</span><span class="string">&#123;|c|&#125;</span><span class="string">&#123;~&#125;</span></span>&amp;f<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line">	g&amp;h&amp;i<span class="tag">\<span class="name">\</span></span></span><br><span class="line">	<span class="tag">\<span class="name">hline</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="首行缩进"><a href="#首行缩进" class="headerlink" title="首行缩进"></a>首行缩进</h3><p>似乎自带了</p>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><p><code>\clearpage</code>即可</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[UTF8]</span><span class="string">&#123;ctexart&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;multirow&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">Page 1</span><br><span class="line"><span class="tag">\<span class="name">clearpage</span></span></span><br><span class="line">Page 2</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -499,14 +500,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/string/" rel="tag"># string</a>
-          
-            <a href="/tags/回文自动机/" rel="tag"># 回文自动机</a>
-          
-        </div>
       
 
       
@@ -529,8 +522,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/杜教筛rewrite/" rel="next" title="杜教筛">
-                <i class="fa fa-chevron-left"></i> 杜教筛
+              <a href="/2019/04/18/矩阵运算/" rel="next" title="矩阵运算">
+                <i class="fa fa-chevron-left"></i> 矩阵运算
               </a>
             
           </div>
@@ -538,10 +531,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/14/多项式算法合集/" rel="prev" title="多项式算法合集">
-                多项式算法合集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -866,7 +855,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建造"><span class="nav-number">2.</span> <span class="nav-text">建造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正确性证明"><span class="nav-number">3.</span> <span class="nav-text">正确性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题"><span class="nav-number">4.</span> <span class="nav-text">例题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-LaTeX"><span class="nav-number">1.</span> <span class="nav-text">安装 $\LaTeX$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单教程"><span class="nav-number">2.</span> <span class="nav-text">简单教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题、作者、正文"><span class="nav-number">2.1.</span> <span class="nav-text">标题、作者、正文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学公式"><span class="nav-number">2.2.</span> <span class="nav-text">数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入包？"><span class="nav-number">2.2.1.</span> <span class="nav-text">引入包？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色大小和字体？"><span class="nav-number">2.2.3.</span> <span class="nav-text">颜色大小和字体？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐-换行"><span class="nav-number">2.2.4.</span> <span class="nav-text">对齐/换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用，标号"><span class="nav-number">2.2.5.</span> <span class="nav-text">引用，标号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cases-matrix等多行公式"><span class="nav-number">2.2.6.</span> <span class="nav-text">cases,matrix等多行公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段落，章节"><span class="nav-number">2.3.</span> <span class="nav-text">段落，章节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">2.4.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片"><span class="nav-number">2.5.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">2.6.</span> <span class="nav-text">表格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并"><span class="nav-number">2.6.1.</span> <span class="nav-text">合并</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首行缩进"><span class="nav-number">2.7.</span> <span class="nav-text">首行缩进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">2.8.</span> <span class="nav-text">分页</span></a></li></ol></li></ol></div>
             
 
           </div>

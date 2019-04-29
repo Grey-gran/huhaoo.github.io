@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Latex入门指北]]></title>
+    <url>%2F2019%2F04%2F29%2FLatex%E5%85%A5%E9%97%A8%E6%8C%87%E5%8C%97%2F</url>
+    <content type="text"><![CDATA[反正出毒瘤题的dalao都会]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[矩阵运算]]></title>
     <url>%2F2019%2F04%2F18%2F%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97%2F</url>
     <content type="text"><![CDATA[简单介绍一下矩阵运算。 挖个坑：矩阵逆元]]></content>
@@ -388,8 +393,8 @@
     <url>%2F2018%2F07%2F05%2FHNOI2017%E7%A4%BC%E7%89%A9%2F</url>
     <content type="text"><![CDATA[FFT巧妙啊]]></content>
       <tags>
-        <tag>HNOI</tag>
         <tag>FFT</tag>
+        <tag>HNOI</tag>
       </tags>
   </entry>
   <entry>
