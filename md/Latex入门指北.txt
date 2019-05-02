@@ -1,0 +1,306 @@
+---
+title: Latex入门指北
+date: 2019-04-29 12:45:20
+mathjax: on
+---
+
+~~反正出毒瘤题的dalao都会~~
+
+<!--more-->
+
+## 安装 $\LaTeX$
+
+推荐安装[Texlive](https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2018.iso)
+
+然后建议用`vscode`来写（其它的我也不会配）
+
+然后安装一个`Latex workshop`
+
+配置参考[这](https://blog.csdn.net/autoliuweijie/article/details/80317313)
+
+把那复制到`setting`里就好了
+
+然后`Ctrl+Alt+B`编译`Ctrl+Alt+V`查看
+
+## 简单教程
+
+注：下面都是给$\LaTeX$代码，具体实现不方便（懒得）截图，请自行编译
+
+### 标题、作者、正文
+
+```tex
+\documentclass[UTF8]{ctexart}
+\begin{document}
+\title{Title}
+\author{Author}
+\date{\today}
+\maketitle
+
+Text
+
+\end{document}
+```
+
+仿照这样写即可
+
+### 数学公式
+
+#### 引入包？
+
+有的时候数学公式~~不能用~~，可能是你~~打错了~~没引入包
+
+具体：
+
+```tex
+\usepackage{...}
+```
+
+#### 使用
+
+```tex
+\documentclass[UTF8]{ctexart}
+\begin{document}
+
+$|A|\ge |O|$
+
+$$
+|A|\ge |O|
+$$
+
+\end{document}
+```
+
+#### 颜色大小和字体？
+
+颜色需要引入`color`包
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{color}
+\begin{document}
+
+$$
+\rm \color{red}\tiny red~tiny~word(rm)
+$$
+
+\end{document}
+```
+
+#### 对齐/换行
+
+需要引入`amsmath`
+
+使用`aligned`即可
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\begin{document}
+
+$$
+\begin{aligned}
+    |A|\ge& |O|\\
+    |O|\le& |A|
+\end{aligned}
+$$
+
+\end{document}
+```
+
+#### 引用，标号
+
+用
+
+```
+\begin{equation}
+\end{equation}
+```
+
+代替`$$`
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\begin{document}
+
+\begin{equation}\label{1}
+\begin{aligned}
+	|A|\ge& |O|\\
+	|O|\le& |A|
+\end{aligned}
+\end{equation}
+
+\ref{1}
+
+\end{document}
+```
+
+不出意外`\ref`会出锅，~~并且我按照网上的编译几次修不好~~
+
+#### cases,matrix等多行公式
+
+与markdown下的略有区别
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\begin{document}
+
+$$
+|x|=\begin{cases}x&x>0\\-x&x\le 0\end{cases}
+$$
+
+$$
+fib(n)=\begin{bmatrix}1&1\\1&0\end{bmatrix}^n\begin{bmatrix}1\\0\end{bmatrix}_{1,1}
+$$
+
+\end{document}
+```
+
+### 段落，章节
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section{C++ 怎么学}
+
+\subsection{入门}
+
+\paragraph{上luogu}上面人均AKIOI
+
+\subsection{退役}
+
+\paragraph{我太菜了}觉得自己拖低luogu平均水平
+
+\end{document}
+```
+
+### 目录
+
+在`\maketitle`下面加入`\tableofcontents`再编译两遍即可
+
+~~我这里编译两遍的都不行~~
+
+### 图片
+
+加入`graphicx`包
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+
+\begin{document}
+\includegraphics[width = 0.9\textwidth]{1.jpg}
+\end{document}
+```
+
+### 表格
+
+先说居中：`\centering`
+
+这样就是将`1.jpg`缩放到页面的$0.9$倍
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\begin{document}
+\centering
+\scalebox{5}%大小为5（自行感受）
+{
+\begin{tabular}{|l|c|r|}%l是靠左 c是居中 r是靠右
+	\hline
+	a&b&c\\
+	\hline
+	d&e&f\\
+	\hline
+\end{tabular}
+}
+\end{document}
+```
+
+#### 合并
+
+一行多列：`\multicolumn{}{}{}`
+
+如：
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\begin{document}
+\centering
+\begin{tabular}{|l|c|r|}
+	\hline
+	\multicolumn{2}{|c|}{ab}&c\\
+	\hline
+	d&e&f\\
+	\hline
+\end{tabular}
+\end{document}
+```
+
+一列多行：`multirow{}*{}`
+
+如果用`hilne`会一整条先穿过文字，可以用`\cilne{start-end}`
+
+下面就用`~`填充
+
+如：
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{multirow}
+\begin{document}
+\centering
+\begin{tabular}{|l|c|r|}
+	\hline
+	\multirow{2}*{ad}&b&c\\
+	\cline{2-3}
+	~&e&f\\
+	\hline
+	g&h&i\\
+	\hline
+\end{tabular}
+\end{document}
+```
+
+多行多列：把它们套起来即可
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{multirow}
+\begin{document}
+\centering
+\begin{tabular}{|l|c|r|}
+	\hline
+	\multicolumn{2}{|c|}{\multirow{2}*{abde}}&c\\
+	\cline{3-3}
+	\multicolumn{2}{|c|}{~}&f\\
+	\hline
+	g&h&i\\
+	\hline
+\end{tabular}
+\end{document}
+```
+
+### 首行缩进
+
+似乎自带了
+
+### 分页
+
+`\clearpage`即可
+
+```tex
+\documentclass[UTF8]{ctexart}
+\usepackage{multirow}
+\begin{document}
+Page 1
+\clearpage
+Page 2
+\end{document}
+```
+

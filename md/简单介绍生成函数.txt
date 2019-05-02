@@ -1,0 +1,162 @@
+---
+title: 简单介绍生成函数
+date: 2019-04-30 11:16:42
+tags:
+- math
+- 生成函数
+mathjax: on
+---
+
+生成函数长$F(x)=\sum_{i\ge 0}f_ix^i$这样（不过因为一般数列没有负下标，似乎一般不写$\ge 0$也没什么不好）
+
+然后乘以$C$就是每一项$\times C$，乘以$x^k$就是$[0,k)$位填$0$，其他向高位移$k$位
+
+乘以一个生成函数就是求卷积，没什么好解释的。
+
+把生成函数变回数列就是多项式算法了，似乎都是$O(n\log n)$的
+
+通常就是列个方程解出生成函数
+
+就~~（只）~~介绍一下fib和卡特兰的生成函数吧。
+
+<!--more-->
+
+### 斐波那切数列
+
+递推式是$fib_i=fib_{i-1}+fib_{i-2},fib_{1}=1,fib_{0}=0$
+
+考虑生成函数$F(x)=\sum_{i}fib_ix^i$
+
+发现
+
+$$
+F(x)-xF(x)-x^2F(x)=x
+$$
+
+于是
+
+$$
+F(x)=\dfrac{x}{1-x-x^2}
+$$
+
+于是做完了？但这没用啊！
+
+发现形式比较简单，试试继续化简
+
+考虑把它拆开
+
+$$
+F(x)=\dfrac{a}{1-cx}+\dfrac{b}{1-dx}\\
+$$
+
+列出方程
+
+$$
+\begin{cases}
+a+b=0\\
+ad+bc=-1\\
+cd=-1\\
+-c-d=-1
+\end{cases}
+$$
+
+就有
+
+$$
+c=-\dfrac{-1\pm\sqrt 5}{2},d=-\dfrac{-1\mp\sqrt 5}{2}
+$$
+
+~~我们随机取一个，就取正的吧~~
+
+$$
+c=-\dfrac{-1+\sqrt 5}{2},d=-\dfrac{-1-\sqrt 5}{2}
+$$
+
+然后就有
+
+$$
+a+b=0,-(-1-\sqrt{5})a-(-1+\sqrt 5)b=-2
+$$
+
+所以
+$$
+a=-\dfrac{1}{\sqrt 5},b=\dfrac{1}{\sqrt 5}
+$$
+
+带回去：
+
+$$
+F(x)=\dfrac{-\frac{1}{\sqrt{5}}}{1-\frac{1-\sqrt{5}}{2}x}+\dfrac{\frac{1}{\sqrt{5}}}{1-\frac{1+\sqrt{5}}{2}x}
+$$
+
+又因为
+
+$$
+\dfrac{1}{1-cx}=\sum_{i}c^ix^i
+$$
+
+所以
+
+$$
+\begin{align}
+fib_n=[x^n]F(x)=&-\dfrac{1}{\sqrt{5}}(\dfrac{1-\sqrt{5}}{2})^n+\dfrac{1}{\sqrt{5}}(\dfrac{1+\sqrt{5}}{2})^n\notag\\
+=&\dfrac{1}{\sqrt{5}}((\dfrac{1+\sqrt{5}}{2})^n-(\dfrac{1-\sqrt{5}}{2})^n)\notag
+\end{align}
+$$
+
+### 卡特兰数
+
+递推式是：$c_1=1,c_i=\sum_{i}c_ic_{n-i-1}$
+
+如果记$c'_i=c_{i-1}$，所以$c'_n=c_{n-1}=\sum_{i}c_{i}c_{n-2-i}=\sum_{i}c'_{i+1}c'_{n-1-i}=\sum_{i}c'_ic'_{n-i}$
+
+记$C(x)=\sum_{i}c_ix^i$
+
+然后（根据上面）发现
+
+$$
+C(x)-C^2(x)=x
+$$
+
+于是
+
+$$
+\begin{align}
+C^2(x)-C(x)+x=&0\notag\\
+C(x)=&\dfrac{1\pm\sqrt{1-4x}}{2}\notag
+\end{align}
+$$
+
+经过检验，需要取$-$
+
+然后求出来的序列就是$c_{i-1}$的序列了
+
+这次（在不使用其它奇奇怪怪的式子的情况下）是真的没下文了，因为`sqrt`实在不好处理
+
+但是多项式太难打了！
+
+只好考虑化简。
+
+根据广义二项式定理
+
+$$
+\begin{align}
+(1-4x)^{0.5}=&\sum_{i=0}^{\infty}{0.5\choose i}(-4x)^i\notag\\
+=&\sum_{i=0}^{\infty}\dfrac{\prod_{j=0}^{i-1}0.5-j}{i!}(-4x)^i\notag\\
+=&1-\sum_{i=1}^{\infty}\dfrac{\prod_{j=0}^{i-2}(1+2j)}{i!}(2x)^i\notag\\
+=&1-\sum_{i=1}^{\infty}\dfrac{\prod_{j=0}^{i-2}(1+2j)}{i!}(\prod_{j=1}^{i-1}\dfrac{2j}{j})2x^i\notag\\
+=&1-\sum_{i=1}^{\infty}\dfrac{(2i-2)!}{i!(i-1)!}2x^i\notag\\
+C(x)=&\dfrac{1-(1-4x)^{0.5}}{2}\notag\\
+=&\sum_{i=1}^{\infty}\dfrac{(2i-2)!}{i!(i-1)!}x^i\notag\\
+=&\sum_{i=0}^{\infty}\dfrac{(2i)!}{(i+1)!i!}x^{i+1}\notag\\
+=&\sum_{i=0}^{\infty}{2i\choose i}\dfrac{1}{i+1}x^{i+1}\notag
+\end{align}
+$$
+
+（要变为$\sum x^i$的形式也行，但是$x^{i+1}$才对应$c_i$）
+
+于是
+
+$$
+c_i=\dfrac{2i\choose i}{i+1}
+$$

@@ -1,0 +1,19 @@
+---
+title: 广义二项式定理
+date: 2019-05-02 14:57:11
+tags:
+- math
+mathjax: on
+---
+
+就长成
+
+$$
+(x+y)^a=\sum_{i=0}^{\infty}{a\choose i}x^{a-i}y^a
+$$
+
+其中
+
+$$
+{a\choose i}=\dfrac{\prod_{j=0}^{i-1}a-j}{i!}
+$$

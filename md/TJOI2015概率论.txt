@@ -1,0 +1,82 @@
+---
+title: TJOI2015概率论
+date: 2019-04-30 10:46:34
+tags:
+- TJOI
+- 生成函数
+- math
+mathjax: on
+---
+
+问有$n$个节点的有根二叉树的期望叶子数
+
+<!--more-->
+
+考虑DP的式子，发现直接记期望不好，记$c_i,f_i$表示对于所有树对$1$/叶子数求和的结果
+
+$$
+\begin{align}
+c_i=&\sum_{j=0}^{i-1}c_jc_{i-1-j}\notag\\
+f_i=&\sum_{j=0}^{i-1}f_jc_{i-1-j}+c_jf_{i-1-j}\notag
+\end{align}
+$$
+
+考虑使用生成函数，发现右移一位后方便表示一些，于是记
+
+$$
+\begin{align}
+C(x)=\sum_{i}c_{i-1}x^i\notag\\
+F(x)=\sum_{i}f_{i-1}x^i\notag
+\end{align}
+$$
+
+有
+
+$$
+\begin{align}
+C(x)-C^2(x)=x&\notag\\
+F(x)-2F(x)C(x)=&x^2\notag
+\end{align}
+$$
+
+得到
+
+$$
+C(x)=\dfrac{1-\sqrt{1-4x}}{2}
+$$
+
+（另外一个根不符合）
+
+然后就可以得$F$了
+
+$$
+\begin{align}
+F(x)=&\dfrac{x^2}{1-2C(x)}\notag\\
+=&\dfrac{x^2}{1-(1-\sqrt{1-4x})}\notag\\
+=&\dfrac{x^2}{\sqrt{1-4x}}\notag
+\end{align}
+$$
+
+用广义二项式定理展开
+
+$$
+\begin{align}
+F(x)=&x^{2}\sqrt{1-4x}^{-0.5}\notag\\
+=&x^2\sum_{i=0}^{\infty}{-0.5\choose i}(-4x)^i\notag\\
+=&x^2\sum_{i=0}^{\infty}\dfrac{1}{i!}(\prod_{j=0}^{i-1}2j+1)(\prod_{j=1}^{i}\dfrac{2j}{j}x^i)\notag\\
+=&x^2\sum_{i=0}^{\infty}\dfrac{(2i)!}{i!i!}x^i\notag\\
+=&\sum_{i=0}^{\infty}{2i\choose i}x^{i+2}\notag\\
+=&\sum_{i=2}^{\infty}{2i-4\choose i-2}x^i\notag
+\end{align}
+$$
+
+于是
+
+$$
+\begin{align}
+ans_i=&\dfrac{[x^{i+1}]F(x)}{[x^{i+1}]C(x)}\notag\\
+=&\dfrac{2i-2\choose i-1}{\frac{2i\choose i}{i-1}}\notag\\
+=&\dfrac{(2i-2)!i!i!(i+1)}{(2i)!(i-1)!(i-1)!}\notag\\
+=&\dfrac{i(i+1)}{2(2i-1)}\notag
+\end{align}
+$$
