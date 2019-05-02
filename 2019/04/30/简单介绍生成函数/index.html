@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="生成函数长$F(x)=\sum_{i\ge 0}f_ix^i$这样（不过因为一般数列没有负下标，似乎一般不写$\ge 0$也没什么不好） 然后乘以$C$就是每一项$\times C$，乘以$x^k$就是$[0,k)$位填$0$，其他向高位移$k$位 乘以一个生成函数就是求卷积，没什么好解释的。 把生成函数变回数列就是多项式算法了，似乎都是$O(n\log n)$的 通常就是列个方程解出生成函数 就">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-02T07:57:12.923Z">
+<meta property="og:updated_time" content="2019-05-02T08:50:33.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单介绍生成函数">
 <meta name="twitter:description" content="生成函数长$F(x)=\sum_{i\ge 0}f_ix^i$这样（不过因为一般数列没有负下标，似乎一般不写$\ge 0$也没什么不好） 然后乘以$C$就是每一项$\times C$，乘以$x^k$就是$[0,k)$位填$0$，其他向高位移$k$位 乘以一个生成函数就是求卷积，没什么好解释的。 把生成函数变回数列就是多项式算法了，似乎都是$O(n\log n)$的 通常就是列个方程解出生成函数 就">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-02 15:57:12" itemprop="dateModified" datetime="2019-05-02T15:57:12+08:00">2019-05-02</time>
+                <time title="Modified: 2019-05-02 16:50:33" itemprop="dateModified" datetime="2019-05-02T16:50:33+08:00">2019-05-02</time>
               
             
           </span>
@@ -479,7 +479,7 @@
 <p>又因为</p>
 <p>$$<br>\dfrac{1}{1-cx}=\sum_{i}c^ix^i<br>$$</p>
 <p>所以</p>
-<p>$$<br>\begin{align}<br>fib_n=[x^n]F(x)=&amp;-\dfrac{1}{\sqrt{5}}(\dfrac{1-\sqrt{5}}{2})^n+\dfrac{1}{\sqrt{5}}(\dfrac{1+\sqrt{5}}{2})^n\notag\\<br>=&amp;\dfrac{1}{\sqrt{5}}((\dfrac{1+\sqrt{5}}{2})^n-(\dfrac{1-\sqrt{5}}{2})^n)<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>fib_n=[x^n]F(x)=&amp;-\dfrac{1}{\sqrt{5}}(\dfrac{1-\sqrt{5}}{2})^n+\dfrac{1}{\sqrt{5}}(\dfrac{1+\sqrt{5}}{2})^n\notag\\<br>=&amp;\dfrac{1}{\sqrt{5}}((\dfrac{1+\sqrt{5}}{2})^n-(\dfrac{1-\sqrt{5}}{2})^n)\notag<br>\end{align}<br>$$</p>
 <h3 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h3><p>递推式是：$c_1=1,c_i=\sum_{i}c_ic_{n-i-1}$</p>
 <p>如果记$c’_i=c_{i-1}$，所以$c’_n=c_{n-1}=\sum_{i}c_{i}c_{n-2-i}=\sum_{i}c’_{i+1}c’_{n-1-i}=\sum_{i}c’_ic’_{n-i}$</p>
 <p>记$C(x)=\sum_{i}c_ix^i$</p>
@@ -493,7 +493,7 @@
 <p>但是多项式太难打了！</p>
 <p>只好考虑化简。</p>
 <p>根据广义二项式定理</p>
-<p>$$<br>\begin{align}<br>(1-4x)^{0.5}=&amp;\sum_{i=0}^{\infty}{0.5\choose i}(-4x)^i\notag\\<br>=&amp;\sum_{i=0}^{\infty}\dfrac{\prod_{j=0}^{i-1}0.5-j}{i!}(-4x)^i\notag\\<br>=&amp;1-\sum_{i=1}^{\infty}\dfrac{\prod_{j=0}^{i-2}(1+2j)}{i!}(2x)^i\notag\\<br>=&amp;1-\sum_{i=1}^{\infty}\dfrac{\prod_{j=0}^{i-2}(1+2j)}{i!}(\prod_{j=1}^{i-1}\dfrac{2j}{j})2x^i\notag\\<br>=&amp;1-\sum_{i=1}^{\infty}\dfrac{(2i-2)!}{i!(i-1)!}2x^i\notag\\<br>C(x)=&amp;\dfrac{1-(1-4x)^{0.5}}{2}\notag\\<br>=&amp;\sum_{i=1}^{\infty}\dfrac{(2i-2)!}{i!(i-1)!}x^i\\<br>=&amp;\sum_{i=0}^{\infty}\dfrac{(2i)!}{(i+1)!i!}x^{i+1}\\<br>=&amp;\sum_{i=0}^{\infty}{2i\choose i}\dfrac{1}{i+1}x^{i+1}<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>(1-4x)^{0.5}=&amp;\sum_{i=0}^{\infty}{0.5\choose i}(-4x)^i\notag\\<br>=&amp;\sum_{i=0}^{\infty}\dfrac{\prod_{j=0}^{i-1}0.5-j}{i!}(-4x)^i\notag\\<br>=&amp;1-\sum_{i=1}^{\infty}\dfrac{\prod_{j=0}^{i-2}(1+2j)}{i!}(2x)^i\notag\\<br>=&amp;1-\sum_{i=1}^{\infty}\dfrac{\prod_{j=0}^{i-2}(1+2j)}{i!}(\prod_{j=1}^{i-1}\dfrac{2j}{j})2x^i\notag\\<br>=&amp;1-\sum_{i=1}^{\infty}\dfrac{(2i-2)!}{i!(i-1)!}2x^i\notag\\<br>C(x)=&amp;\dfrac{1-(1-4x)^{0.5}}{2}\notag\\<br>=&amp;\sum_{i=1}^{\infty}\dfrac{(2i-2)!}{i!(i-1)!}x^i\notag\\<br>=&amp;\sum_{i=0}^{\infty}\dfrac{(2i)!}{(i+1)!i!}x^{i+1}\notag\\<br>=&amp;\sum_{i=0}^{\infty}{2i\choose i}\dfrac{1}{i+1}x^{i+1}\notag<br>\end{align}<br>$$</p>
 <p>（要变为$\sum x^i$的形式也行，但是$x^{i+1}$才对应$c_i$）</p>
 <p>于是</p>
 <p>$$<br>c_i=\dfrac{2i\choose i}{i+1}<br>$$</p>
