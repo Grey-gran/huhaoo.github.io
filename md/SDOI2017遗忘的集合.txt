@@ -1,0 +1,50 @@
+---
+title: SDOI2017遗忘的集合
+date: 2019-05-03 13:55:54
+tags:
+- math
+- 生成函数
+mathjax: on
+---
+
+给出$n$个数，第$i$个表示要求的集合组成$i$的方案数
+
+求这个集合（优先元素个数最少，其次是字典序）
+
+<!--more-->
+
+因为
+
+$$
+\begin{align}
+&\sum_{i}f_ix^i\notag\\
+=&\prod_{i\in S}\sum_{j}x^{ij}\notag\\
+=&\prod_{i\in S}\dfrac{1}{1-x^i}\notag
+\end{align}
+$$
+
+所以
+
+$$
+\begin{align}
+\dfrac{1}{\sum_if_ix^i}=&\prod_{i\in S}(1-x^i)\notag\\
+=&\prod_{i}(1-x^i)^{s_i}\notag\\
+-\ln(\sum_i f_ix^i)=&\sum_i s_i\ln(1-x^i)\notag
+\end{align}
+$$
+
+再来操作一波
+
+$$
+\begin{align}
+-\ln(\sum_i f_ix^i)=&\int(\sum_is_i\ln(1-x^i))'\mathrm dx\notag\\
+=&\int(\sum_is_i\dfrac{-ix^{i-1}}{(1-x^i)})\mathrm dx\notag\\
+=&\int(\sum_i-s_ii\sum_jx^{ij+i-1})\mathrm dx\notag\\
+=&\sum_i-s_ii\sum_j\dfrac{x^{ij+i}}{ij+i}\notag\\
+=&\sum_i-s_i\sum_{j}\dfrac{x^{ij+i}}{j+1}\notag\\
+=&\sum_i-s_i\sum_{j}\dfrac{x^{ij}}{j}\notag\\
+=&\sum_i-s_i\sum_{j,i|j}\dfrac{x^j}{\frac{j}{i}}\notag\\
+=&-\sum_j\dfrac{x^j}{j}\sum_{i,i|j}s_ii\notag\\
+[x^a]\sum_{j}x^j\sum_{i,i|j}s_ii=&[x^a]j\ln(\sum_i f_ix^i)\notag
+\end{align}
+$$

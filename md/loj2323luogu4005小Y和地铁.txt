@@ -9,7 +9,7 @@ tags:
 mathjax: on
 ---
 
-`thkkkdalao`太强了！
+$ $
 
 <!--more-->
 

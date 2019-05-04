@@ -8,7 +8,7 @@ tags:
 mathjax: on
 ---
 
-被`thkkk dalao`因为某个原因让我来做这道题（我才不会告诉你我没有项链呢）
+$ $
 
 <!--more-->
 

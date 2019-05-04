@@ -1,0 +1,24 @@
+---
+title: 求导公式
+date: 2019-05-03 16:04:19
+tags:
+- math
+mathjax: on
+---
+
+记一下，方便找。
+
+<!--more-->
+
+$$
+\begin{align}
+(x^a)'=&ax^{a-1}\notag\\
+\ln'x=&\dfrac{1}{x}\notag\\
+\mathrm e^x=&\mathrm e^x\notag\\
+(Cf(x))'=&Cf'(x)\notag\\
+(f(x)\pm g(x))'=&f'(x)\pm g'(x)\notag\\
+(f(x)g(x))'=&f'(x)g(x)+f(x)g'(x)\notag\\
+(\dfrac{f(x)}{g(x)})'=&\dfrac{f'(x)g(x)-f(x)g'(x)}{g^2(x)}\notag\\
+(f(g(x)))'=&f'(g(x))g'(x)\notag
+\end{align}
+$$
