@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[luogu4389付公主的背包]]></title>
+    <url>%2F2019%2F05%2F05%2Fluogu4389%E4%BB%98%E5%85%AC%E4%B8%BB%E7%9A%84%E8%83%8C%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[求导公式]]></title>
     <url>%2F2019%2F05%2F03%2F%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[记一下，方便找。]]></content>

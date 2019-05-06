@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="生成函数长$F(x)=\sum_{i\ge 0}f_ix^i$这样（不过因为一般数列没有负下标，似乎一般不写$\ge 0$也没什么不好） 然后乘以$C$就是每一项$\times C$，乘以$x^k$就是$[0,k)$位填$0$，其他向高位移$k$位 乘以一个生成函数就是求卷积，没什么好解释的。 把生成函数变回数列就是多项式算法了，似乎都是$O(n\log n)$的 通常就是列个方程解出生成函数 就">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-02T08:50:33.138Z">
+<meta property="og:updated_time" content="2019-05-05T07:27:01.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单介绍生成函数">
 <meta name="twitter:description" content="生成函数长$F(x)=\sum_{i\ge 0}f_ix^i$这样（不过因为一般数列没有负下标，似乎一般不写$\ge 0$也没什么不好） 然后乘以$C$就是每一项$\times C$，乘以$x^k$就是$[0,k)$位填$0$，其他向高位移$k$位 乘以一个生成函数就是求卷积，没什么好解释的。 把生成函数变回数列就是多项式算法了，似乎都是$O(n\log n)$的 通常就是列个方程解出生成函数 就">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-02 16:50:33" itemprop="dateModified" datetime="2019-05-02T16:50:33+08:00">2019-05-02</time>
+                <time title="Modified: 2019-05-05 15:27:01" itemprop="dateModified" datetime="2019-05-05T15:27:01+08:00">2019-05-05</time>
               
             
           </span>
@@ -487,7 +487,7 @@
 <p>$$<br>C(x)-C^2(x)=x<br>$$</p>
 <p>于是</p>
 <p>$$<br>\begin{align}<br>C^2(x)-C(x)+x=&amp;0\notag\\<br>C(x)=&amp;\dfrac{1\pm\sqrt{1-4x}}{2}\notag<br>\end{align}<br>$$</p>
-<p>经过检验，需要取$-$</p>
+<p>经过检验（带入$F(0)$取值为$f_0$的那一个，如果出现$\dfrac00$之类的，就取$\lim_{x\rightarrow 0}F(x)$），需要取$-$</p>
 <p>然后求出来的序列就是$c_{i-1}$的序列了</p>
 <p>这次（在不使用其它奇奇怪怪的式子的情况下）是真的没下文了，因为<code>sqrt</code>实在不好处理</p>
 <p>但是多项式太难打了！</p>
@@ -634,7 +634,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
