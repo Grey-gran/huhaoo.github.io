@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[luogu4931情侣？给我烧了！]]></title>
+    <url>%2F2019%2F05%2F07%2Fluogu4931%2F</url>
+    <content type="text"><![CDATA[求$1 \dots 2n$的所有排列中恰有$k$组$2k-1,2k$相邻的方案数]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[luogu4389付公主的背包]]></title>
     <url>%2F2019%2F05%2F05%2Fluogu4389%E4%BB%98%E5%85%AC%E4%B8%BB%E7%9A%84%E8%83%8C%E5%8C%85%2F</url>
     <content type="text"><![CDATA[求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。]]></content>
@@ -49,8 +57,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>生成函数</tag>
         <tag>TJOI</tag>
+        <tag>生成函数</tag>
       </tags>
   </entry>
   <entry>
@@ -703,8 +711,8 @@
     <url>%2F2018%2F01%2F07%2Floj2323luogu4005%E5%B0%8FY%E5%92%8C%E5%9C%B0%E9%93%81%2F</url>
     <content type="text"><![CDATA[$ $]]></content>
       <tags>
-        <tag>loj</tag>
         <tag>luogu</tag>
+        <tag>loj</tag>
         <tag>清华集训</tag>
         <tag>搜索</tag>
       </tags>
@@ -731,8 +739,8 @@
     <content type="text"><![CDATA[给定点的连边情况，求字典序最小的中序遍历 Sample Input 1234543 2 3 41 11 11 1 Output 12 1 3 4]]></content>
       <tags>
         <tag>DP</tag>
-        <tag>loj</tag>
         <tag>luogu</tag>
+        <tag>loj</tag>
         <tag>清华集训</tag>
         <tag>贪心</tag>
       </tags>
