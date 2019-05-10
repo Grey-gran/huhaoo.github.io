@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。">
+<meta name="keywords" content="math,生成函数,luogu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="luogu4389付公主的背包">
+<meta property="og:url" content="https://huhaoo.github.io/2019/05/05/luogu4389/index.html">
+<meta property="og:site_name" content="Huhao&#39;s blog">
+<meta property="og:description" content="求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-09T05:59:47.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="luogu4389付公主的背包">
+<meta name="twitter:description" content="求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://huhaoo.github.io/2019/05/05/luogu4389/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>luogu4389付公主的背包 | Huhao's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Huhao's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />Sitemap</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-frindlinks">
+    <a href="/link" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-link"></i> <br />frindlinks</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-games">
+    <a href="/game" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br />Games</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/05/05/luogu4389/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huhao">
+      <meta itemprop="description" content="本人已AFO，有事烧纸。">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huhao's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">luogu4389付公主的背包
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-05 15:20:50" itemprop="dateCreated datePublished" datetime="2019-05-05T15:20:50+08:00">2019-05-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-09 13:59:47" itemprop="dateModified" datetime="2019-05-09T13:59:47+08:00">2019-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/05/luogu4389/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/05/05/luogu4389/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。</p>
+<a id="more"></a>
+<p>显然，我们要求</p>
+<p>$$<br>F(x)=\prod_{i=1}^{n}\sum_{j=0}^{\infty}x^{ij}<br>$$</p>
+<p>推下式子</p>
+<p>$$<br>\begin{align}<br>\ln F(x)=&amp;\ln\prod_{i=1}^{n}\sum_{j=0}^{\infty}x^{w_ij}\notag\\<br>=&amp;\sum_{i=1}^{n}\ln\sum_{j=0}^{\infty}x^{w_ij}\notag\\<br>=&amp;\sum_{i=1}^{n}\ln\frac{1}{1-x^{w_i}}\notag\\<br>=&amp;\sum_{i=1}^{n}\int\frac{w_ix^{w_i-1}}{(1-x^{w_i})}\mathrm{d}x\notag\\<br>=&amp;\sum_{i=1}^{n}w_i\int x^{w_i-1}\sum_{j=0}^{\infty}x^{w_ij}\mathrm{d}x\notag\\<br>=&amp;\sum_{i=1}^{n}w_i\sum_{j=0}^{\infty}\frac{x^{w_ij+w_i}}{w_ij+w_i}\notag\\<br>=&amp;\sum_{i=1}^{n}\sum_{j=1}^{\infty}\frac{x^{w_ij}}{j}\notag\\<br>=&amp;\sum_{i=1}^{n}\sum_{j=i}^{\infty}[w_i|j]\frac{x^{j}}{\frac{j}{w_i}}\notag\\<br>=&amp;\sum_{j=1}^{\infty}x^j\sum_{i,w_i|j}\frac{w_i}{j}\notag\\<br>F(x)=&amp;\mathrm{e}^{\sum_{j=1}^{\infty}x^j\sum_{i,w_i|j}\frac{w_i}{j}}\notag<br>\end{align}<br>$$</p>
+<p>由于$e^{f(x)}\bmod x^p$只与$f(x)\bmod x^p$有关，所以可以用调和级数+多项式exp的复杂度（$O(n\log n)$）求出F(x)</p>
+<p>代码还好吧（至少膜$998244353$）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=(<span class="number">1</span>&lt;&lt;<span class="number">20</span>)+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod=<span class="number">998244353</span>,g=<span class="number">3</span>,ig=<span class="number">332748118</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">power</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> r=<span class="number">1</span>;</span><br><span class="line">	a%=p;</span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>)</span><br><span class="line">			r=r*a%p;</span><br><span class="line">		a=a*a%p;</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> r[N],l;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NTT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">int</span> opt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fr(i,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">if</span>(i&lt;r[i])</span><br><span class="line">			swap(a[i],a[r[i]]);</span><br><span class="line">	fr(i,<span class="number">0</span>,l<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> wn=power(opt==<span class="number">1</span>?g:ig,(mod)&gt;&gt;(i+<span class="number">1</span>),mod);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;l);j+=(<span class="number">1</span>&lt;&lt;(i+<span class="number">1</span>)))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> w=<span class="number">1</span>;</span><br><span class="line">			fr(k,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;i)<span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">long</span> <span class="keyword">long</span> x=a[j+k],y=a[j+k+(<span class="number">1</span>&lt;&lt;i)]*w%mod;</span><br><span class="line">				a[j+k]=(x+y)%mod;</span><br><span class="line">				a[j+k+(<span class="number">1</span>&lt;&lt;i)]=(x-y+mod)%mod;</span><br><span class="line">				w=w*wn%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(opt==<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> i=power(<span class="number">1</span>&lt;&lt;l,mod<span class="number">-2</span>,mod);</span><br><span class="line">		fr(j,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">			a[j]=a[j]*i%mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> _a[N],_b[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> *b,<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	l=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;l)&lt;n+m+<span class="number">1</span>)</span><br><span class="line">		l++;</span><br><span class="line">	fr(i,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r[i]=(r[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(l<span class="number">-1</span>));</span><br><span class="line">		_a[i]=_b[i]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	fr(i,<span class="number">0</span>,n)</span><br><span class="line">		_a[i]=a[i];</span><br><span class="line">	fr(i,<span class="number">0</span>,m)</span><br><span class="line">		_b[i]=b[i];</span><br><span class="line">	NTT(_a,<span class="number">1</span>);</span><br><span class="line">	NTT(_b,<span class="number">1</span>);</span><br><span class="line">	fr(i,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">		o[i]=_a[i]*_b[i]%mod;</span><br><span class="line">	NTT(o,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> x[N];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * g(f(x))=1/f(x)-h(x)</span></span><br><span class="line"><span class="comment"> * f(x)=f0(x)-g(f0(x))/g'(f0(x))=f0(x)-(1/f0(x)-h(x))/(-1/f0^2(x))=2f0(x)-h(x)f0^2(x)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		*o=power(*a,mod<span class="number">-2</span>,mod);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> _p=(p+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	inv(o,a,_p);</span><br><span class="line">	mul(x,o,a,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	fr(i,<span class="number">0</span>,p<span class="number">-1</span>)</span><br><span class="line">		x[i]=(-x[i]+mod)%mod;</span><br><span class="line">	x[<span class="number">0</span>]=(x[<span class="number">0</span>]+<span class="number">2</span>)%mod;</span><br><span class="line">	mul(o,x,o,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	fr(i,p,p+p<span class="number">-2</span>)</span><br><span class="line">		o[i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">d</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fr(i,<span class="number">0</span>,p<span class="number">-2</span>)</span><br><span class="line">		o[i]=a[i+<span class="number">1</span>]*(i+<span class="number">1</span>)%mod;</span><br><span class="line">	o[p<span class="number">-1</span>]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> _inv_</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> f[N],fi[N];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n=<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		fr(i,<span class="number">1</span>,n)</span><br><span class="line">			f[i]=f[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">		fi[n]=power(f[n],mod<span class="number">-2</span>,mod);</span><br><span class="line">		fd(i,n,<span class="number">1</span>)</span><br><span class="line">			fi[i<span class="number">-1</span>]=fi[i]*i%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">inv</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fi[a]*f[a<span class="number">-1</span>]%mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">integral</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fd(i,p<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">		o[i]=a[i<span class="number">-1</span>]*_inv_::inv(i)%mod;</span><br><span class="line">	o[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> y[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ln</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	d(y,a,p);</span><br><span class="line">	inv(o,a,p);</span><br><span class="line">	mul(y,o,y,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	integral(o,y,p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> z[N];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * g(f(x))=e^h(x)-f(x)=ln(f(x))-h(x)=0</span></span><br><span class="line"><span class="comment"> * f(x)=(1-ln(f0(x))+h(x))f0(x)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exp</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		o[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> _p=(p+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">exp</span>(o,a,_p);</span><br><span class="line">	ln(z,o,p);</span><br><span class="line">	fr(i,<span class="number">0</span>,p<span class="number">-1</span>)</span><br><span class="line">		z[i]=(a[i]-z[i]+mod)%mod;</span><br><span class="line">	z[<span class="number">0</span>]=(z[<span class="number">0</span>]+<span class="number">1</span>)%mod;</span><br><span class="line">	mul(o,z,o,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	fr(i,p,p+p<span class="number">-2</span>)</span><br><span class="line">		o[i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[N],f[N],ans[N],n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	m=read();</span><br><span class="line">	n=read();</span><br><span class="line">	_inv_::init(n+<span class="number">1</span>);</span><br><span class="line">	fr(i,<span class="number">1</span>,m)</span><br><span class="line">		a[read()]++;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		fr(j,<span class="number">1</span>,n/i)</span><br><span class="line">			f[i*j]=(f[i*j]+a[i]*i%mod*_inv_::inv(i*j)%mod)%mod;</span><br><span class="line"><span class="comment">//	fr(i,1,n)</span></span><br><span class="line"><span class="comment">//		printf("%lld%c",f[i],i==n?'\n':' ');</span></span><br><span class="line">	<span class="built_in">exp</span>(ans,f,n+<span class="number">1</span>);</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/math/" rel="tag"># math</a>
+          
+            <a href="/tags/生成函数/" rel="tag"># 生成函数</a>
+          
+            <a href="/tags/luogu/" rel="tag"># luogu</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/03/求导公式/" rel="next" title="求导公式">
+                <i class="fa fa-chevron-left"></i> 求导公式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/07/luogu4931/" rel="prev" title="luogu4931情侣？给我烧了！">
+                luogu4931情侣？给我烧了！ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+
+    </div>
+  
+
+    
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="huhao" />
+            
+              <p class="site-author-name" itemprop="name">huhao</p>
+              <p class="site-description motion-element" itemprop="description">本人已AFO，有事烧纸。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/huhaoo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/qq826538400@gmail.com" target="_blank" title="Google"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<p>公告</p>
+			<p></p>
+			<p>如果有些文章标题或内容格式不太好</p>
+			<p>Please contact 826538400@qq.com</p>
+		</div>
+		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<div class="Hitokotoframe">
+				<div>
+  					 <p class="hitokoto"></p>
+ 					 <p class="from"></p>
+				</div>
+			</div>
+		</div>
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+<!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<p>访问次数</p>
+			<p></p>
+			<div align="center"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3229894&c=9689995" alt="AmazingCounters.com"></a></div>
+		</div>-->
+<!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<p>Google Ad（应该炸了）</p>
+			<p></p>
+			<head>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<script>
+				  (adsbygoogle = window.adsbygoogle || []).push({
+					google_ad_client: "ca-pub-9318855766037171",
+					enable_page_level_ads: true
+				  });
+				</script>
+			<p></p>
+			</head>
+		</div>-->
+	  
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '2oPGBihpCTJFnMfpg1GsQgM9-gzGzoHsz',
+        appKey: '1m5CqQ40qt0LqF1e2W1XChlU',
+        placeholder: '博主太菜了，嘲讽他一波',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+</body>
+</html>
+
+<script type="text/javascript" src="/js/src/hitokoto.js"></script>
+

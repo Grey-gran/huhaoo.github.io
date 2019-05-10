@@ -110,14 +110,14 @@
 
 
   <meta name="description" content="求$1 \dots 2n$的所有排列中恰有$k$组$2k-1,2k$相邻的方案数">
-<meta name="keywords" content="math">
+<meta name="keywords" content="math,luogu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="luogu4931情侣？给我烧了！">
 <meta property="og:url" content="https://huhaoo.github.io/2019/05/07/luogu4931/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="求$1 \dots 2n$的所有排列中恰有$k$组$2k-1,2k$相邻的方案数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-08T08:51:35.177Z">
+<meta property="og:updated_time" content="2019-05-09T05:58:45.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="luogu4931情侣？给我烧了！">
 <meta name="twitter:description" content="求$1 \dots 2n$的所有排列中恰有$k$组$2k-1,2k$相邻的方案数">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-08 16:51:35" itemprop="dateModified" datetime="2019-05-08T16:51:35+08:00">2019-05-08</time>
+                <time title="Modified: 2019-05-09 13:58:45" itemprop="dateModified" datetime="2019-05-09T13:58:45+08:00">2019-05-09</time>
               
             
           </span>
@@ -456,7 +456,7 @@
 <p>$$<br>g_{n}=\sum_{i=2}^{n}{n\choose i}{n-1\choose i-1}i!(i-1)!2^{i}2^{i-1}g_{n-i}<br>$$</p>
 <p><del>黑恶至极</del>，解释一下：第一项是选出所有$a$，第二项是包含它们的组，第三项给$a$分配位置，第四项给那些组分配位置，第五项枚举相同的$a$的顺序，第六项表示一组内的位置，第七项和普通乘法原理一样。</p>
 <p>化简一下：</p>
-<p>$$<br>\begin{align}<br>g_{n}=&amp;\sum_{i=2}^{n}\dfrac{n!(n-1)!i!(i-1)!}{i!(i-1)!(n-i)!(n-i)!}2^{i}2^{i-1}g_{n-i}\notag\\<br>=&amp;n!(n-1)!\sum_{i=2}^{n}\dfrac{2^i2^{i-1}g_{n-i}}{((n-i)!)^2}\notag\\<br>=&amp;\dfrac{n!(n-1)!2^{2n}}{2}\sum_{i=2}^{n}\dfrac{2^{i-n}2^{i-n}g_{n-i}}{(n-i)!^{2}}\notag\\<br>=&amp;n!(n-1)!2^{2n-1}\sum_{i=0}^{n-2}\dfrac{g_i}{(i!)^{2}2^{2i}}<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>g_{n}=&amp;\sum_{i=2}^{n}\dfrac{n!(n-1)!i!(i-1)!}{i!(i-1)!(n-i)!(n-i)!}2^{i}2^{i-1}g_{n-i}\notag\\<br>=&amp;n!(n-1)!\sum_{i=2}^{n}\dfrac{2^i2^{i-1}g_{n-i}}{((n-i)!)^2}\notag\\<br>=&amp;\dfrac{n!(n-1)!2^{2n}}{2}\sum_{i=2}^{n}\dfrac{2^{i-n}2^{i-n}g_{n-i}}{(n-i)!^{2}}\notag\\<br>=&amp;n!(n-1)!2^{2n-1}\sum_{i=0}^{n-2}\dfrac{g_i}{(i!)^{2}2^{2i}}\notag<br>\end{align}<br>$$</p>
 <p>如果记$s_{i}=s_{i-1}+\frac{g_{i}}{(i!)^22^{2i}},s_{-1}=0,s_{0}=1$</p>
 <p>就有$g_{i}=i!(i-1)!2^{2n-1}s_{i-2}$</p>
 <p>于是</p>
@@ -489,6 +489,8 @@
           
             <a href="/tags/math/" rel="tag"># math</a>
           
+            <a href="/tags/luogu/" rel="tag"># luogu</a>
+          
         </div>
       
 
@@ -512,7 +514,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/05/luogu4389付公主的背包/" rel="next" title="luogu4389付公主的背包">
+              <a href="/2019/05/05/luogu4389/" rel="next" title="luogu4389付公主的背包">
                 <i class="fa fa-chevron-left"></i> luogu4389付公主的背包
               </a>
             
@@ -521,6 +523,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/10/教你卡spfa/" rel="prev" title="教你卡spfa">
+                教你卡spfa <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +595,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">99</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
