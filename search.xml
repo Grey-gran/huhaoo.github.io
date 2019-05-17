@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[算法模板索引]]></title>
+    <url>%2F2019%2F05%2F17%2F%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E7%B4%A2%E5%BC%95%2F</url>
+    <content type="text"><![CDATA[为方便查询，都用小写（包括dp）]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[教你卡spfa]]></title>
     <url>%2F2019%2F05%2F10%2F%E6%95%99%E4%BD%A0%E5%8D%A1spfa%2F</url>
     <content type="text"><![CDATA[关于spfa 它死了]]></content>
@@ -64,8 +69,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>生成函数</tag>
         <tag>TJOI</tag>
+        <tag>生成函数</tag>
       </tags>
   </entry>
   <entry>
@@ -493,15 +498,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[莫队小结]]></title>
-    <url>%2F2018%2F02%2F23%2F%E8%8E%AB%E9%98%9F%E5%B0%8F%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[用了一阵莫队，真的感觉还好用]]></content>
-      <tags>
-        <tag>莫队</tag>
-        <tag>总结</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[luogu4212]]></title>
     <url>%2F2018%2F02%2F22%2Fluogu4212%2F</url>
     <content type="text"><![CDATA[这道题。。。 好坑。。。 原来正解是骗分。。。]]></content>
@@ -683,14 +679,6 @@
         <tag>math</tag>
         <tag>luogu</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数论基础理论]]></title>
-    <url>%2F2018%2F01%2F09%2F%E6%95%B0%E8%AE%BA%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[数论。。。]]></content>
-      <tags>
-        <tag>数论</tag>
       </tags>
   </entry>
   <entry>

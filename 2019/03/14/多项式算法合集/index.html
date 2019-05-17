@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="多项式真是神（毒）奇（瘤）！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-01T03:24:34.000Z">
+<meta property="og:updated_time" content="2019-05-17T01:35:48.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多项式算法合集">
 <meta name="twitter:description" content="多项式真是神（毒）奇（瘤）！">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-01 11:24:34" itemprop="dateModified" datetime="2019-04-01T11:24:34+08:00">2019-04-01</time>
+                <time title="Modified: 2019-05-17 09:35:48" itemprop="dateModified" datetime="2019-05-17T09:35:48+08:00">2019-05-17</time>
               
             
           </span>
@@ -452,41 +452,41 @@
 <a id="more"></a>
 <h3 id="多项式套多项式的复杂度"><a href="#多项式套多项式的复杂度" class="headerlink" title="多项式套多项式的复杂度"></a>多项式套多项式的复杂度</h3><p>先写这个是为了消除大家的TLE疑虑的。</p>
 <p>之后会遇到这个复杂度$f(n)=f(\dfrac n2)+n\log n$</p>
-<p>我们取最简单的$f(2^n)$<br>$$<br>\begin{align}<br>f(2^n)&amp;=\sum_{i=1}^i2^ii\\<br>&amp;=2^nn+\sum_{i=1}^n2^{n-1}(n-1)\\<br>&amp;\le 2^nn+\dfrac 12\sum_{i=1}^i2^ii<br>\end{align}<br>$$<br>于是移项后就是<br>$$<br>f(2^n)\le 2^{n+1}n<br>$$<br>这还是$O(n\log n)$！</p>
+<p>我们取最简单的$f(2^n)$<br>$$<br>\begin{align}<br>f(2^n)&amp;=\sum_{i=1}^i2^ii\notag\\<br>&amp;=2^nn+\sum_{i=1}^n2^{n-1}(n-1)\notag\\<br>&amp;\le 2^nn+\dfrac 12\sum_{i=1}^i2^ii\notag<br>\end{align}<br>$$<br>于是移项后就是<br>$$<br>f(2^n)\le 2^{n+1}n<br>$$<br>这还是$O(n\log n)$！</p>
 <h3 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h3><blockquote>
 <p>$$<br>c_k=\sum_{i+j=k}a_ib_j<br>$$</p>
 </blockquote>
 <p>前置知识：复数</p>
-<p>如果我们有两个个复数$x_1=a_1i+b_1,x_2=a_2i+b_2$，它满足$|x_1|=1,|x_2|=1$，那么<br>$$<br>\begin{align}<br>|x_1x_2|&amp;=|(a_1b_2+a_2b_1)i+(b_1b_2-a_1a_2)|\\<br>&amp;=(a_1b_2+a_2b_1)^2+(b_1b_2-a_1a_2)^2\\<br>&amp;=a_1^2b_2^2+a_2^2b_1^2+2a_1a_2b_1b_2+b_1^2b_2^2+a_1^2a_2^2-2a_1a_2b_1b_2\\<br>&amp;=a_1^2b_2^2+a_2^2b_1^2+b_1^2b_2^2+a_1^2a_2^2\\<br>&amp;=a_1^2(b_2^2+a_2^2)+b_1^2(a_2^2+a_1^2)\\<br>&amp;=a_1^2+b_1^2=1<br>\end{align}<br>$$<br>于是如果一个复数模长为$1$，那么它的$k$次方模长都是$1$</p>
-<p>考虑如果一个多项式​​有$n-1$位（最高位可以为$0$），记​$\theta=\dfrac{2\pi}n,w_n^k=(i\sin\theta+\cos\theta)^k$</p>
-<p>如果<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>有<br>$$<br>\begin{align}<br>w_n^{k+1}&amp;=w_n^kw_n\\<br>&amp;=(i\sin k\theta+\cos k\theta)(i\sin\theta+\cos\theta)\\<br>&amp;=i(\sin k\theta\cos\theta+\cos k\theta\sin \theta)+(\cos \theta\cos k\theta-\sin \theta\sin k\theta)\\<br>&amp;=i\sin(k+1)\theta+\cos(k+1)\theta<br>\end{align}<br>$$<br>于是根据归纳法<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>我们可以将$w_n^{1\dots n}$代入$f$，求这些值，称为</p>
-<p>如果<br>$$<br>f(x)=\sum_{0\le i&lt;2^n}a_ix^i<br>$$<br>我们可以记<br>$$<br>\begin{align}<br>g(x)&amp;=\sum_{0\le 2i&lt;2^n}a_{2i}x^i\\<br>h(x)&amp;=\sum_{0\le 2i&lt;2^n}a_{2i+1}x^i<br>\end{align}<br>$$<br>$g,h​$就都成了只有$2^{n-1}​$项有值的多项式了</p>
+<p>如果我们有两个个复数$x_1=a_1i+b_1,x_2=a_2i+b_2$，它满足$|x_1|=1,|x_2|=1$，那么<br>$$<br>\begin{align}<br>|x_1x_2|&amp;=|(a_1b_2+a_2b_1)i+(b_1b_2-a_1a_2)|\notag\\<br>&amp;=(a_1b_2+a_2b_1)^2+(b_1b_2-a_1a_2)^2\notag\\<br>&amp;=a_1^2b_2^2+a_2^2b_1^2+2a_1a_2b_1b_2+b_1^2b_2^2+a_1^2a_2^2-2a_1a_2b_1b_2\notag\\<br>&amp;=a_1^2b_2^2+a_2^2b_1^2+b_1^2b_2^2+a_1^2a_2^2\notag\\<br>&amp;=a_1^2(b_2^2+a_2^2)+b_1^2(a_2^2+a_1^2)\notag\\<br>&amp;=a_1^2+b_1^2=1<br>\end{align}<br>$$<br>于是如果一个复数模长为$1$，那么它的$k$次方模长都是$1$</p>
+<p>考虑如果一个多项式有$n-1$位（最高位可以为$0$），记$\theta=\dfrac{2\pi}n,w_n^k=(i\sin\theta+\cos\theta)^k$</p>
+<p>如果<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>有<br>$$<br>\begin{align}<br>w_n^{k+1}&amp;=w_n^kw_n\notag\\<br>&amp;=(i\sin k\theta+\cos k\theta)(i\sin\theta+\cos\theta)\notag\\<br>&amp;=i(\sin k\theta\cos\theta+\cos k\theta\sin \theta)+(\cos \theta\cos k\theta-\sin \theta\sin k\theta)\notag\\<br>&amp;=i\sin(k+1)\theta+\cos(k+1)\theta\notag<br>\end{align}<br>$$<br>于是根据归纳法<br>$$<br>w_n^k=i\sin k\theta+\cos k\theta<br>$$<br>我们可以将$w_n^{1\dots n}$代入$f$，求这些值，称为</p>
+<p>如果<br>$$<br>f(x)=\sum_{0\le i&lt;2^n}a_ix^i<br>$$<br>我们可以记<br>$$<br>\begin{align}<br>g(x)&amp;=\sum_{0\le 2i&lt;2^n}a_{2i}x^i\notag\\<br>h(x)&amp;=\sum_{0\le 2i&lt;2^n}a_{2i+1}x^i\notag<br>\end{align}<br>$$<br>$g,h​$就都成了只有$2^{n-1}$项有值的多项式了</p>
 <p>那么<br>$$<br>f(x)=g(x^2)+x~h(x^2)<br>$$<br>可以验算一下，发现真是这样</p>
-<p>接下来就是一个膜法了：<br>$$<br>\begin{align}<br>f(w_{2^n}^k)&amp;=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\\<br>f(w_{2^n}^{-k})&amp;=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)<br>\end{align}<br>$$<br>也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)​$，我们就可以快速求了！</p>
+<p>接下来就是一个膜法了：<br>$$<br>\begin{align}<br>f(w_{2^n}^k)&amp;=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\notag\\<br>f(w_{2^n}^{-k})&amp;=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)\notag<br>\end{align}<br>$$<br>也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)$，我们就可以快速求了！</p>
 <p>IDFT就稍微改改，反正我也不会</p>
 <h4 id="怎么背"><a href="#怎么背" class="headerlink" title="怎么背"></a>怎么背</h4><p>只要记得FFT推导和IDFT的小改动就好了！</p>
 <h3 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h3><p>和FFT差不多，把wn记作$g^{\frac{\mathrm{mod-1}}l}$即可</p>
 <h3 id="inv"><a href="#inv" class="headerlink" title="inv"></a>inv</h3><blockquote>
 <p>$$<br>f^{-1}f\equiv 1(\mathrm{mod}~x^p)<br>$$</p>
 </blockquote>
-<p>如果我们求出了<br>$$<br>f’^{-1}f\equiv 1(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得到<br>$$<br>\begin{align}<br>f^{-1}f&amp;\equiv1&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>f(f^{-1}-f’^{-1})&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(f^{-1}-f’^{-1})^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>f^{-2}-2f^{-1}f’^{-1}-f’^{-2}&amp;\equiv0&amp;(\mathrm{mod}~x^p)\\<br>f^{-1}-2f’^{-1}-ff’^{-2}&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>f^{-1}&amp;\equiv f’^{-1}(2-ff’^{-1})&amp;(\mathrm{mod}~x^p)<br>\end{align}<br>$$<br>边界是$p=1​$，给整数求逆即可。</p>
+<p>如果我们求出了<br>$$<br>f’^{-1}f\equiv 1(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得到<br>$$<br>\begin{align}<br>f^{-1}f&amp;\equiv1&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag\\<br>f(f^{-1}-f’^{-1})&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag\\<br>(f^{-1}-f’^{-1})^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\notag\\<br>f^{-2}-2f^{-1}f’^{-1}-f’^{-2}&amp;\equiv0&amp;(\mathrm{mod}~x^p)\notag\\<br>f^{-1}-2f’^{-1}-ff’^{-2}&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\notag\\<br>f^{-1}&amp;\equiv f’^{-1}(2-ff’^{-1})&amp;(\mathrm{mod}~x^p)\notag<br>\end{align}<br>$$<br>边界是$p=1$，给整数求逆即可。</p>
 <h3 id="sqrt"><a href="#sqrt" class="headerlink" title="sqrt"></a>sqrt</h3><blockquote>
 <p>$$<br>g^2\equiv f(\mathrm{mod}~x^p)<br>$$</p>
 </blockquote>
-<p>类似inv，如果我们求出了<br>$$<br>g’^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})<br>$$<br>可以得<br>$$<br>\begin{align}<br>g’^2-f&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\<br>(g’^2-f)^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\\<br>(g’^2+f)^2&amp;\equiv 4g’^2f&amp;(\mathrm{mod}~x^p)\\<br>(\dfrac{g’^2+f}{2g’})^2&amp;\equiv f&amp;(\mathrm{mod}~x^p)\\<br>g&amp;\equiv \dfrac{g’^2+f}{2g’}=2^{-1}(g’+\dfrac f{g’})&amp;(\mathrm{mod}~x^p)<br>\end{align}<br>$$<br>边界是$p=1​$，可能要二次剩余算一下。</p>
+<p>类似inv，如果我们求出了<br>$$<br>g’^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag<br>$$<br>可以得<br>$$<br>\begin{align}<br>g’^2-f&amp;\equiv 0&amp;(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag\\<br>(g’^2-f)^2&amp;\equiv 0&amp;(\mathrm{mod}~x^p)\notag\\<br>(g’^2+f)^2&amp;\equiv 4g’^2f&amp;(\mathrm{mod}~x^p)\notag\\<br>(\dfrac{g’^2+f}{2g’})^2&amp;\equiv f&amp;(\mathrm{mod}~x^p)\notag\\<br>g&amp;\equiv \dfrac{g’^2+f}{2g’}=2^{-1}(g’+\dfrac f{g’})&amp;(\mathrm{mod}~x^p)\notag<br>\end{align}<br>$$<br>边界是$p=1$，可能要二次剩余算一下。</p>
 <h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><p>$$<br>\ln f=\int(\ln f)’=\int\dfrac{f’}{f}<br>$$</p>
 <h3 id="多项式牛顿迭代"><a href="#多项式牛顿迭代" class="headerlink" title="多项式牛顿迭代"></a>多项式牛顿迭代</h3><p>求满足$f(g(x))=0$的$g(x)$</p>
 <p>不会推导</p>
-<p>结论：<br>$$<br>\begin{align}<br>g(x)=g_0(x)-\dfrac{f(g_0(x))}{f’(g_0(x))}<br>\end{align}<br>$$</p>
+<p>结论：<br>$$<br>\begin{align}<br>g(x)=g_0(x)-\dfrac{f(g_0(x))}{f’(g_0(x))}\notag<br>\end{align}<br>$$</p>
 <h3 id="Exp"><a href="#Exp" class="headerlink" title="Exp"></a>Exp</h3><p>根据牛顿迭代，有</p>
-<p>$$<br>\begin{align}<br>g=g_0-g_0\ln g_0+g_0f<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>g=g_0-g_0\ln g_0+g_0f\notag<br>\end{align}<br>$$</p>
 <h3 id="mod-amp-div"><a href="#mod-amp-div" class="headerlink" title="mod&amp;div"></a>mod&amp;div</h3><blockquote>
 <p>$$<br>f=p\times g+q<br>$$</p>
 </blockquote>
 <p>我们记$f^r$为反转$f$的系数，即$[x^a]f(x)=[x^{d_f-a}]f(x)$，其中$d_f$为$f$的最高次数</p>
-<p>有<br>$$<br>\begin{align}<br>f^r&amp;=p^r\times g^r+q^rx^{d_f-d_q}\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_q})\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_g+1})\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_p+1})\\<br>\end{align}<br>$$<br>可以用inv求$p$再反推出$q$</p>
+<p>有<br>$$<br>\begin{align}<br>f^r&amp;=p^r\times g^r+q^rx^{d_f-d_q}\notag\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_q})\notag\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_f-d_g+1})\notag\\<br>&amp;\equiv p^r\times g^r&amp;(\mathrm{mod}~x^{d_p+1})\notag\\<br>\end{align}<br>$$<br>可以用inv求$p$再反推出$q$</p>
 <h3 id="任意膜数NTT"><a href="#任意膜数NTT" class="headerlink" title="任意膜数NTT"></a>任意膜数NTT</h3><p>把每个数$a$变为$2^{15}a’+a’’$的形式（因为FFT精度极限比较小）</p>
-<p>也就是<br>$$<br>\begin{align}<br>A\times B&amp;=\sum_{j}(\sum_{k}a_kb_{j-k})x^j\\<br>&amp;=\sum_{j}(\sum_{k}(2^{30}a_k’b_{j-k}’+2^{15}a_k’’b_{j-k}’+2^{15}a_k’b_{j-k}’’+a_k’’b_{j-k}’’))x^j\\<br>&amp;=\sum_j(2^{30}([j]a’\times b’)+2^{15}([j]a’’\times b’)+2^{15}([j]a’\times b’’)+([j]a’’\times b’’))x^j<br>\end{align}<br>$$<br>分别FFT求出即可</p>
+<p>也就是<br>$$<br>\begin{align}<br>A\times B&amp;=\sum_{j}(\sum_{k}a_kb_{j-k})x^j\notag\\<br>&amp;=\sum_{j}(\sum_{k}(2^{30}a_k’b_{j-k}’+2^{15}a_k’’b_{j-k}’+2^{15}a_k’b_{j-k}’’+a_k’’b_{j-k}’’))x^j\notag\\<br>&amp;=\sum_j(2^{30}([j]a’\times b’)+2^{15}([j]a’’\times b’)+2^{15}([j]a’\times b’’)+([j]a’’\times b’’))x^j\notag<br>\end{align}<br>$$<br>分别FFT求出即可</p>
 <p>一共只需$8$次FFT</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">FFT(a1,<span class="number">1</span>);</span><br><span class="line">FFT(b1,<span class="number">1</span>);</span><br><span class="line">FFT(a2,<span class="number">1</span>);</span><br><span class="line">FFT(b2,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;l);i++)</span><br><span class="line">&#123;</span><br><span class="line">    c1[i]=a1[i]*b1[i];</span><br><span class="line">    c2[i]=a1[i]*b2[i];</span><br><span class="line">    c3[i]=a2[i]*b1[i];</span><br><span class="line">    c4[i]=a2[i]*b2[i];</span><br><span class="line">&#125;</span><br><span class="line">FFT(c1,<span class="number">-1</span>);</span><br><span class="line">FFT(c2,<span class="number">-1</span>);</span><br><span class="line">FFT(c3,<span class="number">-1</span>);</span><br><span class="line">FFT(c4,<span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="FWT"><a href="#FWT" class="headerlink" title="FWT"></a>FWT</h3><p>记$A_0$为$A_{0\dots2^{n-1}-1}$,$A_1$为$A_{2^{n-1}\dots2^n-1}$，$B,C$同理</p>
@@ -635,7 +635,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-count">98</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -826,7 +826,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

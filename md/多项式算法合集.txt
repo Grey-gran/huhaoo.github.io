@@ -19,9 +19,9 @@ mathjax: on
 我们取最简单的$f(2^n)$
 $$
 \begin{align}
-f(2^n)&=\sum_{i=1}^i2^ii\\
-&=2^nn+\sum_{i=1}^n2^{n-1}(n-1)\\
-&\le 2^nn+\dfrac 12\sum_{i=1}^i2^ii
+f(2^n)&=\sum_{i=1}^i2^ii\notag\\
+&=2^nn+\sum_{i=1}^n2^{n-1}(n-1)\notag\\
+&\le 2^nn+\dfrac 12\sum_{i=1}^i2^ii\notag
 \end{align}
 $$
 于是移项后就是
@@ -41,17 +41,17 @@ $$
 如果我们有两个个复数$x_1=a_1i+b_1,x_2=a_2i+b_2$，它满足$|x_1|=1,|x_2|=1$，那么
 $$
 \begin{align}
-|x_1x_2|&=|(a_1b_2+a_2b_1)i+(b_1b_2-a_1a_2)|\\
-&=(a_1b_2+a_2b_1)^2+(b_1b_2-a_1a_2)^2\\
-&=a_1^2b_2^2+a_2^2b_1^2+2a_1a_2b_1b_2+b_1^2b_2^2+a_1^2a_2^2-2a_1a_2b_1b_2\\
-&=a_1^2b_2^2+a_2^2b_1^2+b_1^2b_2^2+a_1^2a_2^2\\
-&=a_1^2(b_2^2+a_2^2)+b_1^2(a_2^2+a_1^2)\\
+|x_1x_2|&=|(a_1b_2+a_2b_1)i+(b_1b_2-a_1a_2)|\notag\\
+&=(a_1b_2+a_2b_1)^2+(b_1b_2-a_1a_2)^2\notag\\
+&=a_1^2b_2^2+a_2^2b_1^2+2a_1a_2b_1b_2+b_1^2b_2^2+a_1^2a_2^2-2a_1a_2b_1b_2\notag\\
+&=a_1^2b_2^2+a_2^2b_1^2+b_1^2b_2^2+a_1^2a_2^2\notag\\
+&=a_1^2(b_2^2+a_2^2)+b_1^2(a_2^2+a_1^2)\notag\\
 &=a_1^2+b_1^2=1
 \end{align}
 $$
 于是如果一个复数模长为$1$，那么它的$k$次方模长都是$1$
 
-考虑如果一个多项式​​有$n-1$位（最高位可以为$0$），记​$\theta=\dfrac{2\pi}n,w_n^k=(i\sin\theta+\cos\theta)^k$
+考虑如果一个多项式有$n-1$位（最高位可以为$0$），记$\theta=\dfrac{2\pi}n,w_n^k=(i\sin\theta+\cos\theta)^k$
 
 如果
 $$
@@ -60,10 +60,10 @@ $$
 有
 $$
 \begin{align}
-w_n^{k+1}&=w_n^kw_n\\
-&=(i\sin k\theta+\cos k\theta)(i\sin\theta+\cos\theta)\\
-&=i(\sin k\theta\cos\theta+\cos k\theta\sin \theta)+(\cos \theta\cos k\theta-\sin \theta\sin k\theta)\\
-&=i\sin(k+1)\theta+\cos(k+1)\theta
+w_n^{k+1}&=w_n^kw_n\notag\\
+&=(i\sin k\theta+\cos k\theta)(i\sin\theta+\cos\theta)\notag\\
+&=i(\sin k\theta\cos\theta+\cos k\theta\sin \theta)+(\cos \theta\cos k\theta-\sin \theta\sin k\theta)\notag\\
+&=i\sin(k+1)\theta+\cos(k+1)\theta\notag
 \end{align}
 $$
 于是根据归纳法
@@ -79,11 +79,11 @@ $$
 我们可以记
 $$
 \begin{align}
-g(x)&=\sum_{0\le 2i<2^n}a_{2i}x^i\\
-h(x)&=\sum_{0\le 2i<2^n}a_{2i+1}x^i
+g(x)&=\sum_{0\le 2i<2^n}a_{2i}x^i\notag\\
+h(x)&=\sum_{0\le 2i<2^n}a_{2i+1}x^i\notag
 \end{align}
 $$
-$g,h​$就都成了只有$2^{n-1}​$项有值的多项式了
+$g,h​$就都成了只有$2^{n-1}$项有值的多项式了
 
 那么
 $$
@@ -94,11 +94,11 @@ $$
 接下来就是一个膜法了：
 $$
 \begin{align}
-f(w_{2^n}^k)&=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\\
-f(w_{2^n}^{-k})&=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)
+f(w_{2^n}^k)&=g((w_{2^n}^k)^2)+x~h((w_{2^n}^k)^2)\notag\\
+f(w_{2^n}^{-k})&=f(-w_{2^n}^k)=g((w_{2^n}^k)^2)-x~h((w_{2^n}^k)^2)\notag
 \end{align}
 $$
-也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)​$，我们就可以快速求了！
+也就是说只要我们算出了$g((w_{2^n}^k)^2),h((w_{2^n}^k)^2)$，我们就可以快速求了！
 
 IDFT就稍微改改，反正我也不会
 
@@ -123,15 +123,15 @@ $$
 可以得到
 $$
 \begin{align}
-f^{-1}f&\equiv1&(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\
-f(f^{-1}-f'^{-1})&\equiv 0&(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\
-(f^{-1}-f'^{-1})^2&\equiv 0&(\mathrm{mod}~x^p)\\
-f^{-2}-2f^{-1}f'^{-1}-f'^{-2}&\equiv0&(\mathrm{mod}~x^p)\\
-f^{-1}-2f'^{-1}-ff'^{-2}&\equiv 0&(\mathrm{mod}~x^p)\\
-f^{-1}&\equiv f'^{-1}(2-ff'^{-1})&(\mathrm{mod}~x^p)
+f^{-1}f&\equiv1&(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag\\
+f(f^{-1}-f'^{-1})&\equiv 0&(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag\\
+(f^{-1}-f'^{-1})^2&\equiv 0&(\mathrm{mod}~x^p)\notag\\
+f^{-2}-2f^{-1}f'^{-1}-f'^{-2}&\equiv0&(\mathrm{mod}~x^p)\notag\\
+f^{-1}-2f'^{-1}-ff'^{-2}&\equiv 0&(\mathrm{mod}~x^p)\notag\\
+f^{-1}&\equiv f'^{-1}(2-ff'^{-1})&(\mathrm{mod}~x^p)\notag
 \end{align}
 $$
-边界是$p=1​$，给整数求逆即可。
+边界是$p=1$，给整数求逆即可。
 
 ### sqrt
 
@@ -141,19 +141,19 @@ $$
 
 类似inv，如果我们求出了
 $$
-g'^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})
+g'^2\equiv f(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag
 $$
 可以得
 $$
 \begin{align}
-g'^2-f&\equiv 0&(\mathrm{mod}~x^{\lceil\frac p2\rceil})\\
-(g'^2-f)^2&\equiv 0&(\mathrm{mod}~x^p)\\
-(g'^2+f)^2&\equiv 4g'^2f&(\mathrm{mod}~x^p)\\
-(\dfrac{g'^2+f}{2g'})^2&\equiv f&(\mathrm{mod}~x^p)\\
-g&\equiv \dfrac{g'^2+f}{2g'}=2^{-1}(g'+\dfrac f{g'})&(\mathrm{mod}~x^p)
+g'^2-f&\equiv 0&(\mathrm{mod}~x^{\lceil\frac p2\rceil})\notag\\
+(g'^2-f)^2&\equiv 0&(\mathrm{mod}~x^p)\notag\\
+(g'^2+f)^2&\equiv 4g'^2f&(\mathrm{mod}~x^p)\notag\\
+(\dfrac{g'^2+f}{2g'})^2&\equiv f&(\mathrm{mod}~x^p)\notag\\
+g&\equiv \dfrac{g'^2+f}{2g'}=2^{-1}(g'+\dfrac f{g'})&(\mathrm{mod}~x^p)\notag
 \end{align}
 $$
-边界是$p=1​$，可能要二次剩余算一下。
+边界是$p=1$，可能要二次剩余算一下。
 
 ### ln
 
@@ -170,7 +170,7 @@ $$
 结论：
 $$
 \begin{align}
-g(x)=g_0(x)-\dfrac{f(g_0(x))}{f'(g_0(x))}
+g(x)=g_0(x)-\dfrac{f(g_0(x))}{f'(g_0(x))}\notag
 \end{align}
 $$
 
@@ -181,7 +181,7 @@ $$
 
 $$
 \begin{align}
-g=g_0-g_0\ln g_0+g_0f
+g=g_0-g_0\ln g_0+g_0f\notag
 \end{align}
 $$
 
@@ -196,10 +196,10 @@ $$
 有
 $$
 \begin{align}
-f^r&=p^r\times g^r+q^rx^{d_f-d_q}\\
-&\equiv p^r\times g^r&(\mathrm{mod}~x^{d_f-d_q})\\
-&\equiv p^r\times g^r&(\mathrm{mod}~x^{d_f-d_g+1})\\
-&\equiv p^r\times g^r&(\mathrm{mod}~x^{d_p+1})\\
+f^r&=p^r\times g^r+q^rx^{d_f-d_q}\notag\\
+&\equiv p^r\times g^r&(\mathrm{mod}~x^{d_f-d_q})\notag\\
+&\equiv p^r\times g^r&(\mathrm{mod}~x^{d_f-d_g+1})\notag\\
+&\equiv p^r\times g^r&(\mathrm{mod}~x^{d_p+1})\notag\\
 \end{align}
 $$
 可以用inv求$p$再反推出$q$
@@ -211,9 +211,9 @@ $$
 也就是
 $$
 \begin{align}
-A\times B&=\sum_{j}(\sum_{k}a_kb_{j-k})x^j\\
-&=\sum_{j}(\sum_{k}(2^{30}a_k'b_{j-k}'+2^{15}a_k''b_{j-k}'+2^{15}a_k'b_{j-k}''+a_k''b_{j-k}''))x^j\\
-&=\sum_j(2^{30}([j]a'\times b')+2^{15}([j]a''\times b')+2^{15}([j]a'\times b'')+([j]a''\times b''))x^j
+A\times B&=\sum_{j}(\sum_{k}a_kb_{j-k})x^j\notag\\
+&=\sum_{j}(\sum_{k}(2^{30}a_k'b_{j-k}'+2^{15}a_k''b_{j-k}'+2^{15}a_k'b_{j-k}''+a_k''b_{j-k}''))x^j\notag\\
+&=\sum_j(2^{30}([j]a'\times b')+2^{15}([j]a''\times b')+2^{15}([j]a'\times b'')+([j]a''\times b''))x^j\notag
 \end{align}
 $$
 分别FFT求出即可
@@ -286,36 +286,3 @@ $$
 有$f(2^n)=2f(2^{n-1})+O(2^n)$
 
 也就是$O(n\log n)$（在数据规模$2^n$情况下）
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

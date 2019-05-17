@@ -15,7 +15,7 @@ kruskal重构树用来解决一些最小生成树的各种问题
 
 
 
-![](/home/huhao/blog/source/_posts/kruskalret/1.png)
+![](/kruskalret/1.png)
 
 然后将这些边从小到大以此处理（相同就任意）
 

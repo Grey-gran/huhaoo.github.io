@@ -109,25 +109,24 @@
 
 
 
-  <meta name="description" content="割点，普遍使用tarjan算法，复杂度大概是$O(n+e)$级别（自己瞎猜的，错了欢迎指出） 模板题">
-<meta name="keywords" content="割点">
+  <meta name="description" content="为方便查询，都用小写（包括dp）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="割点">
-<meta property="og:url" content="https://huhaoo.github.io/2018/01/19/割点/index.html">
+<meta property="og:title" content="算法模板索引">
+<meta property="og:url" content="https://huhaoo.github.io/2019/05/17/算法模板索引/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="割点，普遍使用tarjan算法，复杂度大概是$O(n+e)$级别（自己瞎猜的，错了欢迎指出） 模板题">
+<meta property="og:description" content="为方便查询，都用小写（包括dp）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-12T02:02:50.000Z">
+<meta property="og:updated_time" content="2019-05-17T01:38:15.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="割点">
-<meta name="twitter:description" content="割点，普遍使用tarjan算法，复杂度大概是$O(n+e)$级别（自己瞎猜的，错了欢迎指出） 模板题">
+<meta name="twitter:title" content="算法模板索引">
+<meta name="twitter:description" content="为方便查询，都用小写（包括dp）">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/2018/01/19/割点/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2019/05/17/算法模板索引/"/>
 
 
 
@@ -137,7 +136,7 @@
   };
 </script>
 
-  <title>割点 | Huhao's blog</title>
+  <title>算法模板索引 | Huhao's blog</title>
   
 
 
@@ -345,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2018/01/19/割点/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/05/17/算法模板索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -362,13 +361,17 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">割点
+          <h1 class="post-title" itemprop="name headline">算法模板索引
               
             
           </h1>
         
 
         <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>置顶</font>
+            <span class="post-meta-divider">|</span>
           
           <span class="post-time">
 
@@ -388,24 +391,12 @@
                 
               
 
-              <time title="Created: 2018-01-19 09:03:20" itemprop="dateCreated datePublished" datetime="2018-01-19T09:03:20+08:00">2018-01-19</time>
+              <time title="Created: 2019-05-17 08:58:29 / Modified: 09:38:15" itemprop="dateCreated datePublished" datetime="2019-05-17T08:58:29+08:00">2019-05-17</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
               
             
           </span>
@@ -419,8 +410,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/19/割点/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/01/19/割点/" itemprop="commentCount"></span>
+                <a href="/2019/05/17/算法模板索引/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/05/17/算法模板索引/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,11 +439,43 @@
       
 
       
-        <p>割点，普遍使用<code>tarjan</code>算法，复杂度大概是$O(n+e)$级别（自己瞎猜的，错了欢迎指出）</p>
-<p><a href="https://www.luogu.org/problemnew/show/P3388" target="_blank" rel="noopener">模板题</a></p>
+        <p>为方便查询，都用小写（包括<code>dp</code>）</p>
 <a id="more"></a>
-<p>学过<code>tarjan</code>的（强连通分量，<code>tarjan-lca</code> （不过没多大关系））</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100010</span></span><br><span class="line"><span class="keyword">int</span> n,e,low[N],dfn[N],cnt,ans[N],l;</span><br><span class="line"><span class="comment">//low自己和dfs子树中所有节点能追溯到的最早的节点的dfn</span></span><br><span class="line"><span class="comment">//dfn dfs序</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;t[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> ir)</span></span></span><br><span class="line"><span class="function"><span class="comment">//x当前节点，ir是否是root</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c=<span class="number">0</span>,p=<span class="number">0</span>;</span><br><span class="line">	low[x]=dfn[x]=++cnt;</span><br><span class="line">	fr(i,<span class="number">0</span>,t[x].size()<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">if</span>(dfn[t[x][i]])</span><br><span class="line">			low[x]=min(low[x],dfn[t[x][i]]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			c++;</span><br><span class="line">			tarjan(t[x][i],<span class="number">0</span>);</span><br><span class="line">			<span class="keyword">if</span>((ir&amp;&amp;c&gt;<span class="number">1</span>)||(!ir&amp;&amp;low[t[x][i]]==dfn[x]))</span><br><span class="line">				p=<span class="number">1</span>;</span><br><span class="line">			low[x]=min(low[x],low[t[x][i]]);</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(p)</span><br><span class="line">		ans[++l]=x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=read();</span><br><span class="line">	e=read();</span><br><span class="line">	<span class="keyword">while</span>(e--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=read(),v=read();</span><br><span class="line">		t[u].push_back(v);</span><br><span class="line">		t[v].push_back(u);</span><br><span class="line">	&#125;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		<span class="keyword">if</span>(!dfn[i])</span><br><span class="line">			tarjan(i,<span class="number">1</span>);</span><br><span class="line">	sort(ans+<span class="number">1</span>,ans+l+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,l);</span><br><span class="line">	fr(i,<span class="number">1</span>,l)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d%c"</span>,ans[i],i==l?<span class="string">'\n'</span>:<span class="string">' '</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="/2019/05/03/求导公式/"><strong>求导</strong></a></p>
+<p><a href="/2019/05/02/广义二项式定理/"><strong>广义二项式定理</strong></a></p>
+<p><a href="/2019/04/30/简单介绍生成函数/"><strong>生成函数</strong></a> <del>这是假的</del></p>
+<p><a href="/2019/04/18/矩阵运算/"><strong>矩阵相关</strong></a></p>
+<p><a href="/2019/04/16/单位根反演/"><strong>单位根反演</strong></a></p>
+<p>即计算类似$\sum_{i}{n\choose i}[i\bmod p=k]$的式子</p>
+<p><a href="/2019/04/01/珂朵莉树/"><strong>珂朵莉树</strong></a></p>
+<p>处理区间操作，需要不同元素组成的区间段数尽可能少</p>
+<p><a href="/2019/03/25/min25/"><strong>min25筛</strong></a></p>
+<p>处理积性函数求和</p>
+<p><a href="/2019/03/18/单纯形/"><strong>单纯形法</strong></a></p>
+<p>解线性规划</p>
+<p><a href="/2019/03/14/多项式算法合集/"><strong>多项式算法</strong></a></p>
+<p><a href="/2019/03/12/回文自动机/"><strong>回文自动机</strong></a></p>
+<p><del>OI wiki上的除代码部分也是我写的</del></p>
+<p><a href="/2019/03/12/杜教筛rewrite/"><strong>杜教筛</strong></a></p>
+<p>类似min25筛，不过能处理的少一些</p>
+<p><a href="/2019/02/23/插头DP/"><strong>插头dp</strong></a> <del>这是假的</del></p>
+<p><a href="/2019/02/20/exbsgs/"><strong>ex bsgs</strong></a></p>
+<p>求$a^x\bmod p=b$的$x$</p>
+<p><a href="/2019/02/19/Polya/"><strong>Polya定理</strong></a> <del>假的</del></p>
+<p><a href="/2019/02/18/原根与阶/"><strong>原根</strong></a></p>
+<p>NTT必备，有单位根性质</p>
+<p><a href="/2019/02/18/二次剩余/"><strong>二次剩余</strong></a></p>
+<p>膜意义下开方</p>
+<p><a href="/2019/02/13/exlucas/"><strong>拓展lucas</strong></a></p>
+<p><a href="/2019/02/12/simgcd/"><strong>类gcd</strong></a></p>
+<p>除了时间复杂度像gcd，没有其它像gcd了</p>
+<p><a href="/2019/02/11/kruskalret/"><strong>kruskal重构树</strong></a></p>
+<p><a href="/2019/02/10/excrt/"><strong>ex crt</strong></a></p>
+<p><a href="/2019/02/10/exgcd/"><strong>ex gcd</strong></a></p>
+<p><a href="/2018/08/05/拉格朗日插值/"><strong>拉格朗日插值</strong></a></p>
+<p><a href="/2018/08/03/2-sat/"><strong>2 sat</strong></a></p>
+<p><a href="/2018/02/23/莫队小结/"><strong>莫队</strong></a></p>
+<p>其它远古的就不贴了</p>
 
       
     </div>
@@ -470,12 +493,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/割点/" rel="tag"># 割点</a>
-          
-        </div>
       
 
       
@@ -498,8 +515,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/18/二分图匹配/" rel="next" title="二分图匹配">
-                <i class="fa fa-chevron-left"></i> 二分图匹配
+              <a href="/2019/05/10/教你卡spfa/" rel="next" title="教你卡spfa">
+                <i class="fa fa-chevron-left"></i> 教你卡spfa
               </a>
             
           </div>
@@ -507,10 +524,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/19/网络流/" rel="prev" title="网络流dinic">
-                网络流dinic <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
