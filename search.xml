@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[实现折叠文字块]]></title>
+    <url>%2F2019%2F05%2F17%2F%E5%AE%9E%E7%8E%B0%E6%8A%98%E5%8F%A0%E6%96%87%E5%AD%97%E5%9D%97%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[算法模板索引]]></title>
     <url>%2F2019%2F05%2F17%2F%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E7%B4%A2%E5%BC%95%2F</url>
     <content type="text"><![CDATA[为方便查询，都用小写（包括dp）]]></content>
@@ -69,8 +74,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>TJOI</tag>
         <tag>生成函数</tag>
+        <tag>TJOI</tag>
       </tags>
   </entry>
   <entry>
