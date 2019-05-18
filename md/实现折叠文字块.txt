@@ -1,0 +1,18 @@
+---
+title: 实现折叠文字块
+date: 2019-05-17 15:04:51
+---
+
+```
+<details>
+<summary>title</summary>
+RT
+</details>
+```
+
+<details>
+<summary>title</summary>
+RT
+另外不要像markdown一样换行
+</details>
+
