@@ -74,8 +74,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>生成函数</tag>
         <tag>TJOI</tag>
+        <tag>生成函数</tag>
       </tags>
   </entry>
   <entry>
@@ -83,8 +83,8 @@
     <url>%2F2019%2F04%2F29%2FBJOI2019%E5%85%89%E7%BA%BF%2F</url>
     <content type="text"><![CDATA[当一束光打到一层玻璃上时，有一定比例的光会穿过这层玻璃，一定比例的光会被反射回去，剩下的光被玻璃吸收。 设对于任意$x$，有$xa_i$单位的光会穿过它，有$xb_i$的会被反射回去。现在$n$层玻璃叠在一起，有$1$单位的光打到第$1$层玻璃上，那么有多少单位的光能穿过所有$n$层玻璃呢？]]></content>
       <tags>
-        <tag>BJOI</tag>
         <tag>math</tag>
+        <tag>BJOI</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +344,8 @@
     <url>%2F2019%2F01%2F09%2FCF1045H%2F</url>
     <content type="text"><![CDATA[求在$[A,B]$区间内有多少数满足在二进制下： 子串$00$的个数为$c_{00}$。 子串$01$的个数为$c_{01}$。 子串$10$的个数为$c_{10}$。 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。 $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$]]></content>
       <tags>
-        <tag>math</tag>
         <tag>CF</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -363,8 +363,8 @@
     <url>%2F2019%2F01%2F05%2FCF1096G%2F</url>
     <content type="text"><![CDATA[一个$n$位数，每位可以是给出的$k$个数码中的一个数，可以有前导$0$,输出前$\frac n2$位之和与后$\frac n2$位之和相等的方案数，保证$n$是偶数。]]></content>
       <tags>
-        <tag>math</tag>
         <tag>CF</tag>
+        <tag>math</tag>
         <tag>NTT</tag>
       </tags>
   </entry>
@@ -480,8 +480,8 @@
     <url>%2F2018%2F07%2F05%2FHNOI2017%E7%A4%BC%E7%89%A9%2F</url>
     <content type="text"><![CDATA[FFT巧妙啊]]></content>
       <tags>
-        <tag>HNOI</tag>
         <tag>FFT</tag>
+        <tag>HNOI</tag>
       </tags>
   </entry>
   <entry>
@@ -711,8 +711,8 @@
     <url>%2F2018%2F01%2F07%2Floj2323luogu4005%E5%B0%8FY%E5%92%8C%E5%9C%B0%E9%93%81%2F</url>
     <content type="text"><![CDATA[$ $]]></content>
       <tags>
-        <tag>loj</tag>
         <tag>luogu</tag>
+        <tag>loj</tag>
         <tag>清华集训</tag>
         <tag>搜索</tag>
       </tags>
@@ -739,8 +739,8 @@
     <content type="text"><![CDATA[给定点的连边情况，求字典序最小的中序遍历 Sample Input 1234543 2 3 41 11 11 1 Output 12 1 3 4]]></content>
       <tags>
         <tag>DP</tag>
-        <tag>loj</tag>
         <tag>luogu</tag>
+        <tag>loj</tag>
         <tag>清华集训</tag>
         <tag>贪心</tag>
       </tags>

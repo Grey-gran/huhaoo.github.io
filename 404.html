@@ -1,12 +1,34 @@
+<meta charset="UTF-8">
 <html>
 	<body>
 		<div align="center">
-			<button onclick="back()">Go back</button>
+			<h3>
+				10秒后返回上一页
+			</h3>
+			<span class="a">
+			<span>
 		<div>
 		<script>
-			function back(){
-				window.location.href='/';
+			var i=0,step=10;
+			for(let item of document.getElementsByClassName("a"))
+			{
+				item.innerHTML="<iframe src=\"404file\\"+i+".html\" width=\"100\" height=\"50\" frameborder=\"0\"/>";
 			}
+			setInterval(function()
+			{
+				i+=step;
+				if(i<=100)
+				{
+					for(let item of document.getElementsByClassName("a"))
+					{
+						item.innerHTML="<iframe src=\"404file\\"+i+".html\" width=\"100\" height=\"50\" frameborder=\"0\"/>";
+					}
+				}
+				if(i==100)
+				{
+					history.back(-1);
+				}
+			},100*step)
 		</script>
-	</div></div></body>
+	</div></span></span></div></body>
 </html>
