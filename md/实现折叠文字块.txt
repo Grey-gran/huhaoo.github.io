@@ -1,18 +1,25 @@
 ---
 title: 实现折叠文字块
 date: 2019-05-17 15:04:51
+top: on
 ---
 
 ```
-<details>
-<summary>title</summary>
+<details class="mydetails">
+<summary class="mysummary">title</summary>
 RT
+不过不支持mathjax
+另外不要像markdown一样换行
 </details>
 ```
 
-<details>
-<summary>title</summary>
+那两个class自己去网上找定义方法
+
+<!--more-->
+
+<details class="mydetails">
+<summary class="mysummary">title</summary>
 RT
+不过不支持mathjax
 另外不要像markdown一样换行
 </details>
-
