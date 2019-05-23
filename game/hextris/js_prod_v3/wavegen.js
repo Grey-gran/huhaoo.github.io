@@ -1,4 +1,4 @@
-function blockDestroyed() {
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function blockDestroyed() {
     if (waveone.nextGen > 1350) {
         waveone.nextGen -= 24 * settings.creationSpeedModifier;
     } else if (waveone.nextGen > 600) {

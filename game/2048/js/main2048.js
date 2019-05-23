@@ -1,4 +1,4 @@
-var board = new Array();
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">var board = new Array();
 var added = new Array();
 var score = 0;
 var top = 240;

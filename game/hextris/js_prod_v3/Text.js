@@ -1,4 +1,4 @@
-function Text(x,y,text,font,color,incrementFunction){
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function Text(x,y,text,font,color,incrementFunction){
 	this.x = x;
 	this.y = y;
 	this.font = font;

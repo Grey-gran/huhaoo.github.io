@@ -1,4 +1,4 @@
-function render() {
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function render() {
 	var grey = '#bdc3c7';
 	if (gameState === 0) {
 		grey = "rgb(220, 223, 225)";

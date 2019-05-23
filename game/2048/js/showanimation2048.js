@@ -1,4 +1,4 @@
-function showNumberWithAnimation(i, j, randNumber) {
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function showNumberWithAnimation(i, j, randNumber) {
  
     var numberCell = $('#number-cell-' + i + '-' + j);
     numberCell.css("background-color", getNumberBackgroundColor(randNumber));
