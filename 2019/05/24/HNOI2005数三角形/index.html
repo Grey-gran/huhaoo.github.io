@@ -109,25 +109,25 @@
 
 
 
-  <meta name="description" content="求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。">
-<meta name="keywords" content="math,生成函数">
+  <meta name="description" content="题目链接">
+<meta name="keywords" content="HNOI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="luogu4389付公主的背包">
-<meta property="og:url" content="https://huhaoo.github.io/2019/05/05/luogu4389付公主的背包/index.html">
+<meta property="og:title" content="HNOI2005数三角形">
+<meta property="og:url" content="https://huhaoo.github.io/2019/05/24/HNOI2005数三角形/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。">
+<meta property="og:description" content="题目链接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-06T06:15:19.092Z">
+<meta property="og:updated_time" content="2019-05-24T01:37:24.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="luogu4389付公主的背包">
-<meta name="twitter:description" content="求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。">
+<meta name="twitter:title" content="HNOI2005数三角形">
+<meta name="twitter:description" content="题目链接">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/2019/05/05/luogu4389付公主的背包/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2019/05/24/HNOI2005数三角形/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>luogu4389付公主的背包 | Huhao's blog</title>
+  <title>HNOI2005数三角形 | Huhao's blog</title>
   
 
 
@@ -345,7 +345,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/05/05/luogu4389付公主的背包/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/05/24/HNOI2005数三角形/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -362,7 +362,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">luogu4389付公主的背包
+          <h1 class="post-title" itemprop="name headline">HNOI2005数三角形
               
             
           </h1>
@@ -388,24 +388,12 @@
                 
               
 
-              <time title="Created: 2019-05-05 15:20:50" itemprop="dateCreated datePublished" datetime="2019-05-05T15:20:50+08:00">2019-05-05</time>
+              <time title="Created: 2019-05-24 08:57:53 / Modified: 09:37:24" itemprop="dateCreated datePublished" datetime="2019-05-24T08:57:53+08:00">2019-05-24</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-06 14:15:19" itemprop="dateModified" datetime="2019-05-06T14:15:19+08:00">2019-05-06</time>
               
             
           </span>
@@ -419,8 +407,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/05/05/luogu4389付公主的背包/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/05/05/luogu4389付公主的背包/" itemprop="commentCount"></span>
+                <a href="/2019/05/24/HNOI2005数三角形/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/05/24/HNOI2005数三角形/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,15 +436,19 @@
       
 
       
-        <p>求用$n$种不限量的大小为$w_i$物品分别填满$[1,m]$大小的方案数。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1201" target="_blank" rel="noopener">题目链接</a></p>
 <a id="more"></a>
-<p>显然，我们要求</p>
-<p>$$<br>F(x)=\prod_{i=1}^{n}\sum_{j=0}^{\infty}x^{ij}<br>$$</p>
-<p>推下式子</p>
-<p>$$<br>\begin{align}<br>\ln F(x)=&amp;\ln\prod_{i=1}^{n}\sum_{j=0}^{\infty}x^{w_ij}\notag\\<br>=&amp;\sum_{i=1}^{n}\ln\sum_{j=0}^{\infty}x^{w_ij}\notag\\<br>=&amp;\sum_{i=1}^{n}\ln\frac{1}{1-x^{w_i}}\notag\\<br>=&amp;\sum_{i=1}^{n}\int\frac{w_ix^{w_i-1}}{(1-x^{w_i})}\mathrm{d}x\notag\\<br>=&amp;\sum_{i=1}^{n}w_i\int x^{w_i-1}\sum_{j=0}^{\infty}x^{w_ij}\mathrm{d}x\notag\\<br>=&amp;\sum_{i=1}^{n}w_i\sum_{j=0}^{\infty}\frac{x^{w_ij+w_i}}{w_ij+w_i}\notag\\<br>=&amp;\sum_{i=1}^{n}\sum_{j=1}^{\infty}\frac{x^{w_ij}}{j}\notag\\<br>=&amp;\sum_{i=1}^{n}\sum_{j=i}^{\infty}[w_i|j]\frac{x^{j}}{\frac{j}{w_i}}\notag\\<br>=&amp;\sum_{j=1}^{\infty}x^j\sum_{i,w_i|j}\frac{w_i}{j}\notag\\<br>F(x)=&amp;\mathrm{e}^{\sum_{j=1}^{\infty}x^j\sum_{i,w_i|j}\frac{w_i}{j}}\notag<br>\end{align}<br>$$</p>
-<p>由于$e^{f(x)}\bmod x^p$只与$f(x)\bmod x^p$有关，所以可以用调和级数+多项式exp的复杂度（$O(n\log n)$）求出F(x)</p>
-<p>代码还好吧（至少膜$998244353$）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=(<span class="number">1</span>&lt;&lt;<span class="number">20</span>)+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod=<span class="number">998244353</span>,g=<span class="number">3</span>,ig=<span class="number">332748118</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">power</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> r=<span class="number">1</span>;</span><br><span class="line">	a%=p;</span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>)</span><br><span class="line">			r=r*a%p;</span><br><span class="line">		a=a*a%p;</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> r[N],l;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NTT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">int</span> opt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fr(i,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">if</span>(i&lt;r[i])</span><br><span class="line">			swap(a[i],a[r[i]]);</span><br><span class="line">	fr(i,<span class="number">0</span>,l<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> wn=power(opt==<span class="number">1</span>?g:ig,(mod)&gt;&gt;(i+<span class="number">1</span>),mod);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;l);j+=(<span class="number">1</span>&lt;&lt;(i+<span class="number">1</span>)))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> w=<span class="number">1</span>;</span><br><span class="line">			fr(k,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;i)<span class="number">-1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">long</span> <span class="keyword">long</span> x=a[j+k],y=a[j+k+(<span class="number">1</span>&lt;&lt;i)]*w%mod;</span><br><span class="line">				a[j+k]=(x+y)%mod;</span><br><span class="line">				a[j+k+(<span class="number">1</span>&lt;&lt;i)]=(x-y+mod)%mod;</span><br><span class="line">				w=w*wn%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(opt==<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> i=power(<span class="number">1</span>&lt;&lt;l,mod<span class="number">-2</span>,mod);</span><br><span class="line">		fr(j,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">			a[j]=a[j]*i%mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> _a[N],_b[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> *b,<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	l=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;l)&lt;n+m+<span class="number">1</span>)</span><br><span class="line">		l++;</span><br><span class="line">	fr(i,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r[i]=(r[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(l<span class="number">-1</span>));</span><br><span class="line">		_a[i]=_b[i]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	fr(i,<span class="number">0</span>,n)</span><br><span class="line">		_a[i]=a[i];</span><br><span class="line">	fr(i,<span class="number">0</span>,m)</span><br><span class="line">		_b[i]=b[i];</span><br><span class="line">	NTT(_a,<span class="number">1</span>);</span><br><span class="line">	NTT(_b,<span class="number">1</span>);</span><br><span class="line">	fr(i,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;l)<span class="number">-1</span>)</span><br><span class="line">		o[i]=_a[i]*_b[i]%mod;</span><br><span class="line">	NTT(o,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> x[N];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * g(f(x))=1/f(x)-h(x)</span></span><br><span class="line"><span class="comment"> * f(x)=f0(x)-g(f0(x))/g'(f0(x))=f0(x)-(1/f0(x)-h(x))/(-1/f0^2(x))=2f0(x)-h(x)f0^2(x)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		*o=power(*a,mod<span class="number">-2</span>,mod);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> _p=(p+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	inv(o,a,_p);</span><br><span class="line">	mul(x,o,a,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	fr(i,<span class="number">0</span>,p<span class="number">-1</span>)</span><br><span class="line">		x[i]=(-x[i]+mod)%mod;</span><br><span class="line">	x[<span class="number">0</span>]=(x[<span class="number">0</span>]+<span class="number">2</span>)%mod;</span><br><span class="line">	mul(o,x,o,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	fr(i,p,p+p<span class="number">-2</span>)</span><br><span class="line">		o[i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">d</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fr(i,<span class="number">0</span>,p<span class="number">-2</span>)</span><br><span class="line">		o[i]=a[i+<span class="number">1</span>]*(i+<span class="number">1</span>)%mod;</span><br><span class="line">	o[p<span class="number">-1</span>]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> _inv_</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> f[N],fi[N];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n=<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		fr(i,<span class="number">1</span>,n)</span><br><span class="line">			f[i]=f[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">		fi[n]=power(f[n],mod<span class="number">-2</span>,mod);</span><br><span class="line">		fd(i,n,<span class="number">1</span>)</span><br><span class="line">			fi[i<span class="number">-1</span>]=fi[i]*i%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">inv</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fi[a]*f[a<span class="number">-1</span>]%mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">integral</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fd(i,p<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">		o[i]=a[i<span class="number">-1</span>]*_inv_::inv(i)%mod;</span><br><span class="line">	o[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> y[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ln</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	d(y,a,p);</span><br><span class="line">	inv(o,a,p);</span><br><span class="line">	mul(y,o,y,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	integral(o,y,p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> z[N];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * g(f(x))=e^h(x)-f(x)=ln(f(x))-h(x)=0</span></span><br><span class="line"><span class="comment"> * f(x)=(1-ln(f0(x))+h(x))f0(x)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exp</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> *o,<span class="keyword">long</span> <span class="keyword">long</span> *a,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		o[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> _p=(p+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">exp</span>(o,a,_p);</span><br><span class="line">	ln(z,o,p);</span><br><span class="line">	fr(i,<span class="number">0</span>,p<span class="number">-1</span>)</span><br><span class="line">		z[i]=(a[i]-z[i]+mod)%mod;</span><br><span class="line">	z[<span class="number">0</span>]=(z[<span class="number">0</span>]+<span class="number">1</span>)%mod;</span><br><span class="line">	mul(o,z,o,p<span class="number">-1</span>,p<span class="number">-1</span>);</span><br><span class="line">	fr(i,p,p+p<span class="number">-2</span>)</span><br><span class="line">		o[i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[N],f[N],ans[N],n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	m=read();</span><br><span class="line">	n=read();</span><br><span class="line">	_inv_::init(n+<span class="number">1</span>);</span><br><span class="line">	fr(i,<span class="number">1</span>,m)</span><br><span class="line">		a[read()]++;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		fr(j,<span class="number">1</span>,n/i)</span><br><span class="line">			f[i*j]=(f[i*j]+a[i]*i%mod*_inv_::inv(i*j)%mod)%mod;</span><br><span class="line"><span class="comment">//	fr(i,1,n)</span></span><br><span class="line"><span class="comment">//		printf("%lld%c",f[i],i==n?'\n':' ');</span></span><br><span class="line">	<span class="built_in">exp</span>(ans,f,n+<span class="number">1</span>);</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先从上到下，从左到右编号（或者说是建系？）</p>
+<p>用$l$表示左边的边是否存在，$r$表示右边的边是否存在，$d$表示下面的边是否存在</p>
+<p>正立的话就是如果有以$(i,j)$为上顶点，长度为$m$的三角形合法，那么需要</p>
+<p>$$<br>\forall k\in[0,m-1],l_{i+k,j}=1,r_{i+k,j+k}=1,d_{i+m-1,j+k}=1<br>$$</p>
+<p>而倒立的话，以左上点$(i,j)$来记的话：</p>
+<p>$$<br>\forall k\in[0,m-1],d_{i-1,j+k}=1,r_{i+k,j+k}=1,l_{i+k,j+m-1}=1<br>$$</p>
+<p>不妨记$L$表示以当前点以$l$方向连续（且坐标变大）的$1$的个数，$R,D$同理</p>
+<p>然后上面两个就变成了</p>
+<p>$$<br>L_{i,j}\ge m,R_{i,j}\ge m,D_{i+m-1,j}\ge m\\<br>D_{i-1,j}\ge m,R_{i,j}\ge m,L_{i,j+m}\ge m<br>$$</p>
+<p>发现是$10s$时限，$O(n^3)$跑掉</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fr(i,a,b) for(int i=(a),end_##i=(b);i&lt;=end_##i;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fd(i,a,b) for(int i=(a),end_##i=(b);i&gt;=end_##i;i--)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> r=<span class="number">0</span>,t=<span class="number">1</span>,c=getchar();</span><br><span class="line">	<span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		t=c==<span class="string">'-'</span>?<span class="number">-1</span>:<span class="number">1</span>;</span><br><span class="line">		c=getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r=r*<span class="number">10</span>+c<span class="number">-48</span>;</span><br><span class="line">		c=getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r*t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"><span class="keyword">int</span> n,l[N][N],r[N][N],d[N][N],L[N][N],R[N][N],D[N][N],ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=read();</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		fr(j,<span class="number">1</span>,i)</span><br><span class="line">		&#123;</span><br><span class="line">			l[i][j]=read();</span><br><span class="line">			r[i][j]=read();</span><br><span class="line">			d[i][j]=read();</span><br><span class="line">		&#125;</span><br><span class="line">	fd(i,n,<span class="number">1</span>)</span><br><span class="line">		fd(j,i,<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(l[i][j])</span><br><span class="line">				L[i][j]=L[i+<span class="number">1</span>][j]+<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(r[i][j])</span><br><span class="line">				R[i][j]=R[i+<span class="number">1</span>][j+<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(d[i][j])</span><br><span class="line">				D[i][j]=D[i][j+<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		fr(j,<span class="number">1</span>,i)</span><br><span class="line">			fr(k,<span class="number">1</span>,min(L[i][j],R[i][j]))</span><br><span class="line">				<span class="keyword">if</span>(D[i+k<span class="number">-1</span>][j]&gt;=k)</span><br><span class="line">					ans++;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">		fr(j,<span class="number">1</span>,i)</span><br><span class="line">			fr(k,<span class="number">1</span>,min(D[i<span class="number">-1</span>][j],R[i][j]))</span><br><span class="line">				<span class="keyword">if</span>(L[i][j+k]&gt;=k)</span><br><span class="line">					ans++;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -477,9 +469,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/math/" rel="tag"># math</a>
-          
-            <a href="/tags/生成函数/" rel="tag"># 生成函数</a>
+            <a href="/tags/HNOI/" rel="tag"># HNOI</a>
           
         </div>
       
@@ -504,8 +494,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/03/求导公式/" rel="next" title="求导公式">
-                <i class="fa fa-chevron-left"></i> 求导公式
+              <a href="/2019/05/22/幂级数/" rel="next" title="幂级数">
+                <i class="fa fa-chevron-left"></i> 幂级数
               </a>
             
           </div>
@@ -513,10 +503,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/07/luogu4931/" rel="prev" title="luogu4931情侣？给我烧了！">
-                luogu4931情侣？给我烧了！ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,7 +571,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -774,9 +760,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

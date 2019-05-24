@@ -1,0 +1,98 @@
+---
+title: HNOI2005数三角形
+date: 2019-05-24 08:57:53
+tags:
+- HNOI
+mathjax: on
+---
+
+[题目链接](https://www.lydsy.com/JudgeOnline/problem.php?id=1201)
+
+<!--more-->
+
+先从上到下，从左到右编号（或者说是建系？）
+
+用$l$表示左边的边是否存在，$r$表示右边的边是否存在，$d$表示下面的边是否存在
+
+正立的话就是如果有以$(i,j)$为上顶点，长度为$m$的三角形合法，那么需要
+
+$$
+\forall k\in[0,m-1],l_{i+k,j}=1,r_{i+k,j+k}=1,d_{i+m-1,j+k}=1
+$$
+
+而倒立的话，以左上点$(i,j)$来记的话：
+
+$$
+\forall k\in[0,m-1],d_{i-1,j+k}=1,r_{i+k,j+k}=1,l_{i+k,j+m-1}=1
+$$
+
+不妨记$L$表示以当前点以$l$方向连续（且坐标变大）的$1$的个数，$R,D$同理
+
+然后上面两个就变成了
+
+$$
+L_{i,j}\ge m,R_{i,j}\ge m,D_{i+m-1,j}\ge m\\
+D_{i-1,j}\ge m,R_{i,j}\ge m,L_{i,j+m}\ge m
+$$
+
+发现是$10s$时限，$O(n^3)$跑掉
+
+```cpp
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=r*10+c-48;
+		c=getchar();
+	}
+	return r*t;
+}
+const int N=1010;
+int n,l[N][N],r[N][N],d[N][N],L[N][N],R[N][N],D[N][N],ans;
+int main()
+{
+	n=read();
+	fr(i,1,n)
+		fr(j,1,i)
+		{
+			l[i][j]=read();
+			r[i][j]=read();
+			d[i][j]=read();
+		}
+	fd(i,n,1)
+		fd(j,i,1)
+		{
+			if(l[i][j])
+				L[i][j]=L[i+1][j]+1;
+			if(r[i][j])
+				R[i][j]=R[i+1][j+1]+1;
+			if(d[i][j])
+				D[i][j]=D[i][j+1]+1;
+		}
+	fr(i,1,n)
+		fr(j,1,i)
+			fr(k,1,min(L[i][j],R[i][j]))
+				if(D[i+k-1][j]>=k)
+					ans++;
+	fr(i,1,n)
+		fr(j,1,i)
+			fr(k,1,min(D[i-1][j],R[i][j]))
+				if(L[i][j+k]>=k)
+					ans++;
+	printf("%d\n",ans);
+	return 0;
+}
+```
