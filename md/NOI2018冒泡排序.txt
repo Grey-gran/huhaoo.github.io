@@ -1,0 +1,142 @@
+---
+title: NOI2018冒泡排序
+date: 2019-05-25 09:07:52
+tags:
+- DP
+- NOI
+mathjax: on
+---
+
+[题目地址](https://www.luogu.org/problemnew/show/P4769)
+
+<!--more-->
+
+发现交换次数是逆序对个数，然后发现只要不出现$i<j<k$使得$p_i>p_j>p_k$就是合法的
+
+那么如果除去在**贪心地选择**上升序列后，剩下的一定是一个上升序列
+
+那么可以设$f_{i,j}$表示以有$i$个数了，最大的是$j$的到达最终状态的方案数
+
+那么
+
+$$
+f_{i,j}=[i+1\le j]f_{i+1,j}+\sum_{k=j+1}^{n}f_{i+1,k},f_{n,n}=1
+$$
+
+前面那个表示这一次选择了前$j$个中没有选的最大的（即加入第二个上升序列），后面表示选择$k$（表示加入第一个上升序列）
+
+那么可以先算出$f$数组类似数位DP看在哪一位不再受限（下面有详细的介绍）。
+
+然后这就是$O(n^2)$可以拿$80$分！
+
+然后发现
+
+$$
+f_{i,j}=[i+1\le j]f_{i+1,j}+f_{i,j+1}
+$$
+
+把下标反转一下变成$f'$[^1]：
+
+$$
+f'_{i,j}=[i-1\ge j]f_{i-1,j}+f_{i,j-1},f_{0,0}=1
+$$
+
+于是可以转化为从$(i,j)\rightarrow(0,0)$的方案数且必须保证$i\ge j$，如果把$i-1$记为$1$，$j-1$记为$-1$
+
+那么每个前缀和都要满足$\ge j-i$，发现这和`Catalan`推导类似，即从$(i-j,0)$开始，每次位移为$(1,1)\mathrm{or}(1,-1)$，最终到$(i+j,0)$且不能过$y=-1$
+
+如果不算最后的限制，那么方案数为${i+j}\choose i$
+
+考虑那个限制，发现每个过$y=-1$的走法可以和$(-i+j-2,0)$一一对应，所以答案是${i+j\choose j}-{i+j\choose j-1}$
+
+解决了$f_{i,j}$的计算问题，现在考虑怎么处理排列的顺序问题
+
+可以首先处理位置$1$，然后对于位置$i$
+
+1. $p_i=q_i$，那么就更新当前最大的即可，注意判一下是否非法
+
+2. $p_i>q_i$，显然不会是未选择的最小的了，只能作为最大的出现[^2]
+
+   那么我们需要累加（其中$j$表示最小可行的，即之前最大与$q_i$较大值$+1$）
+
+   $$
+   \begin{align}
+   &\sum_{k=j}^{n}f_{i,k}\notag\\
+   =&\sum_{k=0}^{n-j}f'_{n-i,k}\notag\\
+   =&\sum_{k=0}^{n-j}{n-i+k\choose k}-{n-i+k\choose k-1}\notag
+   \end{align}
+   $$
+
+   这就相当于给两个斜线上的组合数求和，~~利用大家丰富的组合数只是即可~~，我们有
+
+   $$
+   {j+i+1\choose i}={j+i\choose i}+{j+i\choose i-1}={j+i\choose i}+{j+i-1\choose i-1}+{j+i-1\choose i-2}=\dots=\sum_{k=0}^{i}{j+k\choose k}
+   $$
+
+   于是那个式子的值为${n-i+n-j+1\choose n-j}-{n-i+n-j+1\choose n-j-1}$
+
+综上所述，我们在$O(n)$的时间复杂度内做出了本题！
+
+附代码
+
+```cpp
+const long long N=1200010,mod=998244353;
+long long power(long long a,long long b,long long p)
+{
+	long long r=1;
+	a%=p;
+	while(b)
+	{
+		if(b&1)
+			r=r*a%p;
+		a=a*a%p;
+		b>>=1;
+	}
+	return r;
+}
+long long f_[N],_f[N],n=1200000,a[N],p[N];
+long long C(long long a,long long b)
+{
+	return f_[a]*_f[b]%mod*_f[a-b]%mod;
+}
+int main()
+{
+	f_[0]=1;
+	fr(i,1,n)
+		f_[i]=f_[i-1]*i%mod;
+	_f[n]=power(f_[n],mod-2,mod);
+	fd(i,n,1)
+		_f[i-1]=_f[i]*i%mod;
+	fr(_t,1,read())
+	{
+		long long m=0,_m=1,ans=0;
+		n=read();
+		fr(i,1,n)
+		{
+			a[i]=read();
+			p[i]=0;
+		}
+		fr(i,1,n)
+		{
+			p[a[i]]=1;
+			long long k=max(m,a[i])+1;
+			ans=(ans+C(n-i+n-k+1,n-k)-C(n-i+n-k+1,n-k-1)+mod)%mod;
+			if(a[i]>m)
+				m=a[i];
+			else
+			{
+				if(a[i]!=_m)
+					break;
+			}
+			while(p[_m])
+				_m++;
+		}
+		printf("%lld\n",ans);
+	}
+	return 0;
+}
+```
+
+[^1]: 它也是有意义的表示还有i个数，还有j个比当前最大的大的数
+
+[^2]: 易证，当然前提是它给的是一个排列

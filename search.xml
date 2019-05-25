@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[NOI2018冒泡排序]]></title>
+    <url>%2F2019%2F05%2F25%2FNOI2018%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[题目地址]]></content>
+      <tags>
+        <tag>DP</tag>
+        <tag>NOI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POI2012OKR A Horrible Poem]]></title>
+    <url>%2F2019%2F05%2F24%2FPOI2012OKRAHorriblePoem%2F</url>
+    <content type="text"><![CDATA[给你一个字符串，每次询问一个子串，问它的最小循环节（循环节满足重复无限次后原串是它子串）]]></content>
+      <tags>
+        <tag>string</tag>
+        <tag>POI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Poem]]></title>
+    <url>%2F2019%2F05%2F24%2FPoem%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[HNOI2005数三角形]]></title>
     <url>%2F2019%2F05%2F24%2FHNOI2005%E6%95%B0%E4%B8%89%E8%A7%92%E5%BD%A2%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
@@ -408,8 +431,8 @@
     <url>%2F2018%2F11%2F18%2Fluogu3695%2F</url>
     <content type="text"><![CDATA[题面 给定一个语言，写出他的解释器。 其实这道题写起来也不长，就4.4K而已。]]></content>
       <tags>
-        <tag>luogu</tag>
         <tag>string</tag>
+        <tag>luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -737,8 +760,8 @@
     <url>%2F2018%2F01%2F07%2Floj2323luogu4005%E5%B0%8FY%E5%92%8C%E5%9C%B0%E9%93%81%2F</url>
     <content type="text"><![CDATA[$ $]]></content>
       <tags>
-        <tag>loj</tag>
         <tag>luogu</tag>
+        <tag>loj</tag>
         <tag>清华集训</tag>
         <tag>搜索</tag>
       </tags>
@@ -765,8 +788,8 @@
     <content type="text"><![CDATA[给定点的连边情况，求字典序最小的中序遍历 Sample Input 1234543 2 3 41 11 11 1 Output 12 1 3 4]]></content>
       <tags>
         <tag>DP</tag>
-        <tag>loj</tag>
         <tag>luogu</tag>
+        <tag>loj</tag>
         <tag>清华集训</tag>
         <tag>贪心</tag>
       </tags>
