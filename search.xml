@@ -10,20 +10,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[POI2012OKR A Horrible Poem]]></title>
-    <url>%2F2019%2F05%2F24%2FPOI2012OKRAHorriblePoem%2F</url>
-    <content type="text"><![CDATA[给你一个字符串，每次询问一个子串，问它的最小循环节（循环节满足重复无限次后原串是它子串）]]></content>
-      <tags>
-        <tag>string</tag>
-        <tag>POI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Poem]]></title>
-    <url>%2F2019%2F05%2F24%2FPoem%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[HNOI2005数三角形]]></title>
     <url>%2F2019%2F05%2F24%2FHNOI2005%E6%95%B0%E4%B8%89%E8%A7%92%E5%BD%A2%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
