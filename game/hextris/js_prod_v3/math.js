@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function rotatePoint(x, y, theta) {
+<link rel="stylesheet" type="text/css" href="/hint.min.css">function rotatePoint(x, y, theta) {
     var thetaRad = theta * (Math.PI / 180);
     var rotX = Math.cos(thetaRad) * x - Math.sin(thetaRad) * y;
     var rotY = Math.sin(thetaRad) * x + Math.cos(thetaRad) * y;

@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">//remember to update history function to show the respective iter speeds
+<link rel="stylesheet" type="text/css" href="/hint.min.css">//remember to update history function to show the respective iter speeds
 function update() {
 	var now = MainHex.ct;
 	if (gameState == 1) {

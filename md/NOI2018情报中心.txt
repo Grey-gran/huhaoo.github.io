@@ -1,0 +1,22 @@
+---
+title: NOI2018情报中心
+date: 2019-05-26 08:39:18
+tags:
+- 数据结构
+- NOI
+mathjax: on
+---
+
+[题目链接](https://www.luogu.org/problemnew/show/P4775)
+
+<!--more-->
+
+先考虑一下部分分做法
+
+### $lca$全不相同
+
+有交的两条路径它们一定长这样：
+
+![](NOI2018情报中心/1.jpg)
+
+我们可以枚举<font color="red">红点</font>

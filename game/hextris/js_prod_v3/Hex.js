@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function Hex(sideLength) {
+<link rel="stylesheet" type="text/css" href="/hint.min.css">function Hex(sideLength) {
 	this.playThrough = 0;
 	this.fillColor = [44,62,80];
     this.tempColor = [44,62,80];

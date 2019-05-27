@@ -436,7 +436,7 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>简略分析一下c++ stl常数。</p>
+        <link rel="stylesheet" type="text/css" href="/hint.min.css"><p>简略分析一下c++ stl常数。</p>
 <a id="more"></a>
 <h3 id="template对常数影响"><a href="#template对常数影响" class="headerlink" title="template对常数影响"></a><code>template</code>对常数影响</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000000000</span>;i++)f(i,i);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在不开O2时跑$2.99s$（开O2跑$0.00s$，显然被优化掉了，就不考虑了）</p>
@@ -615,7 +615,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-count">104</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -804,7 +804,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">87</span>
+                      
+                    
+                    <span class="site-state-item-count">88</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

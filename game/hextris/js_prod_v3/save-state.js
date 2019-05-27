@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function exportSaveState() {
+<link rel="stylesheet" type="text/css" href="/hint.min.css">function exportSaveState() {
 	var state = {};
 
 	if(gameState == 1 || gameState == -1 || (gameState === 0 && localStorage.getItem('saveState') !== undefined)) {

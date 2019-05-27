@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">function Block(fallingLane, color, iter, distFromHex, settled) {
+<link rel="stylesheet" type="text/css" href="/hint.min.css">function Block(fallingLane, color, iter, distFromHex, settled) {
 	// whether or not a block is rested on the center hex or another block
 	this.settled = (settled === undefined) ? 0 : 1;
 	this.height = settings.blockHeight;
