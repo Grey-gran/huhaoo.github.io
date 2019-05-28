@@ -1,0 +1,147 @@
+---
+title: NOI2017蔬菜
+date: 2019-05-27 14:58:54
+tags:
+- 贪心
+- NOI
+mathjax: on
+---
+
+题目链接给两个吧
+
+[luogu](https://www.luogu.org/problemnew/show/P3826)
+
+[loj](https://loj.ac/problem/2306)
+
+<!--more-->
+
+可以把每种蔬菜第一次卖出的那个看为一个新蔬菜，并且可以视为最后腐烂的
+
+显然优先放价值大的
+
+可以排序后并查集看最坏能放哪
+
+注意一下处理方式，别与$a,c,s,x$中任何一个挂钩（比如说枚举每个蔬菜变为枚举蔬菜个数和当天能放的较小值）
+
+感觉思维难度不大，就是细节特别恶心。
+
+代码如下：
+
+```cpp
+const i64 N=2000010;
+i64 f[N],p[N],n,m,k=100000,_n;
+long long ans[N];
+struct veg
+{
+	i64 v,s,x;
+	veg(i64 _v=0,i64 _s=0,i64 _x=0)
+	{
+		v=_v;
+		s=_s;
+		x=_x;
+	}
+}a[N];
+i64 cmp(veg a,veg b)
+{
+	return a.v>b.v;
+}
+i64 t,_t,_m;
+i64 find(i64 x)
+{
+	return p[x]?f[x]=find(f[x]):x;
+}
+int main()
+{
+	n=read();
+	m=read();
+	i64 q=read();
+	fr(i,1,m*k)
+		f[i]=i-1;
+	fr(i,1,n)
+	{
+		i64 b=read(),c=read(),d=read(),e=read();	
+		if(e==0)
+		{
+			a[++_n]=veg(b+c,1,-k);
+			if(d!=1)
+				a[++_n]=veg(b,d-1,0);
+		}
+		else
+		{
+			a[++_n]=veg(b+c,1,-((d-1)/e+1));
+			if(d!=1)
+				a[++_n]=veg(b,d-1,e);
+		}
+	}
+	sort(a+1,a+_n+1,cmp);
+	t=1;
+	_t=1;
+	_m=1;
+	fr(i,1,k)
+	{
+		ans[i]=ans[i-1];
+		for(i64 j=1;j<=m;)
+			if(t<=_n)
+			{
+				if(a[t].x<0)
+				{
+					i64 x=find(min(k,-a[t].x)*m);
+					if(x)
+					{
+						p[x]=1;
+						j++;
+						ans[i]+=a[t].v;
+					}
+					t++;
+					_t=1;
+				}
+				else if(a[t].x==0)
+				{
+					i64 x=find(k*m);
+					p[x]=1;
+					j++;
+					ans[i]+=a[t].v;
+					_t++;
+				}
+				else
+				{
+					i64 x=min((_t-1)/a[t].x+1,k);
+					if((x=find(x*m)))
+					{
+						p[x]=1;
+						j++;
+						ans[i]+=a[t].v;
+						_t++;
+					}
+					else
+					{
+						while(!(x=find(_m*m)))
+							_m++;
+						if((_m-1)*a[t].x+1<=a[t].s)
+						{
+							_t=(_m-1)*a[t].x+2;
+							p[x]=1;
+							j++;
+							ans[i]+=a[t].v;
+						}
+						else
+						{
+							_t=1;
+							t++;
+						}
+					}
+				}
+				if(_t>a[t].s)
+				{
+					_t=1;
+					t++;
+				}
+			}
+			else
+				break;
+	}
+	while(q--)
+		printf("%lld\n",ans[read()]);
+	return 0;
+}
+```
