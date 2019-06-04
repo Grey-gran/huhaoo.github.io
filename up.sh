@@ -40,4 +40,5 @@ do
 done
 cd $road
 cp up.sh $road/source/up.sh
+hexo clean
 hexo d -g
