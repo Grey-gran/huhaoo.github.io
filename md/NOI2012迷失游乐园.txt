@@ -1,0 +1,242 @@
+---
+title: NOI2012迷失游乐园
+date: 2019-06-09 09:20:51
+tags:
+- NOI
+- DP
+- math
+mathjax: on
+---
+
+给定一颗带权基环树，求从任意一个点开始不断随机走向一个未访问点的期望长度。
+
+<!--more-->
+
+可以设$f_{i}$为只考虑以$i$为根的子树从$i$开始期望次数
+
+那么可以很容易地求出$f$
+
+![](NOI2012迷失游乐园/1.png)
+
+我们可以考虑一下从每个点开始走的贡献
+
+比如从$7$号点开始，向下走贡献就是$f_{13},f_{14}$，向上就是$6$号点，然后就是$f_{8}$和$1$号点除$6$为根子树贡献，然后可以顺便把$f_{5}$算掉，就可以不用管$1$为根的子树了
+
+然后可以枚举在那个点进入它的子树，要分两个方向考虑。
+
+总的来说：
+
+1. 先算出$f$数组
+
+2. 算出环上每个点到其它每个点的子树的概率$h$，为了实现方便还需要所有子树的$f$之和
+
+3. 算出每个点到环的可以直接统计的$f$之和$g$，和走到环上概率$p$
+
+$m=n-1$部分代码：
+
+```cpp
+namespace run1
+{
+	int begin[N],next[N],to[N],e,w[N],F[N],d[N];
+	double f[N],g[N],ans;
+#define fo(i,a) for(int i=begin[a];i;i=next[i])
+	void add(int u,int v,int _w)
+	{
+		e++;
+		next[e]=begin[u];
+		begin[u]=e;
+		to[e]=v;
+		w[e]=_w;
+	}
+	void dfs1(int u)
+	{
+		int v;
+		fo(i,u)
+			if((v=to[i])!=F[u])
+			{
+				F[v]=u;
+				dfs1(v);
+				f[u]+=w[i]+f[v];
+			}
+		if(u==1)
+			f[u]/=d[u];
+		else
+			if(d[u]!=1)
+				f[u]/=d[u]-1;
+			else
+				f[u]=0;
+	}
+	void dfs2(int u)
+	{
+		int v;
+		fo(i,u)
+			if((v=to[i])!=F[u])
+			{
+				if(d[u]==1)
+					g[v]=(f[v]*(d[v]-1)+w[i])/d[v];
+				else
+					g[v]=(f[v]*(d[v]-1)+w[i]+(g[u]*d[u]-f[v]-w[i])/(d[u]-1))/d[v];
+				dfs2(v);
+			}
+	}
+	int main()
+	{
+		fr(i,1,n-1)
+		{
+			int u=read(),v=read(),w=read();
+			add(u,v,w);
+			add(v,u,w);
+			d[u]++;
+			d[v]++;
+		}
+		dfs1(1);
+		g[1]=f[1];
+		dfs2(1);
+		fr(i,1,n)
+			ans+=g[i]/n;
+		printf("%.5lf\n",ans);
+		return 0;
+	}
+#undef fo
+}
+```
+
+$m=n$部分代码：
+
+```cpp
+namespace run2
+{
+	int begin[N],next[N],to[N],w[N],e,id[N],d[N],s[N],t,is[N],vis[N],pos[N],m,F[N],l[N];
+	double f[N],g[N],h[N],ans;
+	void add(int u,int v,int _w)
+	{
+		e++;
+		next[e]=begin[u];
+		begin[u]=e;
+		to[e]=v;
+		w[e]=_w;
+	}
+#define fo(i,a) for(int i=begin[a];i;i=next[i])
+	void dfs1(int u)
+	{
+		int v;
+		vis[u]=1;
+		is[u]=1;
+		s[++t]=u;
+		fo(i,u)
+			if(vis[v=to[i]])
+			{
+				if(is[v]&&s[t-1]!=v)
+				{
+					fd(j,t,1)
+					{
+						m++;
+						pos[s[j]]=m;
+						id[m]=s[j];
+						if(s[j]==v)
+							break;
+					}
+				}
+			}
+			else
+				dfs1(v);
+		t--;
+		is[u]=0;
+	}
+	void dfs2(int u)
+	{
+		fo(i,u)
+			if(to[i]!=F[u]&&!pos[to[i]])
+			{
+				F[to[i]]=u;
+				dfs2(to[i]);
+				f[u]+=f[to[i]]+w[i];
+			}
+		if(pos[u])
+		{
+			if(d[u]!=2)
+				f[u]/=d[u]-2;
+			else
+				f[u]=0;
+		}
+		else
+		{
+			if(d[u]!=1)
+				f[u]/=d[u]-1;
+			else
+				f[u]=0;
+		}
+	}
+	void dfs3(int u)
+	{
+		fo(i,u)
+			if(to[i]!=F[u]&&!pos[to[i]])
+			{
+				int v=to[i];
+				g[v]=(f[v]*(d[v]-1)+w[i]+(g[u]*d[u]-w[i]-f[v])/(d[u]-1))/d[v];
+				dfs3(v);
+			}
+	}
+	int main()
+	{
+		fr(i,1,n)
+		{
+			int u=read(),v=read(),w=read();
+			add(u,v,w);
+			add(v,u,w);
+			d[u]++;
+			d[v]++;
+		}
+		m=0;
+		dfs1(1);
+		fr(i,1,m)
+			dfs2(id[i]);
+		fr(i,1,m)
+			fo(j,id[i])
+				if(to[j]==id[i%m+1])
+					l[i]=w[j];
+		fr(i,1,m)
+		{
+			double sp=1.;
+			int sl=l[i];
+			for(int j=i%m+1;;j=j%m+1)
+				if(j%m+1==i)
+				{
+					h[i]+=sp*(f[id[j]]+sl);
+					break;
+				}
+				else
+				{
+					h[i]+=sp*(d[id[j]]-2)/(d[id[j]]-1)*(f[id[j]]+sl);
+					sp/=d[id[j]]-1;
+					sl+=l[j];
+				}
+			sp=1.;
+			sl=l[i==1?m:i-1];
+			for(int j=i==1?m:i-1;;j=j==1?m:j-1)
+				if((j==1?m:j-1)==i)
+				{
+					h[i]+=sp*(f[id[j]]+sl);
+					break;
+				}
+				else
+				{
+					h[i]+=sp*(d[id[j]]-2)/(d[id[j]]-1)*(f[id[j]]+sl);
+					sp/=d[id[j]]-1;
+					sl+=l[j==1?m:j-1];
+				}
+		}
+		fr(i,1,m)
+		{
+			int u=id[i];
+			g[u]=(f[u]*(d[u]-2)+h[i])/d[u];
+			dfs3(u);
+		}
+		fr(i,1,n)
+			ans+=g[i]/n;
+		printf("%.5lf\n",ans);
+		return 0;
+	}
+#undef fo
+}
+```

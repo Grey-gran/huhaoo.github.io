@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[NOI2012迷失游乐园]]></title>
+    <url>%2F2019%2F06%2F09%2FNOI2012%E8%BF%B7%E5%A4%B1%E6%B8%B8%E4%B9%90%E5%9B%AD%2F</url>
+    <content type="text"><![CDATA[给定一颗带权基环树，求从任意一个点开始不断随机走向一个未访问点的期望长度。]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>DP</tag>
+        <tag>NOI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[上下界网络流]]></title>
     <url>%2F2019%2F06%2F04%2F%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81%2F</url>
     <content type="text"><![CDATA[就是有上下界的网络流 记法： $(u,v,min,max)$，分别表示入点，出点，最小最大流量]]></content>
@@ -265,8 +275,8 @@
     <url>%2F2019%2F03%2F05%2FNOI2015%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
       <tags>
-        <tag>sa</tag>
         <tag>NOI</tag>
+        <tag>sa</tag>
       </tags>
   </entry>
   <entry>
@@ -763,8 +773,8 @@
     <url>%2F2018%2F01%2F07%2Floj2323luogu4005%E5%B0%8FY%E5%92%8C%E5%9C%B0%E9%93%81%2F</url>
     <content type="text"><![CDATA[$ $]]></content>
       <tags>
-        <tag>luogu</tag>
         <tag>loj</tag>
+        <tag>luogu</tag>
         <tag>清华集训</tag>
         <tag>搜索</tag>
       </tags>
@@ -792,8 +802,8 @@
       <tags>
         <tag>DP</tag>
         <tag>贪心</tag>
-        <tag>luogu</tag>
         <tag>loj</tag>
+        <tag>luogu</tag>
         <tag>清华集训</tag>
       </tags>
   </entry>
