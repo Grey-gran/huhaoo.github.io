@@ -286,6 +286,24 @@ $$
 \end{document}
 ```
 
+#### 其它方法
+
+网上贴的：
+
+```tex
+\usepackage{booktabs}
+\begin{table}[!htbp]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		a&b&c\\
+		\hline
+		d&e&f\\
+		\hline
+	\end{tabular}
+\end{table}
+```
+
 ### 首行缩进
 
 似乎自带了
