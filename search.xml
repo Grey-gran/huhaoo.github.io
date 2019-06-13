@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二进制分组]]></title>
+    <url>%2F2019%2F06%2F13%2F%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%86%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[如果找得到的话，可以看看2013年国家队论文 对于一些要求在线的题目，可以通过二进制分组用一个$\log$的时间转化为不要在线的，比如论文中的例题 维护下列操作： 插入一个过原点的圆 查询某点是否在所有圆内部]]></content>
+      <tags>
+        <tag>二进制分组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NOI2012迷失游乐园]]></title>
     <url>%2F2019%2F06%2F09%2FNOI2012%E8%BF%B7%E5%A4%B1%E6%B8%B8%E4%B9%90%E5%9B%AD%2F</url>
     <content type="text"><![CDATA[给定一颗带权基环树，求从任意一个点开始不断随机走向一个未访问点的期望长度。]]></content>
