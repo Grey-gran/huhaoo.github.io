@@ -244,6 +244,8 @@ $$
 
 一列多行：`multirow{}*{}`
 
+需要`multirow`包
+
 如果用`hilne`会一整条先穿过文字，可以用`\cilne{start-end}`
 
 下面就用`~`填充
@@ -255,6 +257,7 @@ $$
 \usepackage{multirow}
 \begin{document}
 \centering
+\usepackage{multirow}
 \begin{tabular}{|l|c|r|}
 	\hline
 	\multirow{2}*{ad}&b&c\\
