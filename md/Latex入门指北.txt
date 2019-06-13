@@ -322,3 +322,15 @@ Page 2
 \end{document}
 ```
 
+### 插入编号
+
+```
+\begin{itemize}
+	\item 1
+	\item 2
+\end{itemize}
+\begin{enumerate}
+	\item 1
+	\item 2
+\end{enumerate}
+```
