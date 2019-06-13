@@ -346,3 +346,12 @@ Page 2
 `\underline`加下划线
 
 `\emph`斜体
+
+### 代码块
+
+```
+\usepackage{listings}
+\begin{lstlisting}
+code
+\end{lstlisting}
+```
