@@ -10,7 +10,7 @@ mathjax: on
 
 ## 安装 $\LaTeX$
 
-推荐安装[Texlive](https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2018.iso)
+推荐安装[Texlive](hhttps://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2019-20190410.iso)
 
 然后建议用`vscode`来写（其它的我也不会配）
 
