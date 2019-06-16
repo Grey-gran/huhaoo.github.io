@@ -10,6 +10,7 @@ tags:
 
 ```cpp
 #include<fstream>
+using namespace std;
 ifstream f1,f2,f3;
 //f1表示输入文件
 //f2表示选手输出文件
