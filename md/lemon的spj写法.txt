@@ -28,8 +28,8 @@ int main(int argc,char *argv[]){
 	f1.close();
 	f2.close();
 	f3.close();
-	f4.close();
 	f5.close();
+	f6.close();
 	return 0;
 }
 ```
