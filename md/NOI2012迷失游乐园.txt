@@ -5,6 +5,7 @@ tags:
 - NOI
 - DP
 - math
+- 概率与期望
 mathjax: on
 ---
 

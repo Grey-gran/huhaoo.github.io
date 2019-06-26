@@ -1,0 +1,93 @@
+---
+title: CF643E
+date: 2019-06-25 21:20:18
+tags:
+- CF
+- DP
+- math
+- 概率与期望
+mathjax: on
+---
+
+http://codeforces.com/problemset/problem/643/E
+
+<!--more-->
+
+~~显然，这题看起来就要DP~~
+
+先考虑确定了那棵树怎么求解。
+
+如果我们设$f_i$表示$i$号点子树的期望，那么因为是取子树最大值，所以不好转移。
+
+考虑把深度记进DP数组：$f_{i,j}$表示$i$号点子树深度**不大于**$j$的期望（可以试着设等于，发现不可做），那么可以得到：
+
+$$
+f_{i,j}=\prod_{k\in s_i}(\frac 12+\frac 12f_{k,j-1})
+$$
+
+其中边界条件为：对于叶子节点$i$，当且仅当$j\ge 0$，有$f_{i,j}=1$，否则$f_{i,j}=0$
+
+那么节点$i$的答案就是：
+
+$$
+\sum_{j}j(f_{i,j}-f_{i,j-1})
+$$
+
+发现如果子树层数差过大，那么在若干个$\frac 12$相乘后都会变得很小，可以只维护$f_{i,j}$中$j$较小的部分
+
+```cpp
+const int N=500010,L=60;
+double f[N][L+10];
+int _f[N],q,n,s[N],t;
+int main()
+{
+	n=1;
+	fr(i,0,L)
+		f[n][i]=1;
+	q=read();
+	while(q--)
+	{
+		int opt=read();
+		if(opt==1)
+		{
+			n++;
+			_f[n]=read();
+			fr(i,0,L)
+				f[n][i]=1.;
+			int k=_f[n];
+			t=0;
+			fr(i,2,L)
+			{
+				if(!_f[k])
+					break;
+				s[++t]=k;
+				k=_f[k];
+			}
+			while(t)
+			{
+				fr(j,0,L)
+					f[_f[s[t]]][j]/=0.5+(j==0?0:0.5*f[s[t]][j-1]);
+				t--;
+			}
+			k=n;
+			fr(i,1,L)
+			{
+				if(!_f[k])
+					break;
+				fr(j,0,L)
+					f[_f[k]][j]*=0.5+(j==0?0:0.5*f[k][j-1]);
+				k=_f[k];
+			}
+		}
+		else
+		{
+			int u=read();
+			double ans=0;
+			fr(i,1,L)
+				ans+=i*(f[u][i]-f[u][i-1]);
+			printf("%.10lf\n",ans);
+		}
+	}
+	return 0;
+}
+```

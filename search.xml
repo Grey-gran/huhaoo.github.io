@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CF643E]]></title>
+    <url>%2F2019%2F06%2F25%2FCF643E%2F</url>
+    <content type="text"><![CDATA[http://codeforces.com/problemset/problem/643/E]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>CF</tag>
+        <tag>DP</tag>
+        <tag>概率与期望</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[lemon的spj写法]]></title>
     <url>%2F2019%2F06%2F16%2Flemon%E7%9A%84spj%E5%86%99%E6%B3%95%2F</url>
     <content type="text"><![CDATA[（转自：https://www.cnblogs.com/chouti/p/5752819.html）]]></content>
@@ -20,6 +31,7 @@
       <tags>
         <tag>math</tag>
         <tag>DP</tag>
+        <tag>概率与期望</tag>
         <tag>NOI</tag>
       </tags>
   </entry>
@@ -71,8 +83,8 @@
     <content type="text"><![CDATA[考场上一直在想怎么求出每个点被选的概率，然后就挂了。]]></content>
       <tags>
         <tag>math</tag>
-        <tag>CTS</tag>
         <tag>DP</tag>
+        <tag>CTS</tag>
       </tags>
   </entry>
   <entry>
