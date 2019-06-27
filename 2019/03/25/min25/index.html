@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="min25可以（据说）在$O(\dfrac{n^{\frac 34}}{\log n})$（还有的说是$O(n^{1-\epsilon})$的近线性复杂度），求出满足下列条件的函数和  $f(p)$是一个关于$p$的多项式 $f(p^c)$可以简单算出 $f(ab)=f(a)f(b)$  （上面$p$为质数，$a,b$互质）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T03:45:31.000Z">
+<meta property="og:updated_time" content="2019-06-27T03:55:14.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="min25">
 <meta name="twitter:description" content="min25可以（据说）在$O(\dfrac{n^{\frac 34}}{\log n})$（还有的说是$O(n^{1-\epsilon})$的近线性复杂度），求出满足下列条件的函数和  $f(p)$是一个关于$p$的多项式 $f(p^c)$可以简单算出 $f(ab)=f(a)f(b)$  （上面$p$为质数，$a,b$互质）">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-26 11:45:31" itemprop="dateModified" datetime="2019-03-26T11:45:31+08:00">2019-03-26</time>
+                <time title="Modified: 2019-06-27 11:55:14" itemprop="dateModified" datetime="2019-06-27T11:55:14+08:00">2019-06-27</time>
               
             
           </span>
@@ -469,7 +469,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=...;i++)</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=...;j;j--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(j&lt;p[i]*p[i])</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		f[j]=f[j]-<span class="built_in">pow</span>(p[i],k)*(f[j/p[i]]-sum[i<span class="number">-1</span>]);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>显然，如果$j$已经小于$p_i^2$了（即直接复制上一个，不修改），那么后面的也不可能可以修改了。</p>
 <p>这样的复杂度很玄学，我也不知道是多少。</p>
-<p>边界显然：<br>$$<br>\begin{align}<br>f(n,0)&amp;=\sum_{i=1}^ni^k<br>\end{align}<br>$$<br>这可以$O(k^2)​$甚至（打表打出来系数后）$O(k)​$求出来</p>
+<p>边界显然：<br>$$<br>\begin{align}<br>f(n,0)&amp;=\sum_{i=2}^ni^k<br>\end{align}<br>$$<br>这可以$O(k^2)$甚至（打表打出来系数后）$O(k)$求出来</p>
 <h3 id="快速求-sum-i-1-nf-i"><a href="#快速求-sum-i-1-nf-i" class="headerlink" title="快速求$\sum_{i=1}^nf(i)$"></a>快速求$\sum_{i=1}^nf(i)$</h3><p>仿照上面的，设$g’(n,i)$表示最小质因子<strong>不小于</strong>$p_i$的在$[2,n]$的数的$f$之和<br>$$<br>\begin{align}<br>g’(n,i)&amp;=(\sum_{j\ge i}\sum_{c\ge 1,p_j^{c+1}\le n}f(p_j^c)g’(\lfloor\dfrac{n}{p_j^c}\rfloor,j+1)+f(p_j^{c+1}))+(\sum_{p_j\le n}f(p_j)-\sum_{j=1}^{i-1}f(p_j))<br>\end{align}<br>$$<br>前面一个括号里的是合数，后面的是质数</p>
 <p>可以递归求$g’$。</p>
 <p>最后答案是$g’(n,1)+f(1)$</p>
