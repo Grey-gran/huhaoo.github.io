@@ -380,7 +380,7 @@ $$
 
 （和luogu相反，别在意）
 
-设$F(x)=x^n+\sum_{i=1}^nx^{n-i}a_i$，$f_k$就是：
+设$F(x)=x^n+\sum_{i=1}^nx^{n-i}(-a_i)$，$f_k$就是：
 
 $$
 \sum_{i=0}^{n-1}f_{i}(x^k\bmod F)_i
