@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SDOI2008Sandy的卡片]]></title>
+    <url>%2F2019%2F07%2F10%2FSDOI2008Sandy%E7%9A%84%E5%8D%A1%E7%89%87%2F</url>
+    <content type="text"><![CDATA[链接： https://www.luogu.org/problemnew/show/P2463]]></content>
+      <tags>
+        <tag>sa</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CF643E]]></title>
     <url>%2F2019%2F06%2F25%2FCF643E%2F</url>
     <content type="text"><![CDATA[http://codeforces.com/problemset/problem/643/E]]></content>
@@ -267,7 +275,7 @@
   <entry>
     <title><![CDATA[回文自动机]]></title>
     <url>%2F2019%2F03%2F12%2F%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA%2F</url>
-    <content type="text"><![CDATA[给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。 学习论文 我语文没上过D，请见谅，如果有人愿意帮我改改，那我万分感谢]]></content>
+    <content type="text"><![CDATA[给你一个由小写拉丁字母组成的字符串$s$。我们定义$s$的一个子串的存在值为这个子串在$s$中出现的次数乘以这个子串的长度。 对于给你的这个字符串$s$，求所有回文子串中的最大存在值。 学习论文 我语文没上过D，请见谅，如果有人愿意帮我改改，那我万分感谢，OIwiki管理dalao帮忙改了改，可以看看十分惨的修改记录：https://github.com/OI-wiki/OI-wiki/pull/1081]]></content>
       <tags>
         <tag>string</tag>
         <tag>回文自动机</tag>

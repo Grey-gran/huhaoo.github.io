@@ -13,7 +13,7 @@ mathjax: on
 
 [学习论文](https://github.com/huhaoo/OIths/blob/master/string/PalindromicTree.pdf)
 
-我语文~~没上过D~~，请见谅，如果有人愿意帮我改改，那我万分感谢
+~~我语文没上过D，请见谅，如果有人愿意帮我改改，那我万分感谢~~，OIwiki管理dalao帮忙改了改，可以看看十分惨的修改记录：https://github.com/OI-wiki/OI-wiki/pull/1081
 
 <!--more-->
 

@@ -1,0 +1,40 @@
+---
+title: SDOI2008Sandy的卡片
+date: 2019-07-10 19:40:04
+tags:
+- sa
+mathjax: on
+---
+
+链接： https://www.luogu.org/problemnew/show/P2463
+
+<!--more-->
+
+考虑两个字符串的情况：
+
+$$
+a_{1}a_{2}\dots a_{n}\\
+b_{1}b_{2}\dots b_{n}
+$$
+
+如果
+
+$$
+a_{l_1\dots r_1}\sim b_{l_2\dots r_2}
+$$
+
+那么
+
+$$
+\forall i\in[0,r_1-l_1],a_{l_1+i}=b_{l_2+i}+k
+$$
+
+所以
+
+$$
+\forall i\in[1,r_1-l_1],a_{l_1+i}-a_{l_1+i-1}=b_{l_2+i}+k-b_{l_2+i-1}-k=b_{l_2+i}-b_{l_2+i-1}
+$$
+
+所以只要$a_{l_1,r_1}$和$b_{l_2,r_2}$差分后的数组相同，就是相同的
+
+可以发现多个串同理，后缀数组搞一搞就好了
