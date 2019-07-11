@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[后缀数组相关]]></title>
+    <url>%2F2019%2F07%2F11%2F%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>sa</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SDOI2008Sandy的卡片]]></title>
     <url>%2F2019%2F07%2F10%2FSDOI2008Sandy%E7%9A%84%E5%8D%A1%E7%89%87%2F</url>
     <content type="text"><![CDATA[链接： https://www.luogu.org/problemnew/show/P2463]]></content>

@@ -1,0 +1,46 @@
+---
+title: 后缀数组相关
+date: 2019-07-11 16:53:22
+tags:
+- sa
+---
+
+<!--more-->
+
+### 构建
+
+倍增，类似基数排序
+
+### height
+
+$$
+h_{i}=\mathrm{lcp}(sa_{i},sa_{i}-1)
+$$
+
+有
+
+$$
+h_{r_i}\ge h_{r_{i-1}}+1
+$$
+
+且
+
+$$
+\mathrm{lcp}(i,j)=\min_{\min(r_i,r_j)<k\le \max(r_i,r_j)}h_k
+$$
+
+可以$O(1)$查询
+
+上面那个可以变为：
+
+$$
+\begin{align}
+\mathrm{lcp}(sa_i,sa_j)=\min_{i<k\le j}h_k\tag{1}
+\end{align}
+$$
+
+由此可见，后缀数组主要作用是：
+
+1. 查询$\mathrm{lcp}$
+2. 通过$(1)$来处理最小值相关内容
+
