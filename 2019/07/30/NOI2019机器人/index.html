@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="题目链接： https://www.luogu.org/problem/P5469">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-30T00:36:45.520Z">
+<meta property="og:updated_time" content="2019-07-30T12:07:32.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOI2019机器人">
 <meta name="twitter:description" content="题目链接： https://www.luogu.org/problem/P5469">
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="Created: 2019-07-30 08:35:23 / Modified: 08:36:45" itemprop="dateCreated datePublished" datetime="2019-07-30T08:35:23+08:00">2019-07-30</time>
+              <time title="Created: 2019-07-30 08:35:23 / Modified: 20:07:32" itemprop="dateCreated datePublished" datetime="2019-07-30T08:35:23+08:00">2019-07-30</time>
             
 
             
@@ -443,15 +443,21 @@
 <p>那么有<br>$$<br>dp_{l,r,x}=\sum_{k}(\sum_{a\le x} dp_{l,k-1,a})(\sum_{a&lt;x}dp_{k+1,r,a})<br>$$<br>其中当$r-l$为偶数时，$k\in[\dfrac{l+r}{2}-1,\dfrac{l+r}{2}+1]$</p>
 <p>否则$k\in[\dfrac{l+r-1}{2},\dfrac{l+r+1}{2}]$</p>
 <p>我们发现可以用一个多项式$f_{l,r}(x)$来表示$dp_{l,r,x}$，即$f_{l,r}(x)=dp_{l,r,x}$</p>
-<p>边界为$f_{i,i}(x)=1$，且我们用$\hat f$表示$f$的前缀和：<br>$$<br>\hat f_{l,r}(x)=\sum_{i=1}^xf_{l,r}(i)<br>$$<br>则<br>$$<br>f_{l,r}(x)=\sum_k\hat f_{l,r}(x)\hat f_{l,r}(x-1)<br>$$<br>我们发现下降幂可以很好得处理</p>
-<p>因为：<br>$$<br>x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}\\<br>$$<br>所以<br>$$<br>\begin{align}<br>\sum_{x=1}^{n}x^{\underline i}=&amp;\dfrac{\sum_{x=1}^n(x+1)^{\underline{i+1}}-x^{\underline{i+1}}}{i+1}\notag\\<br>=&amp;\dfrac{(n+1)^{\underline{i+1}}}{i+1}\notag<br>\end{align}<br>$$<br>并且<br>$$<br>(x+1)^{\underline{i}}=(x+1)x^{\underline {i-1}}=x^{\underline i}+ix^{\underline{i-1}}\\<br>(x-1)^{\underline{i}}=(x-1)^{\underline{i-1}}(x-i)=x^{\underline i}-i(x-1)^{\underline {i-1}}<br>$$<br>可以从$O(n)$高位向低位推，最后可以$O(n)$求$\sum f(x),f(x+1),f(x-1)$</p>
-<p><del>然后就要算下降幂多项式乘法了</del></p>
+<p>边界为$f_{i,i}(x)=1$，且我们用$\hat f$表示$f$的前缀和：<br>$$<br>\hat f_{l,r}(x)=\sum_{i=1}^xf_{l,r}(i)<br>$$<br>则<br>$$<br>f_{l,r}(x)=\sum_k\hat f_{l,k-1}(x)\hat f_{k+1,r}(x-1)<br>$$<br>我们发现下降幂可以很好得处理</p>
+<p>因为：<br>$$<br>x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}<br>$$<br>所以<br>$$<br>x^{\underline i}=\dfrac{(x+1)^{\underline {i+1}}-x^{\underline {i+1}}}{i+1}<br>$$<br>所以<br>$$<br>\begin{align}<br>\sum_{x=1}^{n}x^{\underline i}=&amp;\dfrac{\sum_{x=1}^n(x+1)^{\underline{i+1}}-x^{\underline{i+1}}}{i+1}\notag\\<br>=&amp;\dfrac{(n+1)^{\underline{i+1}}-[i=0]}{i+1}\notag<br>\end{align}<br>$$<br>并且<br>$$<br>(x+1)^{\underline{i}}=(x+1)x^{\underline {i-1}}=x^{\underline i}+ix^{\underline{i-1}}\\<br>(x-1)^{\underline{i}}=(x-1)^{\underline{i-1}}(x-i)=x^{\underline i}-i(x-1)^{\underline {i-1}}<br>$$<br>可以从$O(n)$高位向低位推，最后可以$O(n)$求$\sum f(x),f(x+1),f(x-1)$</p>
+<p><del>然后就要算下降幂多项式乘法，并且还要MTT</del></p>
 <p>然后有$A,B$限制的时候可以先离散化，就有最多$2n$段，然后发现同一段共用一个函数$f$（和无限制时类似）</p>
 <p>转移的化同一段就像上面那样（前缀和因为只算这一段内的，可以整段前移避免其它麻烦）</p>
 <p>不同段显然数值小的段与数值大的段最大值无关，是常数的贡献</p>
 <p>严(x)谨(j)的(b)复杂度分析</p>
-<p>当$n=500$时，有$3633$段，他们长度和为$29576$，乘$\log$后$131918$</p>
-<p>然后一共$1000$段，卡卡常就过了</p>
+<p>当$n=300$时，有$2047$段，他们长度和为$14408$，乘$\log$后$52733$</p>
+<p>然后一共$600$段（事实上不用MTT，直接$O(n^2)$乘就行了）</p>
+<p>代码： <a href="https://github.com/huhaoo/code/blob/luogu/5469.cpp" target="_blank" rel="noopener">https://github.com/huhaoo/code/blob/luogu/5469.cpp</a></p>
+<p>备用：</p>
+<ul>
+<li><a href="https://loj.ac/submission/551041" target="_blank" rel="noopener">https://loj.ac/submission/551041</a></li>
+<li><a href="https://www.luogu.org/record/21845967" target="_blank" rel="noopener">https://www.luogu.org/record/21845967</a></li>
+</ul>
 
       
     </div>

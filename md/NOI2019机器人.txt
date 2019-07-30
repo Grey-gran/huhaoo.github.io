@@ -32,19 +32,23 @@ $$
 $$
 则
 $$
-f_{l,r}(x)=\sum_k\hat f_{l,r}(x)\hat f_{l,r}(x-1)
+f_{l,r}(x)=\sum_k\hat f_{l,k-1}(x)\hat f_{k+1,r}(x-1)
 $$
 我们发现下降幂可以很好得处理
 
 因为：
 $$
-x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}\\
+x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}
+$$
+所以
+$$
+x^{\underline i}=\dfrac{(x+1)^{\underline {i+1}}-x^{\underline {i+1}}}{i+1}
 $$
 所以
 $$
 \begin{align}
 \sum_{x=1}^{n}x^{\underline i}=&\dfrac{\sum_{x=1}^n(x+1)^{\underline{i+1}}-x^{\underline{i+1}}}{i+1}\notag\\
-=&\dfrac{(n+1)^{\underline{i+1}}}{i+1}\notag
+=&\dfrac{(n+1)^{\underline{i+1}}-[i=0]}{i+1}\notag
 \end{align}
 $$
 并且
@@ -54,7 +58,7 @@ $$
 $$
 可以从$O(n)$高位向低位推，最后可以$O(n)$求$\sum f(x),f(x+1),f(x-1)$
 
-~~然后就要算下降幂多项式乘法了~~
+~~然后就要算下降幂多项式乘法，并且还要MTT~~
 
 然后有$A,B$限制的时候可以先离散化，就有最多$2n$段，然后发现同一段共用一个函数$f$（和无限制时类似）
 
@@ -64,6 +68,12 @@ $$
 
 严(x)谨(j)的(b)复杂度分析
 
-当$n=500$时，有$3633$段，他们长度和为$29576$，乘$\log$后$131918$
+当$n=300$时，有$2047$段，他们长度和为$14408$，乘$\log$后$52733$
 
-然后一共$1000$段，卡卡常就过了
+然后一共$600$段（事实上不用MTT，直接$O(n^2)$乘就行了）
+
+代码： https://github.com/huhaoo/code/blob/luogu/5469.cpp
+
+备用：
+- https://loj.ac/submission/551041
+- https://www.luogu.org/record/21845967
