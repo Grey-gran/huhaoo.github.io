@@ -109,25 +109,25 @@
 
 
 
-  <meta name="description" content="求$ans=\sum_{i=1}^N\sum_{j=1}^N\mathrm{lcm}(A_i,A_j)$">
-<meta name="keywords" content="math,luogu">
+  <meta name="description" content="题目链接： https://www.luogu.org/problem/P5469">
+<meta name="keywords" content="math,NOI,多项式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="luogu3911">
-<meta property="og:url" content="https://huhaoo.github.io/2018/11/01/luogu3911/index.html">
+<meta property="og:title" content="NOI2019机器人">
+<meta property="og:url" content="https://huhaoo.github.io/2019/07/30/NOI2019机器人/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="求$ans=\sum_{i=1}^N\sum_{j=1}^N\mathrm{lcm}(A_i,A_j)$">
+<meta property="og:description" content="题目链接： https://www.luogu.org/problem/P5469">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-12T02:02:50.000Z">
+<meta property="og:updated_time" content="2019-07-30T00:36:45.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="luogu3911">
-<meta name="twitter:description" content="求$ans=\sum_{i=1}^N\sum_{j=1}^N\mathrm{lcm}(A_i,A_j)$">
+<meta name="twitter:title" content="NOI2019机器人">
+<meta name="twitter:description" content="题目链接： https://www.luogu.org/problem/P5469">
 
 
 
 
 
 
-  <link rel="canonical" href="https://huhaoo.github.io/2018/11/01/luogu3911/"/>
+  <link rel="canonical" href="https://huhaoo.github.io/2019/07/30/NOI2019机器人/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>luogu3911 | Huhao's blog</title>
+  <title>NOI2019机器人 | Huhao's blog</title>
   
 
 
@@ -345,7 +345,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2018/11/01/luogu3911/">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/07/30/NOI2019机器人/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huhao">
@@ -362,7 +362,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">luogu3911
+          <h1 class="post-title" itemprop="name headline">NOI2019机器人
               
             
           </h1>
@@ -388,24 +388,12 @@
                 
               
 
-              <time title="Created: 2018-11-01 13:15:13" itemprop="dateCreated datePublished" datetime="2018-11-01T13:15:13+08:00">2018-11-01</time>
+              <time title="Created: 2019-07-30 08:35:23 / Modified: 08:36:45" itemprop="dateCreated datePublished" datetime="2019-07-30T08:35:23+08:00">2019-07-30</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-12 10:02:50" itemprop="dateModified" datetime="2019-02-12T10:02:50+08:00">2019-02-12</time>
               
             
           </span>
@@ -419,8 +407,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/01/luogu3911/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/01/luogu3911/" itemprop="commentCount"></span>
+                <a href="/2019/07/30/NOI2019机器人/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/07/30/NOI2019机器人/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,26 +436,23 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="/hint.min.css"><p>求$ans=\sum_{i=1}^N\sum_{j=1}^N\mathrm{lcm}(A_i,A_j)$</p>
+        <link rel="stylesheet" type="text/css" href="/hint.min.css"><p>题目链接： <a href="https://www.luogu.org/problem/P5469" target="_blank" rel="noopener">https://www.luogu.org/problem/P5469</a></p>
 <a id="more"></a>
-<p>记$n=5\times10^4,a_i=\sum_{j=1}^N[A_j=i]$</p>
-<p>那么</p>
-<p>$$ans=\sum_{i=1}^n\sum_{j=1}^na_ia_j\mathrm{lcm}(i,j)$$<br>$$=\sum_{i=1}^n\sum_{j=1}^n\dfrac{a_ia_jij}{\mathrm{gcd}(i,j)}$$<br>$$=\sum_{k=1}^n\sum_{i=1}^n\sum_{j=1}^n\dfrac{a_ia_jij}{k}[\mathrm{gcd}(i,j)=k]$$<br>$$=\sum_{k=1}^n\sum_{i=1}^{\lfloor\frac nk\rfloor}\sum_{j=1}^{\lfloor\frac nk\rfloor}a_{ik}a_{jk}ijk[\mathrm{gcd}(i,j)=1]$$</p>
-<p>枚举$k$，为方便，记$n_k=\lfloor\dfrac nk\rfloor $</p>
-<p>记</p>
-<p>$$f_{k,x}=\sum_{i=1}^{n_k}\sum_{j=1}^{n_k}ijk^2a_{ik}a_{ik}[\mathrm{gcd}(i,j)=x]$$<br>$$g_{k,x}=\sum_{i=1}^{n_k}\sum_{j=1}^{n_k}ijk^2a_{ik}a_{ik}[x|\mathrm{gcd}(i,j)]$$</p>
-<p>易得</p>
-<p>$$g_{k,x}=\sum_{i=1}^{n_{kx}}\sum_{j=1}^{n_{kx}}ijk^2x^2a_{ikx}a_{jkx}$$</p>
-<p>记</p>
-<p>$$g’_x=\sum_{i=1}^{n_x}\sum_{j=1}^{n_x}ija_{ix}a_{jx}=(\sum_{i=1}^{n_x}ia_{ix})(\sum_{j=1}^{n_x}ja_{jx})=(\sum_{i=1}^{n_x}ia_{ix})^2$$</p>
-<p>不难发现，我们可以预处理出每个$g_x’$，就可以$O(1)$求$g_{k,x}$了，即</p>
-<p>$$g_{k,x}=k^2x^2g’_{kx}$$</p>
-<p>考虑求$f_{k,x}$，发现可以莫比乌斯反演</p>
-<p>$$\because g_{k,x}=\sum_{x|d}f_{k,d}$$<br>$$\therefore f_{k,x}=\sum_{x|d}\mu_{\frac dx}g_{k,d}=\sum_{i=1}^{n_{kx}}\mu_i g_{k,ix}$$<br>$$\therefore f_{k,1}=\sum_{i=1}^{n_k}\mu_{i}g_{k,i}$$</p>
-<p>综上所述：</p>
-<p>$$ans=\sum_{k=1}^n\dfrac{f_{k,1}}k=\sum_{k=1}^n\dfrac{\sum_{i=1}^{n_k}\mu_ig_{k,i}}{k}$$<br>$$=\sum_{k=1}^n\dfrac{\sum_{i=1}^{n_k}\mu_ii^2k^2g_{ik}’}{k}=\sum_{k=1}^n\sum_{i=1}^{n_k}\mu_ii^2kg_{ik}’$$</p>
-<p><a href="https://github.com/huhaoo/luogu/blob/master/3911.cpp" target="_blank" rel="noopener">code</a>（求$\mu$那里有点丑，不要在意）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 50010</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n=<span class="number">50000</span>,a[N],mu[N],g[N],ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fr(i,<span class="number">1</span>,read())a[read()]++;</span><br><span class="line">	fr(x,<span class="number">1</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		fr(i,<span class="number">1</span>,n/x)g[x]+=i*a[i*x];</span><br><span class="line">		g[x]*=g[x];</span><br><span class="line">	&#125;</span><br><span class="line">	fr(i,<span class="number">1</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		mu[i]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> k=i;</span><br><span class="line">		fr(j,<span class="number">2</span>,<span class="built_in">sqrt</span>(i))</span><br><span class="line">			<span class="keyword">if</span>(k%j==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>((k/j)%j==<span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					mu[i]=<span class="number">0</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				mu[i]=-mu[i];</span><br><span class="line">				k/=j;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">if</span>(k!=<span class="number">1</span>&amp;&amp;mu[i]!=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k))*<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k))==k)mu[i]=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span> mu[i]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fr(k,<span class="number">1</span>,n)fr(i,<span class="number">1</span>,n/k)</span><br><span class="line">		ans+=mu[i]*i*i*k*g[i*k];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先考虑没有$A,B$限制的部分分</p>
+<p>如果设$dp_{l,r,x}$表示$[l,r]$中最大的是$x$的答案的话</p>
+<p>那么有<br>$$<br>dp_{l,r,x}=\sum_{k}(\sum_{a\le x} dp_{l,k-1,a})(\sum_{a&lt;x}dp_{k+1,r,a})<br>$$<br>其中当$r-l$为偶数时，$k\in[\dfrac{l+r}{2}-1,\dfrac{l+r}{2}+1]$</p>
+<p>否则$k\in[\dfrac{l+r-1}{2},\dfrac{l+r+1}{2}]$</p>
+<p>我们发现可以用一个多项式$f_{l,r}(x)$来表示$dp_{l,r,x}$，即$f_{l,r}(x)=dp_{l,r,x}$</p>
+<p>边界为$f_{i,i}(x)=1$，且我们用$\hat f$表示$f$的前缀和：<br>$$<br>\hat f_{l,r}(x)=\sum_{i=1}^xf_{l,r}(i)<br>$$<br>则<br>$$<br>f_{l,r}(x)=\sum_k\hat f_{l,r}(x)\hat f_{l,r}(x-1)<br>$$<br>我们发现下降幂可以很好得处理</p>
+<p>因为：<br>$$<br>x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}\\<br>$$<br>所以<br>$$<br>\begin{align}<br>\sum_{x=1}^{n}x^{\underline i}=&amp;\dfrac{\sum_{x=1}^n(x+1)^{\underline{i+1}}-x^{\underline{i+1}}}{i+1}\notag\\<br>=&amp;\dfrac{(n+1)^{\underline{i+1}}}{i+1}\notag<br>\end{align}<br>$$<br>并且<br>$$<br>(x+1)^{\underline{i}}=(x+1)x^{\underline {i-1}}=x^{\underline i}+ix^{\underline{i-1}}\\<br>(x-1)^{\underline{i}}=(x-1)^{\underline{i-1}}(x-i)=x^{\underline i}-i(x-1)^{\underline {i-1}}<br>$$<br>可以从$O(n)$高位向低位推，最后可以$O(n)$求$\sum f(x),f(x+1),f(x-1)$</p>
+<p><del>然后就要算下降幂多项式乘法了</del></p>
+<p>然后有$A,B$限制的时候可以先离散化，就有最多$2n$段，然后发现同一段共用一个函数$f$（和无限制时类似）</p>
+<p>转移的化同一段就像上面那样（前缀和因为只算这一段内的，可以整段前移避免其它麻烦）</p>
+<p>不同段显然数值小的段与数值大的段最大值无关，是常数的贡献</p>
+<p>严(x)谨(j)的(b)复杂度分析</p>
+<p>当$n=500$时，有$3633$段，他们长度和为$29576$，乘$\log$后$131918$</p>
+<p>然后一共$1000$段，卡卡常就过了</p>
+
       
     </div>
 
@@ -489,7 +474,9 @@
           
             <a href="/tags/math/" rel="tag"># math</a>
           
-            <a href="/tags/luogu/" rel="tag"># luogu</a>
+            <a href="/tags/NOI/" rel="tag"># NOI</a>
+          
+            <a href="/tags/多项式/" rel="tag"># 多项式</a>
           
         </div>
       
@@ -514,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/21/luogu2221/" rel="next" title="luogu2221">
-                <i class="fa fa-chevron-left"></i> luogu2221
+              <a href="/2019/07/30/下降幂多项式乘法/" rel="next" title="下降幂多项式乘法">
+                <i class="fa fa-chevron-left"></i> 下降幂多项式乘法
               </a>
             
           </div>
@@ -523,10 +510,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/05/luogu4999/" rel="prev" title="luogu4999|烦人的数学作业">
-                luogu4999|烦人的数学作业 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

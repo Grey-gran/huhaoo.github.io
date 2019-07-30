@@ -1,0 +1,69 @@
+---
+title: NOI2019机器人
+date: 2019-07-30 08:35:23
+tags:
+- 多项式
+- NOI
+- math
+mathjax: on
+---
+
+题目链接： https://www.luogu.org/problem/P5469
+
+<!--more-->
+
+先考虑没有$A,B$限制的部分分
+
+如果设$dp_{l,r,x}$表示$[l,r]$中最大的是$x$的答案的话
+
+那么有
+$$
+dp_{l,r,x}=\sum_{k}(\sum_{a\le x} dp_{l,k-1,a})(\sum_{a<x}dp_{k+1,r,a})
+$$
+其中当$r-l$为偶数时，$k\in[\dfrac{l+r}{2}-1,\dfrac{l+r}{2}+1]$
+
+否则$k\in[\dfrac{l+r-1}{2},\dfrac{l+r+1}{2}]$
+
+我们发现可以用一个多项式$f_{l,r}(x)$来表示$dp_{l,r,x}$，即$f_{l,r}(x)=dp_{l,r,x}$
+
+边界为$f_{i,i}(x)=1$，且我们用$\hat f$表示$f$的前缀和：
+$$
+\hat f_{l,r}(x)=\sum_{i=1}^xf_{l,r}(i)
+$$
+则
+$$
+f_{l,r}(x)=\sum_k\hat f_{l,r}(x)\hat f_{l,r}(x-1)
+$$
+我们发现下降幂可以很好得处理
+
+因为：
+$$
+x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}\\
+$$
+所以
+$$
+\begin{align}
+\sum_{x=1}^{n}x^{\underline i}=&\dfrac{\sum_{x=1}^n(x+1)^{\underline{i+1}}-x^{\underline{i+1}}}{i+1}\notag\\
+=&\dfrac{(n+1)^{\underline{i+1}}}{i+1}\notag
+\end{align}
+$$
+并且
+$$
+(x+1)^{\underline{i}}=(x+1)x^{\underline {i-1}}=x^{\underline i}+ix^{\underline{i-1}}\\
+(x-1)^{\underline{i}}=(x-1)^{\underline{i-1}}(x-i)=x^{\underline i}-i(x-1)^{\underline {i-1}}
+$$
+可以从$O(n)$高位向低位推，最后可以$O(n)$求$\sum f(x),f(x+1),f(x-1)$
+
+~~然后就要算下降幂多项式乘法了~~
+
+然后有$A,B$限制的时候可以先离散化，就有最多$2n$段，然后发现同一段共用一个函数$f$（和无限制时类似）
+
+转移的化同一段就像上面那样（前缀和因为只算这一段内的，可以整段前移避免其它麻烦）
+
+不同段显然数值小的段与数值大的段最大值无关，是常数的贡献
+
+严(x)谨(j)的(b)复杂度分析
+
+当$n=500$时，有$3633$段，他们长度和为$29576$，乘$\log$后$131918$
+
+然后一共$1000$段，卡卡常就过了
