@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="题目链接： https://www.luogu.org/problem/P5469">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-30T12:20:25.175Z">
+<meta property="og:updated_time" content="2019-07-30T12:21:57.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOI2019机器人">
 <meta name="twitter:description" content="题目链接： https://www.luogu.org/problem/P5469">
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="Created: 2019-07-30 08:35:23 / Modified: 20:20:25" itemprop="dateCreated datePublished" datetime="2019-07-30T08:35:23+08:00">2019-07-30</time>
+              <time title="Created: 2019-07-30 08:35:23 / Modified: 20:21:57" itemprop="dateCreated datePublished" datetime="2019-07-30T08:35:23+08:00">2019-07-30</time>
             
 
             
@@ -447,8 +447,8 @@
 <p>因为：<br>$$<br>x^{\underline i}-(x-1)^{\underline i}=i(x-1)^{\underline{i-1}}<br>$$<br>所以<br>$$<br>x^{\underline i}=\dfrac{(x+1)^{\underline {i+1}}-x^{\underline {i+1}}}{i+1}<br>$$<br>所以<br>$$<br>\begin{align}<br>\sum_{x=1}^{n}x^{\underline i}=&amp;\dfrac{\sum_{x=1}^n(x+1)^{\underline{i+1}}-x^{\underline{i+1}}}{i+1}\notag\\<br>=&amp;\dfrac{(n+1)^{\underline{i+1}}-[i=0]}{i+1}\notag<br>\end{align}<br>$$<br>并且<br>$$<br>(x+1)^{\underline{i}}=(x+1)x^{\underline {i-1}}=x^{\underline i}+ix^{\underline{i-1}}\\<br>(x-1)^{\underline{i}}=(x-1)^{\underline{i-1}}(x-i)=x^{\underline i}-i(x-1)^{\underline {i-1}}<br>$$<br>可以从$O(n)$高位向低位推，最后可以$O(n)$求$\sum f(x),f(x+1),f(x-1)$</p>
 <p><del>然后就要算下降幂多项式乘法，并且还要MTT</del></p>
 <p>然后有$A,B$限制的时候可以先离散化，就有最多$2n$段，然后发现同一段共用一个函数$f$（和无限制时类似）</p>
-<p>转移的化同一段就像上面那样（前缀和因为只算这一段内的，可以整段前移避免其它麻烦）</p>
-<p>不同段显然数值小的段与数值大的段最大值无关，是常数的贡献</p>
+<p>转移的话同一段就像上面那样（前缀和因为只算这一段内的，可以整段前移避免其它麻烦）</p>
+<p>不同段显然数值小的段与数值大的段最大值无关，是常数的贡献，在最后加上就好</p>
 <p>严(x)谨(j)的(b)复杂度分析</p>
 <p>当$n=300$时，有$2047$段，他们长度和为$14408$，乘$\log$后$52733$</p>
 <p>然后一共$600$段（事实上不用MTT，直接$O(n^2)$乘就行了，事实上$O(n^2)$也只有$435072$，还跑不满）</p>
