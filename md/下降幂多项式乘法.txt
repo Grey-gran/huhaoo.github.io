@@ -1,0 +1,35 @@
+---
+title: 下降幂多项式乘法
+date: 2019-07-30 08:26:52
+tags:
+- 多项式
+mathjax: on
+---
+
+给定两个下降幂多项式，求它们的乘积，用下降幂多项式表示
+
+<!--more-->
+
+~~我们发现次数很少~~，可以用$A$点值的EGF$\hat A$来算，我们$\tilde A$来表示用$x^i$替换$x^{\underline i}$后的多项式
+
+先考虑$x^{\underline n}$的EGF：
+$$
+\sum_{i\ge 0}\dfrac{i^{\underline n}}{i!}x^i=\sum_{i\ge n}(i-n)!x^i=\sum_{i\ge 0}i!x^{i+n}=x^ne^x
+$$
+于是，我们得到：
+$$
+\begin{align}
+\hat A(x)=&\sum_{i\ge 0}\dfrac{\sum_{j=0}^nA_ji^{\underline j}x^i}{i!}\notag\\
+=&\sum_{j=0}^nA_j\sum_{i\ge 0}\dfrac{i^{\underline j}x^i}{i!}\notag\\
+=&\sum_{j=0}^nA_jx^je^x\notag\\
+=&e^x\sum_{j=0}^nA_jx^j\notag\\
+=&e^x\tilde A(x)\notag
+\end{align}
+$$
+又因为点值满足：
+$$
+\hat C_ii!=\hat A_ii!\hat B_ii!\\
+\hat C_i=\hat A_i\hat B_ii!
+$$
+直接乘起来就好
+
