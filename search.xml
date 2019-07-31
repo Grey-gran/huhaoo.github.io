@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[NOI2019序列]]></title>
+    <url>%2F2019%2F07%2F30%2FNOI2019%E5%BA%8F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[题目链接：https://www.luogu.org/problem/P5470]]></content>
+      <tags>
+        <tag>NOI</tag>
+        <tag>贪心</tag>
+        <tag>模拟费用流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NOI2019机器人]]></title>
     <url>%2F2019%2F07%2F30%2FNOI2019%E6%9C%BA%E5%99%A8%E4%BA%BA%2F</url>
     <content type="text"><![CDATA[题目链接： https://www.luogu.org/problem/P5469]]></content>

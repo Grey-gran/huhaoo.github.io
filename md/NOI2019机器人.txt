@@ -72,8 +72,8 @@ $$
 
 然后一共$600$段（事实上不用MTT，直接$O(n^2)$乘就行了，事实上$O(n^2)$也只有$435072$，还跑不满）
 
-代码： https://github.com/huhaoo/code/blob/luogu/5469.cpp
+代码： [github](https://github.com/huhaoo/code/blob/luogu/5469.cpp)
 
 备用：
-- https://loj.ac/submission/551041
-- https://www.luogu.org/record/21845967
+- [loj记录](https://loj.ac/submission/551041)
+- [luogu记录](https://www.luogu.org/record/21845967)

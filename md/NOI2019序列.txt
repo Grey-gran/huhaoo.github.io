@@ -1,0 +1,76 @@
+---
+title: NOI2019序列
+date: 2019-07-30 20:40:26
+tags:
+- 模拟费用流
+- 贪心
+- NOI
+mathjax: on
+---
+
+题目链接：https://www.luogu.org/problem/P5470
+
+<!--more-->
+
+考虑一个费用流：
+
+每个$i$分为两个点$i_1,i_2$，然后
+
+先对于每个$i$，连$(S,i_1,1,-c_i),(i_1,i_2,1,0),(i_2,T,1,-d_i)$
+
+另外再新建两个点$x,y$然后对于每个$i$连$(i_1,x,1,0),(y,i_2,1,0)$
+
+最后连$(x,y,K-L,0)$
+
+求流量为$K$的最小费用流
+
+下面是第$3$个样例的图：
+
+![](NOI2019序列/graph.png)
+
+可以考虑一下一个最优的流的流量：
+
+显然，选$c_i$会流$(S,i_1)$，选$d_i$会流$(i_2,T)$
+
+如果对于一个$i$，$c_i,d_i$都选了那么会流$(i_1,i_2)$或者就过$(x,y)$（后面会说）
+
+如果只过一个，那么就会经过$(x,y)$
+
+这里可以看出：$x,y$不产生贡献，只处理只出现一个的$c_i,d_i$
+
+我们发现当$(x,y)$有$K-L$的流量时，代表可以有$K-L$个单独的$c_i,d_i$，就保证了$c_i,d_i$同时出现的至少有$L$组
+
+于是符合条件的一种选法一定可以表示为至少一种流法，而一种流法也肯定代表一种合法选法
+
+然后我们就开始模拟这个费用流：
+
+如果$(x,y)$还有剩余流量，那么肯定是选取剩下最大的$c_i$与$d_i$，然后如果还可以流任意$(j_1,j_2)$，就流$(j_1,j_2)$
+
+如果$(x,y)$没流量了，要么我们流$S\rightarrow k_1\rightarrow k_2\rightarrow T$
+
+要么我们肯定会要找一条路，$S\rightarrow i_1\rightarrow x\rightarrow y\rightarrow j_2\rightarrow T$
+
+即本来选$c_i,d_j$，然后要变为
+
+1. $c_i,d_i,c_k,d_j$，我们可以流$S\rightarrow k_1\rightarrow x\rightarrow i_1\rightarrow i_2\rightarrow T$
+2. $c_i,d_i,c_j,d_j$，我们可以流$S\rightarrow j_1\rightarrow j_2\rightarrow y\rightarrow x\rightarrow i_1\rightarrow i_2\rightarrow T$
+
+大概来说，我们要维护：
+
+1. $c$剩下最大的位置
+2. $d$剩下最大的位置
+3. $c+d$同时剩下的最大的位置
+4. $d_i$选了情况下$c_i$最大的位置
+5. $c_i$选了情况下$d_i$最大的位置
+
+然后我们考虑：如果有$K-L$个单独的$c_i$，那么选$1+2$
+
+否则选$\max(3,4+2,5+1)$
+
+因为这是模拟的费用流，所以不会错
+
+代码：[github](https://github.com/huhaoo/code/blob/luogu/5470.cpp)
+
+备用：
+1. [luogu记录](https://www.luogu.org/record/21860948)
+2. [loj记录](https://loj.ac/submission/551488)
