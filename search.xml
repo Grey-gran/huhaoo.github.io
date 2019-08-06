@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Crash的文明世界]]></title>
+    <url>%2F2019%2F08%2F06%2FCrash%E7%9A%84%E6%96%87%E6%98%8E%E4%B8%96%E7%95%8C%2F</url>
+    <content type="text"><![CDATA[题目链接： https://www.luogu.org/problem/P4827]]></content>
+      <tags>
+        <tag>斯特林数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[斯特林数及斯特林反演]]></title>
     <url>%2F2019%2F08%2F06%2F%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%8F%8A%E6%96%AF%E7%89%B9%E6%9E%97%E5%8F%8D%E6%BC%94%2F</url>
     <content type="text"><![CDATA[本文按介绍顺序为拓扑序基础上字典序]]></content>

@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="本文按介绍顺序为拓扑序基础上字典序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T11:06:48.894Z">
+<meta property="og:updated_time" content="2019-08-06T11:35:08.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="斯特林数及斯特林反演">
 <meta name="twitter:description" content="本文按介绍顺序为拓扑序基础上字典序">
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="Created: 2019-08-06 13:05:44 / Modified: 19:06:48" itemprop="dateCreated datePublished" datetime="2019-08-06T13:05:44+08:00">2019-08-06</time>
+              <time title="Created: 2019-08-06 13:05:44 / Modified: 19:35:08" itemprop="dateCreated datePublished" datetime="2019-08-06T13:05:44+08:00">2019-08-06</time>
             
 
             
@@ -450,16 +450,16 @@
 <p>$$<br>\sum_{i}\begin{bmatrix}n\\i\end{bmatrix}=n!<br>$$</p>
 <p>都表示$n$的全排列</p>
 <p>还有：</p>
-<p>$$<br>x^{\underline n}=\sum_{i}^n(-1)^{n-i}\begin{bmatrix}n\\i\end{bmatrix}x^i<br>$$</p>
+<p>$$<br>x^{\underline n}=\sum_{i=0}^n(-1)^{n-i}\begin{bmatrix}n\\i\end{bmatrix}x^i<br>$$</p>
 <p>也可以用归纳法证</p>
 <h3 id="反转公式"><a href="#反转公式" class="headerlink" title="反转公式"></a>反转公式</h3><p>$$<br>\sum_{i=m}^n\begin{bmatrix}n\\i\end{bmatrix}\begin{Bmatrix}i\\m\end{Bmatrix}(-1)^{n-i}=[n==m]\\<br>\sum_{i=m}^n\begin{Bmatrix}n\\i\end{Bmatrix}\begin{bmatrix}i\\m\end{bmatrix}(-1)^{n-i}=[n==m]<br>$$</p>
 <p><del>不会证明</del></p>
 <h3 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h3><p>若</p>
-<p>$$<br>f(n)=\sum_{i=1}^ng(i)\begin{Bmatrix}n\\i\end{Bmatrix}<br>$$</p>
+<p>$$<br>f(n)=\sum_{i=0}^ng(i)\begin{Bmatrix}n\\i\end{Bmatrix}<br>$$</p>
 <p>则：</p>
-<p>$$<br>\begin{align}<br>g(n)=&amp;\sum_{i=1}^n[i=n]g(i)\notag\\<br>=&amp;\sum_{i=1}^n\sum_{j=i}^n\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\<br>=&amp;\sum_{j=1}^n\sum_{i=1}^j\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\<br>=&amp;\sum_{j=1}^n\begin{bmatrix}n\\j\end{bmatrix}(-1)^{n-j}f(i)<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>g(n)=&amp;\sum_{i=0}^n[i=n]g(i)\notag\\<br>=&amp;\sum_{i=0}^n\sum_{j=i}^n\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\<br>=&amp;\sum_{j=0}^n\sum_{i=0}^j\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\<br>=&amp;\sum_{j=0}^n\begin{bmatrix}n\\j\end{bmatrix}(-1)^{n-j}f(i)<br>\end{align}<br>$$</p>
 <p>类似的，我们可以推出：</p>
-<p>$$<br>f(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}(-1)^{n-i}f_i\\<br>f(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}(-1)^{n-i}f_i<br>$$</p>
+<p>$$<br>f(n)=\sum_{i=0}^n\begin{Bmatrix}n\\i\end{Bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}(-1)^{n-i}f_i\\<br>f(n)=\sum_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}(-1)^{n-i}f_i<br>$$</p>
 
       
     </div>
@@ -516,6 +516,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/06/Crash的文明世界/" rel="prev" title="Crash的文明世界">
+                Crash的文明世界 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -593,7 +597,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">116</span>
+                    <span class="site-state-item-count">117</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

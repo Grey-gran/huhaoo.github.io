@@ -48,7 +48,7 @@ $$
 还有：
 
 $$
-x^{\underline n}=\sum_{i}^n(-1)^{n-i}\begin{bmatrix}n\\i\end{bmatrix}x^i
+x^{\underline n}=\sum_{i=0}^n(-1)^{n-i}\begin{bmatrix}n\\i\end{bmatrix}x^i
 $$
 
 也可以用归纳法证
@@ -67,23 +67,23 @@ $$
 若
 
 $$
-f(n)=\sum_{i=1}^ng(i)\begin{Bmatrix}n\\i\end{Bmatrix}
+f(n)=\sum_{i=0}^ng(i)\begin{Bmatrix}n\\i\end{Bmatrix}
 $$
 
 则：
 
 $$
 \begin{align}
-g(n)=&\sum_{i=1}^n[i=n]g(i)\notag\\
-=&\sum_{i=1}^n\sum_{j=i}^n\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\
-=&\sum_{j=1}^n\sum_{i=1}^j\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\
-=&\sum_{j=1}^n\begin{bmatrix}n\\j\end{bmatrix}(-1)^{n-j}f(i)
+g(n)=&\sum_{i=0}^n[i=n]g(i)\notag\\
+=&\sum_{i=0}^n\sum_{j=i}^n\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\
+=&\sum_{j=0}^n\sum_{i=0}^j\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\
+=&\sum_{j=0}^n\begin{bmatrix}n\\j\end{bmatrix}(-1)^{n-j}f(i)
 \end{align}
 $$
 
 类似的，我们可以推出：
 
 $$
-f(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}(-1)^{n-i}f_i\\
-f(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}(-1)^{n-i}f_i
+f(n)=\sum_{i=0}^n\begin{Bmatrix}n\\i\end{Bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}(-1)^{n-i}f_i\\
+f(n)=\sum_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}(-1)^{n-i}f_i
 $$
