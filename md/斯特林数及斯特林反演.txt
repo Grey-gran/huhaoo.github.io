@@ -77,7 +77,7 @@ $$
 g(n)=&\sum_{i=0}^n[i=n]g(i)\notag\\
 =&\sum_{i=0}^n\sum_{j=i}^n\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\
 =&\sum_{j=0}^n\sum_{i=0}^j\begin{bmatrix}n\\j\end{bmatrix}\begin{Bmatrix}j\\i\end{Bmatrix}(-1)^{n-j}g(i)\notag\\
-=&\sum_{j=0}^n\begin{bmatrix}n\\j\end{bmatrix}(-1)^{n-j}f(i)
+=&\sum_{j=0}^n\begin{bmatrix}n\\j\end{bmatrix}(-1)^{n-j}f(i)\notag
 \end{align}
 $$
 

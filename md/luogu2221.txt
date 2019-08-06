@@ -3,7 +3,7 @@ title: luogu2221
 date: 2018-08-21 12:14:19
 tags:
 - luogu
-- 概率期望
+- 概率与期望
 mathjax: on
 ---
 
