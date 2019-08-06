@@ -1,0 +1,36 @@
+---
+title: 概率生成函数
+date: 2019-08-06 20:16:11
+tags:
+- 概率生成函数
+mathjax: on
+---
+
+概率生存函数是一类特殊的生成函数，可以用生成函数较简单地解决部分概率问题，有
+
+$$
+F(z)=E(z^X)=\sum_{i\ge 0}\mathrm{Pr}(X=i)z^i
+$$
+
+<!--more-->
+
+我们发现，概率生成函数有：
+
+$$
+\begin{align}
+F(1)=&E(1)=1\notag\\
+F'(z)=&\sum_{i\ge 0}i\mathrm{Pr}(X=i)z^{i-1}\notag\\
+E(X)=&\sum_{i\ge 0}i\mathrm{Pr}(X=i)\notag\\
+=&F'(1)\tag{1}\\
+F^{(k)}(X)=&\sum_{i\ge 0}i^{\underline k}\mathrm{Pr}(x=i)z^{i-k}\notag\\
+F^{(k)}(1)=&E(x^{\underline k})\notag\\
+Var(X)=&E(X^2)-(E(X))^2\notag\\
+=&F''(1)+F'(1)-(F'(1))^2\tag{2}
+\end{align}
+$$
+
+根据$(1),(2)$，我们可以方便地求出平均值与方差
+
+其它部分像普通的生成函数一样
+
+

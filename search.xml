@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[概率生成函数]]></title>
+    <url>%2F2019%2F08%2F06%2F%E6%A6%82%E7%8E%87%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[概率生存函数是一类特殊的生成函数，可以用生成函数较简单地解决部分概率问题，有 $$F(z)=E(z^X)=\sum_{i\ge 0}\mathrm{Pr}(X=i)z^i$$]]></content>
+      <tags>
+        <tag>概率生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Crash的文明世界]]></title>
     <url>%2F2019%2F08%2F06%2FCrash%E7%9A%84%E6%96%87%E6%98%8E%E4%B8%96%E7%95%8C%2F</url>
     <content type="text"><![CDATA[题目链接： https://www.luogu.org/problem/P4827]]></content>

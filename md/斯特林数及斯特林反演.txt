@@ -87,3 +87,7 @@ $$
 f(n)=\sum_{i=0}^n\begin{Bmatrix}n\\i\end{Bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{bmatrix}n\\i\end{bmatrix}(-1)^{n-i}f_i\\
 f(n)=\sum_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}g(i)\Leftrightarrow g(n)=\sum_{i=1}^n\begin{Bmatrix}n\\i\end{Bmatrix}(-1)^{n-i}f_i
 $$
+
+### 例题
+
+[~~一劳永逸~~](https://huhaoo.github.io/tags/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/)
