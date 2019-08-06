@@ -90,4 +90,4 @@ $$
 
 ### 例题
 
-[~~一劳永逸~~](https://huhaoo.github.io/tags/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/)
+[参看"斯特林数"tag](https://huhaoo.github.io/tags/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/)
