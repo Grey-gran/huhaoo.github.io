@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CTSC2006歌唱王国]]></title>
+    <url>%2F2019%2F08%2F06%2FCTSC2006-%E6%AD%8C%E5%94%B1%E7%8E%8B%E5%9B%BD%2F</url>
+    <content type="text"><![CDATA[简要（魔改）题意： 有一个长度无限每一位为$[1,n]$随机数的序列，求它的一个最短前缀有一个连续子序列与给定序列$A$相同，多组数据 题目链接：https://www.luogu.org/problem/P4548]]></content>
+      <tags>
+        <tag>CTSC</tag>
+        <tag>概率生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[概率生成函数]]></title>
     <url>%2F2019%2F08%2F06%2F%E6%A6%82%E7%8E%87%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[概率生存函数是一类特殊的生成函数，可以用生成函数较简单地解决部分概率问题，有 $$F(z)=E(z^X)=\sum_{i\ge 0}\mathrm{Pr}(X=i)z^i$$]]></content>

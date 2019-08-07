@@ -1,0 +1,103 @@
+---
+title: CTSC2006歌唱王国
+date: 2019-08-06 20:45:31
+tags:
+- CTSC
+- 概率生成函数
+mathjax: on
+---
+
+简要（魔改）题意：
+
+有一个长度无限每一位为$[1,n]$随机数的序列，求它的一个最短前缀有一个连续子序列与给定序列$A$相同，多组数据
+
+题目链接：https://www.luogu.org/problem/P4548
+
+<!--more-->
+
+我们记$a_i=[A_{1\dots i}=A_{|A|-i+1\dots |A|}]$,$f_i$表示答案刚好为$i$的概率，$g_i$表示答案大于$i$的概率，$F,G$分别表示$f,g$的生成函数
+
+所以有：
+
+$$
+\begin{align}
+xG(x)-F(x)-G(x)=&1\tag{1}\\
+G(x)\left(\frac 1n\right)^{|A|}=&\sum_{i=1}^{|A|}a_iF(x)\left(\frac 1n\right)^{|A|-i}\tag{2}\\
+G(x)=&\sum_{i=1}^{|A|}a_iF(x)n^i\notag
+\end{align}
+$$
+
+$(1)$式相当于为一个不可行的序列在最后加一个数
+
+$(2)$式相当于为一个不可行的序列后面加序列$A$，可能在添加$|A|$个字符前就加好了，枚举在哪完成即可
+
+然后就有：
+
+$$
+\begin{align}
+xG'(x)+G(x)=&F'(x)+G'(x)\tag{$(1)'$}\\
+G(1)=&F'(1)\tag{$(1)',x=1$}\\
+G(1)=&\sum_{i=1}^{|A|}a_in^i\tag{$(2),x=1$}
+\end{align}
+$$
+
+然后我们就求出了$F'(1)$！
+
+```cpp
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=r*10+c-48;
+		c=getchar();
+	}
+	return r*t;
+}
+const int N=100010,mod=10000;
+int n,t,f[N],k,a[N],p[N],m,ans;
+int main()
+{
+	n=read();
+	t=read();
+	p[0]=1;
+	fr(i,1,100000)
+		p[i]=p[i-1]*n%mod;
+	while(t--)
+	{
+		m=read();
+		fr(i,1,m)
+			a[i]=read();
+		k=0;
+		fr(i,2,m)
+		{
+			while(a[i]!=a[k+1]&&k)
+				k=f[k];
+			if(a[i]==a[k+1])
+				k++;
+			f[i]=k;
+		}
+		k=m;
+		ans=0;
+		while(k)
+		{
+			ans=(ans+p[k])%mod;
+			k=f[k];
+		}
+		printf("%d%d%d%d\n",ans/1000%10,ans/100%10,ans/10%10,ans%10);
+	}
+	return 0;
+}
+```
