@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="概率生存函数是一类特殊的生成函数，可以用生成函数较简单地解决部分概率问题，有 $$F(z)=E(z^X)=\sum_{i\ge 0}\mathrm{Pr}(X=i)z^i$$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T12:43:33.099Z">
+<meta property="og:updated_time" content="2019-08-07T08:01:08.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率生成函数">
 <meta name="twitter:description" content="概率生存函数是一类特殊的生成函数，可以用生成函数较简单地解决部分概率问题，有 $$F(z)=E(z^X)=\sum_{i\ge 0}\mathrm{Pr}(X=i)z^i$$">
@@ -388,12 +388,24 @@
                 
               
 
-              <time title="Created: 2019-08-06 20:16:11 / Modified: 20:43:33" itemprop="dateCreated datePublished" datetime="2019-08-06T20:16:11+08:00">2019-08-06</time>
+              <time title="Created: 2019-08-06 20:16:11" itemprop="dateCreated datePublished" datetime="2019-08-06T20:16:11+08:00">2019-08-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-07 16:01:08" itemprop="dateModified" datetime="2019-08-07T16:01:08+08:00">2019-08-07</time>
               
             
           </span>
@@ -439,12 +451,11 @@
         <link rel="stylesheet" type="text/css" href="/hint.min.css"><p>概率生存函数是一类特殊的生成函数，可以用生成函数较简单地解决部分概率问题，有</p>
 <p>$$<br>F(z)=E(z^X)=\sum_{i\ge 0}\mathrm{Pr}(X=i)z^i<br>$$</p>
 <a id="more"></a>
-<p>我们发现，概率生成函数有：</p>
+<h3 id="均值与方差"><a href="#均值与方差" class="headerlink" title="均值与方差"></a>均值与方差</h3><p>我们发现，概率生成函数有：</p>
 <p>$$<br>\begin{align}<br>F(1)=&amp;E(1)=1\notag\\<br>F’(z)=&amp;\sum_{i\ge 0}i\mathrm{Pr}(X=i)z^{i-1}\notag\\<br>E(X)=&amp;\sum_{i\ge 0}i\mathrm{Pr}(X=i)\notag\\<br>=&amp;F’(1)\tag{1}\\<br>F^{(k)}(X)=&amp;\sum_{i\ge 0}i^{\underline k}\mathrm{Pr}(x=i)z^{i-k}\notag\\<br>F^{(k)}(1)=&amp;E(x^{\underline k})\notag\\<br>Var(X)=&amp;E(X^2)-(E(X))^2\notag\\<br>=&amp;F’’(1)+F’(1)-(F’(1))^2\tag{2}<br>\end{align}<br>$$</p>
 <p>根据$(1),(2)$，我们可以方便地求出平均值与方差</p>
-<p>其它部分像普通的生成函数一样</p>
-<p>例题：</p>
-<p><a href="https://huhaoo.github.io/tags/%E6%A6%82%E7%8E%87%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">参见”概率生成函数”tag</a></p>
+<h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><p>一般来说，我们设两个数组$f,g$，其中$f$为题目要求的，$g$为辅助数组，然后$F,G$表示它们的概率生成函数（部分难以用概率生成函数辅助的题目可以考虑用其它方法用普通生成函数来辅助）</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><a href="https://huhaoo.github.io/tags/%E6%A6%82%E7%8E%87%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">参见”概率生成函数”tag</a></p>
 
       
     </div>
@@ -551,8 +562,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -823,6 +843,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#均值与方差"><span class="nav-number">1.</span> <span class="nav-text">均值与方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法"><span class="nav-number">2.</span> <span class="nav-text">做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 <!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
 			<p>访问次数</p>
