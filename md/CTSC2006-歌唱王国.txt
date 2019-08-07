@@ -22,8 +22,7 @@ mathjax: on
 $$
 \begin{align}
 xG(x)-F(x)-G(x)=&1\tag{1}\\
-G(x)\left(\frac 1n\right)^{|A|}=&\sum_{i=1}^{|A|}a_iF(x)\left(\frac 1n\right)^{|A|-i}\tag{2}\\
-G(x)=&\sum_{i=1}^{|A|}a_iF(x)n^i\notag
+G(x)\left(\frac 1nx\right)^{|A|}=&\sum_{i=1}^{|A|}a_iF(x)\left(\frac 1nx\right)^{|A|-i}\tag{2}\\
 \end{align}
 $$
 
