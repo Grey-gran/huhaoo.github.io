@@ -38,6 +38,9 @@ do
 		cd ..
     fi
 done
+cp $road/source/a80da1282f2c775bbc5f2c92c836968b/index.md $road/source/a80da1282f2c775bbc5f2c92c836968b/index.txt
+cl $road/source/a80da1282f2c775bbc5f2c92c836968b/index/index
+cp $road/source/a80da1282f2c775bbc5f2c92c836968b/index/* $road/source/a80da1282f2c775bbc5f2c92c836968b/index/index 
 cd $road
 cp up.sh $road/source/up.sh
 hexo clean
