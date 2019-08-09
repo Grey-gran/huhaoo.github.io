@@ -43,5 +43,7 @@ cl $road/source/a80da1282f2c775bbc5f2c92c836968b/index/index
 cp $road/source/a80da1282f2c775bbc5f2c92c836968b/index/* $road/source/a80da1282f2c775bbc5f2c92c836968b/index/index 
 cd $road
 cp up.sh $road/source/up.sh
-hexo clean
-hexo d -g
+rm public -r
+hexo g
+sed -i 's/a80da1282f2c775bbc5f2c92c836968b/404/g' $road/public/sitemap.xml
+hexo d
