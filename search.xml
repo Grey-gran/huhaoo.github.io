@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Burnside引理与Polya定理]]></title>
+    <url>%2F2019%2F08%2F10%2FBurnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E5%AE%9A%E7%90%86%2F</url>
+    <content type="text"><![CDATA[Burnside引理和Polya定理一般用来处理存在（循环、对称等）同构下的方案数]]></content>
+      <tags>
+        <tag>Burnside/polya</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CTSC2006歌唱王国]]></title>
     <url>%2F2019%2F08%2F06%2FCTSC2006-%E6%AD%8C%E5%94%B1%E7%8E%8B%E5%9B%BD%2F</url>
     <content type="text"><![CDATA[简要（魔改）题意： 有一个长度无限每一位为$[1,n]$随机数的序列，求它的一个最短前缀有一个连续子序列与给定序列$A$相同，多组数据 题目链接：https://www.luogu.org/problem/P4548]]></content>

@@ -47,4 +47,4 @@ rm $road/public -r
 hexo g
 sed -i 's/a80da1282f2c775bbc5f2c92c836968b/404/g' $road/public/sitemap.xml
 hexo d
-rm $road/publib -r
+rm $road/public -r
