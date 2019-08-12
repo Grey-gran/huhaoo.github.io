@@ -194,11 +194,6 @@
     <content type="text"><![CDATA[为方便查询，都用小写（包括dp）]]></content>
   </entry>
   <entry>
-    <title><![CDATA[教你卡spfa]]></title>
-    <url>%2F2019%2F05%2F10%2F%E6%95%99%E4%BD%A0%E5%8D%A1spfa%2F</url>
-    <content type="text"><![CDATA[关于spfa 它死了]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[luogu4931情侣？给我烧了！]]></title>
     <url>%2F2019%2F05%2F07%2Fluogu4931%2F</url>
     <content type="text"><![CDATA[求$1 \dots 2n$的所有排列中恰有$k$组$2k-1,2k$相邻的方案数]]></content>
@@ -257,8 +252,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>生成函数</tag>
         <tag>TJOI</tag>
+        <tag>生成函数</tag>
       </tags>
   </entry>
   <entry>
