@@ -109,17 +109,17 @@
 
 
 
-  <meta name="description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 update on 2019-08-09 11:44:12 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  update on 2019-08-12 20:51:26 一个固定的区间$A$与一个长度固定的区间">
+  <meta name="description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
 <meta property="og:type" content="website">
 <meta property="og:title" content="一些技巧与总结">
 <meta property="og:url" content="https://huhaoo.github.io/a80da1282f2c775bbc5f2c92c836968b/index.html">
 <meta property="og:site_name" content="Huhao&#39;s blog">
-<meta property="og:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 update on 2019-08-09 11:44:12 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  update on 2019-08-12 20:51:26 一个固定的区间$A$与一个长度固定的区间">
+<meta property="og:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T13:05:04.499Z">
+<meta property="og:updated_time" content="2019-08-31T00:00:17.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些技巧与总结">
-<meta name="twitter:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 update on 2019-08-09 11:44:12 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  update on 2019-08-12 20:51:26 一个固定的区间$A$与一个长度固定的区间">
+<meta name="twitter:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
 
 
 
@@ -393,32 +393,52 @@
           <link rel="stylesheet" type="text/css" href="/hint.min.css"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><del>我也不知道你怎么进来的</del></p>
 <p>由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明<del>还有少量技巧</del></p>
 <h3 id="数学相关"><a href="#数学相关" class="headerlink" title="数学相关"></a>数学相关</h3><h4 id="计数、概率与期望相关"><a href="#计数、概率与期望相关" class="headerlink" title="计数、概率与期望相关"></a>计数、概率与期望相关</h4><ol>
-<li><p>update on <code>2019-08-09 11:44:12</code></p>
-<p>对于地位相同的一组变量，如果要求一个值的期望，可以<strong>求</strong>所有值的<strong>和</strong>然后<strong>取平均值</strong></p>
+<li><p>对于地位相同的一组变量，如果要求一个值的期望，可以<strong>求</strong>所有值的<strong>和</strong>然后<strong>取平均值</strong></p>
 </li>
-<li><p>update on <code>2019-08-12 20:51:26</code></p>
-<p>一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理</p>
+<li><p>一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理</p>
+</li>
+<li><p>如果给定一组变量，每个都在一个区间内任取整值，并对他们的和做些处理，不妨容斥成只有下界，然后就有：<br>$$<br>\begin{align}<br>&amp;\sum_{a_1\ge l_1}\sum_{a_2\ge l_2}\dots\sum_{a_n\ge l_n}f(a_1+a_2+\dots+a_n)\notag\\<br>=&amp;\sum_{s\ge \sum l}f(s){s-\sum l+n-1\choose n-1}<br>\end{align}<br>$$<br>考虑到$s-\sum l$可以任意分配给$a$</p>
+</li>
+<li><p>数位DP可以从低位往高位DP，记$f_{i,0}$表示在第$i$位且$\le limit$，$f_{i,1}$表示大于，这样转移会变得方便</p>
+</li>
+<li><p>数位DP只要想的话，可以状压和维护进位处理多个数，不过一般会不好调，$4$的技巧可以用上。</p>
+</li>
+<li><p>如果考虑$n$个变量在$[1,m]$内取值的所有情况贡献和，且贡献仅仅与$n$个变量两两是否相等（可以有等于/不等于某个值的条件）有关（并且范围保证$3^nm$不大），可以考虑DP：$f_{s,t}$表示值$\le t$的集合为$s$，每次转移就枚举等于$t$的集合，这样是$3^nm$的</p>
 </li>
 </ol>
 <h4 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h4><ol>
-<li><p>update on <code>2019-08-09 20:14:11</code></p>
-<p>对于求最优情况下最终值的题，可以先<strong>二分</strong>这个值，然后就得到一个简化后的问题：</p>
+<li><p>对于求最优情况下最终值的题，可以先<strong>二分</strong>这个值，然后就得到一个简化后的问题：</p>
 <p>最终能否走到对后手不利的状态（对先手来说比二分的答案优）</p>
 <p>这是一个二分图，可以看<code>图论/二分图/1</code>来求解</p>
 </li>
 </ol>
 <h4 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h4><ol>
-<li><p>update on <code>2019-08-10 12:51:02</code></p>
-<p>部分无解不代表需要求的无解，可以<strong>dfs</strong>出需要求的变量要用到哪些变量然后只用这些变量</p>
-</li>
+<li>部分无解不代表需要求的无解，可以<strong>dfs</strong>出需要求的变量要用到哪些变量然后只用这些变量</li>
 </ol>
 <h3 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h3><h4 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h4><ol>
-<li><p>update on <code>2019-08-09 20:17:09</code></p>
-<p>判断从某个点一直走到不重复的点（直到它能走到的点都被走了）是否一定能走到对面，只需判断这个点有出边并且最大匹配和除去这个点的最大匹配是否不相等（即<strong>这个点必须包含在所有可能的最大匹配中</strong>）</p>
+<li><p>判断从某个点一直走到不重复的点（直到它能走到的点都被走了）是否一定能走到对面，只需判断这个点有出边并且最大匹配和除去这个点的最大匹配是否不相等（即<strong>这个点必须包含在所有可能的最大匹配中</strong>）</p>
 <p>证明显然：如果有一个’最大匹配’不包括这个点，那么只要有一种方案能到对面时中止，那么将这种方案在’最大匹配’上取反，那么最大匹配数会加一（和匈牙利算法流程相同）</p>
 </li>
-<li><p>update on <code>2019-08-09 20:28:08</code></p>
-<p>当最大匹配时很难求时，不妨求<strong>最大独立集</strong></p>
+</ol>
+<h4 id="通用算法"><a href="#通用算法" class="headerlink" title="通用算法"></a>通用算法</h4><ol>
+<li><p>三元环可以按度数从小到大顺序（如果相等任意排序，记$r_i$为$i$的名次）枚举$i,j,k$，如果是环就统计</p>
+<p>四元环可以枚举$i$，然后找到$j,k$，满足$r_i&lt;r_j,r_k$，给$i,j,k$的答案加上$k$的经过次数，然后给$k$的经过次数$+1$，发现这样就统计好了四元环的$(a,b,c,d)$中$a,c,d$部分，然后可以在清空$k$经过次数的时候统计好$b$即可</p>
+<p> 可以参看代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> j:t[i])<span class="keyword">if</span>(cmp(i,j))</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> k:t[j])<span class="keyword">if</span>(cmp(i,k))</span><br><span class="line">		&#123;</span><br><span class="line">			r4[i]+=s[k];r4[j]+=s[k];r4[k]+=s[k];</span><br><span class="line">			s[k]++;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> j:t[i])<span class="keyword">if</span>(cmp(i,j))</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> k:t[j])<span class="keyword">if</span>(cmp(i,k))</span><br><span class="line">		&#123;</span><br><span class="line">			s[k]--;</span><br><span class="line">			r4[j]+=s[k];</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据量大概在$5\times 10^6$字符就可以开始考虑读入优化了</p>
+</li>
+</ol>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><ol>
+<li>用bitset进行区间0/1操作可以考虑维护全为$0/1$的段，通过不断合并相交段来降低复杂度</li>
+</ol>
+<h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><ol>
+<li>可以先写出费用流，然后通过快速维护当前最小费用来实现贪心</li>
+</ol>
+<h3 id="构造，交互，提答类"><a href="#构造，交互，提答类" class="headerlink" title="构造，交互，提答类"></a>构造，交互，提答类</h3><p>（基本上这类都需要构造一种方案出来）</p>
+<ol>
+<li><p>构造题可以想着把若干个子问题拼起来。</p>
+<p>比如说CF1208C，可以把若干个$4\times 4$的子数组拼起来（可以直接$0+4k\sim 15+4k$依次填到这个数组，然后它们异或和为$0$）</p>
 </li>
 </ol>
 
@@ -497,7 +517,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-count">121</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -696,7 +716,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">92</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -759,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学相关"><span class="nav-number">2.</span> <span class="nav-text">数学相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计数、概率与期望相关"><span class="nav-number">2.1.</span> <span class="nav-text">计数、概率与期望相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博弈论"><span class="nav-number">2.2.</span> <span class="nav-text">博弈论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯消元"><span class="nav-number">2.3.</span> <span class="nav-text">高斯消元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图论"><span class="nav-number">3.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二分图"><span class="nav-number">3.1.</span> <span class="nav-text">二分图</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学相关"><span class="nav-number">2.</span> <span class="nav-text">数学相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计数、概率与期望相关"><span class="nav-number">2.1.</span> <span class="nav-text">计数、概率与期望相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博弈论"><span class="nav-number">2.2.</span> <span class="nav-text">博弈论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯消元"><span class="nav-number">2.3.</span> <span class="nav-text">高斯消元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图论"><span class="nav-number">3.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二分图"><span class="nav-number">3.1.</span> <span class="nav-text">二分图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用算法"><span class="nav-number">3.2.</span> <span class="nav-text">通用算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心"><span class="nav-number">5.</span> <span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造，交互，提答类"><span class="nav-number">6.</span> <span class="nav-text">构造，交互，提答类</span></a></li></ol></div>
             
 
           </div>

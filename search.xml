@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IOI2019矩形区域]]></title>
+    <url>%2F2019%2F08%2F31%2FIOI2019%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%2F</url>
+    <content type="text"><![CDATA[给定一个$n\times m$的二维数组$a$（这里下标$1$开始，题目是$0$开始），求有多少子矩形$a_{x_1\dots x_2,y_1\dots y_2}$，满足$1&lt;x_1\le x_2&lt;n,1&lt;y_1\le y_2&lt;m$且对于所有$(x,y)$满足$x_1\le x\le x_2,y_1\le y\le y_2$，都有$a_{x,y}&lt;a_{x_1-1,y},a_{x_2+1,y},a_{x,y_1-1},a_{x,y_2+1}$]]></content>
+      <tags>
+        <tag>IOI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[IOI2019排列鞋子]]></title>
+    <url>%2F2019%2F08%2F31%2FIOI2019%E6%8E%92%E5%88%97%E9%9E%8B%E5%AD%90%2F</url>
+    <content type="text"><![CDATA[给定$2n$个数，每次可以交换相邻两个数，问至少交换几次，使得$2k-1$位置上数小于$0$且为$2k$位置上数的相反数]]></content>
+      <tags>
+        <tag>贪心</tag>
+        <tag>IOI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[FFTNTT与循环卷积]]></title>
+    <url>%2F2019%2F08%2F31%2FFFTNTT%E4%B8%8E%E5%BE%AA%E7%8E%AF%E5%8D%B7%E7%A7%AF%2F</url>
+    <content type="text"><![CDATA[重写FFT，NTT，简介循环卷积]]></content>
+      <tags>
+        <tag>循环卷积</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Burnside引理与Polya定理]]></title>
     <url>%2F2019%2F08%2F10%2FBurnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E5%AE%9A%E7%90%86%2F</url>
     <content type="text"><![CDATA[Burnside引理和Polya定理一般用来处理存在（循环、对称等）同构下的方案数]]></content>
@@ -57,8 +82,8 @@
     <url>%2F2019%2F07%2F30%2FNOI2019%E5%BA%8F%E5%88%97%2F</url>
     <content type="text"><![CDATA[题目链接：https://www.luogu.org/problem/P5470]]></content>
       <tags>
-        <tag>NOI</tag>
         <tag>贪心</tag>
+        <tag>NOI</tag>
         <tag>模拟费用流</tag>
       </tags>
   </entry>
@@ -101,8 +126,8 @@
     <url>%2F2019%2F06%2F25%2FCF643E%2F</url>
     <content type="text"><![CDATA[http://codeforces.com/problemset/problem/643/E]]></content>
       <tags>
-        <tag>math</tag>
         <tag>CF</tag>
+        <tag>math</tag>
         <tag>DP</tag>
         <tag>概率与期望</tag>
       </tags>
@@ -144,8 +169,8 @@
     <url>%2F2019%2F05%2F27%2FNOI2017%E8%94%AC%E8%8F%9C%2F</url>
     <content type="text"><![CDATA[题目链接给两个吧 luogu loj]]></content>
       <tags>
-        <tag>NOI</tag>
         <tag>贪心</tag>
+        <tag>NOI</tag>
       </tags>
   </entry>
   <entry>
@@ -252,8 +277,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>TJOI</tag>
         <tag>生成函数</tag>
+        <tag>TJOI</tag>
       </tags>
   </entry>
   <entry>
@@ -261,8 +286,8 @@
     <url>%2F2019%2F04%2F29%2FBJOI2019%E5%85%89%E7%BA%BF%2F</url>
     <content type="text"><![CDATA[当一束光打到一层玻璃上时，有一定比例的光会穿过这层玻璃，一定比例的光会被反射回去，剩下的光被玻璃吸收。 设对于任意$x$，有$xa_i$单位的光会穿过它，有$xb_i$的会被反射回去。现在$n$层玻璃叠在一起，有$1$单位的光打到第$1$层玻璃上，那么有多少单位的光能穿过所有$n$层玻璃呢？]]></content>
       <tags>
-        <tag>BJOI</tag>
         <tag>math</tag>
+        <tag>BJOI</tag>
       </tags>
   </entry>
   <entry>
@@ -391,8 +416,8 @@
     <url>%2F2019%2F03%2F05%2FNOI2015%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
       <tags>
-        <tag>NOI</tag>
         <tag>sa</tag>
+        <tag>NOI</tag>
       </tags>
   </entry>
   <entry>
@@ -513,8 +538,8 @@
     <url>%2F2019%2F01%2F09%2FCF1045H%2F</url>
     <content type="text"><![CDATA[求在$[A,B]$区间内有多少数满足在二进制下： 子串$00$的个数为$c_{00}$。 子串$01$的个数为$c_{01}$。 子串$10$的个数为$c_{10}$。 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。 $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$]]></content>
       <tags>
-        <tag>math</tag>
         <tag>CF</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -532,8 +557,8 @@
     <url>%2F2019%2F01%2F05%2FCF1096G%2F</url>
     <content type="text"><![CDATA[一个$n$位数，每位可以是给出的$k$个数码中的一个数，可以有前导$0$,输出前$\frac n2$位之和与后$\frac n2$位之和相等的方案数，保证$n$是偶数。]]></content>
       <tags>
-        <tag>math</tag>
         <tag>CF</tag>
+        <tag>math</tag>
         <tag>NTT</tag>
       </tags>
   </entry>
