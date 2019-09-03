@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[最值操作与历史最值查询的线段树实现]]></title>
+    <url>%2F2019%2F09%2F02%2F%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%8E%86%E5%8F%B2%E6%9C%80%E5%80%BC%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%AE%9E%E7%8E%B0%2F</url>
+    <content type="text"><![CDATA[可以看2016论文：https://github.com/huhaoo/pan/blob/master/%E5%9B%BD%E5%AE%B6%E9%98%9F%E8%AE%BA%E6%96%87/2016.pdf 下面讨论全部基于线段树]]></content>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IOI2019矩形区域]]></title>
     <url>%2F2019%2F08%2F31%2FIOI2019%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%2F</url>
     <content type="text"><![CDATA[给定一个$n\times m$的二维数组$a$（这里下标$1$开始，题目是$0$开始），求有多少子矩形$a_{x_1\dots x_2,y_1\dots y_2}$，满足$1&lt;x_1\le x_2&lt;n,1&lt;y_1\le y_2&lt;m$且对于所有$(x,y)$满足$x_1\le x\le x_2,y_1\le y\le y_2$，都有$a_{x,y}&lt;a_{x_1-1,y},a_{x_2+1,y},a_{x,y_1-1},a_{x,y_2+1}$]]></content>
@@ -126,8 +134,8 @@
     <url>%2F2019%2F06%2F25%2FCF643E%2F</url>
     <content type="text"><![CDATA[http://codeforces.com/problemset/problem/643/E]]></content>
       <tags>
-        <tag>CF</tag>
         <tag>math</tag>
+        <tag>CF</tag>
         <tag>DP</tag>
         <tag>概率与期望</tag>
       </tags>
@@ -286,8 +294,8 @@
     <url>%2F2019%2F04%2F29%2FBJOI2019%E5%85%89%E7%BA%BF%2F</url>
     <content type="text"><![CDATA[当一束光打到一层玻璃上时，有一定比例的光会穿过这层玻璃，一定比例的光会被反射回去，剩下的光被玻璃吸收。 设对于任意$x$，有$xa_i$单位的光会穿过它，有$xb_i$的会被反射回去。现在$n$层玻璃叠在一起，有$1$单位的光打到第$1$层玻璃上，那么有多少单位的光能穿过所有$n$层玻璃呢？]]></content>
       <tags>
-        <tag>math</tag>
         <tag>BJOI</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -416,8 +424,8 @@
     <url>%2F2019%2F03%2F05%2FNOI2015%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[题目链接]]></content>
       <tags>
-        <tag>sa</tag>
         <tag>NOI</tag>
+        <tag>sa</tag>
       </tags>
   </entry>
   <entry>
@@ -538,8 +546,8 @@
     <url>%2F2019%2F01%2F09%2FCF1045H%2F</url>
     <content type="text"><![CDATA[求在$[A,B]$区间内有多少数满足在二进制下： 子串$00$的个数为$c_{00}$。 子串$01$的个数为$c_{01}$。 子串$10$的个数为$c_{10}$。 子串$11$的个数为$c_{11}$。 答案对$10^9+7$取模。 $1\le A\le B\le 2^{10^5}, 0 \le c_{00}, c_{01}, c_{10}, c_{11} \le 10^5$]]></content>
       <tags>
-        <tag>CF</tag>
         <tag>math</tag>
+        <tag>CF</tag>
       </tags>
   </entry>
   <entry>
@@ -557,8 +565,8 @@
     <url>%2F2019%2F01%2F05%2FCF1096G%2F</url>
     <content type="text"><![CDATA[一个$n$位数，每位可以是给出的$k$个数码中的一个数，可以有前导$0$,输出前$\frac n2$位之和与后$\frac n2$位之和相等的方案数，保证$n$是偶数。]]></content>
       <tags>
-        <tag>CF</tag>
         <tag>math</tag>
+        <tag>CF</tag>
         <tag>NTT</tag>
       </tags>
   </entry>

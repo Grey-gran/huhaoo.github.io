@@ -1,0 +1,119 @@
+---
+title: IOI2019排列鞋子
+date: 2019-08-31 07:53:45
+tags:
+- 贪心
+- IOI
+mathjax: on
+---
+
+给定$2n$个数，每次可以交换相邻两个数，问至少交换几次，使得$2k-1$位置上数小于$0$且为$2k$位置上数的相反数
+
+<!--more-->
+
+似乎就是一个明（好）显（猜）的贪心，做$n$次，每次把与当前序列中第一个配对的移到前面来（有相同值就取第一个），然后删除（证明在代码后面）
+
+code:
+
+```cpp
+/**************************************************************
+	File name: 3175.cpp
+	Author: huhao
+	Email: 826538400@qq.com
+	Create time: 2019/8/22 下午10:22:38
+**************************************************************/
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=(r<<3)+(r<<1)+(c^48);
+		c=getchar();
+	}
+	return r*t;
+}
+const int N=200010;
+#include<set>
+set<int>s[N][2];
+int b[N],a[N],n,v[N];
+long long ans;
+void add(int p)
+{
+	while(p<=n)
+	{
+		b[p]++;
+		p+=p&(-p);
+	}
+}
+int query(int p)
+{
+	int v=0;
+	while(p)
+	{
+		v+=b[p];
+		p-=p&(-p);
+	}
+	return v;
+}
+int main()
+{
+	n=read()*2;
+	fr(i,1,n)
+	{
+		a[i]=read();
+		if(a[i]<0)
+			s[-a[i]][0].insert(i);
+		else
+			s[a[i]][1].insert(i);
+	}
+	int p=1;
+	fr(i,1,n/2)
+	{
+		while(v[p])
+			p++;
+		v[p]=1;
+		if(a[p]<0)
+		{
+			int P=*s[-a[p]][1].begin();
+			ans+=P-2-query(P);
+			s[-a[p]][0].erase(p);
+			s[-a[p]][1].erase(P);
+			add(p);
+			add(P);
+			v[P]=1;
+		}
+		else
+		{
+			int P=*s[a[p]][0].begin();
+			ans+=P-1-query(P);
+			s[a[p]][1].erase(p);
+			s[a[p]][0].erase(P);
+			add(p);
+			add(P);
+			v[P]=1;
+		}
+	}
+	printf("%lld\n",ans);
+	return 0;
+}
+```
+
+~~给一个充满"显然"的证明~~
+
+显然，当$S_i$有相同的时候，贪心从前往后配对（并给新标号）是对的，记$p_{v}$为$v$的位置
+
+手玩发现，把$i$和$-i$配对，要交换$|p_{i}-p_{-i}|-[p_{-i}<p_{i}]$次，然后在交换的过程中，对所有$j$，且$p_{j}$和$p_{-j}$仅有一个在$p_i$到$p_{-i}$区间内，那么它们距离减一
+
+于是我们从前往后配对即可，把这个过程模拟出来就是上面做法了

@@ -1,0 +1,254 @@
+---
+title: IOI2019矩形区域
+date: 2019-08-31 07:53:56
+tags:
+- IOI
+mathjax: on
+---
+
+给定一个$n\times m$的二维数组$a$（这里下标$1$开始，题目是$0$开始），求有多少子矩形$a_{x_1\dots x_2,y_1\dots y_2}$，满足$1<x_1\le x_2<n,1<y_1\le y_2<m$且对于所有$(x,y)$满足$x_1\le x\le x_2,y_1\le y\le y_2$，都有$a_{x,y}<a_{x_1-1,y},a_{x_2+1,y},a_{x,y_1-1},a_{x,y_2+1}$
+
+<!--more-->
+
+我们可以记$l,r,u,d$四个数组，每个的$(x,y)$下标保存在它左右上下比它小的个数，然后ST表维护一下就可以快速判断一个矩形是否正确
+
+然后我们可以从小到大加入一个位置，然后发现：如果要统计最大的是这个位置（相同的按照排序后的顺序）的话，那么上下左右边界肯定是从这个点开始上下左右第一个没被加入的地方，并且这个矩形里所有位置都被加入了（这是避免一个矩形统计多次，可以把矩形hash然后统计不同矩形个数来进行大幅卡常）
+
+然后把这个东西做出来就好了
+
+复杂度：$O(nm\log(nm))$
+
+时间空间都要~~大幅~~卡常。
+
+`code`
+
+```cpp
+/**************************************************************
+	File name: 3177.cpp
+	Author: huhao
+	Email: 826538400@qq.com
+	Create time: 2019/8/25 下午12:58:33
+**************************************************************/
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+namespace input
+{
+	char in[1<<20|10],*b,*e;
+	inline char gc()
+	{
+		if(b==e)
+		{
+			fread(in,1<<20,1,stdin);
+			b=in;
+			e=in+(1<<20);
+		}
+		return *(b++);
+	}
+}
+int read()
+{
+	int r=0,t=1,c=input::gc();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=input::gc();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=(r<<3)+(r<<1)+(c^48);
+		c=input::gc();
+	}
+	return r*t;
+}
+const int N=2510,B=11,M=7000010;
+int t[M];
+#define NN [N][N]
+#define NNB [N][N][B+1]
+int n,m,a NN,L NN,R NN,U NN,D NN,s NNB,c,lg[N],id NN;
+short l NNB,r NNB,u NNB,d NNB;
+long long ans[N*N];
+pair<int,int> b[N*N],_b[N*N];
+int cmp(pair<int,int> x,pair<int,int> y)
+{
+	return a[x.first][x.second]<a[y.first][y.second];
+}
+int check(int x,int y,int X,int Y)
+{
+	if(x==1||y==1||X==n||Y==m)
+		return 0;
+	int b1=lg[X-x+1],b2=lg[Y-y+1];
+	return 
+		min(r[x][y-1][b1],r[X-(1<<b1)+1][y-1][b1])>Y&&
+		max(l[x][Y+1][b1],l[X-(1<<b1)+1][Y+1][b1])<y&&
+		min(d[x-1][y][b2],d[x-1][Y-(1<<b2)+1][b2])>X&&
+		max(u[X+1][y][b2],u[X+1][Y-(1<<b2)+1][b2])<x;
+}
+int main()
+{
+	n=read();
+	m=read();
+	fr(i,2,max(n,m))
+		lg[i]=lg[i>>1]+1;
+	fr(i,1,n)
+		fr(j,1,m)
+			a[i][j]=read();
+	fr(i,1,n)
+	{
+		fr(j,2,m)
+		{
+			int k=j-1;
+			while(a[i][k]<a[i][j]&&k)
+				k=l[i][k][0];
+			l[i][j][0]=k;
+		}
+	}
+	fr(i,1,n)
+	{
+		fd(j,m-1,1)
+		{
+			int k=j+1;
+			while(a[i][k]<a[i][j]&&k)
+				k=r[i][k][0];
+			r[i][j][0]=k;
+		}
+	}
+	fr(j,1,m)
+	{
+		fr(i,2,n)
+		{
+			int k=i-1;
+			while(a[k][j]<a[i][j]&&k)
+				k=u[k][j][0];
+			u[i][j][0]=k;
+		}
+	}
+	fr(j,1,m)
+	{
+		fd(i,n-1,1)
+		{
+			int k=i+1;
+			while(a[k][j]<a[i][j]&&k)
+				k=d[k][j][0];
+			d[i][j][0]=k;
+		}
+	}
+	fr(i,1,n)
+		fr(j,1,m)
+		{
+			if(r[i][j][0]==0)
+				r[i][j][0]=m+1;
+			if(d[i][j][0]==0)
+				d[i][j][0]=n+1;
+		}
+	fr(j,1,m)
+	{
+		fr(k,1,B)
+			fr(i,1,n)
+				if(i+(1<<k)<=n)
+				{
+					l[i][j][k]=max(l[i][j][k-1],l[i+(1<<(k-1))][j][k-1]);
+					r[i][j][k]=min(r[i][j][k-1],r[i+(1<<(k-1))][j][k-1]);
+				}
+				else
+					break;
+	}
+	fr(i,1,n)
+	{
+		fr(k,1,B)
+			fr(j,1,m)
+				if(j+(1<<k)<=m)
+				{
+					u[i][j][k]=max(u[i][j][k-1],u[i][j+(1<<(k-1))][k-1]);
+					d[i][j][k]=min(d[i][j][k-1],d[i][j+(1<<(k-1))][k-1]);
+				}
+				else
+					break;
+	}
+	fr(i,1,n)
+		fr(j,1,m)
+		{
+			c++;
+			_b[c]=make_pair(i,j);
+			t[a[i][j]]++;
+		}
+	fr(i,1,7000000)
+		t[i]+=t[i-1];
+	fr(i,1,c)
+		b[t[a[_b[i].first][_b[i].second]]--]=_b[i];
+	fr(i,1,n*m)
+		id[b[i].first][b[i].second]=i;
+	fr(i,1,n)
+	{
+		fr(j,2,m)
+		{
+			int k=j-1;
+			while(id[i][k]<id[i][j]&&k)
+				k=L[i][k];
+			L[i][j]=k;
+		}
+	}
+	fr(i,1,n)
+	{
+		fd(j,m-1,1)
+		{
+			int k=j+1;
+			while(id[i][k]<id[i][j]&&k)
+				k=R[i][k];
+			R[i][j]=k;
+		}
+	}
+	fr(j,1,m)
+	{
+		fr(i,2,n)
+		{
+			int k=i-1;
+			while(id[k][j]<id[i][j]&&k)
+				k=U[k][j];
+			U[i][j]=k;
+		}
+	}
+	fr(j,1,m)
+	{
+		fd(i,n-1,1)
+		{
+			int k=i+1;
+			while(id[k][j]<id[i][j]&&k)
+				k=D[k][j];
+			D[i][j]=k;
+		}
+	}
+	fr(i,1,n)
+		fr(j,1,m)
+		{
+			if(L[i][j])
+				L[i][j]++;
+			if(R[i][j])
+				R[i][j]--;
+			if(U[i][j])
+				U[i][j]++;
+			if(D[i][j])
+				D[i][j]--;
+		}
+	long long H=n*m;
+	fr(i,1,n*m)
+	{
+		int x=b[i].first,y=b[i].second;
+		int lx=U[x][y],rx=D[x][y],ly=L[x][y],ry=R[x][y];
+		if(lx&&rx&&ly&&ry&&check(lx,ly,rx,ry))
+			ans[++ans[0]]=lx*H*m+ly*H+rx*m+ry;
+	}
+	sort(ans+1,ans+ans[0]+1);
+	int A=0;
+	fr(i,1,ans[0])
+		if(i==1||ans[i]!=ans[i-1])
+			A++;
+	printf("%d\n",A);
+	return 0;
+}
+```
+

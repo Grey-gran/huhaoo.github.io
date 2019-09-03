@@ -1,0 +1,51 @@
+---
+title: 最值操作与历史最值查询的线段树实现
+date: 2019-09-02 18:18:11
+tags:
+- 线段树
+mathjax: on
+---
+
+可以看2016论文：https://github.com/huhaoo/pan/blob/master/%E5%9B%BD%E5%AE%B6%E9%98%9F%E8%AE%BA%E6%96%87/2016.pdf
+
+下面讨论全部基于线段树
+
+<!--more-->
+
+## 最值操作
+
+### 例题 [Gorgeous Sequence](http://acm.hdu.edu.cn/showproblem.php?pid=5306)
+
+给定一个长为$n$的数组，有区间取$\min$，查询区间最大值，查询区间和的操作
+
+#### sol
+
+每个点我们维护$m_1,m_2,c,s$，表示最大和次大值，最大值的数量，区间和
+
+对于取$\min$操作（记操作数为$v$），如果$v\ge m_1$，那么不会修改任何内容，直接忽略即可
+
+否则如果$v>m_2$，那么只影响最大值，用最大值与$v$的差还有$c$更新即可（pushdown时也需要注意是否下传这个最大值）
+
+否则最大值的数量会改变，暴力更新最大值
+
+考虑到暴力更新次数与最大值不等于父亲的节点数成正比，所以这是$O(n\log n)$
+
+[`code`](https://github.com/huhaoo/code/blob/other/hdu5306.cpp)
+
+### 小结
+
+我们可以让每个点维护最大值与非最大值信息，并且可以通过记录次大值很容易地处理最大值集合改变的情况
+
+## 历史最值线段树
+
+### 可以使用懒标记维护
+
+例题 [CPU监控](http://www.tyvj.cn/p/1518)，[V](http://uoj.ac/problem/164)
+
+我们一般用懒标记$(a,b)$表示将一个值$x$变为$\max(a+x,b)$，可以简单地维护（注意父亲的标记时间一定比自己的晚）
+
+代码：[CPU监控](https://github.com/huhaoo/code/blob/luogu/4314.cpp)，[V](https://github.com/huhaoo/code/blob/uoj/164.cpp)
+
+### 不可以用懒标记维护
+
+区间$\min,\max$可以通过上面的方法转化为区间加减，然后就可以用上面的方法做了

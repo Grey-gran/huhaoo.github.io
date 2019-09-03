@@ -1,0 +1,105 @@
+---
+title: FFTNTT与循环卷积
+date: 2019-08-31 07:53:33
+tags:
+- 循环卷积
+mathjax: on
+---
+
+重写FFT，NTT，简介循环卷积
+
+<!--more-->
+
+### 单位根及性质
+
+我们记单位根$\omega_n$为满足$x^n=1$，$x\not =1$且不存在小于$n$的正整数$n'$使得$x^{n'}=1$的$x$
+
+一般来说$\mathbb C$域下的$\omega_n$为$\cos \frac{2\pi}{n}+\sin \frac{2\pi}{n}i$，而$\mathbb F_{P}$下则需要求$P$的原根$g$，然后$\omega_n=g^{\frac{P-1}{n}}$（要求$n|P-1$），如$\mathbb F_{998244353}$的原根为$3$，$\omega_n=3^{\frac{998244352}{n}}$
+
+然后我们有：
+$$
+\sum_{i=0}^{n-1}\omega_n^{ik}=[n|k]
+$$
+
+证明显然
+
+### FFT
+
+对于一个正整数$n$我们考虑求$c_i=\sum_{j,k}[(j+k)\bmod n=i]a_jb_k$
+
+考虑到
+$$
+[(j+k)\bmod n=i]=[n|j+k-i]=\sum_{l=0}^{n-1}\omega_{n}^{l(j+k-i)}
+$$
+然后有：
+$$
+\begin{align}
+c_i=&\sum_{j,k}[(j+k)\bmod n=i]a_jb_k\notag\\
+=&\sum_{j,k}\sum_{l=0}^{n-1}\omega_n^{l(j+k-i)}a_jb_k\notag\\
+=&\sum_{l=0}^{n-1}\omega_n^{-li}\sum_{j}\omega_n^{lj}a_j\sum_k\omega_n^{lk}b_k\notag
+\end{align}
+$$
+
+不妨记
+$$
+A(i)=\sum_ji^ja_j\\
+B(i)=\sum_ji^jb_j
+$$
+所以
+$$
+c_i=\sum_{l=0}^{n-1}\omega_n^{-li}A(\omega_n^l)B(\omega_n^l)
+$$
+如果记$C(i)=A(i)B(i)$，那么
+$$
+c_i=\sum_{j=0}^{n-1}\omega_{j}^{-ij}C(\omega_n^j)
+$$
+只要会求$A,B$并且会从$C$变成$c$就可以了
+
+$A_0$表示只对为偶数的项求和，$A_1$表示只对$j$不为偶数的项求和
+
+然后
+$$
+A(i)=A_0(i^2)+iA_1(i^2)
+$$
+并且根据单位根的性质
+$$
+A(\omega_n^i)=A_0(\omega_n^{2i})+\omega_n^iA_1(\omega_n^{2i})\\
+A(\omega_n^{i+\frac n2})=A_0(\omega_n^{2i})-\omega_n^iA_1(\omega_n^{2i})
+$$
+当$n$为$2$的幂时（一般来说不是也会在前面添$0$让它变成$2$的次幂），递归求$A_0,A_1$即可
+
+#### 蝴蝶操作
+
+~~原理不重要，略~~
+
+### NTT
+
+单位根$\omega_n$要用到的性质都写在了原根上，直接代替即可
+
+### 循环卷积
+
+我们发现DFT的过程就是循环卷积（不过，我们只会求$n$为$2$的幂的情况）
+
+我们考虑求长度为任意正整数$n$的DFT
+
+考虑到
+$$
+\begin{align}
+{i+j\choose 2}-{i\choose 2}-{j\choose 2}=&\dfrac{(i+j)(i+j-1)-i(i-1)-j(j-1)}{2}\notag\\
+=&\dfrac{i^2+ij-i+ij+j^2-j-i^2+i-j^2+j}{2}\notag\\
+=&ij\notag
+\end{align}
+$$
+所以
+
+$$
+\begin{align}
+A(\omega_n^i)=&\sum_{j}\omega_n^{ij}a_i\notag\\
+=&\sum_j \omega_n^{i+j \choose 2}\omega_n^{-{i \choose 2}}\omega_n^{-{j \choose 2}}a_j\notag\\
+=&\omega_n^{-{i\choose 2}}\sum_{j}(\omega_n^{i+j\choose 2})(\omega_{n}^{-{j\choose 2}}a_j)\notag
+\end{align}
+$$
+
+先把后面那项翻转一下，然后用FFT把后面的卷出来即可
+
+$C$同理，把$\omega_n^{ij}$换为$\omega_n^{-ij}$
