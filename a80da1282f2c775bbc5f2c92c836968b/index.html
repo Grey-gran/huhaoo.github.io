@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-03T04:48:37.493Z">
+<meta property="og:updated_time" content="2019-09-05T02:34:09.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些技巧与总结">
 <meta name="twitter:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
@@ -405,6 +405,8 @@
 </li>
 <li><p>如果考虑$n$个变量在$[1,m]$内取值的所有情况贡献和，且贡献仅仅与$n$个变量两两是否相等（可以有等于/不等于某个值的条件）有关（并且范围保证$3^nm$不大），可以考虑DP：$f_{s,t}$表示值$\le t$的集合为$s$，每次转移就枚举等于$t$的集合，这样是$3^nm$的</p>
 </li>
+<li><p>容斥可以通过考虑一个状态对每个记数器的贡献，通过调整计数器的权值来只记录有效状态</p>
+</li>
 </ol>
 <h4 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h4><ol>
 <li><p>对于求最优情况下最终值的题，可以先<strong>二分</strong>这个值，然后就得到一个简化后的问题：</p>
@@ -520,7 +522,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-count">123</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -725,7 +727,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">95</span>
+                      
+                    
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

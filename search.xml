@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[lyndon分解]]></title>
+    <url>%2F2019%2F09%2F05%2Flyndon%2F</url>
+    <content type="text"><![CDATA[如果称一个字符串$S$为lyndon串，当且仅当 $$\forall i,S\le S_{i,\dots,|S|}$$ 我们把串$C$分解为$S_1S_2\dots$，满足$S_i$为lyndon串$S_i\ge S_{i+1}$]]></content>
+      <tags>
+        <tag>string</tag>
+        <tag>lyndon分解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[最值操作与历史最值查询的线段树实现]]></title>
     <url>%2F2019%2F09%2F02%2F%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%8E%86%E5%8F%B2%E6%9C%80%E5%80%BC%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%AE%9E%E7%8E%B0%2F</url>
     <content type="text"><![CDATA[可以看2016论文：https://github.com/huhaoo/pan/blob/master/%E5%9B%BD%E5%AE%B6%E9%98%9F%E8%AE%BA%E6%96%87/2016.pdf 下面讨论全部基于线段树]]></content>

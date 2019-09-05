@@ -1,0 +1,88 @@
+---
+title: lyndon分解
+date: 2019-09-05 19:05:19
+tags:
+- lyndon分解
+- string
+mathjax: on
+---
+
+如果称一个字符串$S$为lyndon串，当且仅当
+
+$$
+\forall i,S\le S_{i,\dots,|S|}
+$$
+
+我们把串$C$分解为$S_1S_2\dots$，满足$S_i$为lyndon串$S_i\ge S_{i+1}$
+
+<!--more-->
+
+注意：本文下标$1$开始
+
+### 引理
+
+1. 如果$Sc$是一个lyndon的前缀，那么对于$\hat c>c$，有$S\hat c$
+
+   证明：设$ScX$为lyndon串，且$i$为$2$到$|Sc|$间的数，满足$S\hat c>S\hat c_{i,\dots,|Sc|}$，且第一个字符在$j$处大，记$l$为$|S_{i,\dots,|Sc|}|$
+
+   如果$j\le |Sc|$，那么$ScX$就不会是lyndon，如果$j=|Sc|+1$，那么有$ScX_{1\dots l}\le ScX_{i,\dots ,|Sc|}$所以$S\hat c_{1\dots l}\le S\hat c_{i,\dots |Sc|}$，矛盾。
+
+2. 如果$S,C$为lyndon串，且$S<C$，那么$SC$为lyndon串
+
+   证明：$S$的后缀后面加$C$不影响，然后因为$C$的每个后缀$\ge C>S$，所以$SC$为lyndon串
+
+### duval算法
+
+考虑记$i,j,k$三个参数，表示：
+
+前$i-1$个位置的$lyndon$分解确定，且$S_{i\dots k-1}$为
+
+$v\dots v\hat v$，其中$v$为lyndon串，$\hat v$为$v$的前缀，$j=k-|v|$
+
+可以考虑新加入$k$
+
+如果$S_k=S_j$，那么这还是$v$的前缀，可以直接后推
+
+如果$S_k>S_j$，发现$S_{i\dots k}$为lyndon串，合并$S_{i\dots k}$即可
+
+否则这些$v$一定在lyndon分解中，把$i$推倒$\hat v$的第一个字符然后重复上述操作即可
+
+### 代码
+
+```cpp
+int duval(char *s,int n,int *a)
+{
+	int i=1,j,k,m=0;
+	while(i<=n)
+	{
+		j=i;
+		k=i+1;
+		while(k<=n)
+		{
+			if(s[k]==s[j])
+			{
+				k++;
+				j++;
+			}
+			else if(s[k]>s[j])
+			{
+				k++;
+				j=i;
+			}
+			else
+				break;
+		}
+		int l=k-j;
+		while(i+l<=k)
+		{
+			i+=l;
+			a[++m]=i-1;
+		}
+	}
+	return m;
+}
+```
+
+### 复杂度
+
+发现$k$最多推$2|S|$次
