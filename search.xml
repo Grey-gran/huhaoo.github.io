@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[动态DP]]></title>
+    <url>%2F2019%2F09%2F08%2F%E5%8A%A8%E6%80%81DP%2F</url>
+    <content type="text"><![CDATA[动态DP就是通过数据结构动态维护DP值]]></content>
+      <tags>
+        <tag>ddp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[lyndon分解]]></title>
     <url>%2F2019%2F09%2F05%2Flyndon%2F</url>
     <content type="text"><![CDATA[如果称一个字符串$S$为lyndon串，当且仅当 $$\forall i,S\le S_{i,\dots,|S|}$$ 我们把串$C$分解为$S_1S_2\dots$，满足$S_i$为lyndon串$S_i\ge S_{i+1}$]]></content>
