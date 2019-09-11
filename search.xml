@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[luogu3768]]></title>
+    <url>%2F2019%2F09%2F09%2Fluogu3768%2F</url>
+    <content type="text"><![CDATA[给定$n$，求 $$\sum_{i=1}^n\sum_{j=1}^nij\gcd(i,j)\bmod p$$]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[动态DP]]></title>
     <url>%2F2019%2F09%2F08%2F%E5%8A%A8%E6%80%81DP%2F</url>
     <content type="text"><![CDATA[动态DP就是通过数据结构动态维护DP值]]></content>
