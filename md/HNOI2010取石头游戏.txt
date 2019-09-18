@@ -1,0 +1,98 @@
+---
+title: HNOI2010取石头游戏
+date: 2019-09-17 15:39:40
+tags:
+- 贪心
+- HNOI
+mathjax: on
+---
+
+题目链接： https://www.luogu.org/problem/P3210
+
+<!--more-->
+
+首先，如果存在$a,b,c$相邻，且$b\ge a,b\ge c$，当先手取了$a$时，接下来的操作一定是：$a\rightarrow b\rightarrow c$（$c$同理）
+
+因为取$a$一定是非正贡献，先手只能选$a$，就说明当前最优已经非正了，后手取$b$一定不劣
+
+然后如果先手不选$c$，那么$a$相当于白选，肯定不优
+
+于是我们可以把这样的$a,b,c$合并为$a+c-b$
+
+合并完后一定是`\,/,V`形，除开头外显然从大到小选不劣
+
+开头的`\`和末尾的`/`如果是偶数长度先手就一定不会先选，否则可以纳入从大到小的选择里面
+
+code:
+
+```cpp
+/***************************************************************
+	File name: 3210.cpp
+	Author: huhao
+	Create time: Tue 17 Sep 2019 03:49:49 PM CST
+***************************************************************/
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=r*10+c-48;
+		c=getchar();
+	}
+	return r*t;
+}
+#define i64 long long
+const int N=1000010;
+const i64 inf=1ll<<50;
+i64 n,a[N],s,p,ans,opt,b[N],m;
+int main()
+{
+	fr(i,1,read())
+	{
+		i64 A=read();
+		s+=A;
+		a[++n]=A;
+		while(n>2&&a[n]&&a[n-1]&&a[n-2]&&a[n-1]>=a[n-2]&&a[n-1]>=a[n])
+		{
+			n-=2;
+			a[n]=a[n]+a[n+2]-a[n+1];
+		}
+	}
+	for(i64 i=1;a[i]&&a[i+1]&&a[i]>=a[i+1];i+=2)
+	{
+		p+=a[i+1]-a[i];
+		a[i]=a[i+1]=0;
+	}
+	for(i64 i=n;a[i]&&a[i-1]&&a[i]>=a[i-1];i-=2)
+	{
+		p+=a[i-1]-a[i];
+		a[i]=a[i-1]=0;
+	}
+	opt=1;
+	fr(i,1,n)
+		if(a[i])
+			b[++m]=a[i];
+	sort(b+1,b+m+1);
+	while(m)
+	{
+		ans+=opt*b[m];
+		opt=-opt;
+		m--;
+	}
+	ans+=opt*p;
+	printf("%lld %lld\n",(s+ans)/2,(s-ans)/2);
+	return 0;
+}
+```

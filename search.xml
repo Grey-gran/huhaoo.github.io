@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HNOI2010取石头游戏]]></title>
+    <url>%2F2019%2F09%2F17%2FHNOI2010%E5%8F%96%E7%9F%B3%E5%A4%B4%E6%B8%B8%E6%88%8F%2F</url>
+    <content type="text"><![CDATA[题目链接： https://www.luogu.org/problem/P3210]]></content>
+      <tags>
+        <tag>HNOI</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[luogu3768]]></title>
     <url>%2F2019%2F09%2F09%2Fluogu3768%2F</url>
     <content type="text"><![CDATA[给定$n$，求 $$\sum_{i=1}^n\sum_{j=1}^nij\gcd(i,j)\bmod p$$]]></content>
