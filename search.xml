@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[类gcd算法]]></title>
+    <url>%2F2019%2F09%2F24%2F%E7%B1%BBgcd%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[给定$n,a,b,c,k_1,k_2$，求 $$f_{k_1,k_2}(n,a,b,c)=\sum_{i=0}^ni^{k_1}\lfloor \dfrac{ai+b}{c}\rfloor^{k_2}$$ 满足$k_1+k_2\le 10$]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>类gcd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HNOI2010取石头游戏]]></title>
     <url>%2F2019%2F09%2F17%2FHNOI2010%E5%8F%96%E7%9F%B3%E5%A4%B4%E6%B8%B8%E6%88%8F%2F</url>
     <content type="text"><![CDATA[题目链接： https://www.luogu.org/problem/P3210]]></content>
@@ -520,15 +529,6 @@
       <tags>
         <tag>math</tag>
         <tag>exlucas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[类gcd算法]]></title>
-    <url>%2F2019%2F02%2F12%2Fsimgcd%2F</url>
-    <content type="text"><![CDATA[给定$n,a,b,c$，求： $$f_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{ai+b}c\rfloor\\g_{n,a,b,c}=\sum_{i=0}^ni\lfloor\dfrac{ai+b}c\rfloor\\h_{n,a,b,c}=\sum_{i=0}^n\lfloor\dfrac{ai+b}c\rfloor^2$$]]></content>
-      <tags>
-        <tag>math</tag>
-        <tag>类gcd</tag>
       </tags>
   </entry>
   <entry>

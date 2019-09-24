@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T04:57:41.405Z">
+<meta property="og:updated_time" content="2019-09-24T01:47:33.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些技巧与总结">
 <meta name="twitter:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
@@ -409,6 +409,8 @@
 </li>
 <li><p>可以尝试把容斥系数变为二项式系数，然后二项式反演可以卷积求解（一般来说，恰好转化为至少好做些）</p>
 </li>
+<li><p>$$<br>f(n)=f(0)+\sum_{0\le i&lt;n}f(i+1)-f(i)<br>$$<br>当$f(0)=0$时可以把$\sum_x\sum_{i=x}f(x)$转化为$\sum_x\sum_{i\le x}f(x+1)-f(x)$</p>
+</li>
 </ol>
 <h4 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h4><ol>
 <li><p>对于求最优情况下最终值的题，可以先<strong>二分</strong>这个值，然后就得到一个简化后的问题：</p>
@@ -421,6 +423,9 @@
 </ol>
 <h4 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h4><ol>
 <li>$$<br>\gcd(i,j)=\sum_{d|\gcd(i,j)}\phi(d)=\sum_{d|i,d|j}\phi(d)<br>$$</li>
+</ol>
+<h4 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h4><ol>
+<li>$$<br>[x^n]\dfrac{x}{1-\mathrm e^{-x}}=\dfrac{B_n}{n!}<br>$$<br>又<br>$$<br>\sum_{i=1}^ni^m=\dfrac{\sum_{i=0}^m{m+1\choose i}B_in^{m+1-i}}{m+1}<br>$$<br>于是就可以$O(n\log n)$求自然数幂和了</li>
 </ol>
 <h3 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h3><h4 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h4><ol>
 <li><p>判断从某个点一直走到不重复的点（直到它能走到的点都被走了）是否一定能走到对面，只需判断这个点有出边并且最大匹配和除去这个点的最大匹配是否不相等（即<strong>这个点必须包含在所有可能的最大匹配中</strong>）</p>
@@ -462,8 +467,15 @@
 <li><p>不可比的传递性$a\not&lt; b,b\not&lt; a,b\not&lt; c,c\not&lt; b\Rightarrow a\not&lt; c,c\not&lt; a$</p>
 </li>
 </ol>
-<p>于是需要注意$a\le b\le c$时，可能会有$c&lt;a$，于是需要注意$=$的情况</p>
-<p>即$f(x,y)&lt;f(y,x)$之类的函数要额外考虑一下</p>
+<p>于是需要注意</p>
+<ol>
+<li><p>$a\le b\le c$时，可能会有$c&lt;a$</p>
+</li>
+<li><p>可能不具备不可比性（相等）传递性</p>
+</li>
+</ol>
+<p>于是需要注意$=$的情况</p>
+<p>特别是$f(x,y)&lt;f(y,x)$之类的函数要额外考虑一下</p>
 </li>
 <li><p>邻项交换式子中，如果有$\max(a,c)\le \max(b,c)$，那么可以变为$a\le b$</p>
 <p>考虑到$a&gt;c$，那么就是$a\le \max(b,c)$，如果$b&lt;c$，或者$b\ge c$，发现都等同于$a\le b$</p>
@@ -836,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学相关"><span class="nav-number">2.</span> <span class="nav-text">数学相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计数、概率与期望相关"><span class="nav-number">2.1.</span> <span class="nav-text">计数、概率与期望相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博弈论"><span class="nav-number">2.2.</span> <span class="nav-text">博弈论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯消元"><span class="nav-number">2.3.</span> <span class="nav-text">高斯消元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数论"><span class="nav-number">2.4.</span> <span class="nav-text">数论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图论"><span class="nav-number">3.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二分图"><span class="nav-number">3.1.</span> <span class="nav-text">二分图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络流"><span class="nav-number">3.2.</span> <span class="nav-text">网络流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#other"><span class="nav-number">3.3.</span> <span class="nav-text">other</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#other-1"><span class="nav-number">4.</span> <span class="nav-text">other</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">5.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心"><span class="nav-number">6.</span> <span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造，交互，提答类"><span class="nav-number">7.</span> <span class="nav-text">构造，交互，提答类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经典题"><span class="nav-number">8.</span> <span class="nav-text">经典题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三-四元环计数"><span class="nav-number">8.1.</span> <span class="nav-text">三/四元环计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间内带权区间并"><span class="nav-number">8.2.</span> <span class="nav-text">区间内带权区间并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速乘法逆元"><span class="nav-number">8.3.</span> <span class="nav-text">快速乘法逆元</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学相关"><span class="nav-number">2.</span> <span class="nav-text">数学相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计数、概率与期望相关"><span class="nav-number">2.1.</span> <span class="nav-text">计数、概率与期望相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博弈论"><span class="nav-number">2.2.</span> <span class="nav-text">博弈论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高斯消元"><span class="nav-number">2.3.</span> <span class="nav-text">高斯消元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数论"><span class="nav-number">2.4.</span> <span class="nav-text">数论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成函数"><span class="nav-number">2.5.</span> <span class="nav-text">生成函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图论"><span class="nav-number">3.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二分图"><span class="nav-number">3.1.</span> <span class="nav-text">二分图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络流"><span class="nav-number">3.2.</span> <span class="nav-text">网络流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#other"><span class="nav-number">3.3.</span> <span class="nav-text">other</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#other-1"><span class="nav-number">4.</span> <span class="nav-text">other</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">5.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心"><span class="nav-number">6.</span> <span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造，交互，提答类"><span class="nav-number">7.</span> <span class="nav-text">构造，交互，提答类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经典题"><span class="nav-number">8.</span> <span class="nav-text">经典题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三-四元环计数"><span class="nav-number">8.1.</span> <span class="nav-text">三/四元环计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间内带权区间并"><span class="nav-number">8.2.</span> <span class="nav-text">区间内带权区间并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速乘法逆元"><span class="nav-number">8.3.</span> <span class="nav-text">快速乘法逆元</span></a></li></ol></li></ol></div>
             
 
           </div>

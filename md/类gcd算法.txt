@@ -1,0 +1,166 @@
+---
+title: 类gcd算法
+date: 2019-09-24 13:00:27
+tags:
+- 类gcd
+- math
+mathjax: on
+---
+
+给定$n,a,b,c,k_1,k_2$，求
+
+$$
+f_{k_1,k_2}(n,a,b,c)=\sum_{i=0}^ni^{k_1}\lfloor \dfrac{ai+b}{c}\rfloor^{k_2}
+$$
+
+满足$k_1+k_2\le 10$
+
+<!--more-->
+
+首先先把$k_2=0,an+b<c$的情况判掉
+
+当$a\ge c$或$b\ge c$时，就先展开，然后就可以把$a,b$变为$a\mod c,b\mod c$了
+
+$$
+\begin{align}
+f_{k_1,k_2}(n,a,b,c)=&\sum_{i=0}^ni^{k_1}\lfloor \dfrac{ai+b}{c}\rfloor^{k_2}\notag\\
+=&\sum_{i=0}^ni^{k_1}\sum_{j\ge 1}j^{k_2}[\lfloor\dfrac{ai+b}{c}\rfloor =j]\notag\\
+=&\sum_{i=0}^ni^{k_1}\sum_{j\ge 1}\sum_{k=0}^{j-1}((k+1)^{k_2}-k^{k_2})[\lfloor\dfrac{ai+b}{c}\rfloor=j]\notag\\
+=&\sum_{i=0}^ni^{k_1}\sum_{j\ge 0}((j+1)^{k_2}-j^{k_2})\sum_{i\ge j+1}[\lfloor\dfrac{ai+b}{c}\rfloor=i]\notag\\
+=&\sum_{i=0}^ni^{k_1}\sum_{j\ge 0}((j+1)^{k_2}-j^{k_2})[\lfloor\dfrac{ai+b}{c}\rfloor\ge j+1]\notag\\
+=&\sum_{i=0}^ni^{k_1}\sum_{j\ge 0}((j+1)^{k_2}-j^{k_2})[x>\dfrac{ja+c-b-1}{a}]\notag\\
+=&\sum_{0\le j\le \lfloor\frac{an+b-c}{c}\rfloor}((j+1)^{k_2}-j^{k_2})\sum_{\frac{jc+c-b-1}{a}<i\le n}i^{k_1}\notag\\
+=&\sum_{0\le j\le \lfloor\frac{an+b-c}{c}\rfloor}((j+1)^{k_2}-j^{k_2})(\sum_{i\le n}i^{k_1}-\sum_{i\le\frac{jc+c-b-1}{a}}i^{k_1})\notag\\
+\end{align}
+$$
+
+前面括号展开后是一个$k_1-1$次多项式，后面那个括号第一项可以直接算，第二项求和后是一个$k+1$次多项式，且要求的是$x=\lfloor\dfrac{jc+c-b-1}{a}\rfloor$的值
+
+然后合起来就变成一个子问题：
+
+$$
+f_{k_1',k_2'}(\lfloor\dfrac{an+b-c}{c}\rfloor,c,c-b-1,a)
+$$
+
+发现我们只要对于所有$k_1',k_2'$把所有上面式子求出来就好了，因为每次$f_{k_1,k_2}(n,a,b,c)$要求的$f_{k_1',k_2'}(n',a',b',c')$的$n',a',b',c'$是一样的，我们可以通过记$g(a,b,x)$表示当前变化了$x-1$次且$k_1=a,k_2=b$的值，就可以避免重复计算
+
+可以发现，通过上面的特判$(a,b)\rightarrow (a\mod c,b\mod c)$，有：
+
+$$
+(a,c)\rightarrow(a\mod c,c)\rightarrow (c,a\mod c)\rightarrow \dots
+$$
+
+就是gcd的形式，所以只会递归$\log$次
+
+```cpp
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=r*10+c-48;
+		c=getchar();
+	}
+	return r*t;
+}
+#define i64 long long
+const int N=60,mod=1000000007;
+i64 power(i64 a,i64 b,i64 p)
+{
+	i64 r=1;
+	a%=p;
+	while(b)
+	{
+		if(b&1)
+			r=r*a%p;
+		a=a*a%p;
+		b>>=1;
+	}
+	return r;
+}
+i64 inv(i64 a)
+{
+	return power(a,mod-2,mod);
+}
+i64 B[N]={1,1*inv(2)%mod,1*inv(6)%mod,0,(mod-1)*inv(30)%mod,0,1*inv(42)%mod,0,(mod-1)*inv(30)%mod,0,5*inv(66)%mod};
+i64 C[N][N];
+i64 v[N][N][N],f[N][N][N];
+i64 sum(i64 n,i64 k)//求\sum_{i=1}^ni^k
+{
+	if(!k)
+		return n;
+	i64 ans=0;
+	fr(i,0,k)
+		ans=(ans+power(n,k+1-i,mod)*C[k+1][i]%mod*B[i])%mod;
+	ans=ans*inv(k+1)%mod;
+	return ans;
+}
+i64 calc(i64 n,i64 a,i64 b,i64 c,i64 k1,i64 k2,i64 m)
+{
+	if(v[k1][k2][m])
+		return f[k1][k2][m];
+	v[k1][k2][m]=1;
+	i64& ans=f[k1][k2][m];
+	ans=0;
+	if(n<0)
+		return ans=0;
+	if(!k2)
+		return ans=sum(n,k1)+(k1==0);//包括0^0，下同
+	if(a*n+b<c)
+		return ans=0;
+	if(!a)
+		return ans=(sum(n,k1)+(k1==0))*power(b/c,k2,mod)%mod;
+	if(a>=c||b>=c)
+	{
+		i64 A=a/c,B=b/c;
+		ans=0;
+		i64 _A=1,_B=1;
+		fr(i,0,k2)
+		{
+			_B=1;
+			fr(j,0,k2-i)
+			{
+				ans=(ans+_A*_B%mod*C[k2][i]%mod*C[k2-i][j]%mod*calc(n,a%c,b%c,c,k1+i,k2-i-j,m+1))%mod;
+				_B=_B*B%mod;
+			}
+			_A=_A*A%mod;
+		}
+		return ans;
+	}
+	i64 _n=(a*n+b-c)/c;
+	ans=power(_n+1,k2,mod)*sum(n,k1)%mod;//这个和后面减去的都没算0^0
+	i64 Inv=inv(k1+1);
+	fr(i,0,k2-1)
+		fr(j,0,k1)
+			ans=(ans-calc(_n,c,c-b-1,a,i,k1+1-j,m+1)*C[k2][i]%mod*C[k1+1][j]%mod*B[j]%mod*Inv%mod+mod)%mod;
+	return ans;
+}
+int main()
+{
+	fr(i,0,20)
+		C[i][i]=C[i][0]=1;
+	fr(i,1,20)
+		fr(j,1,i-1)
+			C[i][j]=(C[i-1][j]+C[i-1][j-1])%mod;
+	i64 T=read();
+	while(T--)
+	{
+		memset(v,0,sizeof(v));
+		i64 n=read(),a=read(),b=read(),c=read(),k1=read(),k2=read();
+		printf("%lld\n",calc(n,a,b,c,k1,k2,1));
+	}
+	return 0;
+}
+```

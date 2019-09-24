@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://huhaoo.github.io/2019/09/24/%E7%B1%BBgcd%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2019-09-24T05:35:05.611Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://huhaoo.github.io/404/index.html</loc>
     
-    <lastmod>2019-09-23T04:57:41.405Z</lastmod>
+    <lastmod>2019-09-24T01:47:33.596Z</lastmod>
     
   </url>
   
@@ -527,13 +534,6 @@
   </url>
   
   <url>
-    <loc>https://huhaoo.github.io/2019/02/12/simgcd/</loc>
-    
-    <lastmod>2019-02-14T05:44:38.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://huhaoo.github.io/2019/02/13/exlucas/</loc>
     
     <lastmod>2019-02-13T07:50:40.000Z</lastmod>
@@ -695,7 +695,7 @@
   </url>
   
   <url>
-    <loc>https://huhaoo.github.io/2019/02/10/excrt/</loc>
+    <loc>https://huhaoo.github.io/2019/02/10/exgcd/</loc>
     
     <lastmod>2019-02-12T02:02:50.000Z</lastmod>
     
@@ -919,7 +919,7 @@
   </url>
   
   <url>
-    <loc>https://huhaoo.github.io/2019/02/10/exgcd/</loc>
+    <loc>https://huhaoo.github.io/2019/02/10/excrt/</loc>
     
     <lastmod>2019-02-12T02:02:50.000Z</lastmod>
     
