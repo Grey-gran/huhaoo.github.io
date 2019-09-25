@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CF739E]]></title>
+    <url>%2F2019%2F09%2F25%2FCF739E%2F</url>
+    <content type="text"><![CDATA[题意（luogu上的） 你要抓神奇宝贝！ 现在一共有 $N$ 只神奇宝贝。 你有 $a$ 个『宝贝球』和 $b$ 个『超级球』。 『宝贝球』抓到第 $i$ 只神奇宝贝的概率是 $p_i$，『超级球』抓到的概率则是 $u_i$。 不能往同一只神奇宝贝上使用超过一个同种的『球』，但是可以往同一只上既使用『宝贝球』又使用『超级球』（都抓到算一个）。 请合理分配每个球抓谁，使得你抓到神奇宝贝的总个数期望最大，并输出这个值。]]></content>
+      <tags>
+        <tag>wqs二分</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[类gcd算法]]></title>
     <url>%2F2019%2F09%2F24%2F%E7%B1%BBgcd%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"><![CDATA[给定$n,a,b,c,k_1,k_2$，求 $$f_{k_1,k_2}(n,a,b,c)=\sum_{i=0}^ni^{k_1}\lfloor \dfrac{ai+b}{c}\rfloor^{k_2}$$ 满足$k_1+k_2\le 10$]]></content>
@@ -14,8 +23,8 @@
     <url>%2F2019%2F09%2F17%2FHNOI2010%E5%8F%96%E7%9F%B3%E5%A4%B4%E6%B8%B8%E6%88%8F%2F</url>
     <content type="text"><![CDATA[题目链接： https://www.luogu.org/problem/P3210]]></content>
       <tags>
-        <tag>HNOI</tag>
         <tag>贪心</tag>
+        <tag>HNOI</tag>
       </tags>
   </entry>
   <entry>

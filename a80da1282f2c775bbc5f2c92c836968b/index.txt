@@ -138,6 +138,10 @@ $$
 
    同样的，$\min$同理
 
+### 分治
+
+1. WQS分治最好最后再跑一遍，避免mid上是相邻的（即对当前询问非最优的）
+
 ### 构造，交互，提答类
 
 （基本上这类都需要构造一种方案出来）
@@ -268,3 +272,38 @@ void getinv(i64 *a,i64 *inv,i64 n)
 	}
 }
 ```
+
+#### 区间划分
+
+一个$1\sim n$的序列，每个元素是一个区间，需要不断划分一个区间$[l,r]$：找到一个$i$使得$[l,r]\subset [L_i,R_i]$，并且递归划分$[l,i-1],[i+1,r]$
+
+我们可以从两边向中间找满足条件的$i$：
+
+```cpp
+void calc(int l,int r)
+{
+	if(l>r)
+		return;
+	for(int i=0;i<=r-l;i++)
+	{
+		if(check(l+i,l,r))
+		{
+			...
+			calc(l,l+i-1);
+			calc(l+i+1,r);
+			return;
+		}
+		if(check(r-i,l,r))
+		{
+			...
+			calc(l,r-i-1);
+			calc(r-i+1,r);
+			return;
+		}
+	}
+	printf("no solution\n");
+	exit(0);
+}
+```
+
+如果找到$i$，那么就是$T(n)=T(i)+T(n-i)+\min(i,n-i)$，是$O(n\log n)$的
