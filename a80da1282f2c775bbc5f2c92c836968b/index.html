@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Huhao&#39;s blog">
 <meta property="og:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-25T11:53:26.913Z">
+<meta property="og:updated_time" content="2019-09-27T00:37:39.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些技巧与总结">
 <meta name="twitter:description" content="前言我也不知道你怎么进来的 由于博客大多按心情写，所以有些博客质量不高，前后风格也不太一样，所以就在这里写一些简要说明还有少量技巧 数学相关计数、概率与期望相关 对于地位相同的一组变量，如果要求一个值的期望，可以求所有值的和然后取平均值  一个固定的区间$A$与一个长度固定的区间$B$的交的长度是关于$B$左端点的分段一次函数，它的二维差分至多有$4$个位置有值，处理大量区间相交长度和时很好处理">
@@ -484,7 +484,10 @@
 </li>
 </ol>
 <h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><ol>
-<li>WQS分治最好最后再跑一遍，避免mid上是相邻的（即对当前询问非最优的）</li>
+<li><p>WQS分治最好最后再跑一遍，避免mid上是相邻的（即对当前询问非最优的）</p>
+</li>
+<li><p>其它算法用到二分是，需要特别注意左右边界（比如说左/右端点需要$+1/-1$，来避免边界错误）</p>
+</li>
 </ol>
 <h3 id="构造，交互，提答类"><a href="#构造，交互，提答类" class="headerlink" title="构造，交互，提答类"></a>构造，交互，提答类</h3><p>（基本上这类都需要构造一种方案出来）</p>
 <ol>
