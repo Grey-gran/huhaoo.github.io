@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[FWT]]></title>
+    <url>%2F2019%2F09%2F28%2FFWT%2F</url>
+    <content type="text"><![CDATA[我也不知道它们的区别]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>FWT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CF739E]]></title>
     <url>%2F2019%2F09%2F25%2FCF739E%2F</url>
     <content type="text"><![CDATA[题意（luogu上的） 你要抓神奇宝贝！ 现在一共有 $N$ 只神奇宝贝。 你有 $a$ 个『宝贝球』和 $b$ 个『超级球』。 『宝贝球』抓到第 $i$ 只神奇宝贝的概率是 $p_i$，『超级球』抓到的概率则是 $u_i$。 不能往同一只神奇宝贝上使用超过一个同种的『球』，但是可以往同一只上既使用『宝贝球』又使用『超级球』（都抓到算一个）。 请合理分配每个球抓谁，使得你抓到神奇宝贝的总个数期望最大，并输出这个值。]]></content>
@@ -337,8 +346,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>TJOI</tag>
         <tag>生成函数</tag>
+        <tag>TJOI</tag>
       </tags>
   </entry>
   <entry>
