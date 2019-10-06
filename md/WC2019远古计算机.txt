@@ -1,1 +1,259 @@
+---
+title: WC2019远古计算机
+date: 2019-10-06 16:11:09
+tags:
+- WC
+- 提交答案
+---
 
+题目链接： https://loj.ac/problem/2984
+
+<!--more-->
+
+### Subtask 1
+
+```
+node 1
+read 0 a
+write a 0
+```
+
+### Subtask 2
+
+根据$a$的值跳即可（值的注意的是：可以输出多余内容）
+
+```
+node 1
+read 0 a
+add a 4
+jmp a
+write 0 0
+write 1 0
+write 1 0
+write 2 0
+write 3 0
+write 5 0
+write 8 0
+write 13 0
+write 21 0
+write 34 0
+write 55 0
+write 89 0
+write 144 0
+write 233 0
+write 377 0
+write 610 0
+write 987 0
+write 1597 0
+write 2584 0
+write 4181 0
+write 6765 0
+write 10946 0
+write 17711 0
+write 28657 0
+write 46368 0
+write 75025 0
+write 121393 0
+write 196418 0
+write 317811 0
+write 514229 0
+write 832040 0
+write 1346269 0
+write 2178309 0
+write 3524578 0
+write 5702887 0
+write 9227465 0
+write 14930352 0
+write 24157817 0
+write 39088169 0
+write 63245986 0
+write 102334155 0
+write 165580141 0
+write 267914296 0
+write 433494437 0
+write 701408733 0
+```
+
+### Subtask3
+
+~~手动最短路~~
+
+```
+node 1
+read 0 a
+write a 7
+node 7
+read 1 a
+write a 13
+node 13
+read 7 a
+write a 54
+node 54
+read 13 a
+write a 40
+node 40
+read 54 a
+write a 50
+node 50
+read 40 a
+write a 36
+node 36
+read 50 a
+write a 37
+node 37
+read 36 a
+write a 56
+node 56
+read 37 a
+write a 98
+node 98
+read 56 a
+write a 80
+node 80
+read 98 a
+write a 100
+node 100
+read 80 a
+write a 0
+```
+
+### Subtask 4
+
+可以往离$51\sim 100$尽可能的走，多随机几次即可
+
+```cpp
+/***************************************************************
+	File name: oldcomputer4.cpp
+	Author: huhao
+	Create time: Sun 06 Oct 2019 10:39:50 AM CST
+***************************************************************/
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#define fr(i,a,b) for(int i=(a),end_##i=(b);i<=end_##i;i++)
+#define fd(i,a,b) for(int i=(a),end_##i=(b);i>=end_##i;i--)
+int read()
+{
+	int r=0,t=1,c=getchar();
+	while(c<'0'||c>'9')
+	{
+		t=c=='-'?-1:1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		r=r*10+c-48;
+		c=getchar();
+	}
+	return r*t;
+}
+#include<vector>
+const int N=1010;
+vector<int>e[N];
+int n,m,d[N],q[N],l,r,pre[N],a[N],p[N],P[N];
+char ans[N][50][20];
+#define fp(...) fprintf(stderr,__VA_ARGS__)
+#define add(s,...) sprintf(s,__VA_ARGS__)
+#include<stdlib.h>
+int main()
+{
+	freopen("oldcomputer4.in","r",stdin);
+	freopen("oldcomputer4.out","w",stdout);
+	read();
+	n=read();
+	m=read();
+	fr(i,1,n)
+		e[i].push_back(i);
+	fr(i,1,m)
+	{
+		int u=read(),v=read();
+		e[u].push_back(v);
+		e[v].push_back(u);
+	}
+	fr(i,1,n)
+		d[i]=n+2;
+	fr(i,51,100)
+	{
+		q[++r]=i;
+		d[i]=1;
+	}
+	l=1;
+	while(l<=r)
+	{
+		int u=q[l];
+		l++;
+		for(auto v:e[u])
+			if(d[v]>d[u]+1)
+			{
+				d[v]=d[u]+1;
+				pre[v]=u;
+				q[++r]=v;
+			}
+	}
+	unsigned long long sed=0;
+	while(1)
+	{
+		memset(ans,0,sizeof(ans));
+		srand(++sed);
+		int s=50,l=50,cl=1;
+		fr(i,1,s)
+		{
+			add(ans[i][1],"read 0 a");
+			a[i]=i;
+			P[i]=1;
+		}
+		while(l)
+		{
+			random_shuffle(a+1,a+s+1);
+			cl++;
+			fr(i,1,n)
+				p[i]=0;
+			fr(i,1,s)
+				if(a[i]&&!p[a[i]])
+				{
+					int Pre=pre[a[i]];
+					if(p[Pre]||P[Pre])
+					{
+						Pre=-1;
+						for(auto v:e[a[i]])
+							if(d[v]<=d[a[i]]&&!p[v]&&!P[v])
+							{
+								if(!Pre||rand()%3==0)
+									Pre=v;
+							}
+					}
+					if(Pre>=0&&!p[Pre]&&!P[Pre])
+					{
+						add(ans[a[i]][cl],"write a %d",Pre);
+						add(ans[Pre][cl],"read %d a",a[i]);
+						p[a[i]]=p[Pre]=1;
+						P[a[i]]=0;
+						P[Pre]=1;
+						if(Pre==0)
+							l--;
+						a[i]=Pre;
+						p[0]=P[0]=0;
+					}
+				}
+		}
+		fp("%d %llu\n",cl,sed);
+		if(cl<=7)
+		{
+			fr(i,1,n)
+			{
+				printf("node %d\n",i);
+				fr(j,1,cl)
+				{
+					if(strlen(ans[i][j])==0)
+						add(ans[i][j],"add a 0");
+					printf("%s\n",ans[i][j]);
+				}
+			}
+			return 0;
+		}
+	}
+	return 0;
+}
+```
