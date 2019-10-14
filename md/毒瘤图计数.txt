@@ -1,0 +1,186 @@
+---
+title: 毒瘤图计数
+date: 2019-10-10 16:14:24
+tags:
+- 生成函数
+- math
+mathjax: on
+---
+
+~~前置知识只有生成函数，一点也不毒~~
+
+需要用到：
+
+$$
+\begin{align}
+\mathrm e^x=&\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\
+\ln x=&\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\
+A(x)=&\exp B(x)\notag\\
+=&\int B'(x)\exp B(x)\notag\\
+=&\int B'(x)A(x)\tag{0.31}\\
+a_n=&\dfrac1n\sum_{i\ge 1}ib_ia_{b-i}\tag{0.32}
+\end{align}
+$$
+
+~~只有有标号和无标号有根~~
+
+<!--more-->
+
+下面数列$a_i$的OGF为$A(x)$，EGF为$\hat A(x)$
+
+### 计数类型？
+
+[详见这](https://oeis.org/transforms2.html)
+
+我们考虑给这些计数问题分类，统一变为以下形式：
+
+如果一个装有$i$个球的盒子有$a_i$种染色方案，求把$n$个球放到若干盒子且能唯一区分的方案数$b_i$
+
+盒子的重排方式：
+
+* A. Linear，即线性，表示不存在重排方式
+* B. Linear with turning over，即线性可反转，表示可以翻转
+* C. Circular，即圆上，表示可以任意旋转
+* D. Circular with turning over，即圆上可翻转，表示可以任意旋转和翻转
+* E. None，无限制，表示可以任意重排
+
+盒子区分方式：
+
+* F. Size，即大小，表示大小相同视为相同
+* G. Element，即元素（或类型，大小颜色），表示大小相同下颜色相同视为相同
+* H. Identity，即身份(？)，表示G前提下位置相同，即任意两个盒子不同
+* I. None，无限制（没有关于区分的限制）
+
+球的区分方式
+
+* J. Labeled，有标签（视为不同的球）
+* K. Unlabeled，无标签（时为不同的球）
+
+每个转化由三个字母组成，除了AHx,AIx相同，EHx,EGx相同外，共$36$种组合
+
+#### AIK(INVERT)
+
+即盒子有序且无任何区分限制，球视为相同的
+
+$$
+\begin{align}
+B(x)=&\sum_{i\ge 0}A(x)^i\notag\\
+=&\dfrac{1}{1-A(x)}\tag{1.1}
+\end{align}
+$$
+
+#### EGK(WEIGH)
+
+即一种盒子只能有一个，球视为相同
+
+就是一个多重背包
+
+$$
+\begin{align}
+B(x)=&\prod_{i\ge 0}(1+x^i)a_i\notag\\
+\ln B(x)=&\sum_{i\ge 0}a_i\ln(1+x^i)\notag\\
+=&\sum_{i\ge 0}a_i\sum_{j\ge 1}\dfrac{(-1)^{j-1}x^{ij}}{j}\notag\\
+=&\sum_{j\ge 1}\dfrac{(-1)^{j-1}}{j}\sum_{i\ge 0}a_ix^{ij}\notag\\
+B(x)=&\exp \sum_{j\ge 1}\dfrac{(-1)^{j-1}}{j}A(x^j)\tag{1.2}
+\end{align}
+$$
+
+#### EIJ(EXP)
+
+盒子无序，球有编号，无区分限制，显然：
+
+$$
+\hat B(x)=\exp \hat A(x)
+$$
+
+#### EIK(EULER)
+
+类似EGK，这是一个完全背包，显然
+
+$$
+\begin{align}
+B(x)=&\prod_{i\ge 0}\dfrac{1}{(1-x^i)^{a_i}}\notag\\
+\ln B(x)=&\sum_{i\ge 0}-a_i\ln(1-x^i)\notag\\
+=&\sum_{i\ge 0}a_i\sum_{j\ge 1}\dfrac{x^{ij}}{j}\notag\\
+=&\sum_{j\ge 1}\dfrac{1}{j}A(x^j)\notag\\
+B(x)=&\exp \sum_{j\ge 1}\dfrac{1}{j}A(x^j)\tag{1.3}
+\end{align}
+$$
+
+#### other
+
+[见这](https://oeis.org/transforms2.html)
+
+### 无标号有根树计数
+
+类似上面，不过这是EIK问题，所以
+
+$$
+A(x)=x\sum_{j\ge 1}\dfrac{\exp A(x^j)}j
+$$
+
+都可以分治FFT
+
+### 有标号仙人掌计数
+
+先转化为有根的，到时候再$\times \dfrac1n$
+
+然后我们删掉根后只看与根相连的就有若干点和一些少一个点的环（变为了链）
+
+考虑由若干仙人掌根组成的链，就是一个BIJ问题（不过要求至少$2$个盒子），有
+
+$$
+\hat B(x)=\dfrac 12\sum_{i=2}^n\hat A^i(x)=\dfrac{\hat A^2(x)}{2-2\hat A(x)}
+$$
+
+然后算上点的方案，把它们拼起来就是EIJ问题：
+
+$$
+\begin{align}
+\hat A(x)=x\exp(\dfrac{2\hat A(x)-\hat A^2(x)}{2-2\hat A(x)})\tag{2.1}
+\end{align}
+$$
+
+### 无标号有根仙人掌计数
+
+把上面所有J换为K即可
+
+其中BIK问题可以用总数+回文数再除以$2$，即$AIK+AIK^2+AIK^2x$来求，最后的EIK只要分治FFT就好了
+
+$$
+\begin{align}
+A(x)=\exp \sum_{j\ge 1}\dfrac{A(x)+\frac{1}{2}(\frac{A(x)}{1-A(x)}+\frac{A(x)}{1-A(x^2)}+\frac{A(x^2)}{1-A(x^2)})}{j}\tag{2.2}
+\end{align}
+$$
+
+### 有标号仙人图计数
+
+看有$\downarrow$的课件吧
+
+![](毒瘤图计数/1.png)
+
+### 历史遗留问题
+
+#### $\exp$怎么分治FFT
+
+考虑到$(0.32)$，直接用一般的分治FFT即可
+
+#### $(2.1)$（和类似的）怎么牛顿迭代
+
+~~为方便，~~$\hat A$~~不打hat了~~
+
+$$
+A(x)-x\exp(\dfrac{2A(x)-A^2(x)}{2-2A(x)})=0
+$$
+
+按照习惯，牛顿迭代$A_0(x)$表示$A(x)$的前$\dfrac 12$项
+
+记$B(x)=x\exp(\dfrac{2A_0(x)-A_0^2(x)}{2-2A_0(x)})$
+
+~~使用链式法则就像是剥洋葱，要一层一层地剥开它的心。如果它的个头太大，你还会鼻酸流泪。~~
+
+$$
+A(x)=A_0(x)-\dfrac{2A_0(x)-2B(x)}{2-B(x)(1+\frac{1}{(1-A_0(x))^2})}
+$$
+
+~~你很难想象：如此优美的式子只有一个~~$\log$

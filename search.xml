@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[毒瘤图计数]]></title>
+    <url>%2F2019%2F10%2F10%2F%E6%AF%92%E7%98%A4%E5%9B%BE%E8%AE%A1%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[前置知识只有生成函数，一点也不毒 需要用到： $$\begin{align}\mathrm e^x=&amp;\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\\ln x=&amp;\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\A(x)=&amp;\exp B(x)\notag\\=&amp;\int B’(x)\exp B(x)\notag\\=&amp;\int B’(x)A(x)\tag{0.31}\\a_n=&amp;\dfrac1n\sum_{i\ge 1}ib_ia_{b-i}\tag{0.32}\end{align}$$ 只有有标号和无标号有根]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[WC2019远古计算机]]></title>
     <url>%2F2019%2F10%2F06%2FWC2019%E8%BF%9C%E5%8F%A4%E8%AE%A1%E7%AE%97%E6%9C%BA%2F</url>
     <content type="text"><![CDATA[题目链接： https://loj.ac/problem/2984]]></content>
@@ -355,8 +364,8 @@
     <content type="text"><![CDATA[问有$n$个节点的有根二叉树的期望叶子数]]></content>
       <tags>
         <tag>math</tag>
-        <tag>TJOI</tag>
         <tag>生成函数</tag>
+        <tag>TJOI</tag>
       </tags>
   </entry>
   <entry>

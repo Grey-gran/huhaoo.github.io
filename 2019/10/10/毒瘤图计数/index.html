@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前置知识只有生成函数，一点也不毒 需要用到： $$\begin{align}\mathrm e^x=&amp;amp;\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\\ln x=&amp;amp;\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\A(x)=&amp;amp;\exp B(x)\notag\\=&amp;amp;\int B’(x)\exp">
+<meta name="keywords" content="math,生成函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="毒瘤图计数">
+<meta property="og:url" content="https://huhaoo.github.io/2019/10/10/毒瘤图计数/index.html">
+<meta property="og:site_name" content="Huhao&#39;s blog">
+<meta property="og:description" content="前置知识只有生成函数，一点也不毒 需要用到： $$\begin{align}\mathrm e^x=&amp;amp;\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\\ln x=&amp;amp;\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\A(x)=&amp;amp;\exp B(x)\notag\\=&amp;amp;\int B’(x)\exp">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://huhaoo.github.io/2019/10/10/毒瘤图计数/毒瘤图计数/1.png">
+<meta property="og:updated_time" content="2019-10-14T07:14:56.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="毒瘤图计数">
+<meta name="twitter:description" content="前置知识只有生成函数，一点也不毒 需要用到： $$\begin{align}\mathrm e^x=&amp;amp;\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\\ln x=&amp;amp;\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\A(x)=&amp;amp;\exp B(x)\notag\\=&amp;amp;\int B’(x)\exp">
+<meta name="twitter:image" content="https://huhaoo.github.io/2019/10/10/毒瘤图计数/毒瘤图计数/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://huhaoo.github.io/2019/10/10/毒瘤图计数/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>毒瘤图计数 | Huhao's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Huhao's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />Sitemap</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-frindlinks">
+    <a href="/link" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-link"></i> <br />frindlinks</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-games">
+    <a href="/game" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br />Games</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huhaoo.github.io/2019/10/10/毒瘤图计数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huhao">
+      <meta itemprop="description" content="本人已AFO，有事烧纸。">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huhao's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">毒瘤图计数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-10 16:14:24" itemprop="dateCreated datePublished" datetime="2019-10-10T16:14:24+08:00">2019-10-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-14 15:14:56" itemprop="dateModified" datetime="2019-10-14T15:14:56+08:00">2019-10-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/10/毒瘤图计数/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/10/毒瘤图计数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="/hint.min.css"><p><del>前置知识只有生成函数，一点也不毒</del></p>
+<p>需要用到：</p>
+<p>$$<br>\begin{align}<br>\mathrm e^x=&amp;\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\<br>\ln x=&amp;\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\<br>A(x)=&amp;\exp B(x)\notag\\<br>=&amp;\int B’(x)\exp B(x)\notag\\<br>=&amp;\int B’(x)A(x)\tag{0.31}\\<br>a_n=&amp;\dfrac1n\sum_{i\ge 1}ib_ia_{b-i}\tag{0.32}<br>\end{align}<br>$$</p>
+<p><del>只有有标号和无标号有根</del></p>
+<a id="more"></a>
+<p>下面数列$a_i$的OGF为$A(x)$，EGF为$\hat A(x)$</p>
+<h3 id="计数类型？"><a href="#计数类型？" class="headerlink" title="计数类型？"></a>计数类型？</h3><p><a href="https://oeis.org/transforms2.html" target="_blank" rel="noopener">详见这</a></p>
+<p>我们考虑给这些计数问题分类，统一变为以下形式：</p>
+<p>如果一个装有$i$个球的盒子有$a_i$种染色方案，求把$n$个球放到若干盒子且能唯一区分的方案数$b_i$</p>
+<p>盒子的重排方式：</p>
+<ul>
+<li>A. Linear，即线性，表示不存在重排方式</li>
+<li>B. Linear with turning over，即线性可反转，表示可以翻转</li>
+<li>C. Circular，即圆上，表示可以任意旋转</li>
+<li>D. Circular with turning over，即圆上可翻转，表示可以任意旋转和翻转</li>
+<li>E. None，无限制，表示可以任意重排</li>
+</ul>
+<p>盒子区分方式：</p>
+<ul>
+<li>F. Size，即大小，表示大小相同视为相同</li>
+<li>G. Element，即元素（或类型，大小颜色），表示大小相同下颜色相同视为相同</li>
+<li>H. Identity，即身份(？)，表示G前提下位置相同，即任意两个盒子不同</li>
+<li>I. None，无限制（没有关于区分的限制）</li>
+</ul>
+<p>球的区分方式</p>
+<ul>
+<li>J. Labeled，有标签（视为不同的球）</li>
+<li>K. Unlabeled，无标签（时为不同的球）</li>
+</ul>
+<p>每个转化由三个字母组成，除了AHx,AIx相同，EHx,EGx相同外，共$36$种组合</p>
+<h4 id="AIK-INVERT"><a href="#AIK-INVERT" class="headerlink" title="AIK(INVERT)"></a>AIK(INVERT)</h4><p>即盒子有序且无任何区分限制，球视为相同的</p>
+<p>$$<br>\begin{align}<br>B(x)=&amp;\sum_{i\ge 0}A(x)^i\notag\\<br>=&amp;\dfrac{1}{1-A(x)}\tag{1.1}<br>\end{align}<br>$$</p>
+<h4 id="EGK-WEIGH"><a href="#EGK-WEIGH" class="headerlink" title="EGK(WEIGH)"></a>EGK(WEIGH)</h4><p>即一种盒子只能有一个，球视为相同</p>
+<p>就是一个多重背包</p>
+<p>$$<br>\begin{align}<br>B(x)=&amp;\prod_{i\ge 0}(1+x^i)a_i\notag\\<br>\ln B(x)=&amp;\sum_{i\ge 0}a_i\ln(1+x^i)\notag\\<br>=&amp;\sum_{i\ge 0}a_i\sum_{j\ge 1}\dfrac{(-1)^{j-1}x^{ij}}{j}\notag\\<br>=&amp;\sum_{j\ge 1}\dfrac{(-1)^{j-1}}{j}\sum_{i\ge 0}a_ix^{ij}\notag\\<br>B(x)=&amp;\exp \sum_{j\ge 1}\dfrac{(-1)^{j-1}}{j}A(x^j)\tag{1.2}<br>\end{align}<br>$$</p>
+<h4 id="EIJ-EXP"><a href="#EIJ-EXP" class="headerlink" title="EIJ(EXP)"></a>EIJ(EXP)</h4><p>盒子无序，球有编号，无区分限制，显然：</p>
+<p>$$<br>\hat B(x)=\exp \hat A(x)<br>$$</p>
+<h4 id="EIK-EULER"><a href="#EIK-EULER" class="headerlink" title="EIK(EULER)"></a>EIK(EULER)</h4><p>类似EGK，这是一个完全背包，显然</p>
+<p>$$<br>\begin{align}<br>B(x)=&amp;\prod_{i\ge 0}\dfrac{1}{(1-x^i)^{a_i}}\notag\\<br>\ln B(x)=&amp;\sum_{i\ge 0}-a_i\ln(1-x^i)\notag\\<br>=&amp;\sum_{i\ge 0}a_i\sum_{j\ge 1}\dfrac{x^{ij}}{j}\notag\\<br>=&amp;\sum_{j\ge 1}\dfrac{1}{j}A(x^j)\notag\\<br>B(x)=&amp;\exp \sum_{j\ge 1}\dfrac{1}{j}A(x^j)\tag{1.3}<br>\end{align}<br>$$</p>
+<h4 id="other"><a href="#other" class="headerlink" title="other"></a>other</h4><p><a href="https://oeis.org/transforms2.html" target="_blank" rel="noopener">见这</a></p>
+<h3 id="无标号有根树计数"><a href="#无标号有根树计数" class="headerlink" title="无标号有根树计数"></a>无标号有根树计数</h3><p>类似上面，不过这是EIK问题，所以</p>
+<p>$$<br>A(x)=x\sum_{j\ge 1}\dfrac{\exp A(x^j)}j<br>$$</p>
+<p>都可以分治FFT</p>
+<h3 id="有标号仙人掌计数"><a href="#有标号仙人掌计数" class="headerlink" title="有标号仙人掌计数"></a>有标号仙人掌计数</h3><p>先转化为有根的，到时候再$\times \dfrac1n$</p>
+<p>然后我们删掉根后只看与根相连的就有若干点和一些少一个点的环（变为了链）</p>
+<p>考虑由若干仙人掌根组成的链，就是一个BIJ问题（不过要求至少$2$个盒子），有</p>
+<p>$$<br>\hat B(x)=\dfrac 12\sum_{i=2}^n\hat A^i(x)=\dfrac{\hat A^2(x)}{2-2\hat A(x)}<br>$$</p>
+<p>然后算上点的方案，把它们拼起来就是EIJ问题：</p>
+<p>$$<br>\begin{align}<br>\hat A(x)=x\exp(\dfrac{2\hat A(x)-\hat A^2(x)}{2-2\hat A(x)})\tag{2.1}<br>\end{align}<br>$$</p>
+<h3 id="无标号有根仙人掌计数"><a href="#无标号有根仙人掌计数" class="headerlink" title="无标号有根仙人掌计数"></a>无标号有根仙人掌计数</h3><p>把上面所有J换为K即可</p>
+<p>其中BIK问题可以用总数+回文数再除以$2$，即$AIK+AIK^2+AIK^2x$来求，最后的EIK只要分治FFT就好了</p>
+<p>$$<br>\begin{align}<br>A(x)=\exp \sum_{j\ge 1}\dfrac{A(x)+\frac{1}{2}(\frac{A(x)}{1-A(x)}+\frac{A(x)}{1-A(x^2)}+\frac{A(x^2)}{1-A(x^2)})}{j}\tag{2.2}<br>\end{align}<br>$$</p>
+<h3 id="有标号仙人图计数"><a href="#有标号仙人图计数" class="headerlink" title="有标号仙人图计数"></a>有标号仙人图计数</h3><p>看有$\downarrow$的课件吧</p>
+<p><img src="毒瘤图计数/1.png" alt=""></p>
+<h3 id="历史遗留问题"><a href="#历史遗留问题" class="headerlink" title="历史遗留问题"></a>历史遗留问题</h3><h4 id="exp-怎么分治FFT"><a href="#exp-怎么分治FFT" class="headerlink" title="$\exp$怎么分治FFT"></a>$\exp$怎么分治FFT</h4><p>考虑到$(0.32)$，直接用一般的分治FFT即可</p>
+<h4 id="2-1-（和类似的）怎么牛顿迭代"><a href="#2-1-（和类似的）怎么牛顿迭代" class="headerlink" title="$(2.1)$（和类似的）怎么牛顿迭代"></a>$(2.1)$（和类似的）怎么牛顿迭代</h4><p><del>为方便，</del>$\hat A$<del>不打hat了</del></p>
+<p>$$<br>A(x)-x\exp(\dfrac{2A(x)-A^2(x)}{2-2A(x)})=0<br>$$</p>
+<p>按照习惯，牛顿迭代$A_0(x)$表示$A(x)$的前$\dfrac 12$项</p>
+<p>记$B(x)=x\exp(\dfrac{2A_0(x)-A_0^2(x)}{2-2A_0(x)})$</p>
+<p><del>使用链式法则就像是剥洋葱，要一层一层地剥开它的心。如果它的个头太大，你还会鼻酸流泪。</del></p>
+<p>$$<br>A(x)=A_0(x)-\dfrac{2A_0(x)-2B(x)}{2-B(x)(1+\frac{1}{(1-A_0(x))^2})}<br>$$</p>
+<p><del>你很难想象：如此优美的式子只有一个</del>$\log$</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/math/" rel="tag"># math</a>
+          
+            <a href="/tags/生成函数/" rel="tag"># 生成函数</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/06/WC2019远古计算机/" rel="next" title="WC2019远古计算机">
+                <i class="fa fa-chevron-left"></i> WC2019远古计算机
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+
+    </div>
+  
+
+    
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="huhao" />
+            
+              <p class="site-author-name" itemprop="name">huhao</p>
+              <p class="site-description motion-element" itemprop="description">本人已AFO，有事烧纸。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">130</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/huhaoo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qq826538400@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<p>公告</p>
+			<p></p>
+			<p>代码前面部分被截掉了，如果想看完整代码，前往 https://github.com/huhaoo </p>
+			<p>如果有些文章标题或内容格式不太好 Please contact 826538400@qq.com</p>
+		</div>
+<!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<div class="Hitokotoframe">
+				<div>
+  					 <p class="hitokoto"></p>
+ 					 <p class="from"></p>
+				</div>
+			</div>
+		</div>-->
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#计数类型？"><span class="nav-number">1.</span> <span class="nav-text">计数类型？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AIK-INVERT"><span class="nav-number">1.1.</span> <span class="nav-text">AIK(INVERT)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EGK-WEIGH"><span class="nav-number">1.2.</span> <span class="nav-text">EGK(WEIGH)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EIJ-EXP"><span class="nav-number">1.3.</span> <span class="nav-text">EIJ(EXP)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EIK-EULER"><span class="nav-number">1.4.</span> <span class="nav-text">EIK(EULER)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#other"><span class="nav-number">1.5.</span> <span class="nav-text">other</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无标号有根树计数"><span class="nav-number">2.</span> <span class="nav-text">无标号有根树计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有标号仙人掌计数"><span class="nav-number">3.</span> <span class="nav-text">有标号仙人掌计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无标号有根仙人掌计数"><span class="nav-number">4.</span> <span class="nav-text">无标号有根仙人掌计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有标号仙人图计数"><span class="nav-number">5.</span> <span class="nav-text">有标号仙人图计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史遗留问题"><span class="nav-number">6.</span> <span class="nav-text">历史遗留问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp-怎么分治FFT"><span class="nav-number">6.1.</span> <span class="nav-text">$\exp$怎么分治FFT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-（和类似的）怎么牛顿迭代"><span class="nav-number">6.2.</span> <span class="nav-text">$(2.1)$（和类似的）怎么牛顿迭代</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<p>访问次数</p>
+			<p></p>
+			<div align="center"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3229894&c=9689995" alt="AmazingCounters.com"></a></div>
+		</div>-->
+<!--		<div class="links-of-blogroll motion-element links-of-blogroll-block">
+			<p>Google Ad（应该炸了）</p>
+			<p></p>
+			<head>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<script>
+				  (adsbygoogle = window.adsbygoogle || []).push({
+					google_ad_client: "ca-pub-9318855766037171",
+					enable_page_level_ads: true
+				  });
+				</script>
+			<p></p>
+			</head>
+		</div>-->
+	  
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '2oPGBihpCTJFnMfpg1GsQgM9-gzGzoHsz',
+        appKey: '1m5CqQ40qt0LqF1e2W1XChlU',
+        placeholder: '博主太菜了，嘲讽他一波',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#more");
+  
+  </script>
+
+
+  
+
+</body>
+</html>
+
+<script type="text/javascript" src="/js/src/hitokoto.js"></script>
+
