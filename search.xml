@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[OI回忆录（未完结，咕咕咕）]]></title>
+    <url>%2F2019%2F10%2F20%2FOI%E5%9B%9E%E5%BF%86%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[$ $]]></content>
+      <tags>
+        <tag>退役记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[毒瘤图计数]]></title>
     <url>%2F2019%2F10%2F10%2F%E6%AF%92%E7%98%A4%E5%9B%BE%E8%AE%A1%E6%95%B0%2F</url>
     <content type="text"><![CDATA[前置知识只有生成函数，一点也不毒 需要用到： $$\begin{align}\mathrm e^x=&amp;\sum_{i\ge 0}\dfrac{x^i}{i!}\tag{0.1}\\\ln x=&amp;\sum_{i\ge 1}\dfrac{x^i(-1)^{i-1}}{i}\tag{0.2}\\A(x)=&amp;\exp B(x)\notag\\=&amp;\int B’(x)\exp B(x)\notag\\=&amp;\int B’(x)A(x)\tag{0.31}\\a_n=&amp;\dfrac1n\sum_{i\ge 1}ib_ia_{b-i}\tag{0.32}\end{align}$$ 只有有标号和无标号有根]]></content>
